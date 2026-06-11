@@ -2,6 +2,7 @@ package org.jetbrains.kmp.resolver
 
 import com.github.ajalt.clikt.command.SuspendingCliktCommand
 import com.github.ajalt.clikt.parameters.options.convert
+import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.multiple
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
@@ -38,6 +39,11 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         help = "Path to JSON repository credentials resolved by the caller.",
     ).convert { Path.of(it) }
 
+    private val stopAtFirstRepositoryMatch: Boolean by option(
+        "--stop-at-first-repository-match",
+        help = "Whether to check all repository for the artifact's presence, or to stop at the first match.",
+    ).flag(default = false)
+
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
         val credentials = when (val credentialsFile = repositoryCredentialsFile) {
@@ -47,6 +53,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         val resolver = MultiplatformResolver(
             cachePath = outputManifest.parent,
             repositories = repositories.withRepositoryCredentials(credentials),
+            stopAtFirstRepositoryMatch = stopAtFirstRepositoryMatch,
         )
         val manifest = BazelManifest(
             askedCoordinates = coordinates.sorted(),
