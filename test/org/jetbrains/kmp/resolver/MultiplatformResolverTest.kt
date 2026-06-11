@@ -2,11 +2,9 @@ package org.jetbrains.kmp.resolver
 
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import kotlin.io.path.createTempDirectory
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class MultiplatformResolverTest {
     // TODO: would be nice to mock Maven repositories to avoid real HTTP calls

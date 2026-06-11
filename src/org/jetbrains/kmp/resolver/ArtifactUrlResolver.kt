@@ -80,7 +80,8 @@ internal suspend fun UnresolvedNode.resolve(
     stopAtFirstRepositoryMatch: Boolean,
 ): MultiplatformLibrary = coroutineScope {
     val resolvedKlib = async { klib.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) }
-    val resolvedSourceJar = sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) } }
+    val resolvedSourceJar =
+        sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) } }
 
     MultiplatformLibrary(
         id = id,

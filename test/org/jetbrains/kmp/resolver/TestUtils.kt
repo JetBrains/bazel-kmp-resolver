@@ -10,7 +10,10 @@ object TestResourceReader {
     }
 }
 
-private val json = Json { prettyPrint = true }
+private val json = Json {
+    prettyPrintIndent = "  "
+    prettyPrint = true
+}
 
 /**
  * Asserts using the given [manifestResourceFilepath] to improve readability of diff in tests, it's easier to read

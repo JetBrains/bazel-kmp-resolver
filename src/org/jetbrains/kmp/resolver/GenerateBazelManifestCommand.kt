@@ -1,11 +1,7 @@
 package org.jetbrains.kmp.resolver
 
 import com.github.ajalt.clikt.command.SuspendingCliktCommand
-import com.github.ajalt.clikt.parameters.options.convert
-import com.github.ajalt.clikt.parameters.options.flag
-import com.github.ajalt.clikt.parameters.options.multiple
-import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -68,6 +64,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     companion object {
         private val json = Json {
+            prettyPrintIndent = "  "
             allowStructuredMapKeys = true
             prettyPrint = true
         }
