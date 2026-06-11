@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 class RepositoryCredentialsTest {
     @Test
     fun parsesCredentialsFromStream() {
-        this::class.java.getResourceAsStream("/credentials.json")!!.use { credentials ->
+        TestResourceReader.readResource("credentials.json").use { credentials ->
             val actual = RepositoryCredentials.fromStream(credentials)
             val expected = listOf(
                 RepositoryCredentials(repositoryUrl = "repo.example.com", username = "alice", password = "token-a"),

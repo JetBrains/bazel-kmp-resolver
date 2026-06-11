@@ -58,7 +58,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         val manifest = BazelManifest(
             askedCoordinates = coordinates.sorted(),
             askedRepositories = repositories.sorted(),
-            libraries = resolver.resolveMultiplatformComponentsOf(coordinates).associateBy { it.id }.toSortedMap(),
+            libraries = resolver.resolve(coordinates).associateBy { it.id }.toSortedMap(),
         )
         outputManifest.createParentDirectories()
         outputManifest.outputStream().use { output ->
@@ -75,7 +75,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 }
 
 @Serializable
-private data class BazelManifest(
+internal data class BazelManifest(
     val askedCoordinates: List<String>,
     val askedRepositories: List<String>,
     val libraries: Map<MultiplatformLibraryId, MultiplatformLibrary>,
