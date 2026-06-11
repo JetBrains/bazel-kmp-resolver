@@ -65,18 +65,28 @@ internal class MultiplatformResolver(
 
     internal suspend fun resolve(coordinatesBag: Collection<String>): List<MultiplatformLibrary> {
         logger.info("Resolving dependency graph for:\n${coordinatesBag.joinToString("\n") { " - $it" }}")
-        val nodes = resolveNodes(coordinatesBag)
-        return ArtifactUrlResolver().use { artifactUrlResolver ->
-            coroutineScope {
-                nodes.map { unresolvedNode ->
-                    async { unresolvedNode.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) }
-                }.awaitAll()
-            }
-        }
+        val root = callAmperResolution(
+            coordinatesBag = coordinatesBag,
+            platforms = setOf(ResolutionPlatform.WASM_JS),
+            scope = listOf(
+                ResolutionScope.RUNTIME,
+                ResolutionScope.COMPILE,
+            ),
+        )
+        logger.info("Collecting nodes of the dependency graph...")
+        val collectionResult = collectNodes(root)
+        logger.info("Collecting artifacts of nodes of the dependency graph...")
+        val nodesWithUnresolvedArtifacts = collectArtifacts(collectionResult)
+        logger.info("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
+        val resolvedNodes = resolveArtifacts(nodesWithUnresolvedArtifacts)
+        return resolvedNodes
     }
 
-    private suspend fun resolveNodes(coordinatesBag: Collection<String>): List<UnresolvedNode> {
-        val platforms = setOf(ResolutionPlatform.WASM_JS)
+    private suspend fun callAmperResolution(
+        coordinatesBag: Collection<String>,
+        platforms: Set<ResolutionPlatform>,
+        scope: List<ResolutionScope>,
+    ): RootDependencyNodeWithContext {
         val defaultSettings: SettingsBuilder.() -> Unit = {
             this.platforms = platforms
             repositories = this@MultiplatformResolver.repositories
@@ -85,22 +95,15 @@ internal class MultiplatformResolver(
         val templateContext = Context {
             defaultSettings()
         }
-        val runtimeContext = Context {
-            defaultSettings()
-            scope = ResolutionScope.RUNTIME
-        }
-        val compileContext = Context {
-            defaultSettings()
-            scope = ResolutionScope.COMPILE
+        val contexts = scope.map {
+            Context {
+                defaultSettings()
+                this.scope = it
+            }
         }
         val root = RootDependencyNodeWithContext(
             templateContext = templateContext,
-            children = coordinatesBag.flatMap { c ->
-                listOf(
-                    c.toMavenNode(runtimeContext),
-                    c.toMavenNode(compileContext),
-                )
-            },
+            children = coordinatesBag.flatMap { c -> contexts.map { c.toMavenNode(it) } },
         )
 
         Resolver().resolveDependencies(
@@ -110,43 +113,7 @@ internal class MultiplatformResolver(
             incrementalCacheUsage = IncrementalCacheUsage.SKIP,
             unspecifiedVersionResolver = MavenDependencyUnspecifiedVersionResolverBase(),
         )
-
-        val collectionResult = collectNodes(root)
-        return when {
-            collectionResult.errored -> error("failed to resolve coordinates, check error logs above.")
-            else -> collectionResult.nodes.map { (id, nodes) ->
-                val variantIds = nodes.map { it.idForBazel }.toSet()
-                require(variantIds.size == 1) { "$id must match exactly one variant, got $variantIds" }
-                val variantId = variantIds.first()
-
-                val klibs = nodes.flatMap { it.filesMatching(logger) { it.klib() } }.toSet()
-                logger.info("[$id] found klibs: $klibs")
-                val klib = klibs.singleOrNull() ?: error("Expected exactly one klib for dependency $id, got: $klibs")
-
-                val sourceJars = nodes.flatMap { it.filesMatching(logger) { it.sourceJar() } }.toSet()
-                logger.info("[$id] found sourceJars: $sourceJars")
-                require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-                val sourceJar = sourceJars.singleOrNull()
-
-                val children = nodes.flatMap { it.children }.filterIsInstance<MavenDependencyNode>().distinct()
-                val (runtimeDeps, compileDeps) = children.filter { child ->
-                    child.idForBazel !in collectionResult.skipped
-                }.partition {
-                    it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME
-                }
-
-                val runtimeDepsIds = runtimeDeps.map { it.idForBazel }.toSet()
-                val compileDepsIds = compileDeps.map { it.idForBazel }.toSet()
-                UnresolvedNode(
-                    id = id,
-                    variantId = variantId,
-                    klib = klib,
-                    sourceJar = sourceJar,
-                    dependencies = (runtimeDepsIds - compileDepsIds).sorted(),
-                    exportedDependencies = compileDepsIds.sorted(),
-                )
-            }
-        }
+        return root
     }
 
     private fun collectNodes(root: RootDependencyNode): CollectionResult {
@@ -221,6 +188,54 @@ internal class MultiplatformResolver(
             errored = errored,
         )
     }
+
+
+    private suspend fun collectArtifacts(collectionResult: CollectionResult): List<NodeWithUnresolvedArtifacts> = when {
+        collectionResult.errored -> error("failed to resolve coordinates, check error logs above.")
+        else -> collectionResult.nodes.map { (id, nodes) ->
+            val variantIds = nodes.map { it.idForBazel }.toSet()
+            require(variantIds.size == 1) { "$id must match exactly one variant, got $variantIds" }
+            val variantId = variantIds.first()
+
+            val klibs = nodes.flatMap { it.filesMatching(logger) { it.klib() } }.toSet()
+            logger.info("[$id] found klibs: $klibs")
+            val klib = klibs.singleOrNull() ?: error("Expected exactly one klib for dependency $id, got: $klibs")
+
+            val sourceJars = nodes.flatMap { it.filesMatching(logger) { it.sourceJar() } }.toSet()
+            logger.info("[$id] found sourceJars: $sourceJars")
+            require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
+            val sourceJar = sourceJars.singleOrNull()
+
+            val children = nodes.flatMap { it.children }.filterIsInstance<MavenDependencyNode>().distinct()
+            val (runtimeDeps, compileDeps) = children.filter { child ->
+                child.idForBazel !in collectionResult.skipped
+            }.partition {
+                it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME
+            }
+
+            val runtimeDepsIds = runtimeDeps.map { it.idForBazel }.toSet()
+            val compileDepsIds = compileDeps.map { it.idForBazel }.toSet()
+            NodeWithUnresolvedArtifacts(
+                id = id,
+                variantId = variantId,
+                klib = klib,
+                sourceJar = sourceJar,
+                dependencies = (runtimeDepsIds - compileDepsIds).sorted(),
+                exportedDependencies = compileDepsIds.sorted(),
+            )
+        }
+    }
+
+    private suspend fun resolveArtifacts(nodesWithUnresolvedArtifacts: List<NodeWithUnresolvedArtifacts>): List<MultiplatformLibrary> =
+        ArtifactUrlResolver().use { artifactUrlResolver ->
+            coroutineScope {
+                nodesWithUnresolvedArtifacts.map { unresolvedNode ->
+                    async {
+                        unresolvedNode.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch)
+                    }
+                }.awaitAll()
+            }
+        }
 }
 
 data class CollectionResult(

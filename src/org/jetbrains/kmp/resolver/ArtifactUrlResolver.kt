@@ -21,7 +21,7 @@ internal data class UnresolvedMultiplatformLibraryArtifact(
     val artifactPath: String,
 )
 
-internal data class UnresolvedNode(
+internal data class NodeWithUnresolvedArtifacts(
     val id: MultiplatformLibraryId,
     val variantId: MultiplatformLibraryId,
     val klib: UnresolvedMultiplatformLibraryArtifact,
@@ -68,7 +68,7 @@ internal suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     )
 }
 
-internal suspend fun UnresolvedNode.resolve(
+internal suspend fun NodeWithUnresolvedArtifacts.resolve(
     repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
     /**
