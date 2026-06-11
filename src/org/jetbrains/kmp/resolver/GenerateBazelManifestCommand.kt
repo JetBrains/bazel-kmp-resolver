@@ -68,9 +68,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     companion object {
         private val json = Json {
-            prettyPrintIndent = "  "
             allowStructuredMapKeys = true
-            prettyPrint = true
         }
     }
 }
