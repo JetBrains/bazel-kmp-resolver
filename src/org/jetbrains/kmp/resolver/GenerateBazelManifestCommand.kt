@@ -2,6 +2,7 @@ package org.jetbrains.kmp.resolver
 
 import com.github.ajalt.clikt.command.SuspendingCliktCommand
 import com.github.ajalt.clikt.parameters.options.*
+import com.github.ajalt.clikt.parameters.types.int
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -35,10 +36,10 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         help = "Path to JSON repository credentials resolved by the caller.",
     ).convert { Path.of(it) }
 
-    private val stopAtFirstRepositoryMatch: Boolean by option(
-        "--stop-at-first-repository-match",
-        help = "Whether to check all repository for the artifact's presence, or to stop at the first match.",
-    ).flag(default = false)
+    private val allowedConcurrentConnections: Int by option(
+        "--allowed-concurrent-connections",
+        help = "Number of allowed concurrent connections per repository when resolving artifacts.",
+    ).int().default(100)
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
@@ -46,16 +47,19 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             null -> emptyMap()
             else -> RepositoryCredentials.fromFile(credentialsFile)
         }
-        val resolver = MultiplatformResolver(
-            cachePath = outputManifest.parent,
-            repositories = repositories.withRepositoryCredentials(credentials),
-            stopAtFirstRepositoryMatch = stopAtFirstRepositoryMatch,
-        )
-        val manifest = BazelManifest(
-            askedCoordinates = coordinates.sorted(),
-            askedRepositories = repositories.sorted(),
-            libraries = resolver.resolve(coordinates).associateBy { it.id }.toSortedMap(),
-        )
+        val artifactResolver = ArtifactUrlResolver(allowedConcurrentConnections)
+        val manifest = artifactResolver.use { artifactResolver ->
+            val resolver = MultiplatformResolver(
+                cachePath = outputManifest.parent,
+                repositories = repositories.withRepositoryCredentials(credentials),
+                artifactResolver = artifactResolver,
+            )
+            BazelManifest(
+                askedCoordinates = coordinates.sorted(),
+                askedRepositories = repositories.sorted(),
+                libraries = resolver.resolve(coordinates).associateBy { it.id }.toSortedMap(),
+            )
+        }
         outputManifest.createParentDirectories()
         outputManifest.outputStream().use { output ->
             json.encodeToStream(manifest, output)

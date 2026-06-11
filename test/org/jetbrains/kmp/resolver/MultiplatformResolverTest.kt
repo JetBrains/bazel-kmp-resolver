@@ -20,12 +20,15 @@ class MultiplatformResolverTest {
             "io.ktor:ktor-client-cio:3.5.0",
             "io.ktor:ktor-client-core:3.4.3",
         )
-        val resolver = MultiplatformResolver(
-            cachePath = cache,
-            repositories = repositories.map { MavenRepository(it) },
-            stopAtFirstRepositoryMatch = true,
-        )
-        val actual = resolver.resolve(coordinates)
+        val artifactResolver = ArtifactUrlResolver(allowedConcurrentConnections = 100)
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = MultiplatformResolver(
+                cachePath = cache,
+                repositories = repositories.map { MavenRepository(it) },
+                artifactResolver = artifactResolver,
+            )
+            resolver.resolve(coordinates)
+        }
 
         assertUsingManifest(
             coordinates = coordinates,

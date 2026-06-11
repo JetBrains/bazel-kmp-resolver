@@ -5,9 +5,11 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Semaphore
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -33,29 +35,11 @@ internal data class NodeWithUnresolvedArtifacts(
 internal suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
-    /**
-     * Whether to query all repository for the artifact, or to stop at the first match.
-     *
-     * Stopping avoids bursting repositories which sometimes time out under the load (Space Packages especially).
-     * Checking all repositories is a more reliable way to resolve artifacts in the system using the manifest (e.g. Bazel).
-     */
-    stopAtFirstRepositoryMatch: Boolean,
 ): MultiplatformLibraryArtifact {
-    val urls = when {
-        !stopAtFirstRepositoryMatch -> coroutineScope {
-            repositories.map {
-                async {
-                    artifactUrlResolver.artifactExistsAt(it, artifactPath)
-                }
-            }.awaitAll().filterIsInstance<ArtifactFile.Resolved>().map { it.url }
-        }
-
-        else -> repositories.firstNotNullOfOrNull { // TODO: when trying to support all URLs, we're reaching a lot of timeouts
-            when (val artifact = artifactUrlResolver.artifactExistsAt(it, artifactPath)) {
-                is ArtifactFile.Resolved -> artifact.url
-                else -> null
-            }
-        }.let { listOfNotNull(it) }
+    val urls = coroutineScope {
+        repositories.map {
+            async { artifactUrlResolver.artifactExistsAt(it, artifactPath) }
+        }.awaitAll().filterIsInstance<ArtifactFile.Resolved>().map { it.url }
     }
     require(urls.isNotEmpty()) { "No URLs found for artifact $artifactPath" }
 
@@ -71,17 +55,10 @@ internal suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
 internal suspend fun NodeWithUnresolvedArtifacts.resolve(
     repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
-    /**
-     * Whether to query all repository for the artifact, or to stop at the first match.
-     *
-     * Stopping avoids bursting repositories which sometimes time out under the load (Space Packages especially).
-     * Checking all repositories is a more reliable way to resolve artifacts in the system using the manifest (e.g. Bazel).
-     */
-    stopAtFirstRepositoryMatch: Boolean,
 ): MultiplatformLibrary = coroutineScope {
-    val resolvedKlib = async { klib.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) }
+    val resolvedKlib = async { klib.resolve(repositories, artifactUrlResolver) }
     val resolvedSourceJar =
-        sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch) } }
+        sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver) } }
 
     MultiplatformLibrary(
         id = id,
@@ -98,19 +75,28 @@ internal sealed class ArtifactFile {
     data object NotFound : ArtifactFile()
 }
 
-internal class ArtifactUrlResolver : AutoCloseable {
-    val logger: Logger = LoggerFactory.getLogger(this::class.java)
+internal class ArtifactUrlResolver(
+    private val allowedConcurrentConnections: Int,
+) : AutoCloseable {
+    private val logger: Logger = LoggerFactory.getLogger(this::class.java)
+    private val semaphoreByRepository: ConcurrentHashMap<String, Semaphore> = ConcurrentHashMap()
 
     private val httpClient = HttpClient(CIO) {
         followRedirects = true
         expectSuccess = false
         install(HttpRequestRetry) {
-            retryOnExceptionOrServerErrors(maxRetries = 20)
+            retryOnExceptionOrServerErrors(maxRetries = 5)
             exponentialDelay(baseDelayMs = 3000)
         }
         install(HttpTimeout) {
             requestTimeoutMillis = 5000
             connectTimeoutMillis = 5000
+        }
+        engine {
+            maxConnectionsCount = allowedConcurrentConnections
+        }
+        defaultRequest {
+            header("User-Agent", "JetBrainsBazelKmpResolver/1.0")
         }
     }
     private val availabilityByUrl = ConcurrentHashMap<String, ArtifactFile>()
@@ -119,15 +105,23 @@ internal class ArtifactUrlResolver : AutoCloseable {
         val artifactUrl = "${repository.url.trimEnd('/')}/$artifactPath"
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.info("[$artifactUrl] checking for existence of artifact...")
-            val resolved = httpClient.head {
-                url(artifactUrl)
-                val username = repository.userName
-                val password = repository.password
-                when {
-                    username != null && password != null -> basicAuth(username, password)
-                    else -> {}
-                }
-            }.status.isSuccess()
+            val sem = semaphoreByRepository.computeIfAbsent(repository.url) {
+                Semaphore(allowedConcurrentConnections)
+            }
+            sem.acquire()
+            val resolved = try {
+                httpClient.head {
+                    url(artifactUrl)
+                    val username = repository.userName
+                    val password = repository.password
+                    when {
+                        username != null && password != null -> basicAuth(username, password)
+                        else -> {}
+                    }
+                }.status.isSuccess()
+            } finally {
+                sem.release()
+            }
             when {
                 resolved -> {
                     logger.info("[$artifactUrl] found")

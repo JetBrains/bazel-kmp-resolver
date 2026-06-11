@@ -51,13 +51,7 @@ internal data class MultiplatformLibraryArtifact(
 internal class MultiplatformResolver(
     cachePath: Path,
     private val repositories: List<MavenRepository>,
-    /**
-     * Whether to query all repository for the artifact, or to stop at the first match.
-     *
-     * Stopping avoids bursting repositories which sometimes time out under the load (Space Packages especially).
-     * Checking all repositories is a more reliable way to resolve artifacts in the system using the manifest (e.g. Bazel).
-     */
-    private val stopAtFirstRepositoryMatch: Boolean,
+    private val artifactResolver: ArtifactUrlResolver,
 ) {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -227,18 +221,16 @@ internal class MultiplatformResolver(
     }
 
     private suspend fun resolveArtifacts(nodesWithUnresolvedArtifacts: List<NodeWithUnresolvedArtifacts>): List<MultiplatformLibrary> =
-        ArtifactUrlResolver().use { artifactUrlResolver ->
-            coroutineScope {
-                nodesWithUnresolvedArtifacts.map { unresolvedNode ->
-                    async {
-                        unresolvedNode.resolve(repositories, artifactUrlResolver, stopAtFirstRepositoryMatch)
-                    }
-                }.awaitAll()
-            }
+        coroutineScope {
+            nodesWithUnresolvedArtifacts.map { unresolvedNode ->
+                async {
+                    unresolvedNode.resolve(repositories, artifactResolver)
+                }
+            }.awaitAll()
         }
 }
 
-data class CollectionResult(
+private data class CollectionResult(
     val nodes: Map<MultiplatformLibraryId, List<MavenDependencyNode>>,
     val skipped: Set<MultiplatformLibraryId>,
     val errored: Boolean,
