@@ -9,12 +9,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class MultiplatformResolverTest {
-    companion object {
-        private val json = Json {
-            prettyPrint = true
-        }
-    }
-
     // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
     @OptIn(ExperimentalSerializationApi::class)
     @Test
@@ -26,23 +20,20 @@ class MultiplatformResolverTest {
         )
         val coordinates = listOf(
             "io.ktor:ktor-client-cio:3.5.0",
+            "io.ktor:ktor-client-core:3.4.3",
         )
         val resolver = MultiplatformResolver(
             cachePath = cache,
             repositories = repositories.map { MavenRepository(it) },
             stopAtFirstRepositoryMatch = true,
         )
+        val actual = resolver.resolve(coordinates)
 
-        val actual = BazelManifest(
-            askedCoordinates = coordinates.sorted(),
-            askedRepositories = repositories.sorted(),
-            libraries = resolver.resolve(coordinates).associateBy { it.id }.toSortedMap(),
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-ktor_resolution.json",
         )
-        val actualJson = json.encodeToString(BazelManifest.serializer(), actual)
-
-        TestResourceReader.readResource("simple-manifest.json").use { expected ->
-            val expectedManifest = expected.readAllBytes()
-            assertEquals(expectedManifest.toString(Charsets.UTF_8), actualJson)
-        }
     }
 }
