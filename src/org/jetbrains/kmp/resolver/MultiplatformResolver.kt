@@ -67,11 +67,11 @@ internal class MultiplatformResolver(
                 ResolutionScope.COMPILE,
             ),
         )
-        logger.info("Collecting nodes of the dependency graph...")
+        logger.debug("Collecting nodes of the dependency graph...")
         val collectionResult = collectNodes(root)
-        logger.info("Collecting artifacts of nodes of the dependency graph...")
+        logger.debug("Collecting artifacts of nodes of the dependency graph...")
         val nodesWithUnresolvedArtifacts = collectArtifacts(collectionResult)
-        logger.info("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
+        logger.debug("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
         val resolvedNodes = resolveArtifacts(nodesWithUnresolvedArtifacts)
         return resolvedNodes
     }
@@ -145,7 +145,7 @@ internal class MultiplatformResolver(
                         }
 
                         else -> {
-                            logger.info("[${node.idForBazel}] Processing node")
+                            logger.debug("[${node.idForBazel}] Processing node")
                             when (val actualNode = node.actualMavenDependencyOfVariantsMatching { it.klib() }) {
                                 null -> {
                                     skipped.add(node)
@@ -293,13 +293,13 @@ private suspend fun MavenDependencyNode.filesMatching(
     logger: Logger,
     attributeMatcher: (Map<String, String>) -> Boolean,
 ): List<UnresolvedMultiplatformLibraryArtifact> {
-    logger.info("[${idForBazel}] considering variants")
+    logger.debug("[${idForBazel}] considering variants")
     val dep = this.dependency as MavenDependencyImpl
     require(dep.variants.isNotEmpty()) {
         error("no variants found for dependency $idForBazel")
     }
     return dep.variants.filter { variant ->
-        logger.info("[${idForBazel}] considering variant with attributes -> ${variant.attributes}")
+        logger.debug("[${idForBazel}] considering variant with attributes -> ${variant.attributes}")
         attributeMatcher(variant.attributes)
     }.flatMap { variant -> variant.files }.map { file ->
         val version = resolvedVersion() ?: error("could not resolve version for dependency: $dependency")

@@ -104,7 +104,7 @@ internal class ArtifactUrlResolver(
     suspend fun artifactExistsAt(repository: MavenRepository, artifactPath: String): ArtifactFile {
         val artifactUrl = "${repository.url.trimEnd('/')}/$artifactPath"
         return availabilityByUrl.getOrPut(artifactUrl) {
-            logger.info("[$artifactUrl] checking for existence of artifact...")
+            logger.debug("[$artifactUrl] checking for existence of artifact...")
             val sem = semaphoreByRepository.computeIfAbsent(repository.url) {
                 Semaphore(allowedConcurrentConnections)
             }
