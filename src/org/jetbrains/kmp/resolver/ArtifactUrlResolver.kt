@@ -5,11 +5,11 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -105,11 +105,9 @@ internal class ArtifactUrlResolver(
         val artifactUrl = "${repository.url.trimEnd('/')}/$artifactPath"
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
-            val sem = semaphoreByRepository.computeIfAbsent(repository.url) {
+            val resolved = semaphoreByRepository.computeIfAbsent(repository.url) {
                 Semaphore(allowedConcurrentConnections)
-            }
-            sem.acquire()
-            val resolved = try {
+            }.withPermit {
                 httpClient.head {
                     url(artifactUrl)
                     val username = repository.userName
@@ -119,8 +117,6 @@ internal class ArtifactUrlResolver(
                         else -> {}
                     }
                 }.status.isSuccess()
-            } finally {
-                sem.release()
             }
             when {
                 resolved -> {
