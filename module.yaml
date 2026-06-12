@@ -15,33 +15,7 @@ test-dependencies:
   - $kotlin.test
 repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper
-  - id: toSpace
-    url: https://packages.jetbrains.team/maven/p/ij/intellij-dependencies
-    publish: true
-    credentials:
-      file: credentials.properties
-      usernameKey: spaceUsername
-      passwordKey: spacePassword
 settings:
   kotlin:
     version: 2.4.0
     serialization: json
-  publishing:
-    enabled: true
-    group: org.jetbrains
-    artifactId: bazel-kmp-resolver
-    # Keep the following key, it is swapped at publishing time by CI until Kotlin Toolchain supports overridding properties like that from the CLI
-    # version:
-    signArtifacts: false # TODO: add support for signing
-    publishSources: true
-    pom:
-      description: A Amper-based resolver CLI of Kotlin Multiplatform dependencies
-      url: https://github.com/JetBrains/bazel-kmp-resolver.git
-      scm: https://github.com/JetBrains/bazel-kmp-resolver.git
-      developers:
-        - name: Titouan Bion
-          id: ArchangelX360
-          email: titouan.bion@gmail.com
-      licenses:
-        - name: The Apache License, Version 2.0
-          url: https://www.apache.org/licenses/LICENSE-2.0.txt

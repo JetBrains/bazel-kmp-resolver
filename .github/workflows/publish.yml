@@ -15,11 +15,13 @@ jobs:
         uses: actions/checkout@v6
       - name: Run tests
         run: ./kotlin test
-      - name: Create credential file
+      - name: Package executable jar
+        run: ./kotlin package
+      - name: Attach executable jar to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          echo "spaceUsername=${{ secrets.JB_SPACE_CLIENT_ID }}" > credentials.properties
-          echo "spacePassword=${{ secrets.JB_SPACE_CLIENT_SECRET }}" >> credentials.properties
-      - name: Replace version key by tag in `client/module.yaml`
-        run: "sed -i -E 's/^([[:space:]]*)#[[:space:]]*version:.*/\\1version: ${{ github.event.release.tag_name }}/' module.yaml"
-      - name: Publish to Space Packages
-        run: ./kotlin publish toSpace
+          jar_path="build/tasks/_bazel-kmp-resolver_executableJarJvm/bazel-kmp-resolver-jvm-executable.jar"
+          test -f "$jar_path"
+          gh release upload "$TAG_NAME" "$jar_path"
