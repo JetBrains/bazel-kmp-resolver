@@ -93,7 +93,7 @@ internal class ArtifactUrlResolver(
             connectTimeoutMillis = 5000
         }
         engine {
-            maxConnectionsCount = allowedConcurrentConnections
+            maxConnectionsCount = if (allowedConcurrentConnections > maxConnectionsCount) allowedConcurrentConnections else maxConnectionsCount
         }
         defaultRequest {
             header("User-Agent", "JetBrainsBazelKmpResolver/1.0")
