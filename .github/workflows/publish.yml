@@ -4,12 +4,18 @@ on:
   push:
     tags:
       - "*.*.*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Release tag to create or publish, for example 1.2.3
+        required: true
+        type: string
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     concurrency:
-      group: release-${{ github.ref_name }}
+      group: release-${{ github.event.inputs.tag_name || github.ref_name }}
       cancel-in-progress: false
     permissions:
       contents: write
@@ -18,34 +24,44 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Validate release tag
-        run: |
-          if [[ ! "$GITHUB_REF_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z]+([.-][0-9A-Za-z]+)*)?$ ]]; then
-            echo "Release tag must look like 1.2.3 or 1.2.3-rc.1: $GITHUB_REF_NAME" >&2
-            exit 1
-          fi
-      - name: Verify draft release exists
+      - name: Resolve release tag
+        id: release
         env:
-          GH_TOKEN: ${{ github.token }}
-          TAG_NAME: ${{ github.ref_name }}
+          DISPATCH_TAG_NAME: ${{ github.event.inputs.tag_name }}
         run: |
-          is_draft="$(gh release view "$TAG_NAME" --json isDraft --jq '.isDraft')"
-          if [[ "$is_draft" != "true" ]]; then
-            echo "Release $TAG_NAME must exist as a draft before publishing." >&2
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            tag_name="$DISPATCH_TAG_NAME"
+          else
+            tag_name="$GITHUB_REF_NAME"
+          fi
+
+          if [[ ! "$tag_name" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z]+([.-][0-9A-Za-z]+)*)?$ ]]; then
+            echo "Release tag must look like 1.2.3 or 1.2.3-rc.1: $tag_name" >&2
             exit 1
           fi
+
+          echo "tag_name=$tag_name" >> "$GITHUB_OUTPUT"
       - name: Run tests
         run: ./kotlin test
       - name: Package executable jar
         run: ./kotlin package
-      - name: Attach executable jar and publish release
+      - name: Create release with executable jar
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG_NAME: ${{ github.ref_name }}
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
           jar_path="build/tasks/_bazel-kmp-resolver_executableJarJvm/bazel-kmp-resolver-jvm-executable.jar"
           test -f "$jar_path"
-          gh release upload "$TAG_NAME" "$jar_path" --clobber
+
+          release_args=(
+            --generate-notes
+            --title "$TAG_NAME"
+          )
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            release_args+=(--target "$GITHUB_SHA")
+          fi
+
+          gh release create "$TAG_NAME" "$jar_path" "${release_args[@]}"
           asset_name="${jar_path##*/}"
           gh release view "$TAG_NAME" --json assets --jq '.assets[].name' | grep -Fx "$asset_name"
-          gh release edit "$TAG_NAME" --draft=false
