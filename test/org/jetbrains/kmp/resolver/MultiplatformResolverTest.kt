@@ -5,6 +5,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import kotlin.io.path.createTempDirectory
 import kotlin.test.Test
+import kotlin.time.Duration.Companion.seconds
 
 class MultiplatformResolverTest {
     // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
@@ -20,7 +21,11 @@ class MultiplatformResolverTest {
             "io.ktor:ktor-client-cio:3.5.0",
             "io.ktor:ktor-client-core:3.4.3",
         )
-        val artifactResolver = ArtifactUrlResolver(allowedConcurrentConnections = 100)
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 100,
+            connectTimeout = 30.seconds,
+            requestTimeout = 30.seconds,
+        )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
                 cachePath = cache,
