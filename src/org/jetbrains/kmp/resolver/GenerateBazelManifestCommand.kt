@@ -3,6 +3,7 @@ package org.jetbrains.kmp.resolver
 import com.github.ajalt.clikt.command.SuspendingCliktCommand
 import com.github.ajalt.clikt.parameters.options.*
 import com.github.ajalt.clikt.parameters.types.int
+import com.github.ajalt.clikt.parameters.types.long
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -10,6 +11,8 @@ import kotlinx.serialization.json.encodeToStream
 import java.nio.file.Path
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.outputStream
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Commands that generates a manifest to be consumed by Bazel in a repository rule to produce repositories which exposes
@@ -38,8 +41,18 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     private val allowedConcurrentConnections: Int by option(
         "--allowed-concurrent-connections",
-        help = "Number of allowed concurrent connections per repository when resolving artifacts.",
+        help = "Maximum number of concurrent artifact HTTP checks across all repositories.",
     ).int().default(100)
+
+    private val requestTimeoutMillis: Long by option(
+        "--request-timeout-ms",
+        help = "HTTP request timeout in milliseconds when checking artifact URLs.",
+    ).long().default(30.seconds.inWholeMilliseconds)
+
+    private val connectTimeoutMillis: Long by option(
+        "--connect-timeout-ms",
+        help = "HTTP connect timeout in milliseconds when checking artifact URLs.",
+    ).long().default(30.seconds.inWholeMilliseconds)
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
@@ -47,7 +60,11 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             null -> emptyMap()
             else -> RepositoryCredentials.fromFile(credentialsFile)
         }
-        val artifactResolver = ArtifactUrlResolver(allowedConcurrentConnections)
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = allowedConcurrentConnections,
+            requestTimeout = requestTimeoutMillis.milliseconds,
+            connectTimeout = connectTimeoutMillis.milliseconds,
+        )
         val manifest = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
                 cachePath = outputManifest.parent,

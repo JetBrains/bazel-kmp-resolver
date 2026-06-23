@@ -14,6 +14,8 @@ import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 internal data class UnresolvedMultiplatformLibraryArtifact(
     val sha256checksum: String?,
@@ -77,9 +79,18 @@ internal sealed class ArtifactFile {
 
 internal class ArtifactUrlResolver(
     private val allowedConcurrentConnections: Int,
+    private val requestTimeout: Duration,
+    private val connectTimeout: Duration,
 ) : AutoCloseable {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
-    private val semaphoreByRepository: ConcurrentHashMap<String, Semaphore> = ConcurrentHashMap()
+
+    init {
+        require(allowedConcurrentConnections > 0) {
+            "allowedConcurrentConnections must be greater than zero"
+        }
+    }
+
+    private val connectionSemaphore = Semaphore(allowedConcurrentConnections)
 
     private val httpClient = HttpClient(CIO) {
         followRedirects = true
@@ -89,11 +100,11 @@ internal class ArtifactUrlResolver(
             exponentialDelay(baseDelayMs = 3000)
         }
         install(HttpTimeout) {
-            requestTimeoutMillis = 5000
-            connectTimeoutMillis = 5000
+            requestTimeoutMillis = requestTimeout.inWholeMilliseconds
+            connectTimeoutMillis = connectTimeout.inWholeMilliseconds
         }
         engine {
-            maxConnectionsCount = if (allowedConcurrentConnections > maxConnectionsCount) allowedConcurrentConnections else maxConnectionsCount
+            maxConnectionsCount = allowedConcurrentConnections
         }
         defaultRequest {
             header("User-Agent", "JetBrainsBazelKmpResolver/1.0")
@@ -105,9 +116,7 @@ internal class ArtifactUrlResolver(
         val artifactUrl = "${repository.url.trimEnd('/')}/$artifactPath"
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
-            val resolved = semaphoreByRepository.computeIfAbsent(repository.url) {
-                Semaphore(allowedConcurrentConnections)
-            }.withPermit {
+            val resolved = connectionSemaphore.withPermit {
                 httpClient.head {
                     url(artifactUrl)
                     val username = repository.userName
