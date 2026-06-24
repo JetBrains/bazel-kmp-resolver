@@ -20,6 +20,7 @@ class MultiplatformResolverTest {
         val coordinates = listOf(
             "io.ktor:ktor-client-cio:3.5.0",
             "io.ktor:ktor-client-core:3.4.3",
+            "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
         )
         val artifactResolver = ArtifactUrlResolver(
             allowedConcurrentConnections = 100,

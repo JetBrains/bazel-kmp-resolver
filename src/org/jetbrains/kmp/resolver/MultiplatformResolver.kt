@@ -3,6 +3,7 @@ package org.jetbrains.kmp.resolver
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.jetbrains.amper.dependency.resolution.*
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
@@ -16,28 +17,41 @@ internal typealias MultiplatformLibraryId = String
 @Serializable
 internal data class MultiplatformLibrary(
     val id: MultiplatformLibraryId,
+    val variants: List<MultiplatformVariant>,
+)
+
+@Serializable
+internal sealed class MultiplatformVariant {
     /**
      * ID of the resolved multiplatform library, usually [id] would point to the umbrella library like `kotlin-stdlib`,
      * while [variantId] would point to the variant library like `kotlin-stdlib-wasm-js`.
      */
-    val variantId: MultiplatformLibraryId,
-
-    /**
-     * .klib of this imported dependency, exposed to the compile library path of direct dependents.
-     */
-    val klib: MultiplatformLibraryArtifact,
-    val sourceJar: MultiplatformLibraryArtifact?,
+    abstract val variantId: MultiplatformLibraryId
 
     /**
      * Dependencies of this library, exposed to the link path of dependents transitively.
      */
-    val dependencies: List<MultiplatformLibraryId>,
+    abstract val dependencies: List<MultiplatformLibraryId>
 
     /**
      * Dependencies of this library, exposed to the link path of dependents transitively, and exposed to the compile library path of *direct* dependents.
      */
-    val exportedDependencies: List<MultiplatformLibraryId>,
-)
+    abstract val exportedDependencies: List<MultiplatformLibraryId>
+
+    @Serializable
+    @SerialName("wasmjs")
+    data class WasmJs(
+        override val variantId: MultiplatformLibraryId,
+        override val dependencies: List<MultiplatformLibraryId>,
+        override val exportedDependencies: List<MultiplatformLibraryId>,
+
+        /**
+         * .klib of this imported dependency, exposed to the compile library path of direct dependents.
+         */
+        val klib: MultiplatformLibraryArtifact,
+        val sourceJar: MultiplatformLibraryArtifact?,
+    ) : MultiplatformVariant()
+}
 
 @Serializable
 internal data class MultiplatformLibraryArtifact(
@@ -121,7 +135,6 @@ internal class MultiplatformResolver(
 
         val resolved = mutableMapOf<MultiplatformLibraryId, List<MavenDependencyNode>>()
         val visited = mutableSetOf<MavenDependencyNode>()
-        val skipped = mutableSetOf<MavenDependencyNode>()
         val queue = ArrayDeque<MavenDependencyNode>()
         queue.addAll(root.children.filterIsInstance<MavenDependencyNode>())
         while (queue.isNotEmpty()) {
@@ -140,7 +153,7 @@ internal class MultiplatformResolver(
                         }
 
                         node.isBom -> {
-                            skipped.add(node)
+                            resolved[node.idForBazel] = emptyList() // no variants for that node
                             logger.info("[${node.idForBazel}] skipping, bom")
                         }
 
@@ -148,7 +161,7 @@ internal class MultiplatformResolver(
                             logger.debug("[${node.idForBazel}] Processing node")
                             when (val actualNode = node.actualMavenDependencyOfVariantsMatching { it.klib() }) {
                                 null -> {
-                                    skipped.add(node)
+                                    resolved[node.idForBazel] = emptyList() // no variants for that node
                                     logger.warn("[${node.idForBazel}] skipping, no WasmJS variant found")
                                 }
 
@@ -178,7 +191,6 @@ internal class MultiplatformResolver(
         }
         return CollectionResult(
             nodes = resolved,
-            skipped = skipped.map { it.idForBazel }.toSet(),
             errored = errored,
         )
     }
@@ -187,35 +199,33 @@ internal class MultiplatformResolver(
     private suspend fun collectArtifacts(collectionResult: CollectionResult): List<NodeWithUnresolvedArtifacts> = when {
         collectionResult.errored -> error("failed to resolve coordinates, check error logs above.")
         else -> collectionResult.nodes.map { (id, nodes) ->
-            val variantIds = nodes.map { it.idForBazel }.toSet()
-            require(variantIds.size == 1) { "$id must match exactly one variant, got $variantIds" }
-            val variantId = variantIds.first()
+            val variants = nodes.map { it.idForBazel }.distinct().map { variantId ->
+                val klibs = nodes.flatMap { it.filesMatching(logger) { it.klib() } }.distinct()
+                logger.info("[$id] found klibs: $klibs")
+                val klib = klibs.singleOrNull() ?: error("Expected exactly one klib for dependency $id, got: $klibs")
 
-            val klibs = nodes.flatMap { it.filesMatching(logger) { it.klib() } }.toSet()
-            logger.info("[$id] found klibs: $klibs")
-            val klib = klibs.singleOrNull() ?: error("Expected exactly one klib for dependency $id, got: $klibs")
+                val sourceJars = nodes.flatMap { it.filesMatching(logger) { it.sourceJar() } }.distinct()
+                logger.info("[$id] found sourceJars: $sourceJars")
+                require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
+                val sourceJar = sourceJars.singleOrNull()
 
-            val sourceJars = nodes.flatMap { it.filesMatching(logger) { it.sourceJar() } }.toSet()
-            logger.info("[$id] found sourceJars: $sourceJars")
-            require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-            val sourceJar = sourceJars.singleOrNull()
+                val children = nodes.flatMap { it.children }.filterIsInstance<MavenDependencyNode>().distinct()
+                val (runtimeDeps, compileDeps) = children.partition {
+                    it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME
+                }
 
-            val children = nodes.flatMap { it.children }.filterIsInstance<MavenDependencyNode>().distinct()
-            val (runtimeDeps, compileDeps) = children.filter { child ->
-                child.idForBazel !in collectionResult.skipped
-            }.partition {
-                it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME
+                val runtimeDepsIds = runtimeDeps.map { it.idForBazel }.toSet()
+                val compileDepsIds = compileDeps.map { it.idForBazel }.toSet()
+                VariantNodeWithUnresolvedArtifacts.WasmJs(
+                    variantId = variantId,
+                    klib = klib,
+                    sourceJar = sourceJar,
+                    dependencies = (runtimeDepsIds - compileDepsIds).sorted(),
+                    exportedDependencies = compileDepsIds.sorted(),
+                )
             }
-
-            val runtimeDepsIds = runtimeDeps.map { it.idForBazel }.toSet()
-            val compileDepsIds = compileDeps.map { it.idForBazel }.toSet()
             NodeWithUnresolvedArtifacts(
-                id = id,
-                variantId = variantId,
-                klib = klib,
-                sourceJar = sourceJar,
-                dependencies = (runtimeDepsIds - compileDepsIds).sorted(),
-                exportedDependencies = compileDepsIds.sorted(),
+                id = id, variants = variants
             )
         }
     }
@@ -232,7 +242,6 @@ internal class MultiplatformResolver(
 
 private data class CollectionResult(
     val nodes: Map<MultiplatformLibraryId, List<MavenDependencyNode>>,
-    val skipped: Set<MultiplatformLibraryId>,
     val errored: Boolean,
 )
 

@@ -15,7 +15,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
 internal data class UnresolvedMultiplatformLibraryArtifact(
     val sha256checksum: String?,
@@ -27,12 +26,22 @@ internal data class UnresolvedMultiplatformLibraryArtifact(
 
 internal data class NodeWithUnresolvedArtifacts(
     val id: MultiplatformLibraryId,
-    val variantId: MultiplatformLibraryId,
-    val klib: UnresolvedMultiplatformLibraryArtifact,
-    val sourceJar: UnresolvedMultiplatformLibraryArtifact?,
-    val dependencies: List<MultiplatformLibraryId>,
-    val exportedDependencies: List<MultiplatformLibraryId>,
+    val variants: List<VariantNodeWithUnresolvedArtifacts>,
 )
+
+internal sealed class VariantNodeWithUnresolvedArtifacts {
+    abstract val variantId: MultiplatformLibraryId
+    abstract val dependencies: List<MultiplatformLibraryId>
+    abstract val exportedDependencies: List<MultiplatformLibraryId>
+
+    data class WasmJs(
+        override val variantId: MultiplatformLibraryId,
+        override val dependencies: List<MultiplatformLibraryId>,
+        override val exportedDependencies: List<MultiplatformLibraryId>,
+        val klib: UnresolvedMultiplatformLibraryArtifact,
+        val sourceJar: UnresolvedMultiplatformLibraryArtifact?,
+    ) : VariantNodeWithUnresolvedArtifacts()
+}
 
 internal suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     repositories: List<MavenRepository>,
@@ -58,17 +67,26 @@ internal suspend fun NodeWithUnresolvedArtifacts.resolve(
     repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
 ): MultiplatformLibrary = coroutineScope {
-    val resolvedKlib = async { klib.resolve(repositories, artifactUrlResolver) }
-    val resolvedSourceJar =
-        sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver) } }
+    val resolvedVariants = variants.map { variant ->
+        when (variant) {
+            is VariantNodeWithUnresolvedArtifacts.WasmJs -> async {
+                val resolvedKlib = async { variant.klib.resolve(repositories, artifactUrlResolver) }
+                val resolvedSourceJar =
+                    variant.sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver) } }
+                MultiplatformVariant.WasmJs(
+                    variantId = variant.variantId,
+                    klib = resolvedKlib.await(),
+                    sourceJar = resolvedSourceJar?.await(),
+                    dependencies = variant.dependencies,
+                    exportedDependencies = variant.exportedDependencies,
+                )
+            }
+        }
+    }
 
     MultiplatformLibrary(
         id = id,
-        variantId = variantId,
-        klib = resolvedKlib.await(),
-        sourceJar = resolvedSourceJar?.await(),
-        dependencies = dependencies,
-        exportedDependencies = exportedDependencies,
+        variants = resolvedVariants.awaitAll().sortedBy { it.variantId },
     )
 }
 
