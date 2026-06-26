@@ -22,13 +22,13 @@ private val json = Json {
 internal fun assertUsingManifest(
     coordinates: List<String>,
     repositories: List<String>,
-    libraries: List<MultiplatformLibrary>,
+    libraries: List<MultiplatformVariant>,
     manifestResourceFilepath: String,
 ) {
     val actual = BazelManifest(
         askedCoordinates = coordinates.sorted(),
         askedRepositories = repositories.sorted(),
-        libraries = libraries.associateBy { it.id }.toSortedMap(),
+        libraries = libraries.asLibraries(),
     )
     val actualJson = json.encodeToString(BazelManifest.serializer(), actual)
 

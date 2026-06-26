@@ -5,9 +5,6 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.jetbrains.amper.dependency.resolution.MavenRepository
@@ -15,80 +12,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration
-
-internal data class UnresolvedMultiplatformLibraryArtifact(
-    val sha256checksum: String?,
-    val groupId: String,
-    val artifactId: String,
-    val version: String,
-    val artifactPath: String,
-)
-
-internal data class NodeWithUnresolvedArtifacts(
-    val id: MultiplatformLibraryId,
-    val variants: List<VariantNodeWithUnresolvedArtifacts>,
-)
-
-internal sealed class VariantNodeWithUnresolvedArtifacts {
-    abstract val variantId: MultiplatformLibraryId
-    abstract val dependencies: List<MultiplatformLibraryId>
-    abstract val exportedDependencies: List<MultiplatformLibraryId>
-
-    data class WasmJs(
-        override val variantId: MultiplatformLibraryId,
-        override val dependencies: List<MultiplatformLibraryId>,
-        override val exportedDependencies: List<MultiplatformLibraryId>,
-        val klib: UnresolvedMultiplatformLibraryArtifact,
-        val sourceJar: UnresolvedMultiplatformLibraryArtifact?,
-    ) : VariantNodeWithUnresolvedArtifacts()
-}
-
-internal suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
-    repositories: List<MavenRepository>,
-    artifactUrlResolver: ArtifactUrlResolver,
-): MultiplatformLibraryArtifact {
-    val urls = coroutineScope {
-        repositories.map {
-            async { artifactUrlResolver.artifactExistsAt(it, artifactPath) }
-        }.awaitAll().filterIsInstance<ArtifactFile.Resolved>().map { it.url }
-    }
-    require(urls.isNotEmpty()) { "No URLs found for artifact $artifactPath" }
-
-    return MultiplatformLibraryArtifact(
-        sha256checksum = sha256checksum,
-        groupId = groupId,
-        artifactId = artifactId,
-        version = version,
-        urls = urls,
-    )
-}
-
-internal suspend fun NodeWithUnresolvedArtifacts.resolve(
-    repositories: List<MavenRepository>,
-    artifactUrlResolver: ArtifactUrlResolver,
-): MultiplatformLibrary = coroutineScope {
-    val resolvedVariants = variants.map { variant ->
-        when (variant) {
-            is VariantNodeWithUnresolvedArtifacts.WasmJs -> async {
-                val resolvedKlib = async { variant.klib.resolve(repositories, artifactUrlResolver) }
-                val resolvedSourceJar =
-                    variant.sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver) } }
-                MultiplatformVariant.WasmJs(
-                    variantId = variant.variantId,
-                    klib = resolvedKlib.await(),
-                    sourceJar = resolvedSourceJar?.await(),
-                    dependencies = variant.dependencies,
-                    exportedDependencies = variant.exportedDependencies,
-                )
-            }
-        }
-    }
-
-    MultiplatformLibrary(
-        id = id,
-        variants = resolvedVariants.awaitAll().sortedBy { it.variantId },
-    )
-}
 
 internal sealed class ArtifactFile {
     data class Resolved(val url: String) : ArtifactFile()

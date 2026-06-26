@@ -14,18 +14,19 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-client-cio:3.5.0",
           "variantId": "io.ktor:ktor-client-cio-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-client-core:3.5.0",
-            "io.ktor:ktor-http-cio:3.5.0",
-            "io.ktor:ktor-network-tls:3.5.0",
-            "io.ktor:ktor-websockets:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-client-core",
+            "io.ktor:ktor-http-cio",
+            "io.ktor:ktor-network-tls",
+            "io.ktor:ktor-websockets",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "58c628ac2380826d80236552579c5d83d6ef4b3c38cabf24aba19c275d15ea72",
@@ -53,19 +54,20 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-client-core:3.5.0",
           "variantId": "io.ktor:ktor-client-core-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-events:3.5.0",
-            "io.ktor:ktor-http-cio:3.5.0",
-            "io.ktor:ktor-http:3.5.0",
-            "io.ktor:ktor-sse:3.5.0",
-            "io.ktor:ktor-websocket-serialization:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-events",
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-http-cio",
+            "io.ktor:ktor-sse",
+            "io.ktor:ktor-websocket-serialization",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "0981194346d41b8e6899401b7d5178d5d5abc8e52052499240af10db289b6caa",
@@ -93,15 +95,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-events:3.5.0",
           "variantId": "io.ktor:ktor-events-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "3884d8bd7a07fd46ecd121ae871ba76ef857722124338864c823408383d326d7",
@@ -129,16 +132,17 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-http-cio:3.5.0",
           "variantId": "io.ktor:ktor-http-cio-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-http:3.5.0",
-            "io.ktor:ktor-io:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-io",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "859114a3b606e6a6f6a1b3f8687598d09bfb7ef4c40ecae4fd292598edd87df1",
@@ -166,16 +170,17 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-http:3.5.0",
           "variantId": "io.ktor:ktor-http-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-            "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0"
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
             "sha256checksum": "5036d547dfddd3bc726c705a45520d625b4d332b3b378d7444275b02a2f7f773",
@@ -203,15 +208,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-io:3.5.0",
           "variantId": "io.ktor:ktor-io-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-            "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0"
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-io-core"
           ],
           "klib": {
             "sha256checksum": "ee1439ab0fce87e048f7a44732f509ea8955328f92f251b3842e3de92e78f271",
@@ -239,17 +245,18 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-network-tls:3.5.0",
           "variantId": "io.ktor:ktor-network-tls-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-http:3.5.0",
-            "io.ktor:ktor-network:3.5.0",
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-network",
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "5d11c15319bab1d7ef6b2d5ec486e97bc26e4f306c33df3c61bc8a9775b7727d",
@@ -277,15 +284,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-network:3.5.0",
           "variantId": "io.ktor:ktor-network-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "3998c2d50b815a6407b6e91c0f3aaa0bdaf86dcfbfb437a0b259d1bd3b282702",
@@ -313,15 +321,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-serialization:3.5.0",
           "variantId": "io.ktor:ktor-serialization-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-websockets:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-websockets",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "1313b00d1a5afb6f92513130cb18ae79c89df91ba8d633f13044ec3a36267f9d",
@@ -349,15 +358,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-sse:3.5.0",
           "variantId": "io.ktor:ktor-sse-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "8317a0866948b9722245e6134562983acff2e1d19887488233571a677ae27d57",
@@ -385,16 +395,17 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-utils:3.5.0",
           "variantId": "io.ktor:ktor-utils-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-io:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-            "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0"
+            "io.ktor:ktor-io",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
             "sha256checksum": "f46728489de6b0ca9a07b5e3a4e97d05c83065d7de91db18dc073096c4294bfe",
@@ -422,15 +433,16 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-websocket-serialization:3.5.0",
           "variantId": "io.ktor:ktor-websocket-serialization-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-serialization:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-serialization",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "7cb0ef5e1949d413a5fcdbd59c06f1fa59520ff6cefa9b5f913943172af2929d",
@@ -458,16 +470,17 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "io.ktor:ktor-websockets:3.5.0",
           "variantId": "io.ktor:ktor-websockets-wasm-js:3.5.0",
           "dependencies": [
-            "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
+            "org.jetbrains.kotlinx:kotlinx-browser"
           ],
           "exportedDependencies": [
-            "io.ktor:ktor-http:3.5.0",
-            "io.ktor:ktor-utils:3.5.0",
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0"
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "sha256checksum": "e2725c1cd47b93f7f711c897d1b7f5f9f7468a6e5308d4e1d19ef707df7b2344",
@@ -490,15 +503,45 @@
         }
       ]
     },
-    "org.jetbrains.kotlin:kotlin-reflect:2.4.0": {
-      "id": "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
-      "variants": []
+    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1": {
+      "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+          "variantId": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "1280b9f74850a4892a3641efa2a5779e5423b84aa7077cc60ddd50decbab921f",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-wasm-js",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-wasm-js/1.10.2-intellij-1/kotlinx-coroutines-core-wasm-js-1.10.2-intellij-1.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "222aca1a3a7b4501d32e67e3ccc63f6e28c26426484cae698fec281291fbb032",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-wasm-js",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-wasm-js/1.10.2-intellij-1/kotlinx-coroutines-core-wasm-js-1.10.2-intellij-1-sources.jar"
+            ]
+          }
+        }
+      ]
     },
     "org.jetbrains.kotlin:kotlin-stdlib:2.4.0": {
       "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
           "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.4.0",
           "dependencies": [],
           "exportedDependencies": [],
@@ -528,9 +571,10 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
           "variantId": "org.jetbrains.kotlinx:atomicfu-wasm-js:0.32.1",
           "dependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "exportedDependencies": [],
           "klib": {
@@ -559,9 +603,10 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-browser:0.5.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-browser-wasm-js:0.5.0",
           "dependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "exportedDependencies": [],
           "klib": {
@@ -585,47 +630,16 @@
         }
       ]
     },
-    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0": {
-      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
-      "variants": [
-        {
-          "type": "wasmjs",
-          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js:1.11.0",
-          "dependencies": [],
-          "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:atomicfu:0.32.1"
-          ],
-          "klib": {
-            "sha256checksum": "1280b9f74850a4892a3641efa2a5779e5423b84aa7077cc60ddd50decbab921f",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-wasm-js",
-            "version": "1.11.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-wasm-js/1.11.0/kotlinx-coroutines-core-wasm-js-1.11.0.klib"
-            ]
-          },
-          "sourceJar": {
-            "sha256checksum": "222aca1a3a7b4501d32e67e3ccc63f6e28c26426484cae698fec281291fbb032",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-wasm-js",
-            "version": "1.11.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-wasm-js/1.11.0/kotlinx-coroutines-core-wasm-js-1.11.0-sources.jar"
-            ]
-          }
-        }
-      ]
-    },
     "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0": {
       "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-bytestring-wasm-js:0.9.0",
           "dependencies": [],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
             "sha256checksum": "a1d586920fbcc7f4869e19001afdd2c9331758dbc34a54caa9b61c1c75cffe15",
@@ -653,11 +667,12 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-core-wasm-js:0.9.0",
           "dependencies": [],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
-            "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0"
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
           "klib": {
             "sha256checksum": "b1bd399afa63c7fbc9330690b7b2b1981d6a8efc06dfa9f6a1be7e3f0bcc253d",
@@ -685,10 +700,11 @@
       "variants": [
         {
           "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.11.0",
           "dependencies": [],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib:2.4.0"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
             "sha256checksum": "444695a6c745127017c93a351c04aa21445c8f87befcb6f77a097514ec13dd86",

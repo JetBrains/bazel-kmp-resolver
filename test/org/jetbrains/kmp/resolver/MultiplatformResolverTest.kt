@@ -32,6 +32,10 @@ class MultiplatformResolverTest {
                 cachePath = cache,
                 repositories = repositories.map { MavenRepository(it) },
                 artifactResolver = artifactResolver,
+                substitutions = mapOf(
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
+                )
             )
             resolver.resolve(coordinates)
         }

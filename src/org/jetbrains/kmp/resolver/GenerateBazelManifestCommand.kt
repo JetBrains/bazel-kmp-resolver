@@ -24,6 +24,14 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         help = "Maven coordinate to resolve, can be specified multiple times for resolving many coordinates at once.",
     ).multiple(required = true)
 
+    private val substitutions: List<Pair<SubstitutionId, MultiplatformLibraryId>> by option(
+        "--substitution",
+        help = "Pair to substitute a group/artifact pair into another at resolution time, can be specified multiple times.",
+    ).convert {
+        val (original, sub) = it.split("=", limit = 2)
+        original to MultiplatformLibraryId.fromString(sub)
+    }.multiple(required = true)
+
     private val outputManifest by option(
         "--output-manifest-file",
         help = "Path to the output manifest file.",
@@ -70,11 +78,12 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 cachePath = outputManifest.parent,
                 repositories = repositories.withRepositoryCredentials(credentials),
                 artifactResolver = artifactResolver,
+                substitutions = substitutions.toMap(),
             )
             BazelManifest(
                 askedCoordinates = coordinates.sorted(),
                 askedRepositories = repositories.sorted(),
-                libraries = resolver.resolve(coordinates).associateBy { it.id }.toSortedMap(),
+                libraries = resolver.resolve(coordinates).asLibraries(),
             )
         }
         outputManifest.createParentDirectories()
@@ -89,6 +98,14 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         }
     }
 }
+
+internal fun List<MultiplatformVariant>.asLibraries(): Map<MultiplatformLibraryId, MultiplatformLibrary> =
+    groupBy { it.id }.mapValues { (id, variants) ->
+        MultiplatformLibrary(
+            id = id,
+            variants = variants,
+        )
+    }.toSortedMap()
 
 @Serializable
 internal data class BazelManifest(
