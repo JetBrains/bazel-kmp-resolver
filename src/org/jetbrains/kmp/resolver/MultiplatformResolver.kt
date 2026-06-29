@@ -255,13 +255,13 @@ private sealed class UnresolvedMultiplatformLibrary {
         private val substitutions: Substitutions,
     ) : UnresolvedMultiplatformLibrary() {
         private val runtimeNode: MavenDependencyNode? =
-            resolvedNodes.distinct().filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
+            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }.distinct()
                 .let { runtimeNodes ->
                     require(runtimeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple runtime scope instance, but got $runtimeNodes" }
                     runtimeNodes.singleOrNull()
                 }
         private val compileNode: MavenDependencyNode? =
-            resolvedNodes.distinct().filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }
+            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }.distinct()
                 .let { compileNodes ->
                     require(compileNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple compile scope instance, but got $compileNodes" }
                     compileNodes.singleOrNull()
@@ -358,6 +358,8 @@ private sealed class UnresolvedMultiplatformLibrary {
             variantMatching { it.wasmKlib() }.singleOrNull()?.dependencies?.map { it.ga }?.toSet() ?: emptySet()
     }
 }
+
+private val MavenDependencyNode.scoppedId: String get() = "${dependency.resolutionConfig.scope}|${gav.gav}"
 
 @Suppress("INVISIBLE_REFERENCE")
 private val org.jetbrains.amper.dependency.resolution.metadata.json.module.Dependency.ga: SubstitutionId get() = "$group:$module"
