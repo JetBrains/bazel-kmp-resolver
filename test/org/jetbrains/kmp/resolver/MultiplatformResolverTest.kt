@@ -8,11 +8,11 @@ import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
 class MultiplatformResolverTest {
+
     // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
     @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `multi-repository resolution`() = runBlocking {
-        val cache = createTempDirectory("simple")
         val repositories = listOf(
             "https://repo1.maven.org/maven2",
             "https://dl.google.com/dl/android/maven2",
@@ -29,7 +29,7 @@ class MultiplatformResolverTest {
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
-                cachePath = cache,
+                cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories.map { MavenRepository(it) },
                 artifactResolver = artifactResolver,
                 substitutions = emptyMap()
@@ -48,7 +48,6 @@ class MultiplatformResolverTest {
     @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `do not resolve JVM nodes`() = runBlocking {
-        val cache = createTempDirectory("simple")
         val repositories = listOf(
             "https://repo1.maven.org/maven2",
         )
@@ -62,7 +61,7 @@ class MultiplatformResolverTest {
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
-                cachePath = cache,
+                cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories.map { MavenRepository(it) },
                 artifactResolver = artifactResolver,
                 substitutions = emptyMap()
@@ -81,7 +80,6 @@ class MultiplatformResolverTest {
     @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `substituted resolution`() = runBlocking {
-        val cache = createTempDirectory("simple")
         val repositories = listOf(
             "https://repo1.maven.org/maven2",
         )
@@ -95,7 +93,7 @@ class MultiplatformResolverTest {
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
-                cachePath = cache,
+                cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories.map { MavenRepository(it) },
                 artifactResolver = artifactResolver,
                 substitutions = mapOf(
