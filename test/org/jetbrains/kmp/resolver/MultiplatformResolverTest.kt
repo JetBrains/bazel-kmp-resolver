@@ -11,7 +11,7 @@ class MultiplatformResolverTest {
     // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
     @OptIn(ExperimentalSerializationApi::class)
     @Test
-    fun `resolve simple single dependency`() = runBlocking {
+    fun `resolution with substitutions and multiple repositories`() = runBlocking {
         val cache = createTempDirectory("simple")
         val repositories = listOf(
             "https://repo1.maven.org/maven2",
@@ -21,6 +21,7 @@ class MultiplatformResolverTest {
             "io.ktor:ktor-client-cio:3.5.0",
             "io.ktor:ktor-client-core:3.4.3",
             "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
         )
         val artifactResolver = ArtifactUrlResolver(
             allowedConcurrentConnections = 100,

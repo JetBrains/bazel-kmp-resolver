@@ -167,8 +167,9 @@ internal class MultiplatformResolver(
 
     @Suppress("INVISIBLE_REFERENCE")
     private fun collectWasmJsTargetNodes(root: RootDependencyNode) = collectNodes(root) { node ->
-        val variants = (node.dependency as MavenDependencyImpl).variants
-        variants.any { it.files.isNotEmpty() && (it.attributes.wasmKlib() || it.attributes.wasmSources()) }
+        node.getParentKmpLibraryCoordinates() != null && (node.dependency as MavenDependencyImpl).variants.any {
+            it.files.isNotEmpty() && (it.attributes.wasmKlib() || it.attributes.wasmSources())
+        }
     }
 
     private fun collectNodes(
@@ -255,13 +256,13 @@ private sealed class UnresolvedMultiplatformLibrary {
         private val substitutions: Substitutions,
     ) : UnresolvedMultiplatformLibrary() {
         private val runtimeNode: MavenDependencyNode? =
-            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }.distinct()
+            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
                 .let { runtimeNodes ->
                     require(runtimeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple runtime scope instance, but got $runtimeNodes" }
                     runtimeNodes.singleOrNull()
                 }
         private val compileNode: MavenDependencyNode? =
-            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }.distinct()
+            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }
                 .let { compileNodes ->
                     require(compileNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple compile scope instance, but got $compileNodes" }
                     compileNodes.singleOrNull()
@@ -358,8 +359,6 @@ private sealed class UnresolvedMultiplatformLibrary {
             variantMatching { it.wasmKlib() }.singleOrNull()?.dependencies?.map { it.ga }?.toSet() ?: emptySet()
     }
 }
-
-private val MavenDependencyNode.scoppedId: String get() = "${dependency.resolutionConfig.scope}|${gav.gav}"
 
 @Suppress("INVISIBLE_REFERENCE")
 private val org.jetbrains.amper.dependency.resolution.metadata.json.module.Dependency.ga: SubstitutionId get() = "$group:$module"
