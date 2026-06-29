@@ -1,0 +1,613 @@
+{
+  "askedCoordinates": [
+    "io.ktor:ktor-client-core:3.4.3"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "io.ktor:ktor-client-core:3.4.3": {
+      "id": "io.ktor:ktor-client-core:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-client-core:3.4.3",
+          "variantId": "io.ktor:ktor-client-core-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-events",
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-http-cio",
+            "io.ktor:ktor-sse",
+            "io.ktor:ktor-websocket-serialization",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "ac0edda20bc2fd755586898d32809896a02e11cb61e6ea56e983054d784d3c58",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-core-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-wasm-js/3.4.3/ktor-client-core-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "eb88bdc30196b0f382c7440a088b8bbf7a96a9a864e5a6b1a870cc149e63e2d4",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-core-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-wasm-js/3.4.3/ktor-client-core-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-events:3.4.3": {
+      "id": "io.ktor:ktor-events:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-events:3.4.3",
+          "variantId": "io.ktor:ktor-events-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "c8eb7e46310384e23adb98851e2aac69df3f1825642e1a4ffefe02fc2140b8a8",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-events-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-events-wasm-js/3.4.3/ktor-events-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "25a4d89461d074f84b3f77d8bfe875832adfe744c83aee283f4586f37acdffc3",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-events-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-events-wasm-js/3.4.3/ktor-events-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-http-cio:3.4.3": {
+      "id": "io.ktor:ktor-http-cio:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-http-cio:3.4.3",
+          "variantId": "io.ktor:ktor-http-cio-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-io",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "a7d3c3ba88bc68bd66d63dd6497953a23495df12c9f565d7b75aac11f48b14b4",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-cio-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-wasm-js/3.4.3/ktor-http-cio-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "f33fa45fef541448bca822e00cf7f962289fe0905114b8886e7228e9af46a422",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-cio-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-wasm-js/3.4.3/ktor-http-cio-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-http:3.4.3": {
+      "id": "io.ktor:ktor-http:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-http:3.4.3",
+          "variantId": "io.ktor:ktor-http-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core"
+          ],
+          "klib": {
+            "sha256checksum": "2b9bd365adaf09ba92d58e7eb6a268239829bf874571a4b4779fdafa4f27aad0",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-wasm-js/3.4.3/ktor-http-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "89d0c95a6f1e2b066be03c6be2ee749f39144a540a8c315d1fa2dd2fec324ed9",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-wasm-js/3.4.3/ktor-http-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-io:3.4.3": {
+      "id": "io.ktor:ktor-io:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-io:3.4.3",
+          "variantId": "io.ktor:ktor-io-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-io-core"
+          ],
+          "klib": {
+            "sha256checksum": "e4b5eb58ef81c57d1c8f7ca56743cf67c720170fb672e3e652f1120038d33b45",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-io-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-io-wasm-js/3.4.3/ktor-io-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "ea8d6248ba8ba4d35830233e26b6d1962b0cc3a2321658138c06c737ee70d42a",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-io-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-io-wasm-js/3.4.3/ktor-io-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-serialization:3.4.3": {
+      "id": "io.ktor:ktor-serialization:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-serialization:3.4.3",
+          "variantId": "io.ktor:ktor-serialization-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-websockets",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "8f1ac8dd173aa32937f31c4c509fd13fe029f7051457cda7dda5416a06d5d0f3",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-serialization-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-wasm-js/3.4.3/ktor-serialization-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "ddc84dd1f279b1c7cd2e476a2b214c1960577116e7abe15c469f8b37fbb46483",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-serialization-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-wasm-js/3.4.3/ktor-serialization-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-sse:3.4.3": {
+      "id": "io.ktor:ktor-sse:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-sse:3.4.3",
+          "variantId": "io.ktor:ktor-sse-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "1130ce4112dbfd9eeca7db2806000327297c0942e6df6310369fa26a06357307",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-sse-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-wasm-js/3.4.3/ktor-sse-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "01efe32298e72359115ab1ae29d6f2859a1c5dd05f26b93d7e295c175e2c0ca6",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-sse-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-wasm-js/3.4.3/ktor-sse-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-utils:3.4.3": {
+      "id": "io.ktor:ktor-utils:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-utils:3.4.3",
+          "variantId": "io.ktor:ktor-utils-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-io",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core"
+          ],
+          "klib": {
+            "sha256checksum": "90b38b8706aa9fcb47ddf0297e1ece780427c61565c33749e2633f6d11aaee46",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-utils-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-wasm-js/3.4.3/ktor-utils-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "46e8a7df802a32ba97f142a80ce8a353b9dff73c4c411b60b27814bf28b29fdb",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-utils-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-wasm-js/3.4.3/ktor-utils-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-websocket-serialization:3.4.3": {
+      "id": "io.ktor:ktor-websocket-serialization:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-websocket-serialization:3.4.3",
+          "variantId": "io.ktor:ktor-websocket-serialization-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-serialization",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "2e3bcfff995421a2601540c6297768760267f034346c295048a9eaf9a474a205",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websocket-serialization-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-wasm-js/3.4.3/ktor-websocket-serialization-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "e186e6ac4d88ce296ef51d91684444ca0002b4b7761a8dcd2fe55ef1dc8a7b75",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websocket-serialization-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-wasm-js/3.4.3/ktor-websocket-serialization-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-websockets:3.4.3": {
+      "id": "io.ktor:ktor-websockets:3.4.3",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "io.ktor:ktor-websockets:3.4.3",
+          "variantId": "io.ktor:ktor-websockets-wasm-js:3.4.3",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-browser"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-utils",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu"
+          ],
+          "klib": {
+            "sha256checksum": "b8a6ab9f60070ba600963c0f854386991e0edb276c2e9e2a20b93e4370fff03a",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websockets-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-wasm-js/3.4.3/ktor-websockets-wasm-js-3.4.3.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "cfb36e61527b431b8dbfe8bc20162802818457053388132c911a54007abdb8b1",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websockets-wasm-js",
+            "version": "3.4.3",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-wasm-js/3.4.3/ktor-websockets-wasm-js-3.4.3-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1": {
+      "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+          "variantId": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:atomicfu",
+            "org.jetbrains.kotlinx:atomicfu-wasm-js"
+          ],
+          "klib": {
+            "sha256checksum": "bcc6bdd07b3fe05299e35b368a826f23db019899b6f75b15812bd01aab2d166f",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-wasm-js",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-wasm-js/1.10.2-intellij-1/kotlinx-coroutines-core-wasm-js-1.10.2-intellij-1.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "0e4a1eb9cd2c6c04bd1d49945b7c87bd9a1942a988736e7cfbc66cd8bc07c5b8",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-wasm-js",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-wasm-js/1.10.2-intellij-1/kotlinx-coroutines-core-wasm-js-1.10.2-intellij-1-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:2.3.0": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.3.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "klib": {
+            "sha256checksum": "e267fe680014437a169c00d12020859abd321207b58ff12e884515341eac9833",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib-wasm-js",
+            "version": "2.3.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.3.0/kotlin-stdlib-wasm-js-2.3.0.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "2c950c1886874b8077e4f32d659a76e30d277760f5faac8621ddaed5e5d800f0",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib-wasm-js",
+            "version": "2.3.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.3.0/kotlin-stdlib-wasm-js-2.3.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:atomicfu:0.32.1": {
+      "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
+          "variantId": "org.jetbrains.kotlinx:atomicfu-wasm-js:0.32.1",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "klib": {
+            "sha256checksum": "1bdc5a5216944b8f9a396d2f0c7df320b43d6921725baad1afc04cc8e2ae48e3",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "atomicfu-wasm-js",
+            "version": "0.32.1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-wasm-js/0.32.1/atomicfu-wasm-js-0.32.1.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "ee5ce15d83c60aa529c52369df32bfdf96cb591a0ed0c5068760a59eb89aa6f6",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "atomicfu-wasm-js",
+            "version": "0.32.1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-wasm-js/0.32.1/atomicfu-wasm-js-0.32.1-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-browser:0.5.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-browser:0.5.0",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-browser:0.5.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-browser-wasm-js:0.5.0",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "klib": {
+            "sha256checksum": "00d542206fff41458574ab7341e80f13629743af68621dd5d3750cd836ca70e5",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-browser-wasm-js",
+            "version": "0.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-browser-wasm-js/0.5.0/kotlinx-browser-wasm-js-0.5.0.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "5c87feada4654e72ca24512329e6dc495b6e016212c56f52a5f99b40d3e069cd",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-browser-wasm-js",
+            "version": "0.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-browser-wasm-js/0.5.0/kotlinx-browser-wasm-js-0.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.8.2": {
+      "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.8.2",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.8.2",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-io-bytestring-wasm-js:0.8.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "klib": {
+            "sha256checksum": "6396c750b13f51fa44133d854ba56c0282aa4a7f44f735f6c0c5ee4191f3462e",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-bytestring-wasm-js",
+            "version": "0.8.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-wasm-js/0.8.2/kotlinx-io-bytestring-wasm-js-0.8.2.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "1f8ee8ea529e72ea14d2482952a099c874c65c58a2eb4efd21464870400c45e8",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-bytestring-wasm-js",
+            "version": "0.8.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-wasm-js/0.8.2/kotlinx-io-bytestring-wasm-js-0.8.2-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-io-core:0.8.2": {
+      "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.8.2",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.8.2",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-io-core-wasm-js:0.8.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-io-bytestring"
+          ],
+          "klib": {
+            "sha256checksum": "b3f21976b6b375486e2988dd5c24af7c24f2e5c5a1e035cfcfc9aa17cf921051",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-core-wasm-js",
+            "version": "0.8.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-wasm-js/0.8.2/kotlinx-io-core-wasm-js-0.8.2.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "7d6dd4ad771e0ded2b4f0403fcff65afb13cb5186f7a672b0238cff736006d94",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-core-wasm-js",
+            "version": "0.8.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-wasm-js/0.8.2/kotlinx-io-core-wasm-js-0.8.2-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-serialization-core:1.9.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.9.0",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.9.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.9.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "klib": {
+            "sha256checksum": "12d94bad5eeac92020cee9b32f0dfb119104c92dcd6d9f41fe707d053cbfc25c",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-wasm-js",
+            "version": "1.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-wasm-js/1.9.0/kotlinx-serialization-core-wasm-js-1.9.0.klib"
+            ]
+          },
+          "sourceJar": {
+            "sha256checksum": "2895182b390cf03492e487ccd683364ec62777f7461a6b27d055e8722ea59a98",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-wasm-js",
+            "version": "1.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-wasm-js/1.9.0/kotlinx-serialization-core-wasm-js-1.9.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
