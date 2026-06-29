@@ -191,8 +191,25 @@ internal class MultiplatformResolver(
                 }
             }
         }
-        return nodes.filter(collectionFilter).groupBy { it.gav }.map { (_, scoppedNodes) ->
-            UnresolvedMultiplatformLibrary.WasmJs(resolvedNodes = scoppedNodes, substitutions = substitutions)
+
+        val filteredNodes = nodes.filter(collectionFilter)
+
+        // some KMP dependencies are incorrectly declaring a JVM dependency
+        // e.g. `ai.jetbrains.code.files:code-files-model-wasm-js:1.0.0-beta.170` which depends on `org.slf4j:slf4j-api:2.0.17`
+        // a purely JVM dependency
+        val possibleDependencies = filteredNodes.flatMap { node ->
+            val parent = node.getParentKmpLibraryCoordinates()
+            listOfNotNull(
+                node.gav.toSubstitutionId(),
+                parent?.let { p -> substitutionId(p.groupId, p.artifactId) },
+            )
+        }.toSet()
+        return filteredNodes.groupBy { it.gav }.map { (_, scoppedNodes) ->
+            UnresolvedMultiplatformLibrary.WasmJs(
+                resolvedNodes = scoppedNodes,
+                substitutions = substitutions,
+                possibleDependencies = possibleDependencies
+            )
         }
     }
 
@@ -254,6 +271,7 @@ private sealed class UnresolvedMultiplatformLibrary {
     data class WasmJs(
         private val resolvedNodes: List<MavenDependencyNode>,
         private val substitutions: Substitutions,
+        private val possibleDependencies: Set<SubstitutionId>,
     ) : UnresolvedMultiplatformLibrary() {
         private val runtimeNode: MavenDependencyNode? =
             resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
@@ -356,7 +374,8 @@ private sealed class UnresolvedMultiplatformLibrary {
 
         @Suppress("INVISIBLE_REFERENCE")
         private fun MavenDependencyNode.wasmJsDependencies(): Set<SubstitutionId> =
-            variantMatching { it.wasmKlib() }.singleOrNull()?.dependencies?.map { it.ga }?.toSet() ?: emptySet()
+            variantMatching { it.wasmKlib() }.singleOrNull()?.dependencies?.map { it.ga }
+                ?.filter { it in possibleDependencies }?.toSet() ?: emptySet()
     }
 }
 
@@ -425,7 +444,8 @@ private fun String.toMavenNode(context: Context): MavenDependencyNodeWithContext
     )
 }
 
-private fun MultiplatformLibraryId.toSubstitutionId(): SubstitutionId = "$groupId:$artifactId"
+private fun MultiplatformLibraryId.toSubstitutionId(): SubstitutionId = substitutionId(groupId, artifactId)
+private fun substitutionId(groupId: String, artifactId: String) = "$groupId:$artifactId"
 
 private fun Substitutions.substituteMultiplatformLibraryIds(originalIds: Collection<MultiplatformLibraryId>): Set<MultiplatformLibraryId> =
     originalIds.map { originalId ->

@@ -7,9 +7,8 @@ import kotlin.io.path.createTempDirectory
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
+// TODO: would be nice to mock Maven repositories to avoid real HTTP calls
 class MultiplatformResolverTest {
-
-    // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
     @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `multi-repository resolution`() = runBlocking {
@@ -109,6 +108,39 @@ class MultiplatformResolverTest {
             repositories = repositories,
             libraries = actual,
             manifestResourceFilepath = "manifest-with_substitutions.json",
+        )
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    @Test
+    fun `dependency on JVM-only dependencies are excluded`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+            "https://cache-redirector.jetbrains.com/packages.jetbrains.team/maven/p/grazi/grazie-platform-public",
+        )
+        val coordinates = listOf(
+            "ai.jetbrains.code.files:code-files-model:1.0.0-beta.167",
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 100,
+            connectTimeout = 30.seconds,
+            requestTimeout = 30.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = MultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories.map { MavenRepository(it) },
+                artifactResolver = artifactResolver,
+                substitutions = emptyMap(),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-no_jvm_deps.json",
         )
     }
 }
