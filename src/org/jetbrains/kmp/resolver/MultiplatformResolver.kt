@@ -315,9 +315,11 @@ private sealed class UnresolvedMultiplatformLibrary {
                 artifactId = parent.artifactId,
                 version = parent.version ?: error("$node parent $parent must have a version"),
             )
+            // TODO: could we do something about this super hacky substitution resolution?
             substitutions.substituteMultiplatformLibraryIds(listOf(parentId)).single()
         }
         private val originalId: MultiplatformLibraryId = node.gav
+        // TODO: could we do something about this super hacky substitution resolution?
         override val variantId: MultiplatformLibraryId =
             substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
 
@@ -333,9 +335,11 @@ private sealed class UnresolvedMultiplatformLibrary {
             return klibs.single()
         }
 
+        // TODO: could we do something about this super hacky substitution resolution?
         override val exportedDependencies: Set<SubstitutionId> =
             substitutions.substituteSubstitutionIds(compileNode?.wasmJsDependencies() ?: emptySet())
 
+        // TODO: could we do something about this super hacky substitution resolution?
         override val dependencies: Set<SubstitutionId> = substitutions.substituteSubstitutionIds(
             runtimeNode?.wasmJsDependencies() ?: emptySet()
         ) - exportedDependencies
@@ -346,6 +350,8 @@ private sealed class UnresolvedMultiplatformLibrary {
 
         private suspend fun MavenDependencyNode.getArtifacts(): List<UnresolvedMultiplatformLibraryArtifact> =
             dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>().map { file ->
+
+                // TODO: could we do something about this super hacky substitution resolution?
                 val artifactPath = buildString { // TODO: replace with URL resolver when exposed in Amper's DR library
                     append(variantId.groupId.replace('.', '/'))
                     append("/${variantId.artifactId}")
