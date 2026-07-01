@@ -156,14 +156,19 @@ internal class MultiplatformResolver(
             children = coordinatesBag.flatMap { c -> contexts.map { c.toMavenNode(it) } },
         )
 
-        Resolver().resolveDependencies(
+        val resolver = Resolver()
+        resolver.resolveDependencies(
             root = root,
             resolutionLevel = ResolutionLevel.NETWORK,
             transitive = true,
             incrementalCacheUsage = IncrementalCacheUsage.SKIP,
             unspecifiedVersionResolver = MavenDependencyUnspecifiedVersionResolverBase(),
         )
-        root.downloadDependencies(downloadSources = true)
+
+        // ensures hash are correct, sometimes Maven artifacts are not uploading the real SHA256 metadata artifacts for example
+        // Amper will resolve the proper hash if the dependency is downloaded on disk in these edge cases
+        resolver.downloadDependencies(node = root, downloadSources = true)
+
         return root
     }
 
