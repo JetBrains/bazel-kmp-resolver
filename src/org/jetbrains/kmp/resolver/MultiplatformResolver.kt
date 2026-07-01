@@ -17,6 +17,7 @@ import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
+import kotlin.io.path.name
 
 /**
  * Substitution ID represents a groupId:artifactId string
@@ -162,6 +163,7 @@ internal class MultiplatformResolver(
             incrementalCacheUsage = IncrementalCacheUsage.SKIP,
             unspecifiedVersionResolver = MavenDependencyUnspecifiedVersionResolverBase(),
         )
+        root.downloadDependencies(downloadSources = true)
         return root
     }
 
@@ -208,7 +210,7 @@ internal class MultiplatformResolver(
             UnresolvedMultiplatformLibrary.WasmJs(
                 resolvedNodes = scoppedNodes,
                 substitutions = substitutions,
-                possibleDependencies = possibleDependencies
+                possibleDependencies = possibleDependencies,
             )
         }
     }
@@ -255,7 +257,7 @@ private fun Map<String, String>.wasmKlib(): Boolean {
 }
 
 private data class UnresolvedMultiplatformLibraryArtifact(
-    val sha256checksum: String?,
+    val sha256checksum: String,
     val groupId: String,
     val artifactId: String,
     val version: String,
@@ -314,79 +316,55 @@ private sealed class UnresolvedMultiplatformLibrary {
         override val variantId: MultiplatformLibraryId =
             substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
 
-        @Suppress("INVISIBLE_REFERENCE")
-        private val sourceJarVariant: org.jetbrains.amper.dependency.resolution.metadata.json.module.Variant? =
-            node.variantMatching { it.wasmSources() }.distinct().let { sourceJars ->
-                require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-                sourceJars.singleOrNull()
-            }
-
-        @Suppress("INVISIBLE_REFERENCE")
-        private val klibVariant: org.jetbrains.amper.dependency.resolution.metadata.json.module.Variant =
-            node.variantMatching { it.wasmKlib() }.distinct().singleOrNull()
-                ?: error("[$variantId] node must have exactly one klib")
-
-        val sourceJar: UnresolvedMultiplatformLibraryArtifact? by lazy {
-            when (sourceJarVariant) {
-                null -> null
-                else -> {
-                    val sourceJars = extractFilesFromVariant(sourceJarVariant)
-                    require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-                    sourceJars.singleOrNull()
-                }
-            }
+        suspend fun sourceJar(): UnresolvedMultiplatformLibraryArtifact? {
+            val sourceJars = node.getArtifacts().filter { file -> file.artifactPath.endsWith("-sources.jar") }
+            require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
+            return sourceJars.singleOrNull()
         }
-        val klib: UnresolvedMultiplatformLibraryArtifact by lazy {
-            val klibs = extractFilesFromVariant(klibVariant)
+
+        suspend fun klib(): UnresolvedMultiplatformLibraryArtifact {
+            val klibs = node.getArtifacts().filter { it.artifactPath.endsWith(".klib") }
             require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
-            klibs.single()
+            return klibs.single()
         }
 
-        @Suppress("INVISIBLE_REFERENCE")
         override val exportedDependencies: Set<SubstitutionId> =
             substitutions.substituteSubstitutionIds(compileNode?.wasmJsDependencies() ?: emptySet())
 
-        @Suppress("INVISIBLE_REFERENCE")
         override val dependencies: Set<SubstitutionId> = substitutions.substituteSubstitutionIds(
             runtimeNode?.wasmJsDependencies() ?: emptySet()
         ) - exportedDependencies
 
-        @Suppress("INVISIBLE_REFERENCE")
-        private fun extractFilesFromVariant(v: org.jetbrains.amper.dependency.resolution.metadata.json.module.Variant): List<UnresolvedMultiplatformLibraryArtifact> =
-            v.files.map { file ->
-                val groupPath = variantId.groupId.split('.').joinToString("/")
-                // @formatter:off
-                val fileName = file.url
-                    .replace(originalId.artifactId, variantId.artifactId)
-                    .replace(originalId.version, variantId.version)
-                    .removePrefix("./")
-                // @formatter:on
-                val artifactPath = "$groupPath/${variantId.artifactId}/${variantId.version}/$fileName"
+        private fun MavenDependencyNode.wasmJsDependencies(): Set<SubstitutionId> =
+            children.asSequence().filterIsInstance<MavenDependencyNode>().map { it.gav.toSubstitutionId() }
+                .filter { it in possibleDependencies }.toSet()
 
+        private suspend fun MavenDependencyNode.getArtifacts(): List<UnresolvedMultiplatformLibraryArtifact> =
+            dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>().map { file ->
+                val artifactPath = buildString { // TODO: replace with URL resolver when exposed in Amper's DR library
+                    append(variantId.groupId.replace('.', '/'))
+                    append("/${variantId.artifactId}")
+                    append("/${variantId.version.orUnspecified()}")
+                    val fileName = file.path?.name?.replace(originalId.groupId, variantId.groupId)
+                        ?.replace(originalId.artifactId, variantId.artifactId)
+                        ?.replace(originalId.version, variantId.version)
+                        ?: error("could not resolve file name of $this")
+                    append("/$fileName")
+                }
+
+                @Suppress("INVISIBLE_REFERENCE")
                 UnresolvedMultiplatformLibraryArtifact(
-                    sha256checksum = file.sha256,
                     groupId = variantId.groupId,
                     artifactId = variantId.artifactId,
                     version = variantId.version,
                     artifactPath = artifactPath,
+                    // FIXME: this is incorrect here, the hash is just the incorrect if a substitution happened
+                    // all these variant id replacement are totally wrong
+                    sha256checksum = file.getExpectedHash(HashAlgorithm("sha256"))
+                        ?: error("could not find hash for artifact $file")
                 )
             }
-
-        @Suppress("INVISIBLE_REFERENCE")
-        private fun MavenDependencyNode.wasmJsDependencies(): Set<SubstitutionId> =
-            variantMatching { it.wasmKlib() }.singleOrNull()?.dependencies?.map { it.ga }
-                ?.filter { it in possibleDependencies }?.toSet() ?: emptySet()
     }
-}
-
-@Suppress("INVISIBLE_REFERENCE")
-private val org.jetbrains.amper.dependency.resolution.metadata.json.module.Dependency.ga: SubstitutionId get() = "$group:$module"
-
-@Suppress("INVISIBLE_REFERENCE")
-private fun MavenDependencyNode.variantMatching(attributeMatcher: (Map<String, String>) -> Boolean): List<org.jetbrains.amper.dependency.resolution.metadata.json.module.Variant> {
-    val dep = this.dependency as MavenDependencyImpl
-    require(dep.variants.isNotEmpty()) { "no variants found for dependency $gav" }
-    return dep.variants.filter { variant -> attributeMatcher(variant.attributes) }
 }
 
 private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
@@ -413,8 +391,8 @@ private suspend fun UnresolvedMultiplatformLibrary.WasmJs.resolve(
     repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
 ): MultiplatformVariant.WasmJs = coroutineScope {
-    val resolvedKlib = async { klib.resolve(repositories, artifactUrlResolver) }
-    val resolvedSourceJar = sourceJar?.let { async { it.resolve(repositories, artifactUrlResolver) } }
+    val resolvedKlib = async { klib().resolve(repositories, artifactUrlResolver) }
+    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(repositories, artifactUrlResolver) } }
     MultiplatformVariant.WasmJs(
         id = id,
         variantId = variantId,
