@@ -7,7 +7,6 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
-import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
@@ -53,17 +52,18 @@ internal class ArtifactUrlResolver(
     }
     private val availabilityByUrl = ConcurrentHashMap<String, ArtifactFile>()
 
-    suspend fun artifactExistsAt(repository: MavenRepository, artifactPath: String): ArtifactFile {
-        val artifactUrl = "${repository.url.trimEnd('/')}/$artifactPath"
+    suspend fun artifactExistsAt(artifactUrl: String, credentials: RepositoryCredentials): ArtifactFile {
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
             val resolved = connectionSemaphore.withPermit {
                 httpClient.head {
                     url(artifactUrl)
-                    val username = repository.userName
-                    val password = repository.password
                     when {
-                        username != null && password != null -> basicAuth(username, password)
+                        credentials.username != null && credentials.password != null -> basicAuth(
+                            credentials.username,
+                            credentials.password,
+                        )
+
                         else -> {}
                     }
                 }.status.isSuccess()

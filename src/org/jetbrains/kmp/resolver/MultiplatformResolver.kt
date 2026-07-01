@@ -17,7 +17,6 @@ import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
-import kotlin.io.path.name
 
 /**
  * Substitution ID represents a groupId:artifactId string
@@ -126,10 +125,15 @@ internal class MultiplatformResolver(
             ),
         )
         logger.debug("Collecting nodes of the dependency graph...")
-        val nodes = collectWasmJsTargetNodes(root)
+        val nodes = collectNodes(root) { node ->
+            val hasKmpParent = node.getParentKmpLibraryCoordinates() != null
+            val hasRelevantArtifacts = (node.dependency as MavenDependencyImpl).files(withSources = true).any {
+                it.extension == "klib" || (it.extension == "jar" && it.nameWithoutExtension.endsWith("-sources"))
+            }
+            hasKmpParent && hasRelevantArtifacts
+        }
         logger.debug("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
-        val resolvedNodes = resolveArtifacts(nodes)
-        return resolvedNodes
+        return resolveArtifacts(nodes)
     }
 
     private suspend fun callAmperResolution(
@@ -172,13 +176,6 @@ internal class MultiplatformResolver(
         return root
     }
 
-    @Suppress("INVISIBLE_REFERENCE")
-    private fun collectWasmJsTargetNodes(root: RootDependencyNode) = collectNodes(root) { node ->
-        node.getParentKmpLibraryCoordinates() != null && (node.dependency as MavenDependencyImpl).variants.any {
-            it.files.isNotEmpty() && (it.attributes.wasmKlib() || it.attributes.wasmSources())
-        }
-    }
-
     private fun collectNodes(
         root: RootDependencyNode,
         collectionFilter: (variant: MavenDependencyNode) -> Boolean,
@@ -216,6 +213,7 @@ internal class MultiplatformResolver(
                 resolvedNodes = scoppedNodes,
                 substitutions = substitutions,
                 possibleDependencies = possibleDependencies,
+                repositories = repositories,
             )
         }
     }
@@ -225,7 +223,7 @@ internal class MultiplatformResolver(
             nodes.map { unresolvedNode ->
                 when (unresolvedNode) {
                     is UnresolvedMultiplatformLibrary.WasmJs -> async {
-                        unresolvedNode.resolve(repositories, artifactResolver)
+                        unresolvedNode.resolve(artifactResolver)
                     }
                 }
             }.awaitAll()
@@ -251,22 +249,22 @@ private fun DependencyNode.resolutionErrors(logger: Logger): List<Message> =
         }
     }
 
-private fun Map<String, String>.wasmSources(): Boolean {
-    return this["org.gradle.category"] == "documentation" && this["org.gradle.docstype"] == "sources" && this["org.jetbrains.kotlin.platform.type"] == "wasm" && this["org.jetbrains.kotlin.wasm.target"] == "js"
-}
-
-private fun Map<String, String>.wasmKlib(): Boolean {
-    return this["org.gradle.category"] == "library" && this["org.gradle.usage"] in setOf(
-        "kotlin-api", "kotlin-runtime"
-    ) && this["org.jetbrains.kotlin.platform.type"] == "wasm" && this["org.jetbrains.kotlin.wasm.target"] == "js"
-}
+// TODO: both of these are not necessarily true when resolving a dependency against many platforms
+private fun DependencyFileImpl.isSourceJar(): Boolean = extension == "jar" && nameWithoutExtension.endsWith("-sources")
+private fun DependencyFile.isWasmKlib(): Boolean = extension == "klib"
 
 private data class UnresolvedMultiplatformLibraryArtifact(
+    val fileName: String,
     val sha256checksum: String,
     val groupId: String,
     val artifactId: String,
     val version: String,
-    val artifactPath: String,
+    val possibleLocations: List<UnresolvedMultiplatformLibraryArtifactLocation>,
+)
+
+private data class UnresolvedMultiplatformLibraryArtifactLocation(
+    val url: String,
+    val credentials: RepositoryCredentials,
 )
 
 private sealed class UnresolvedMultiplatformLibrary {
@@ -277,6 +275,7 @@ private sealed class UnresolvedMultiplatformLibrary {
 
     data class WasmJs(
         private val resolvedNodes: List<MavenDependencyNode>,
+        private val repositories: List<MavenRepository>,
         private val substitutions: Substitutions,
         private val possibleDependencies: Set<SubstitutionId>,
     ) : UnresolvedMultiplatformLibrary() {
@@ -319,20 +318,25 @@ private sealed class UnresolvedMultiplatformLibrary {
             substitutions.substituteMultiplatformLibraryIds(listOf(parentId)).single()
         }
         private val originalId: MultiplatformLibraryId = node.gav
+
         // TODO: could we do something about this super hacky substitution resolution?
         override val variantId: MultiplatformLibraryId =
             substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
 
+        private val files: List<DependencyFileImpl> by lazy {
+            node.dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>()
+        }
+
         suspend fun sourceJar(): UnresolvedMultiplatformLibraryArtifact? {
-            val sourceJars = node.getArtifacts().filter { file -> file.artifactPath.endsWith("-sources.jar") }
+            val sourceJars = files.filter { file -> file.isSourceJar() }
             require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-            return sourceJars.singleOrNull()
+            return sourceJars.singleOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
         }
 
         suspend fun klib(): UnresolvedMultiplatformLibraryArtifact {
-            val klibs = node.getArtifacts().filter { it.artifactPath.endsWith(".klib") }
+            val klibs = files.filter { file -> file.isWasmKlib() }
             require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
-            return klibs.single()
+            return klibs.single().toUnresolvedMultiplatformLibraryArtifact()
         }
 
         // TODO: could we do something about this super hacky substitution resolution?
@@ -348,46 +352,44 @@ private sealed class UnresolvedMultiplatformLibrary {
             children.asSequence().filterIsInstance<MavenDependencyNode>().map { it.gav.toSubstitutionId() }
                 .filter { it in possibleDependencies }.toSet()
 
-        private suspend fun MavenDependencyNode.getArtifacts(): List<UnresolvedMultiplatformLibraryArtifact> =
-            dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>().map { file ->
-
-                // TODO: could we do something about this super hacky substitution resolution?
-                val artifactPath = buildString { // TODO: replace with URL resolver when exposed in Amper's DR library
-                    append(variantId.groupId.replace('.', '/'))
-                    append("/${variantId.artifactId}")
-                    append("/${variantId.version.orUnspecified()}")
-                    val fileName = file.path?.name?.replace(originalId.groupId, variantId.groupId)
-                        ?.replace(originalId.artifactId, variantId.artifactId)
-                        ?.replace(originalId.version, variantId.version)
-                        ?: error("could not resolve file name of $this")
-                    append("/$fileName")
-                }
-
-                @Suppress("INVISIBLE_REFERENCE")
-                UnresolvedMultiplatformLibraryArtifact(
-                    groupId = variantId.groupId,
-                    artifactId = variantId.artifactId,
-                    version = variantId.version,
-                    artifactPath = artifactPath,
-                    // FIXME: this is incorrect here, the hash is just the incorrect if a substitution happened
-                    // all these variant id replacement are totally wrong
-                    sha256checksum = file.getExpectedHash(HashAlgorithm("sha256"))
-                        ?: error("could not find hash for artifact $file")
-                )
-            }
+        private suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(): UnresolvedMultiplatformLibraryArtifact {
+            val file = this
+            return UnresolvedMultiplatformLibraryArtifact(
+                fileName = "${file.nameWithoutExtension}.${file.extension}",
+                groupId = variantId.groupId,
+                artifactId = variantId.artifactId,
+                version = variantId.version,
+                possibleLocations = repositories.map { repository ->
+                    val url = file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
+                        // TODO: could we do something about this super hacky substitution resolution?
+                        .replace(originalId.groupId.replace(".", "/"), variantId.groupId.replace(".", "/"))
+                        .replace(originalId.artifactId, variantId.artifactId)
+                        .replace(originalId.version, variantId.version)
+                    UnresolvedMultiplatformLibraryArtifactLocation(
+                        url = url,
+                        credentials = RepositoryCredentials(
+                            repositoryUrl = repository.url,
+                            username = repository.userName,
+                            password = repository.password,
+                        ),
+                    )
+                },
+                sha256checksum = file.getExpectedHash(HashAlgorithm("sha256"))
+                    ?: error("could not find hash for artifact $file")
+            )
+        }
     }
 }
 
 private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
-    repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
 ): MultiplatformLibraryArtifact {
     val urls = coroutineScope {
-        repositories.map {
-            async { artifactUrlResolver.artifactExistsAt(it, artifactPath) }
+        possibleLocations.map { location ->
+            async { artifactUrlResolver.artifactExistsAt(location.url, location.credentials) }
         }.awaitAll().filterIsInstance<ArtifactFile.Resolved>().map { it.url }
     }
-    require(urls.isNotEmpty()) { "No URLs found for artifact $artifactPath" }
+    require(urls.isNotEmpty()) { "[$groupId:$artifactId:$version] artifact could not be find in any of the specified repositories" }
 
     return MultiplatformLibraryArtifact(
         sha256checksum = sha256checksum,
@@ -399,11 +401,10 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
 }
 
 private suspend fun UnresolvedMultiplatformLibrary.WasmJs.resolve(
-    repositories: List<MavenRepository>,
     artifactUrlResolver: ArtifactUrlResolver,
 ): MultiplatformVariant.WasmJs = coroutineScope {
-    val resolvedKlib = async { klib().resolve(repositories, artifactUrlResolver) }
-    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(repositories, artifactUrlResolver) } }
+    val resolvedKlib = async { klib().resolve(artifactUrlResolver) }
+    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(artifactUrlResolver) } }
     MultiplatformVariant.WasmJs(
         id = id,
         variantId = variantId,

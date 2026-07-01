@@ -13,8 +13,8 @@ import kotlin.io.path.inputStream
 @Serializable
 internal data class RepositoryCredentials(
     val repositoryUrl: String,
-    val username: String,
-    val password: String,
+    val username: String?,
+    val password: String?,
 ) {
     companion object {
         private val json = Json {
@@ -35,7 +35,7 @@ internal fun List<String>.withRepositoryCredentials(credentialsByRepositoryUrl: 
         val credentials = credentialsByRepositoryUrl[repository]
         MavenRepository(
             url = repository,
-            userName = credentials?.username.orEmpty(),
-            password = credentials?.password.orEmpty(),
+            userName = credentials?.username,
+            password = credentials?.password,
         )
     }

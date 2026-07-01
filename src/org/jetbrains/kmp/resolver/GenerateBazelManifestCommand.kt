@@ -30,7 +30,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
     ).convert {
         val (original, sub) = it.split("=", limit = 2)
         original to MultiplatformLibraryId.fromString(sub)
-    }.multiple(required = true)
+    }.multiple(required = false)
 
     private val outputManifest by option(
         "--output-manifest-file",
