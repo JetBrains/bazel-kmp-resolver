@@ -3,13 +3,15 @@ package org.jetbrains.kmp.resolver
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.jetbrains.amper.dependency.resolution.MavenRepository
+import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
+import kotlin.io.path.deleteRecursively
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
 
 // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
 class MultiplatformResolverTest {
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
     @Test
     fun `multi-repository resolution`() = runBlocking {
         val repositories = listOf(
@@ -141,6 +143,41 @@ class MultiplatformResolverTest {
             repositories = repositories,
             libraries = actual,
             manifestResourceFilepath = "manifest-no_jvm_deps.json",
+        )
+    }
+
+    @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
+    @Test
+    fun `ensure hash of artifacts are resolved`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "com.github.ajalt.clikt:clikt-core:5.0.3", // previous implementation was unable to resolve the hahs of `com/github/ajalt/clikt/clikt-core-wasm-js/5.0.3/clikt-core-wasm-js-5.0.3-sources.jar`
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 100,
+            connectTimeout = 30.seconds,
+            requestTimeout = 30.seconds,
+        )
+
+        val cache = createTempDirectory("resolution-cache")
+        cache.deleteRecursively()
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = MultiplatformResolver(
+                cachePath = cache,
+                repositories = repositories.map { MavenRepository(it) },
+                artifactResolver = artifactResolver,
+                substitutions = emptyMap()
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-ktor_resolution.json",
         )
     }
 }

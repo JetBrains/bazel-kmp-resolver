@@ -6,7 +6,7 @@ serialization = "1.10.0"
 clikt-jvm = "com.github.ajalt.clikt:clikt-jvm:5.1.0"
 ktor-client-cio-jvm = { group = "io.ktor", name = "ktor-client-cio-jvm", version.ref = "ktor" }
 ktor-client-core-jvm = { group = "io.ktor", name = "ktor-client-core-jvm", version.ref = "ktor" }
-dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.12.0-dev-4095"
+dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.12.0-dev-4100"
 kotlinx-coroutines-core-jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2"
 kotlinx-serialization-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core-jvm", version.ref = "serialization" }
 kotlinx-serialization-json-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json-jvm", version.ref = "serialization" }

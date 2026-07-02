@@ -17,6 +17,7 @@ import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
+import kotlin.io.path.absolutePathString
 
 /**
  * Substitution ID represents a groupId:artifactId string
@@ -115,7 +116,13 @@ internal class MultiplatformResolver(
     private val amperCachePath: Path = cachePath.resolve("amper-cache")
 
     internal suspend fun resolve(coordinatesBag: Collection<String>): List<MultiplatformVariant> {
-        logger.info("Resolving dependency graph for:\n${coordinatesBag.joinToString("\n") { " - $it" }}")
+        logger.debug("Resolving dependency graph...")
+        logger.info("Cache location: ${amperCachePath.absolutePathString()}")
+        logger.info("Against repositories:\n${repositories.joinToString("\n") { "  ${it.url}" }}")
+        if (substitutions.isNotEmpty()) {
+            logger.info("Using substitutions:\n${substitutions.entries.joinToString("\n") { "  ${it.key} -> ${it.value.gav}" }}")
+        }
+        logger.info("Coordinates:\n${coordinatesBag.joinToString("\n") { "  $it" }}")
         val root = callAmperResolution(
             coordinatesBag = coordinatesBag,
             platforms = setOf(ResolutionPlatform.WASM_JS),
@@ -165,13 +172,10 @@ internal class MultiplatformResolver(
             root = root,
             resolutionLevel = ResolutionLevel.NETWORK,
             transitive = true,
+            downloadSources = true,
             incrementalCacheUsage = IncrementalCacheUsage.SKIP,
             unspecifiedVersionResolver = MavenDependencyUnspecifiedVersionResolverBase(),
         )
-
-        // ensures hash are correct, sometimes Maven artifacts are not uploading the real SHA256 metadata artifacts for example
-        // Amper will resolve the proper hash if the dependency is downloaded on disk in these edge cases
-        resolver.downloadDependencies(node = root, downloadSources = true)
 
         return root
     }
