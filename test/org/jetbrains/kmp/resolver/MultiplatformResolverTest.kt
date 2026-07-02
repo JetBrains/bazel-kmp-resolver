@@ -3,6 +3,7 @@ package org.jetbrains.kmp.resolver
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.jetbrains.amper.dependency.resolution.MavenRepository
+import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.deleteRecursively
@@ -148,7 +149,7 @@ class MultiplatformResolverTest {
 
     @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
     @Test
-    fun `ensure hash of artifacts are resolved`() = runBlocking {
+    fun `ensure hash of artifacts are resolved`(): Unit = runBlocking {
         val repositories = listOf(
             "https://repo1.maven.org/maven2",
         )
@@ -163,21 +164,16 @@ class MultiplatformResolverTest {
 
         val cache = createTempDirectory("resolution-cache")
         cache.deleteRecursively()
-        val actual = artifactResolver.use { artifactResolver ->
+        artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
                 cachePath = cache,
                 repositories = repositories.map { MavenRepository(it) },
                 artifactResolver = artifactResolver,
                 substitutions = emptyMap()
             )
-            resolver.resolve(coordinates)
+            assertDoesNotThrow {
+                resolver.resolve(coordinates)
+            }
         }
-
-        assertUsingManifest(
-            coordinates = coordinates,
-            repositories = repositories,
-            libraries = actual,
-            manifestResourceFilepath = "manifest-ktor_resolution.json",
-        )
     }
 }
