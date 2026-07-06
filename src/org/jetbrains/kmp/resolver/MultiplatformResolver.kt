@@ -17,6 +17,7 @@ import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
+import kotlin.io.encoding.Base64
 import kotlin.io.path.absolutePathString
 
 /**
@@ -98,12 +99,58 @@ internal sealed class MultiplatformVariant {
 
 @Serializable
 internal data class MultiplatformLibraryArtifact(
-    val sha256checksum: String?,
+    val integrity: MultiplatformLibraryArtifactIntegrity,
     val groupId: String,
     val artifactId: String,
     val version: String,
     val urls: List<String>,
 )
+
+@Serializable(with = MultiplatformLibraryArtifactIntegritySerializer::class)
+internal sealed class MultiplatformLibraryArtifactIntegrity {
+    abstract val hash: String
+    abstract val algorithm: String
+
+    data class Sha256(override val hash: String) : MultiplatformLibraryArtifactIntegrity() {
+        override val algorithm: String = "sha256"
+    }
+
+    data class Sha512(override val hash: String) : MultiplatformLibraryArtifactIntegrity() {
+        override val algorithm: String = "sha512"
+    }
+
+    fun asBazelIntegrityString(): String {
+        val base64Hash = Base64.encode(hash.encodeToByteArray())
+        return "$algorithm-$base64Hash"
+    }
+
+    companion object {
+        fun fromBazelIntegrityString(bazelIntegrity: String): MultiplatformLibraryArtifactIntegrity {
+            val (algorithm, base64Hash) = bazelIntegrity.split("-")
+            val hash = Base64.decode(base64Hash).toString(Charsets.UTF_8)
+            return fromHash(algorithm, hash)
+        }
+
+        fun fromHash(algorithm: String, hash: String): MultiplatformLibraryArtifactIntegrity = when (algorithm) {
+            "sha256" -> Sha256(hash)
+            "sha512" -> Sha512(hash)
+            else -> throw IllegalArgumentException("Unknown hash algorithm: $algorithm")
+        }
+    }
+}
+
+internal class MultiplatformLibraryArtifactIntegritySerializer() : KSerializer<MultiplatformLibraryArtifactIntegrity> {
+    override val descriptor: SerialDescriptor
+        get() = PrimitiveSerialDescriptor("MultiplatformLibraryArtifactIntegrity", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: MultiplatformLibraryArtifactIntegrity): Unit =
+        encoder.encodeString(value.asBazelIntegrityString())
+
+    override fun deserialize(decoder: Decoder): MultiplatformLibraryArtifactIntegrity {
+        val bazelIntegrity = decoder.decodeString()
+        return MultiplatformLibraryArtifactIntegrity.fromBazelIntegrityString(bazelIntegrity)
+    }
+}
 
 internal class MultiplatformResolver(
     cachePath: Path,
@@ -259,7 +306,7 @@ private fun DependencyFile.isWasmKlib(): Boolean = extension == "klib"
 
 private data class UnresolvedMultiplatformLibraryArtifact(
     val fileName: String,
-    val sha256checksum: String,
+    val integrity: MultiplatformLibraryArtifactIntegrity,
     val groupId: String,
     val artifactId: String,
     val version: String,
@@ -378,8 +425,13 @@ private sealed class UnresolvedMultiplatformLibrary {
                         ),
                     )
                 },
-                sha256checksum = file.getExpectedHash(HashAlgorithm("sha256"))
-                    ?: error("could not find hash for artifact $file")
+                // Amper will not resolve all hashes, but from the more robust to the least robust.
+                // We chose to support only 512 and 256 for now and we have to query them in that order.
+                integrity = listOf("sha512", "sha256").firstNotNullOfOrNull { algorithm ->
+                    file.getExpectedHash(HashAlgorithm(algorithm))?.let { hash ->
+                        MultiplatformLibraryArtifactIntegrity.fromHash(algorithm, hash)
+                    }
+                } ?: error("could not find hash for artifact $file"),
             )
         }
     }
@@ -396,7 +448,7 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     require(urls.isNotEmpty()) { "[$groupId:$artifactId:$version] artifact could not be find in any of the specified repositories" }
 
     return MultiplatformLibraryArtifact(
-        sha256checksum = sha256checksum,
+        integrity = integrity,
         groupId = groupId,
         artifactId = artifactId,
         version = version,

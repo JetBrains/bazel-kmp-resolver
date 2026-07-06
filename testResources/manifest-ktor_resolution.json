@@ -29,7 +29,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "58c628ac2380826d80236552579c5d83d6ef4b3c38cabf24aba19c275d15ea72",
+            "integrity": "sha512-NDYwZGI0ZWNhZjFjYmJkM2NmYWM4ZmMxOTI2MDc0NzUzZjcwNTU4MDIwMmY2YjJlOWI3NWZiZjdmN2MxNjhmNzgyZDYxOGQzNDFmZjdjYzZhZjhlZmUwY2ZkMTdiMmEwZDUxNzU1NWIyZjEwMzkyMWQ1ZmMxNzQ1Njg2NTQ5ZDY=",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-cio-wasm-js",
             "version": "3.5.0",
@@ -38,7 +38,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "f687961f7700ded3d2dee6f0c8e055883a7d36e4e25cc0346112b81da2f8d5e3",
+            "integrity": "sha512-ZGFhNTdiODdlYWFhOGIyNzM4MDBhMTFkMDdjZTU0ODA4YWM0YmQ0NTMzOWE3Nzk2ZGMzMjkwNGQ1ZWFiZGY0N2M3ZDU2ZmIwZjA5ZjFjNmM3N2RkZGIwZjBlZDg0ZDBiMjI1YjIzZDE5MWUzZTU5NGYyZTg3YzVkYzZlOTU3ZWE=",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-cio-wasm-js",
             "version": "3.5.0",
@@ -70,7 +70,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "0981194346d41b8e6899401b7d5178d5d5abc8e52052499240af10db289b6caa",
+            "integrity": "sha512-YzM2NzMzM2FiZGViYjY1MWZmMTIwYTMxNGNiMzRkYTliZGM1M2YxYThkZjgwMmI4NjQ2NTg1NDA2ZTFjY2I0YjlhYWQyNTRkZTJkNDJjYjdkM2M2ZGU5NzZkNmMxYzFhOTRmOThhOTRkN2I4M2Q1ZTBhYzFiNjMyZWIxOGQ0YWE=",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.5.0",
@@ -79,7 +79,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "85c7d91f1530c264363214a0de4515536bf52619ae3434339f9db71beef65367",
+            "integrity": "sha512-NWY1OTg3NGI4NjFhYWM3NmEyOWYwOTJjMmFhMDRiNzVkMjc2YTQxMzI4MTFiODYwNGM2ODU4NzJiMzM1MDQzZDNkY2IxMGRiNWEzNDI1ODUxNzczOTE0MTNhNTVhNWJjYmQ5ZWM5NzM3NjRkMWIxM2VhMmY1OTc0ZWU3ZDVmNGE=",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.5.0",
@@ -107,7 +107,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "3884d8bd7a07fd46ecd121ae871ba76ef857722124338864c823408383d326d7",
+            "integrity": "sha512-ZmJhNDQzOTc1ZjMzZDUxNGJlODhlMGUwMDYyN2VkMDI1MzZmNzliNTdhMjNkNTJhMTAxMTBkNTVhZDNkMmYyNWI2Mjc4MDU4YmJjZThmMDFmMDc1MDIzNjQ2YzFkNDYzZGFlYTMyZTg2Mjc4MDBhM2VjNTQ3YmNjZDlkNTNmNTU=",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.5.0",
@@ -116,7 +116,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "25a4d89461d074f84b3f77d8bfe875832adfe744c83aee283f4586f37acdffc3",
+            "integrity": "sha512-N2RhYTg0NzY0M2FjY2JlYzBkMGZmNzZiMWUzMTVjYmMxYmE4ZWMyNzljZjkyZTg3N2IzZjE4NjFiYzQwNGZiODBhOGQxM2U3NjBlMWFiODE0NzE0MDQ3NWI2NGZiMmJlMDcxMzE4OWYzMDZmYTkyODczYWM5MjYzZmVhOTMyMjY=",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.5.0",
@@ -145,7 +145,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "859114a3b606e6a6f6a1b3f8687598d09bfb7ef4c40ecae4fd292598edd87df1",
+            "integrity": "sha512-ZTRhMzljNzE4NTVhN2QyOTMzY2ExY2U5MjY3OTA5ZTcwYmZhNGM0Y2Q0OTA2Nzg5N2I1Njk4NjNlNDk1MGU5N2FhN2NiMjg0YmE3ODA0MjA0Njc4MThhZWY2MjY4ZjM3NzExNWNhYmY0YTQyMTJkNzFmOWY0Y2MxYTU1NmFiOWM=",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.5.0",
@@ -154,7 +154,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "887f9e7ee5f755919c4ff29fd0e26c8a476aed2ff10081d49aab4674c8c465fd",
+            "integrity": "sha512-ZTA3OGVlMDE1NWE5NzlkY2Y5MGY3NjRmOGVhNWY3NGFkM2RhMDIyZjhjMjA5MTVkNDg5Nzc4YzhmZDk4YTVkNDVmMjNlYWQ2N2YwNDgzZWQyMThiYTIyZDhmMTUxZDEzY2Y4YWMyMmQ1ZjA5ZTI3MzI5YjkxNjE3MjJjMTU3YWM=",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.5.0",
@@ -183,7 +183,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
-            "sha256checksum": "5036d547dfddd3bc726c705a45520d625b4d332b3b378d7444275b02a2f7f773",
+            "integrity": "sha512-NDU1YmE2YmRmMjU1Yjc2Y2QwN2I3NjcwMDAyMTg1YTc2MTEyODQ5NmEwN2U1MTUxNzJkMmFlZDYyMmE2NTU3Y2ViYmQ1MzYwNjdhZmM3NjU1ZWMwNDk0OWMxNWMzNDg2ZmM2NTA4MWQ4NTYzMDQ5MjcxMzY3OGFlZDc3ZjU0MTQ=",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.5.0",
@@ -192,7 +192,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "e68ff45060e4d848be308d7c4a0bf207e1b38b15ca4e23d03606ce2d17dde737",
+            "integrity": "sha512-Yjg5N2NhYTc4ZWJlODcxNzY0OTQxYTZiOWY1ODdhMTY1OWMzOWJlMmFlNWQzMmJmYzgyYzJiOGU2ODRhYzBjOThjMDQ5MDQ4NjQ1M2VlZjhkMzRjZWQ1YjY4YWMwNDIxNTViZjYwMTFjMTlmZDdkN2FiMWNkMGE1ZTllMDhkNDg=",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.5.0",
@@ -220,7 +220,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-core"
           ],
           "klib": {
-            "sha256checksum": "ee1439ab0fce87e048f7a44732f509ea8955328f92f251b3842e3de92e78f271",
+            "integrity": "sha512-ZGFhOTQwOTUzNTQ3NGViZjQ4MDgyOGRiYmFkZjk3NWJiYjgwNGU0YjBiYjFhOTZmNDQ4NjgwYzY5YjNlNjkyYmE0Yjc5Y2IyNDcwMDQ4ZjJhNzRhZGIwMzQ1NjNmNjM5ZDU0NTUyZmJhZjg1OGE3OTMyOWQ5YzI0NTg2NGU5MTk=",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.5.0",
@@ -229,7 +229,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "630a408a629cb5424433cfdd3e97269a9d284b51f6496d8b6df6565d713fd169",
+            "integrity": "sha512-M2MwYWZjZDQxOTNkOTYzMWE3MmJmNGU5NDA1YzMzMWFmZTIzYWRiZGEwYTI0Y2ZlMTAzZWM3MjhlOTM4ZDY2OTY2Mzc5Y2M4OWJlNGRlOWRjZDdmMmNlMTNmNzExZGJmY2JkMGVjYzk0ZjNmNmNmOWZhOGNkM2I4MDc3MzViMTI=",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.5.0",
@@ -259,7 +259,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "5d11c15319bab1d7ef6b2d5ec486e97bc26e4f306c33df3c61bc8a9775b7727d",
+            "integrity": "sha512-OTU3NjUyOTUyMGVhNTVkNTgzM2VkZTY5NzJmMDMyYjQ1ZjA0MjFiM2VhYzE5NDU3YTE4YWNkMTE1NmUwN2NiMTU2MzMwNWY2NDgxNjA5NWFhM2RkNTIxZGRlZGY0MGY5ZWM5NjAwZDk1NjE2YmJiYjhiMWYxNDBjZGUwNDU0NzQ=",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-tls-wasm-js",
             "version": "3.5.0",
@@ -268,7 +268,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "a902383fcd8025db2f4884cff14de36d5c1f292a2bb39e36f9832ad67bbf0ad4",
+            "integrity": "sha512-NTI2ZjA4M2ZlN2ExY2U0MmRiYjZmYjNkMmIxYzI2YjBjNzg3YTE4ZmFhMDg3MzljY2NlZWY1ZDdmYmQzNGM4ZjYwMWZjYzRmMzZjNjUwM2Q0YjVlZTYzOWVmNGI0NmNjZjBhNjE4NTU0ZmEwNmNiYjc5ZTIxZTMwZmI3NjNiYTQ=",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-tls-wasm-js",
             "version": "3.5.0",
@@ -296,7 +296,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "3998c2d50b815a6407b6e91c0f3aaa0bdaf86dcfbfb437a0b259d1bd3b282702",
+            "integrity": "sha512-NzMxNWI3YjVjZjY5ODg2OTBiOGY3Y2ZhZTRiMjA1NTc1MTAwZTI1NGQzMWI1YmE1OTc0OGIxZTM4OGExN2QxYWNlM2VkN2MxMWU4Y2UzMTE3NGYxN2ZkZDJjMTljZjMwNjY4NDY5MmFjMDRjMjkyMDEzN2NjZWI0NTAxZDg3MmI=",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.5.0",
@@ -305,7 +305,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "59ee9e9fe66f9e1a1cdfa10cdaa373c01a2c73bebbff4ba03ea1f69df89346f2",
+            "integrity": "sha512-NTk1NzY2MTM1YjEwMjI0MjU4MGUwNWUxYzc0ZmJkYjQyOWI2ODJmMGFhYzM1MTA1MDY3NDE0YTgyNmY5NDJmNDFkMThjMDEyM2NhMmFhOWQ1NWU2ZjQ4NTVlMTZlYzE4NWYzZmZiYmM5Yzg3ZjY4N2Y1ZGRjMmNkZTZiOTdkZTM=",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.5.0",
@@ -333,7 +333,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "1313b00d1a5afb6f92513130cb18ae79c89df91ba8d633f13044ec3a36267f9d",
+            "integrity": "sha512-ODZlNDRkMWQ3NGZmMjc0NjJjYzQ4MjI0ZmE3NjAwZDBmNWE1ZjM4MjlkNmY5ZDNhNzhkYTIxNGE5MzBjMGI1NzAxNTI1OWE4MDdjZWE4YjM2YWU1YTA2MGI0YmIwNDlmOTBkOWUwNTdhMTA5YjA2ZmY1NmVkNzcyZTE1YmU5Yzc=",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.5.0",
@@ -342,7 +342,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "2696dded418414c804d9f961c671cbdcb67f4ca97ff23289626c05c6cc1ad67c",
+            "integrity": "sha512-YTc1ZTg2ZDZiYTUyODI0ZWQ0ZWY5M2YzOGUyMzc5N2Y1OTAzOWNkODMyZjY0NGZhN2ExMzViMTUzMDdkODM0YjkzNDY1MGExODE3M2U4ZDhiZWMxZWVkOGExOWVlYTQ2ZmIxNzRmZmM2ZDVkMTQ4ZjY1OTE2Mjg0ZmMwYTQxY2Y=",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.5.0",
@@ -370,7 +370,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "8317a0866948b9722245e6134562983acff2e1d19887488233571a677ae27d57",
+            "integrity": "sha512-ZjZlZTc3NGI5NzczNGU0YWM3NDViZDlmOTdjZDJmOWI1YjJmNTYzZTVhNDFjZjNhZGIxMGNhODQ4NTc1Y2E0ODI4NmM0YzJhYjJiMGQ2MDc2NTc5ODRjMDVhOTY4YTUyY2EyYzA5OGQ3MTVjMGFjYTJkYjU3MGJiNGFlYjMyNmE=",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.5.0",
@@ -379,7 +379,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "01efe32298e72359115ab1ae29d6f2859a1c5dd05f26b93d7e295c175e2c0ca6",
+            "integrity": "sha512-NjZlYmMyZWNkYTAzZTFkOTZiZjdmODZkYjExOWY3MTBjNzk4ZDkxMmZjMDEwNjZhNjI1MTVjYzRhYjgzOTk2MjliMDY0MWMwOGFlMGU2MGQ1YzJmMTc2OGYwOTMxZTg4Yzg3Njc1OGY4OWNmM2Y1OTU1ZDA5MWM0YWEyZjJhM2M=",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.5.0",
@@ -408,7 +408,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
-            "sha256checksum": "f46728489de6b0ca9a07b5e3a4e97d05c83065d7de91db18dc073096c4294bfe",
+            "integrity": "sha512-ZTJiM2E4ZGM5ZThhMGI1ZmM3ZTE2ZDllZmM2ODliMTg3ZGM0YmRlNjdmMTNlNjNjMDViMDhmZGRkMjcwMmI5MzlmNzM3MzhmMjY1YjYyNTkxM2RjNmI1Y2I4ZTA2NTlhOWEyMGFlMjZiZWI4MTdlMmFmM2I0MWYxNmYzOTdhNzY=",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.5.0",
@@ -417,7 +417,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "43f80c0e9be6366fa27bd6b52e9cc8cbd28ee61b49041ea2b24db2240d281203",
+            "integrity": "sha512-ODc0MDA0MzIyMDNiNjIzOTQ0NGQxZmUyMmNhMWZmMjI4ZDczYmVlYzQxNzA1OTEwY2Q2YjUyNmFiZmVmNmU1ODk0ZmI2YmQ5YmUwNmE1MTI1ZGIyNTAzY2VlZTFjZTRkY2UyYjI4MmMzN2VkNjQxMDcyMjk4ZTkxMDQzOTljODE=",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.5.0",
@@ -445,7 +445,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "7cb0ef5e1949d413a5fcdbd59c06f1fa59520ff6cefa9b5f913943172af2929d",
+            "integrity": "sha512-Y2M4MGUxN2VlYTUzMzVmNTc2ZGIxYjg1MDkxMTZmYTlkODVhOWQwMzViOWQyMjAzYWQxNjU1OTFjODY5OGNjMWU1ZTI1MGM5MWQ4YTc3OTVkNDM2Mjc5ZTI0OWI2ZjA2YWVhY2ZjZTJkYmQxZmYzYzNkMjk3ZDU2YjhlYjVmNDc=",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.5.0",
@@ -454,7 +454,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "e186e6ac4d88ce296ef51d91684444ca0002b4b7761a8dcd2fe55ef1dc8a7b75",
+            "integrity": "sha512-ZTdmZThjNWQwZjFiYWI3NDc1NTUwN2ZjZmM4MjE0YmVjNjA5MzU3MzZjMGRjMWFkNTRmMTA3NjExNWNhNThmNjNkNDA3MDJmMzg1MDNiM2IyYTNiOWQ4ZDAyYmE1NWI5MWQ2MmY1ZDRlMzI2YjliY2I1YzQ1NDg1OTI1OGUzZjg=",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.5.0",
@@ -483,7 +483,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "sha256checksum": "e2725c1cd47b93f7f711c897d1b7f5f9f7468a6e5308d4e1d19ef707df7b2344",
+            "integrity": "sha512-ZmQ2ZDYzODU5MzM1ZWFlZTFiYmNhZTQyNzQ1MDVlYTNjNzgyZmM3NGUzN2U3OGIzOWY4ZmM2NDI2MTUyN2IwMmUxMWQyZWE0NDdlNTE1YzNjZjNiZGM4NTU4MTE0MDY0NjAwNmE2MGNjMjQ4NmFlNTE4M2M4NjkzYTFkZWFiZmM=",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.5.0",
@@ -492,7 +492,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "0afd5cf419c56a2c719d4f15248c87cec887bd2e79d91bca63ce22fdd07365ac",
+            "integrity": "sha512-ZDgxMjQxMTYxZDJiZjUwZDE0ZGUyNDFkMTA0NzkyM2ZlZTgwMzZlMTBmZWU1YmY4NGM1YmJiYzBlOGFkMDE1MzUwNGQwNTI4OTdjOTQ3OTJiMDE3ZTY0YWYyNzg4MmVlMzkxMzYxZjNiZDZlNTE3NDczMDEzODFmZDczOWVmMDU=",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.5.0",
@@ -513,7 +513,7 @@
           "dependencies": [],
           "exportedDependencies": [],
           "klib": {
-            "sha256checksum": "2e536c4350680b1cfb079d647ad32dccaef55c8119e67171fa915dbe3bc736d9",
+            "integrity": "sha512-MjdkNTczZTkyMmVjZWY1Yjc5ZjEzZDJjNzViNDllYWMxYmNiZTE4NjAyOWE2OTNiNjM4YmM5NzUwNjc4ZWRjZGUzYTgxMGIxZGU2NjFjMDQyZTQ0MTFhZWU3OGVhNjdjNDliYWVlY2RhMWIzZTkwNjFiMDI3MzgyYTFhODQ5NDY=",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
@@ -522,7 +522,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "a58a4571cc03ee24455d3c71472aaf21b1d318b5ca575c65f1d794020136df4b",
+            "integrity": "sha512-NjM3ZTdkODQ5MTU4NDczY2Q2NjlhNmYyNDczMGNkN2Q5YzczOTc3NzU0OWZkNzg2YzZmNzcyMzBjZjZlMGQ0NmIzZGNkN2MzNzY1NWJkYzRkOWYxNDhmOTkxNjNjMWE0MGU1YzUwMWZiOTc2Mzk3Y2I3YWNiOTllYzI2OWRhZWE=",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
@@ -545,7 +545,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "sha256checksum": "1bdc5a5216944b8f9a396d2f0c7df320b43d6921725baad1afc04cc8e2ae48e3",
+            "integrity": "sha512-YzVkODZhMzk1Yjk0NTc1YzcwNmNmOGU0MTFmNGIyNzIxN2ZhMGUyNTQyNzExOTZhMTI5ODY3ZGYzM2I3OTA1Y2QwYWYxZDc3MjM2NTljNjQ5ZjJlNjBlN2Q3YjJmYjJmMmRjMjE0NzQwYjBhYmM4MTAyYjNjOTI3ZjBjOWQwOGM=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.32.1",
@@ -554,7 +554,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "ee5ce15d83c60aa529c52369df32bfdf96cb591a0ed0c5068760a59eb89aa6f6",
+            "integrity": "sha512-YjQ2NDU0Mzk0NTBkN2ZhNWJhZmYzOTc4YmFmOGFkZmZhZjdmMzA1MjgzMDNkZDM2ZTU0OWQ3MTU2Mzk2Y2QyMGQwOWQyMTU1NDkwYWIyMzk1MmI1OTJjZjc3OGNhMzYwNzUxZDQxMDg5NGU4MGViN2ZjM2VkYmE2NGVjYzcwMWQ=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.32.1",
@@ -577,7 +577,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "sha256checksum": "00d542206fff41458574ab7341e80f13629743af68621dd5d3750cd836ca70e5",
+            "integrity": "sha512-ZjFjMTg1MzE0N2I1OGZkNWI2YjM1MDFlNWZlMWJjOTkwZTUwNmZiOTUzYzY2Yzk1NzAzNDAwMzk2ZDdmOTUxYmQ4Y2VlZmQwMWE5YjdkY2ZjOTBlYzQxNWVlN2FkMmNkYzg2ZGJhNjhlY2YyZWJhZjk0MzlkODU2N2FhODhlZTM=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.5.0",
@@ -586,7 +586,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "5c87feada4654e72ca24512329e6dc495b6e016212c56f52a5f99b40d3e069cd",
+            "integrity": "sha512-ZDU3MDRkNzU1YWMxNWZlYjk3ZDcxYjVmMWQ5YjNiYmIwZDA0MjY0ODQzMzAzOGNmZDE2MGQ5OWIzNDQ2NzNjYWQ1OGQzZTljN2U2NzFiNjk1ODM0YmJiNmRmZDNjMGY4MzhiOWI1NDM4NTA2MTZjOGQ4YWU5ZGMwZDI2MjNhNDY=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.5.0",
@@ -610,7 +610,7 @@
             "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
-            "sha256checksum": "1280b9f74850a4892a3641efa2a5779e5423b84aa7077cc60ddd50decbab921f",
+            "integrity": "sha512-NDIzMzA5MGRiNTBjYjIzZGI1NGE5ZTA2MjBiNDJhNGE0ZjYyMTdlZTUxMTRjNjZkOWY2ZTY0MWJlN2Y4YWQzZmJlZTI5YTFlYzMxY2I4NjQ3ODlmMzZlZWVlMGVkOTY1M2FkOWRkNThhMjc3Y2ZjZmNiYmZkMjExZDBhODY1NTg=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.11.0",
@@ -619,7 +619,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "222aca1a3a7b4501d32e67e3ccc63f6e28c26426484cae698fec281291fbb032",
+            "integrity": "sha512-MjFlNTNmNTU4YTc2Yjc3ZmZmNDQ2OTI0NWRmYzc2YTdlOGI3MDUzZWJkMzNkZmJmMThhODJmMTU4NDliNzE1NjBjOTY5NmUxYzU2MWVjZDE1MDU4ZTgwMGZjNDEyNTc1M2MyNGZhYzU4ODE1N2IxMTc4NDRiMGVhYWY4MmJkNzY=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.11.0",
@@ -642,7 +642,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "sha256checksum": "a1d586920fbcc7f4869e19001afdd2c9331758dbc34a54caa9b61c1c75cffe15",
+            "integrity": "sha512-ODIxZTM0MjI3YzE4NTE1NTA2MzQwMTgxNmI1NzA0NjM1ZGFhYTI1YzcwMmJjMTJjMGI4NTcyN2Y0YTRiZjI1ZGVmNDIwMjAyZmQ1ZTdlY2Y3OGRiMTk1YTU5MzljZGNjZjI1ZmIwZjRiYzU2ODM3MTlhYWUwMmJmODdiYmI4YzI=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.9.0",
@@ -651,7 +651,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "e37e0fb6b96894abcf3d4a019530d7137a0c19c728586bd8c405fec3bdc54d1d",
+            "integrity": "sha512-ZDNmNTE1NjQ2YWVkODMwYzQ0OGEwYWFmOTc1ZGYxM2JlYzY5ZmY3NWJiOGU3MjVkM2I3NDY2NTk5MTk4ZWYwZTA4NzQ0ZjZmOTc2NWQwZTBmYTIwY2YxNDUwMzYyYjk0OGRhOTBjNjZhMTZmZTM0NmZjZGNlNDViYWM1N2ZlNGU=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.9.0",
@@ -675,7 +675,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
           "klib": {
-            "sha256checksum": "b1bd399afa63c7fbc9330690b7b2b1981d6a8efc06dfa9f6a1be7e3f0bcc253d",
+            "integrity": "sha512-ZDE0ZWIzMGU4MTNkNmJlODI3MmE2NGIwMzlhODFlMDkxMDNkZjAwZmM5MGVlOWZkYzQ2ZGIzMjM3ZGY1MjQzOWYwYjgzMzUzYWZiN2M5ZTZmYmI0MGNlYjE4NTA5YzQ5NWRlZGI1MGEzNTdhNzk4MTNhZTdmOTVmMjBjM2Q1MjA=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.9.0",
@@ -684,7 +684,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "0e0ed96993dc9132908b75ee546c43d32ddce338477bb89ab9ded068b6f0dd85",
+            "integrity": "sha512-M2E5NTc1OGFkZThlYjNjZGIxMDIyMjhkMjMzNTJjYzdhZGZhZDQyMTlmOWIwOTc2YjcwZTcxNzE0MjViOTllYjNiMGExMDc2YzFmYmQ0MTdmYTdhMjQwMDFmODM5MWQyMzBiY2QyMDg4OTg1NzIyNzZmOWViOGUyZTAwMjY3ZGU=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.9.0",
@@ -707,7 +707,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "sha256checksum": "444695a6c745127017c93a351c04aa21445c8f87befcb6f77a097514ec13dd86",
+            "integrity": "sha512-Yzc1ODcwYmQ4MGM0YmI3NTE4YWNjZjhlZjJmYzVlMmQyYzFkZmE5NWFhN2Q0Y2EyYmUwZDU2YzMwZGU2ZTI0OWRiNjE4NjhmYjRmMTdiZDBjNDg2N2I0YzJkMWI2YTg0NWI3NWI3NTdkY2M5YzZjNTkzNzhjNDUyNjNkNWZmN2Y=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.11.0",
@@ -716,7 +716,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "c842c7bf16d6ea16f7d1f7f04cb4bba73cb8b6d6b3031de76e5b5a91695a015b",
+            "integrity": "sha512-MmFlN2JhZDViMDg0ZWQ2YjhjNjgzMTAzMzYyMWI3YjdiOGJlNmM3ZTY5ZmEzOWVhMTFhNDMwYWNmODg3NzA3MTMwMzdmOTc1ODYyZTlhNTY4NzU4YWZiNjc3ZGFmMDdiZTBjMTdmNGFlYjYyOTIzNjBkYWIwMzc2Y2IzZDMwMjE=",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.11.0",

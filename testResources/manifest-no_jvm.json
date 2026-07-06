@@ -16,7 +16,7 @@
           "dependencies": [],
           "exportedDependencies": [],
           "klib": {
-            "sha256checksum": "2e536c4350680b1cfb079d647ad32dccaef55c8119e67171fa915dbe3bc736d9",
+            "integrity": "sha512-MjdkNTczZTkyMmVjZWY1Yjc5ZjEzZDJjNzViNDllYWMxYmNiZTE4NjAyOWE2OTNiNjM4YmM5NzUwNjc4ZWRjZGUzYTgxMGIxZGU2NjFjMDQyZTQ0MTFhZWU3OGVhNjdjNDliYWVlY2RhMWIzZTkwNjFiMDI3MzgyYTFhODQ5NDY=",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
@@ -25,7 +25,7 @@
             ]
           },
           "sourceJar": {
-            "sha256checksum": "a58a4571cc03ee24455d3c71472aaf21b1d318b5ca575c65f1d794020136df4b",
+            "integrity": "sha512-NjM3ZTdkODQ5MTU4NDczY2Q2NjlhNmYyNDczMGNkN2Q5YzczOTc3NzU0OWZkNzg2YzZmNzcyMzBjZjZlMGQ0NmIzZGNkN2MzNzY1NWJkYzRkOWYxNDhmOTkxNjNjMWE0MGU1YzUwMWZiOTc2Mzk3Y2I3YWNiOTllYzI2OWRhZWE=",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
