@@ -107,7 +107,7 @@ jobs:
         run: |
           for binary in build/native-image-release/bazel-kmp-resolver-*; do
             test -f "$binary"
-            gh release upload "$TAG_NAME" "$binary"
+            gh release upload "$TAG_NAME" "$binary" --repo "$GITHUB_REPOSITORY"
           done
       - name: Verify release assets
         env:
@@ -122,7 +122,7 @@ jobs:
             bazel-kmp-resolver-windows-x64.exe
           )
 
-          actual_assets="$(gh release view "$TAG_NAME" --json assets --jq '.assets[].name')"
+          actual_assets="$(gh release view "$TAG_NAME" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')"
           for asset in "${expected_assets[@]}"; do
             grep -Fx "$asset" <<< "$actual_assets"
           done
@@ -130,4 +130,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ needs.prepare-release.outputs.tag_name }}
-        run: gh release edit "$TAG_NAME" --draft=false
+        run: gh release edit "$TAG_NAME" --repo "$GITHUB_REPOSITORY" --draft=false
