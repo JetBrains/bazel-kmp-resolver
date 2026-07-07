@@ -64,7 +64,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Restore GraalVM archive cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
           key: graalvm-native-image-${{ hashFiles('module.yaml') }}
@@ -81,7 +81,7 @@ jobs:
           test -f "$binary"
           "$binary" --help >/dev/null
       - name: Upload native binary artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bazel-kmp-resolver-${{ matrix.platform }}
           path: build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}
