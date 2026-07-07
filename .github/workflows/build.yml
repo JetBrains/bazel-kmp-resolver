@@ -5,12 +5,85 @@ on:
     branches:
       - main
   pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Run tests
         run: ./kotlin test
+
+  graalvm-native-image-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore or save GraalVM archive cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
+          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Download GraalVM archives
+        env:
+          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+        shell: bash
+        run: ./kotlin do cacheGraalVmArchives
+
+  native-image:
+    needs:
+      - test
+      - graalvm-native-image-cache
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-latest
+            executable_extension: ""
+          - platform: linux-arm64
+            runner: ubuntu-24.04-arm
+            executable_extension: ""
+          - platform: macos-x64
+            runner: macos-15-intel
+            executable_extension: ""
+          - platform: macos-arm64
+            runner: macos-15
+            executable_extension: ""
+          - platform: windows-x64
+            runner: windows-latest
+            executable_extension: ".exe"
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore GraalVM archive cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
+          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Build native image
+        env:
+          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+        shell: bash
+        run: ./kotlin do buildNativeImage
+      - name: Smoke-test native binary
+        shell: bash
+        run: |
+          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
+          test -f "$binary"
+          "$binary" --help >/dev/null
+      - name: Upload native binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bazel-kmp-resolver-${{ matrix.platform }}
+          path: build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}
+          if-no-files-found: error
+          retention-days: 7

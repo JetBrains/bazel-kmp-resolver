@@ -81,92 +81,34 @@ jobs:
 
           gh release create "$TAG_NAME" "${release_args[@]}"
 
-  graalvm-native-image-cache:
+  build-native-images:
     needs: prepare-release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Restore or save GraalVM archive cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
-          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
-          enableCrossOsArchive: true
-      - name: Download GraalVM archives
-        env:
-          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
-        shell: bash
-        run: ./kotlin do cacheGraalVmArchives
+    uses: ./.github/workflows/build.yml
 
-  native-image:
+  publish:
     needs:
       - prepare-release
-      - graalvm-native-image-cache
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: linux-x64
-            runner: ubuntu-latest
-            executable_extension: ""
-          - platform: linux-arm64
-            runner: ubuntu-24.04-arm
-            executable_extension: ""
-          - platform: macos-x64
-            runner: macos-15-intel
-            executable_extension: ""
-          - platform: macos-arm64
-            runner: macos-15
-            executable_extension: ""
-          - platform: windows-x64
-            runner: windows-latest
-            executable_extension: ".exe"
-    runs-on: ${{ matrix.runner }}
+      - build-native-images
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Restore GraalVM archive cache
-        uses: actions/cache/restore@v4
+      - name: Download native binary artifacts
+        uses: actions/download-artifact@v4
         with:
-          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
-          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
-          enableCrossOsArchive: true
-      - name: Run tests
-        shell: bash
-        run: ./kotlin test
-      - name: Build native image
-        env:
-          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
-        shell: bash
-        run: ./kotlin do buildNativeImage
-      - name: Smoke-test native binary
-        shell: bash
-        run: |
-          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
-          test -f "$binary"
-          "$binary" --help >/dev/null
-      - name: Upload native binary
+          pattern: bazel-kmp-resolver-*
+          path: build/native-image-release
+          merge-multiple: true
+      - name: Upload native binaries
         env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ needs.prepare-release.outputs.tag_name }}
         shell: bash
         run: |
-          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
-          gh release upload "$TAG_NAME" "$binary"
-
-  publish:
-    needs:
-      - prepare-release
-      - native-image
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
+          for binary in build/native-image-release/bazel-kmp-resolver-*; do
+            test -f "$binary"
+            gh release upload "$TAG_NAME" "$binary"
+          done
       - name: Verify release assets
         env:
           GH_TOKEN: ${{ github.token }}
