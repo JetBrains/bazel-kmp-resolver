@@ -8,10 +8,23 @@ import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.deleteRecursively
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.time.Duration.Companion.seconds
 
 // TODO: would be nice to mock Maven repositories to avoid real HTTP calls
 class MultiplatformResolverTest {
+    @Test
+    fun `artifact integrity uses base64 encoded raw digest bytes`() {
+        val sha256 = MultiplatformLibraryArtifactIntegrity.Sha256(
+            hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        )
+
+        val bazelIntegrity = sha256.asBazelIntegrityString()
+
+        assertEquals("sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=", bazelIntegrity)
+        assertEquals(sha256, MultiplatformLibraryArtifactIntegrity.fromBazelIntegrityString(bazelIntegrity))
+    }
+
     @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
     @Test
     fun `multi-repository resolution`() = runBlocking {

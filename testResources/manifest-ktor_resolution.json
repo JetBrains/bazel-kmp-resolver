@@ -29,7 +29,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-NDYwZGI0ZWNhZjFjYmJkM2NmYWM4ZmMxOTI2MDc0NzUzZjcwNTU4MDIwMmY2YjJlOWI3NWZiZjdmN2MxNjhmNzgyZDYxOGQzNDFmZjdjYzZhZjhlZmUwY2ZkMTdiMmEwZDUxNzU1NWIyZjEwMzkyMWQ1ZmMxNzQ1Njg2NTQ5ZDY=",
+            "integrity": "sha512-Rg207K8cu9PPrI/BkmB0dT9wVYAgL2sum3X79/fBaPeC1hjTQf98xq+O/gz9F7Kg1RdVWy8QOSHV/BdFaGVJ1g==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-cio-wasm-js",
             "version": "3.5.0",
@@ -38,7 +38,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZGFhNTdiODdlYWFhOGIyNzM4MDBhMTFkMDdjZTU0ODA4YWM0YmQ0NTMzOWE3Nzk2ZGMzMjkwNGQ1ZWFiZGY0N2M3ZDU2ZmIwZjA5ZjFjNmM3N2RkZGIwZjBlZDg0ZDBiMjI1YjIzZDE5MWUzZTU5NGYyZTg3YzVkYzZlOTU3ZWE=",
+            "integrity": "sha512-2qV7h+qqiyc4AKEdB85UgIrEvUUzmneW3DKQTV6r30fH1W+w8J8cbHfd2w8O2E0LIlsj0ZHj5ZTy6HxdxulX6g==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-cio-wasm-js",
             "version": "3.5.0",
@@ -70,7 +70,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-YzM2NzMzM2FiZGViYjY1MWZmMTIwYTMxNGNiMzRkYTliZGM1M2YxYThkZjgwMmI4NjQ2NTg1NDA2ZTFjY2I0YjlhYWQyNTRkZTJkNDJjYjdkM2M2ZGU5NzZkNmMxYzFhOTRmOThhOTRkN2I4M2Q1ZTBhYzFiNjMyZWIxOGQ0YWE=",
+            "integrity": "sha512-w2czOr3rtlH/EgoxTLNNqb3FPxqN+AK4ZGWFQG4cy0uarSVN4tQst9PG3pdtbBwalPmKlNe4PV4KwbYy6xjUqg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.5.0",
@@ -79,7 +79,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NWY1OTg3NGI4NjFhYWM3NmEyOWYwOTJjMmFhMDRiNzVkMjc2YTQxMzI4MTFiODYwNGM2ODU4NzJiMzM1MDQzZDNkY2IxMGRiNWEzNDI1ODUxNzczOTE0MTNhNTVhNWJjYmQ5ZWM5NzM3NjRkMWIxM2VhMmY1OTc0ZWU3ZDVmNGE=",
+            "integrity": "sha512-X1mHS4YarHainwksKqBLddJ2pBMoEbhgTGhYcrM1BD09yxDbWjQlhRdzkUE6VaW8vZ7Jc3ZNGxPqL1l07n1fSg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.5.0",
@@ -107,7 +107,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-ZmJhNDQzOTc1ZjMzZDUxNGJlODhlMGUwMDYyN2VkMDI1MzZmNzliNTdhMjNkNTJhMTAxMTBkNTVhZDNkMmYyNWI2Mjc4MDU4YmJjZThmMDFmMDc1MDIzNjQ2YzFkNDYzZGFlYTMyZTg2Mjc4MDBhM2VjNTQ3YmNjZDlkNTNmNTU=",
+            "integrity": "sha512-+6RDl18z1RS+iODgBiftAlNvebV6I9UqEBENVa09LyW2J4BYu86PAfB1AjZGwdRj2uoy6GJ4AKPsVHvM2dU/VQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.5.0",
@@ -116,7 +116,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-N2RhYTg0NzY0M2FjY2JlYzBkMGZmNzZiMWUzMTVjYmMxYmE4ZWMyNzljZjkyZTg3N2IzZjE4NjFiYzQwNGZiODBhOGQxM2U3NjBlMWFiODE0NzE0MDQ3NWI2NGZiMmJlMDcxMzE4OWYzMDZmYTkyODczYWM5MjYzZmVhOTMyMjY=",
+            "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.5.0",
@@ -145,7 +145,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-ZTRhMzljNzE4NTVhN2QyOTMzY2ExY2U5MjY3OTA5ZTcwYmZhNGM0Y2Q0OTA2Nzg5N2I1Njk4NjNlNDk1MGU5N2FhN2NiMjg0YmE3ODA0MjA0Njc4MThhZWY2MjY4ZjM3NzExNWNhYmY0YTQyMTJkNzFmOWY0Y2MxYTU1NmFiOWM=",
+            "integrity": "sha512-5KOccYVafSkzyhzpJnkJ5wv6TEzUkGeJe1aYY+SVDpeqfLKEungEIEZ4GK72Jo83cRXKv0pCEtcfn0zBpVarnA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.5.0",
@@ -154,7 +154,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTA3OGVlMDE1NWE5NzlkY2Y5MGY3NjRmOGVhNWY3NGFkM2RhMDIyZjhjMjA5MTVkNDg5Nzc4YzhmZDk4YTVkNDVmMjNlYWQ2N2YwNDgzZWQyMThiYTIyZDhmMTUxZDEzY2Y4YWMyMmQ1ZjA5ZTI3MzI5YjkxNjE3MjJjMTU3YWM=",
+            "integrity": "sha512-4HjuAVWpedz5D3ZPjqX3StPaAi+MIJFdSJd4yP2YpdRfI+rWfwSD7SGLoi2PFR0Tz4rCLV8J4nMpuRYXIsFXrA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.5.0",
@@ -183,7 +183,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
-            "integrity": "sha512-NDU1YmE2YmRmMjU1Yjc2Y2QwN2I3NjcwMDAyMTg1YTc2MTEyODQ5NmEwN2U1MTUxNzJkMmFlZDYyMmE2NTU3Y2ViYmQ1MzYwNjdhZmM3NjU1ZWMwNDk0OWMxNWMzNDg2ZmM2NTA4MWQ4NTYzMDQ5MjcxMzY3OGFlZDc3ZjU0MTQ=",
+            "integrity": "sha512-RVumvfJVt2zQe3ZwACGFp2EShJagflFRctKu1iKmVXzrvVNgZ6/HZV7ASUnBXDSG/GUIHYVjBJJxNniu139UFA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.5.0",
@@ -192,7 +192,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-Yjg5N2NhYTc4ZWJlODcxNzY0OTQxYTZiOWY1ODdhMTY1OWMzOWJlMmFlNWQzMmJmYzgyYzJiOGU2ODRhYzBjOThjMDQ5MDQ4NjQ1M2VlZjhkMzRjZWQ1YjY4YWMwNDIxNTViZjYwMTFjMTlmZDdkN2FiMWNkMGE1ZTllMDhkNDg=",
+            "integrity": "sha512-uJfKp46+hxdklBprn1h6FlnDm+KuXTK/yCwrjmhKwMmMBJBIZFPu+NNM7VtorAQhVb9gEcGf19erHNCl6eCNSA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.5.0",
@@ -220,7 +220,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-core"
           ],
           "klib": {
-            "integrity": "sha512-ZGFhOTQwOTUzNTQ3NGViZjQ4MDgyOGRiYmFkZjk3NWJiYjgwNGU0YjBiYjFhOTZmNDQ4NjgwYzY5YjNlNjkyYmE0Yjc5Y2IyNDcwMDQ4ZjJhNzRhZGIwMzQ1NjNmNjM5ZDU0NTUyZmJhZjg1OGE3OTMyOWQ5YzI0NTg2NGU5MTk=",
+            "integrity": "sha512-2qlAlTVHTr9ICCjbut+XW7uATksLsalvRIaAxps+aSukt5yyRwBI8qdK2wNFY/Y51UVS+6+FinkynZwkWGTpGQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.5.0",
@@ -229,7 +229,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-M2MwYWZjZDQxOTNkOTYzMWE3MmJmNGU5NDA1YzMzMWFmZTIzYWRiZGEwYTI0Y2ZlMTAzZWM3MjhlOTM4ZDY2OTY2Mzc5Y2M4OWJlNGRlOWRjZDdmMmNlMTNmNzExZGJmY2JkMGVjYzk0ZjNmNmNmOWZhOGNkM2I4MDc3MzViMTI=",
+            "integrity": "sha512-PAr81Bk9ljGnK/TpQFwzGv4jrb2gokz+ED7HKOk41mlmN5zIm+Tenc1/LOE/cR2/y9DsyU8/bPn6jNO4B3NbEg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.5.0",
@@ -259,7 +259,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-OTU3NjUyOTUyMGVhNTVkNTgzM2VkZTY5NzJmMDMyYjQ1ZjA0MjFiM2VhYzE5NDU3YTE4YWNkMTE1NmUwN2NiMTU2MzMwNWY2NDgxNjA5NWFhM2RkNTIxZGRlZGY0MGY5ZWM5NjAwZDk1NjE2YmJiYjhiMWYxNDBjZGUwNDU0NzQ=",
+            "integrity": "sha512-lXZSlSDqVdWDPt5pcvAytF8EIbPqwZRXoYrNEVbgfLFWMwX2SBYJWqPdUh3e30D57JYA2VYWu7uLHxQM3gRUdA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-tls-wasm-js",
             "version": "3.5.0",
@@ -268,7 +268,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NTI2ZjA4M2ZlN2ExY2U0MmRiYjZmYjNkMmIxYzI2YjBjNzg3YTE4ZmFhMDg3MzljY2NlZWY1ZDdmYmQzNGM4ZjYwMWZjYzRmMzZjNjUwM2Q0YjVlZTYzOWVmNGI0NmNjZjBhNjE4NTU0ZmEwNmNiYjc5ZTIxZTMwZmI3NjNiYTQ=",
+            "integrity": "sha512-Um8IP+ehzkLbtvs9KxwmsMeHoY+qCHOczO711/vTTI9gH8xPNsZQPUte5jnvS0bM8KYYVU+gbLt54h4w+3Y7pA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-tls-wasm-js",
             "version": "3.5.0",
@@ -296,7 +296,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-NzMxNWI3YjVjZjY5ODg2OTBiOGY3Y2ZhZTRiMjA1NTc1MTAwZTI1NGQzMWI1YmE1OTc0OGIxZTM4OGExN2QxYWNlM2VkN2MxMWU4Y2UzMTE3NGYxN2ZkZDJjMTljZjMwNjY4NDY5MmFjMDRjMjkyMDEzN2NjZWI0NTAxZDg3MmI=",
+            "integrity": "sha512-cxW3tc9piGkLj3z65LIFV1EA4lTTG1ull0ix44ihfRrOPtfBHozjEXTxf90sGc8wZoRpKsBMKSATfM60UB2HKw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.5.0",
@@ -305,7 +305,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NTk1NzY2MTM1YjEwMjI0MjU4MGUwNWUxYzc0ZmJkYjQyOWI2ODJmMGFhYzM1MTA1MDY3NDE0YTgyNmY5NDJmNDFkMThjMDEyM2NhMmFhOWQ1NWU2ZjQ4NTVlMTZlYzE4NWYzZmZiYmM5Yzg3ZjY4N2Y1ZGRjMmNkZTZiOTdkZTM=",
+            "integrity": "sha512-WVdmE1sQIkJYDgXhx0+9tCm2gvCqw1EFBnQUqCb5QvQdGMASPKKqnVXm9IVeFuwYXz/7vJyH9of13cLN5rl94w==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.5.0",
@@ -333,7 +333,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-ODZlNDRkMWQ3NGZmMjc0NjJjYzQ4MjI0ZmE3NjAwZDBmNWE1ZjM4MjlkNmY5ZDNhNzhkYTIxNGE5MzBjMGI1NzAxNTI1OWE4MDdjZWE4YjM2YWU1YTA2MGI0YmIwNDlmOTBkOWUwNTdhMTA5YjA2ZmY1NmVkNzcyZTE1YmU5Yzc=",
+            "integrity": "sha512-huRNHXT/J0YsxIIk+nYA0PWl84Kdb506eNohSpMMC1cBUlmoB86os2rloGC0uwSfkNngV6EJsG/1btdy4Vvpxw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.5.0",
@@ -342,7 +342,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YTc1ZTg2ZDZiYTUyODI0ZWQ0ZWY5M2YzOGUyMzc5N2Y1OTAzOWNkODMyZjY0NGZhN2ExMzViMTUzMDdkODM0YjkzNDY1MGExODE3M2U4ZDhiZWMxZWVkOGExOWVlYTQ2ZmIxNzRmZmM2ZDVkMTQ4ZjY1OTE2Mjg0ZmMwYTQxY2Y=",
+            "integrity": "sha512-p16G1rpSgk7U75PzjiN5f1kDnNgy9kT6ehNbFTB9g0uTRlChgXPo2L7B7tihnupG+xdP/G1dFI9lkWKE/ApBzw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.5.0",
@@ -370,7 +370,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-ZjZlZTc3NGI5NzczNGU0YWM3NDViZDlmOTdjZDJmOWI1YjJmNTYzZTVhNDFjZjNhZGIxMGNhODQ4NTc1Y2E0ODI4NmM0YzJhYjJiMGQ2MDc2NTc5ODRjMDVhOTY4YTUyY2EyYzA5OGQ3MTVjMGFjYTJkYjU3MGJiNGFlYjMyNmE=",
+            "integrity": "sha512-9u53S5dzTkrHRb2fl80vm1svVj5aQc862xDKhIV1ykgobEwqsrDWB2V5hMBalopSyiwJjXFcCsottXC7Susyag==",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.5.0",
@@ -379,7 +379,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NjZlYmMyZWNkYTAzZTFkOTZiZjdmODZkYjExOWY3MTBjNzk4ZDkxMmZjMDEwNjZhNjI1MTVjYzRhYjgzOTk2MjliMDY0MWMwOGFlMGU2MGQ1YzJmMTc2OGYwOTMxZTg4Yzg3Njc1OGY4OWNmM2Y1OTU1ZDA5MWM0YWEyZjJhM2M=",
+            "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.5.0",
@@ -408,7 +408,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
-            "integrity": "sha512-ZTJiM2E4ZGM5ZThhMGI1ZmM3ZTE2ZDllZmM2ODliMTg3ZGM0YmRlNjdmMTNlNjNjMDViMDhmZGRkMjcwMmI5MzlmNzM3MzhmMjY1YjYyNTkxM2RjNmI1Y2I4ZTA2NTlhOWEyMGFlMjZiZWI4MTdlMmFmM2I0MWYxNmYzOTdhNzY=",
+            "integrity": "sha512-4rOo3J6KC1/H4W2e/GibGH3EveZ/E+Y8BbCP3dJwK5Ofc3OPJltiWRPca1y44GWamiCuJr64F+KvO0Hxbzl6dg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.5.0",
@@ -417,7 +417,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ODc0MDA0MzIyMDNiNjIzOTQ0NGQxZmUyMmNhMWZmMjI4ZDczYmVlYzQxNzA1OTEwY2Q2YjUyNmFiZmVmNmU1ODk0ZmI2YmQ5YmUwNmE1MTI1ZGIyNTAzY2VlZTFjZTRkY2UyYjI4MmMzN2VkNjQxMDcyMjk4ZTkxMDQzOTljODE=",
+            "integrity": "sha512-h0AEMiA7YjlETR/iLKH/Io1zvuxBcFkQzWtSar/vbliU+2vZvgalEl2yUDzu4c5NzisoLDftZBByKY6RBDmcgQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.5.0",
@@ -445,7 +445,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-Y2M4MGUxN2VlYTUzMzVmNTc2ZGIxYjg1MDkxMTZmYTlkODVhOWQwMzViOWQyMjAzYWQxNjU1OTFjODY5OGNjMWU1ZTI1MGM5MWQ4YTc3OTVkNDM2Mjc5ZTI0OWI2ZjA2YWVhY2ZjZTJkYmQxZmYzYzNkMjk3ZDU2YjhlYjVmNDc=",
+            "integrity": "sha512-zIDhfupTNfV22xuFCRFvqdhanQNbnSIDrRZVkchpjMHl4lDJHYp3ldQ2J54km28Grqz84tvR/zw9KX1WuOtfRw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.5.0",
@@ -454,7 +454,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTdmZThjNWQwZjFiYWI3NDc1NTUwN2ZjZmM4MjE0YmVjNjA5MzU3MzZjMGRjMWFkNTRmMTA3NjExNWNhNThmNjNkNDA3MDJmMzg1MDNiM2IyYTNiOWQ4ZDAyYmE1NWI5MWQ2MmY1ZDRlMzI2YjliY2I1YzQ1NDg1OTI1OGUzZjg=",
+            "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.5.0",
@@ -483,7 +483,7 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
           "klib": {
-            "integrity": "sha512-ZmQ2ZDYzODU5MzM1ZWFlZTFiYmNhZTQyNzQ1MDVlYTNjNzgyZmM3NGUzN2U3OGIzOWY4ZmM2NDI2MTUyN2IwMmUxMWQyZWE0NDdlNTE1YzNjZjNiZGM4NTU4MTE0MDY0NjAwNmE2MGNjMjQ4NmFlNTE4M2M4NjkzYTFkZWFiZmM=",
+            "integrity": "sha512-/W1jhZM16u4bvK5CdFBeo8eC/HTjfnizn4/GQmFSewLhHS6kR+UVw8873IVYEUBkYAamDMJIauUYPIaTod6r/A==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.5.0",
@@ -492,7 +492,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZDgxMjQxMTYxZDJiZjUwZDE0ZGUyNDFkMTA0NzkyM2ZlZTgwMzZlMTBmZWU1YmY4NGM1YmJiYzBlOGFkMDE1MzUwNGQwNTI4OTdjOTQ3OTJiMDE3ZTY0YWYyNzg4MmVlMzkxMzYxZjNiZDZlNTE3NDczMDEzODFmZDczOWVmMDU=",
+            "integrity": "sha512-2BJBFh0r9Q0U3iQdEEeSP+6ANuEP7lv4TFu7wOitAVNQTQUol8lHkrAX5kryeILuORNh871uUXRzATgf1znvBQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.5.0",
@@ -513,7 +513,7 @@
           "dependencies": [],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MjdkNTczZTkyMmVjZWY1Yjc5ZjEzZDJjNzViNDllYWMxYmNiZTE4NjAyOWE2OTNiNjM4YmM5NzUwNjc4ZWRjZGUzYTgxMGIxZGU2NjFjMDQyZTQ0MTFhZWU3OGVhNjdjNDliYWVlY2RhMWIzZTkwNjFiMDI3MzgyYTFhODQ5NDY=",
+            "integrity": "sha512-J9Vz6SLs71t58T0sdbSerBvL4YYCmmk7Y4vJdQZ47c3jqBCx3mYcBC5EEa7njqZ8SbruzaGz6QYbAnOCoahJRg==",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
@@ -522,7 +522,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NjM3ZTdkODQ5MTU4NDczY2Q2NjlhNmYyNDczMGNkN2Q5YzczOTc3NzU0OWZkNzg2YzZmNzcyMzBjZjZlMGQ0NmIzZGNkN2MzNzY1NWJkYzRkOWYxNDhmOTkxNjNjMWE0MGU1YzUwMWZiOTc2Mzk3Y2I3YWNiOTllYzI2OWRhZWE=",
+            "integrity": "sha512-Y359hJFYRzzWaabyRzDNfZxzl3dUn9eGxvdyMM9uDUaz3NfDdlW9xNnxSPmRY8GkDlxQH7l2OXy3rLmewmna6g==",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.4.0",
@@ -545,7 +545,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YzVkODZhMzk1Yjk0NTc1YzcwNmNmOGU0MTFmNGIyNzIxN2ZhMGUyNTQyNzExOTZhMTI5ODY3ZGYzM2I3OTA1Y2QwYWYxZDc3MjM2NTljNjQ5ZjJlNjBlN2Q3YjJmYjJmMmRjMjE0NzQwYjBhYmM4MTAyYjNjOTI3ZjBjOWQwOGM=",
+            "integrity": "sha512-xdhqOVuUV1xwbPjkEfSychf6DiVCcRlqEphn3zO3kFzQrx13I2WcZJ8uYOfXsvsvLcIUdAsKvIECs8kn8MnQjA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.32.1",
@@ -554,7 +554,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YjQ2NDU0Mzk0NTBkN2ZhNWJhZmYzOTc4YmFmOGFkZmZhZjdmMzA1MjgzMDNkZDM2ZTU0OWQ3MTU2Mzk2Y2QyMGQwOWQyMTU1NDkwYWIyMzk1MmI1OTJjZjc3OGNhMzYwNzUxZDQxMDg5NGU4MGViN2ZjM2VkYmE2NGVjYzcwMWQ=",
+            "integrity": "sha512-tGRUOUUNf6W6/zl4uvit/69/MFKDA9025UnXFWOWzSDQnSFVSQqyOVK1ks93jKNgdR1BCJToDrf8PtumTsxwHQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.32.1",
@@ -577,7 +577,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZjFjMTg1MzE0N2I1OGZkNWI2YjM1MDFlNWZlMWJjOTkwZTUwNmZiOTUzYzY2Yzk1NzAzNDAwMzk2ZDdmOTUxYmQ4Y2VlZmQwMWE5YjdkY2ZjOTBlYzQxNWVlN2FkMmNkYzg2ZGJhNjhlY2YyZWJhZjk0MzlkODU2N2FhODhlZTM=",
+            "integrity": "sha512-8cGFMUe1j9W2s1AeX+G8mQ5Qb7lTxmyVcDQAOW1/lRvYzu/QGpt9z8kOxBXuetLNyG26aOzy66+UOdhWeqiO4w==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.5.0",
@@ -586,7 +586,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZDU3MDRkNzU1YWMxNWZlYjk3ZDcxYjVmMWQ5YjNiYmIwZDA0MjY0ODQzMzAzOGNmZDE2MGQ5OWIzNDQ2NzNjYWQ1OGQzZTljN2U2NzFiNjk1ODM0YmJiNmRmZDNjMGY4MzhiOWI1NDM4NTA2MTZjOGQ4YWU5ZGMwZDI2MjNhNDY=",
+            "integrity": "sha512-1XBNdVrBX+uX1xtfHZs7uw0EJkhDMDjP0WDZmzRGc8rVjT6cfmcbaVg0u7bf08D4OLm1Q4UGFsjYrp3A0mI6Rg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.5.0",
@@ -610,7 +610,7 @@
             "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
-            "integrity": "sha512-NDIzMzA5MGRiNTBjYjIzZGI1NGE5ZTA2MjBiNDJhNGE0ZjYyMTdlZTUxMTRjNjZkOWY2ZTY0MWJlN2Y4YWQzZmJlZTI5YTFlYzMxY2I4NjQ3ODlmMzZlZWVlMGVkOTY1M2FkOWRkNThhMjc3Y2ZjZmNiYmZkMjExZDBhODY1NTg=",
+            "integrity": "sha512-QjMJDbUMsj21Sp4GILQqSk9iF+5RFMZtn25kG+f4rT++4poewxy4ZHifNu7uDtllOtndWKJ3z8/Lv9IR0KhlWA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.11.0",
@@ -619,7 +619,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MjFlNTNmNTU4YTc2Yjc3ZmZmNDQ2OTI0NWRmYzc2YTdlOGI3MDUzZWJkMzNkZmJmMThhODJmMTU4NDliNzE1NjBjOTY5NmUxYzU2MWVjZDE1MDU4ZTgwMGZjNDEyNTc1M2MyNGZhYzU4ODE1N2IxMTc4NDRiMGVhYWY4MmJkNzY=",
+            "integrity": "sha512-IeU/VYp2t3//RGkkXfx2p+i3BT69M9+/GKgvFYSbcVYMlpbhxWHs0VBY6AD8QSV1PCT6xYgVexF4RLDqr4K9dg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.11.0",
@@ -642,7 +642,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "integrity": "sha512-ODIxZTM0MjI3YzE4NTE1NTA2MzQwMTgxNmI1NzA0NjM1ZGFhYTI1YzcwMmJjMTJjMGI4NTcyN2Y0YTRiZjI1ZGVmNDIwMjAyZmQ1ZTdlY2Y3OGRiMTk1YTU5MzljZGNjZjI1ZmIwZjRiYzU2ODM3MTlhYWUwMmJmODdiYmI4YzI=",
+            "integrity": "sha512-gh40InwYUVUGNAGBa1cEY12qolxwK8EsC4Vyf0pL8l3vQgIC/V5+z3jbGVpZOc3M8l+w9LxWg3GargK/h7u4wg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.9.0",
@@ -651,7 +651,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZDNmNTE1NjQ2YWVkODMwYzQ0OGEwYWFmOTc1ZGYxM2JlYzY5ZmY3NWJiOGU3MjVkM2I3NDY2NTk5MTk4ZWYwZTA4NzQ0ZjZmOTc2NWQwZTBmYTIwY2YxNDUwMzYyYjk0OGRhOTBjNjZhMTZmZTM0NmZjZGNlNDViYWM1N2ZlNGU=",
+            "integrity": "sha512-0/UVZGrtgwxEigqvl13xO+xp/3W7jnJdO3RmWZGY7w4IdE9vl2XQ4PogzxRQNiuUjakMZqFv40b83ORbrFf+Tg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.9.0",
@@ -675,7 +675,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
           "klib": {
-            "integrity": "sha512-ZDE0ZWIzMGU4MTNkNmJlODI3MmE2NGIwMzlhODFlMDkxMDNkZjAwZmM5MGVlOWZkYzQ2ZGIzMjM3ZGY1MjQzOWYwYjgzMzUzYWZiN2M5ZTZmYmI0MGNlYjE4NTA5YzQ5NWRlZGI1MGEzNTdhNzk4MTNhZTdmOTVmMjBjM2Q1MjA=",
+            "integrity": "sha512-0U6zDoE9a+gnKmSwOageCRA98A/JDun9xG2zI331JDnwuDNTr7fJ5vu0DOsYUJxJXe21CjV6eYE65/lfIMPVIA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.9.0",
@@ -684,7 +684,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-M2E5NTc1OGFkZThlYjNjZGIxMDIyMjhkMjMzNTJjYzdhZGZhZDQyMTlmOWIwOTc2YjcwZTcxNzE0MjViOTllYjNiMGExMDc2YzFmYmQ0MTdmYTdhMjQwMDFmODM5MWQyMzBiY2QyMDg4OTg1NzIyNzZmOWViOGUyZTAwMjY3ZGU=",
+            "integrity": "sha512-OpV1it6Os82xAiKNIzUsx6361CGfmwl2tw5xcUJbmes7ChB2wfvUF/p6JAAfg5HSMLzSCImFcidvnrji4AJn3g==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.9.0",
@@ -707,7 +707,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "integrity": "sha512-Yzc1ODcwYmQ4MGM0YmI3NTE4YWNjZjhlZjJmYzVlMmQyYzFkZmE5NWFhN2Q0Y2EyYmUwZDU2YzMwZGU2ZTI0OWRiNjE4NjhmYjRmMTdiZDBjNDg2N2I0YzJkMWI2YTg0NWI3NWI3NTdkY2M5YzZjNTkzNzhjNDUyNjNkNWZmN2Y=",
+            "integrity": "sha512-x1hwvYDEu3UYrM+O8vxeLSwd+pWqfUyivg1Www3m4knbYYaPtPF70MSGe0wtG2qEW3W3V9zJxsWTeMRSY9X/fw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.11.0",
@@ -716,7 +716,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MmFlN2JhZDViMDg0ZWQ2YjhjNjgzMTAzMzYyMWI3YjdiOGJlNmM3ZTY5ZmEzOWVhMTFhNDMwYWNmODg3NzA3MTMwMzdmOTc1ODYyZTlhNTY4NzU4YWZiNjc3ZGFmMDdiZTBjMTdmNGFlYjYyOTIzNjBkYWIwMzc2Y2IzZDMwMjE=",
+            "integrity": "sha512-Kue61bCE7WuMaDEDNiG3t7i+bH5p+jnqEaQwrPiHcHEwN/l1hi6aVodYr7Z32vB74MF/SutikjYNqwN2yz0wIQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.11.0",

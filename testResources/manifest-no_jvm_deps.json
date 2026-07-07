@@ -26,7 +26,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-core"
           ],
           "klib": {
-            "integrity": "sha512-ZmJhMjQwOWIzOTczNWUxYWRjYmIxNTZhMDgwN2RhZDBhNmU0YjAwN2VhM2NiOWQ5NjExMzE4ZWJhNzAxZGMxODIzYWE4MDFhZGJmNzU0MzVjYTY4YzViYzljZWRkMGM3Y2ZhOGZkODdjNDIyMzE0MGJlOTEzYzQ1OGNmMDUyNTQ=",
+            "integrity": "sha512-+6JAmzlzXhrcuxVqCAfa0KbksAfqPLnZYRMY66cB3BgjqoAa2/dUNcpoxbyc7dDHz6j9h8QiMUC+kTxFjPBSVA==",
             "groupId": "ai.jetbrains.code.files",
             "artifactId": "code-files-model-wasm-js",
             "version": "1.0.0-beta.167",
@@ -35,7 +35,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NGUxNTUyMzViNzNjNmUxOTZhM2VkMDhmNThhYWM3Y2U4MTA4YjcyMmI1YTE4YTY5NWIwMTA1NTM5OTNjYWY1NDdiMWRkYWRhNGY4YTU0YzNmNDNlYjEzZDRmMjEzNmU1N2RmODMzMzdhMzU2MDVjYTUwNWEzZTNkYjU1YWFiNTY=",
+            "integrity": "sha512-ThVSNbc8bhlqPtCPWKrHzoEItyK1oYppWwEFU5k8r1R7HdraT4pUw/Q+sT1PITblffgzN6NWBcpQWj49tVqrVg==",
             "groupId": "ai.jetbrains.code.files",
             "artifactId": "code-files-model-wasm-js",
             "version": "1.0.0-beta.167",
@@ -75,7 +75,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZGU5NTdiMmE2ZTY1NTFkMjVmOThmYTU3NGFhNTUwYmVlZjU3MzcyMDVkNjllYjdjNTcwYzhmYWJhN2VkYjBmNjhmZTg3ZjE0YmUzMTVkY2RkYmYxOWZiOWU5ZDFkNmY1ODBkZTY1Y2RjMThiM2UyMTNiZDNmZGJlNjE1Y2FlOTQ=",
+            "integrity": "sha512-3pV7Km5lUdJfmPpXSqVQvu9XNyBdaet8VwyPq6ftsPaP6H8UvjFdzdvxn7np0db1gN5lzcGLPiE70/2+YVyulA==",
             "groupId": "ai.koog",
             "artifactId": "agents-core-wasm-js",
             "version": "0.7.2",
@@ -85,7 +85,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NmNkN2M5MDU0ZTZmZTVkN2FkMDE2YjQ5ZmI3NjZhZTMwZjI3NWViNTk3ODRjZmQxZTAzNWQ4MmNlYzc0OTZlNmFhZmFiMTZkOTUyYjRiZDQzYTM3MTAwNjlhNmE1OGMxYTI2MDE1MmRjYjdjOWI3NjRkZjM1NDc0MjJjYjA0NjE=",
+            "integrity": "sha512-bNfJBU5v5detAWtJ+3Zq4w8nXrWXhM/R4DXYLOx0luaq+rFtlStL1Do3EAaaaljBomAVLct8m3ZN81R0IssEYQ==",
             "groupId": "ai.koog",
             "artifactId": "agents-core-wasm-js",
             "version": "0.7.2",
@@ -114,7 +114,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MDE1ZWNhM2Y0Y2NjNTA4ZWQyOTAzYjA1ZmQwMmVkNDgzZjc4OGVmN2ZiMDhlYmFmODNkOGQwYTAxZmJjY2Y1YWZjMGY4OTQ2NTcyZDRkYzI4ZTA0YTQ4MWYxMzNkOWMwYjI3ZTFjNjc2MWI0YWMzZGMzMjQzNWJhNDVmZjE4Y2M=",
+            "integrity": "sha512-AV7KP0zMUI7SkDsF/QLtSD94jvf7COuvg9jQoB+8z1r8D4lGVy1Nwo4EpIHxM9nAsn4cZ2G0rD3DJDW6Rf8YzA==",
             "groupId": "ai.koog",
             "artifactId": "agents-ext-wasm-js",
             "version": "0.7.2",
@@ -124,7 +124,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-OGU1OTUxYzIzY2FhYjEzNjUyM2IyNWZkOTRhNGNlNTVhZTdlYWE4NjkzYjZiMDY4ZmVlNjZmNzBiNzU1YjkzMzRlMjhkZWU2ZDMzZGYwNGMyZjk0OGQyOTZmZjE5YWU4NGVhMzJhZjhiOWY4YWM3OTczNGY5YjM1NTNjYWVlODM=",
+            "integrity": "sha512-jllRwjyqsTZSOyX9lKTOVa5+qoaTtrBo/uZvcLdVuTNOKN7m0z3wTC+UjSlv8ZroTqMq+Ln4rHlzT5s1U8rugw==",
             "groupId": "ai.koog",
             "artifactId": "agents-ext-wasm-js",
             "version": "0.7.2",
@@ -154,7 +154,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-NzY1Yzg1NTdjZTU3YWQwODRhY2MwYzI4MWJmYmZmNjNkMTlkYjYxZTgxMDIzNmYwZDFjY2YzNzk0YjdjMTdiMzZjZDM1OTE5MTU1YmNmYWY3Y2U2MDE3ZGU0Y2IzOGNjMDE3NWFiZDVlZGIyOGNjNDJiNGM0YTk3NDEwMTRkZmI=",
+            "integrity": "sha512-dlyFV85XrQhKzAwoG/v/Y9Gdth6BAjbw0czzeUt8F7Ns01kZFVvPr3zmAX3kyzjMAXWr1e2yjMQrTEqXQQFN+w==",
             "groupId": "ai.koog",
             "artifactId": "agents-tools-wasm-js",
             "version": "0.7.2",
@@ -164,7 +164,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NDMzODM1ODgxOGY3Mjg3YzY0YmMzOGE2MGQwYzA5NmFhMWQ5OWRhZmQwODU5NWViZGM1ODBkMzZhMmExMTMyMWM0ZTIxNDY2MDU5MzczNDJiMmNlYjAxNzM3NTUzNWMzZGZmY2RmZTRhNjFmZDI1ODc3MWFhY2UzNjc5YWY5NTk=",
+            "integrity": "sha512-Qzg1iBj3KHxkvDimDQwJaqHZna/QhZXr3FgNNqKhEyHE4hRmBZNzQrLOsBc3VTXD3/zf5KYf0lh3GqzjZ5r5WQ==",
             "groupId": "ai.koog",
             "artifactId": "agents-tools-wasm-js",
             "version": "0.7.2",
@@ -189,7 +189,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-Y2YwZDdjYjQ3NzZlMzFhZDU4NzM0NGVhYThiZTdhNjUyYTVjYzBkNWE4YzQ2N2I1NzFiMjE0MDk0NDMzNzBiZmJjOTEyNGVjMjAxYzI3ZjNiZWQ3ZTRkZTBhNzIyZTkyZDg1OGQzMWU3YjFiZDRhNDUxYjZhZGNlMWMwNWQyNzA=",
+            "integrity": "sha512-zw18tHduMa1Yc0TqqL56ZSpcwNWoxGe1cbIUCUQzcL+8kSTsIBwn877X5N4Kci6S2FjTHnsb1KRRtq3OHAXScA==",
             "groupId": "ai.koog",
             "artifactId": "agents-utils-wasm-js",
             "version": "0.7.2",
@@ -199,7 +199,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTQ2MjdhODcxYTc0MTIyMjU4ZWYxZWVhNmQxY2U4YzM3ZDJhZTU0ODc3NDc0YTE5NDZkZmIxYWI2ZTU5Y2M1ZTE1MTljNTllMDYzMDQ5NDY4ZDg3MTEwMjZkYjM3MDFhOWJjZDEyYTdlMzIwYWJmZjIyNGU3NThmMzUzNjY1ZTg=",
+            "integrity": "sha512-5GJ6hxp0EiJY7x7qbRzow30q5Uh3R0oZRt+xq25ZzF4VGcWeBjBJRo2HEQJts3Aam80Sp+Mgq/8iTnWPNTZl6A==",
             "groupId": "ai.koog",
             "artifactId": "agents-utils-wasm-js",
             "version": "0.7.2",
@@ -225,7 +225,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZjJiNGUyOGJjYTBlZDUyNDU2OGIxODFmOWM3Y2E2NTMxZGM0MzNkYzk4ZmRmNDI4NTBmMDlkMGU4MDZhYjk3MDJjYjEyMjYwYmRhYzA5NzgzOWZjMzg1YjUyNmRmYjAxMGRhZTQyOGQyNzE0YWQ0NDdkZWE5ODVjMjYzOTRjODc=",
+            "integrity": "sha512-8rTii8oO1SRWixgfnHymUx3EM9yY/fQoUPCdDoBquXAssSJgvawJeDn8OFtSbfsBDa5CjScUrUR96phcJjlMhw==",
             "groupId": "ai.koog",
             "artifactId": "http-client-core-wasm-js",
             "version": "0.7.2",
@@ -235,7 +235,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZGZjNzU3MDIzNzk2YTFiN2E4Yzg0N2JhYzY0YmEzN2EwMmEzNzRkYWJjMzIwYTJlZTU0ZGEzMjJiZDI0ZDRiOTdiZmI3MzBmZTg3ZWE5N2ViZjJmY2UzOTBjNzRiMjhjOTk1OTNmNzQwM2E1Y2JhYzNkMTI0MGE5N2ZkNzc0MGU=",
+            "integrity": "sha512-38dXAjeWobeoyEe6xkujegKjdNq8Mgou5U2jIr0k1Ll7+3MP6H6pfr8vzjkMdLKMmVk/dAOly6w9EkCpf9d0Dg==",
             "groupId": "ai.koog",
             "artifactId": "http-client-core-wasm-js",
             "version": "0.7.2",
@@ -263,7 +263,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YmU1ZDI2ODQ0M2I0YTVhMWY0NmQzNWRjOGNhMTA5ZDgwMzZkMzNkMjVmMzhhMDBjYmVlZDNlMjY1YTgyMmUxOTMzY2U3NjlhOGU0N2IzNzY1YzQ3MTIyNzgxZWE1Nzk5NDIyOWEyNzE1NGNlYmQ3NTA3M2MwZjhlYjkyOTg1NDA=",
+            "integrity": "sha512-vl0mhEO0paH0bTXcjKEJ2ANtM9JfOKAMvu0+JlqCLhkzznaajkezdlxHEieB6leZQimicVTOvXUHPA+OuSmFQA==",
             "groupId": "ai.koog",
             "artifactId": "http-client-ktor-wasm-js",
             "version": "0.7.2",
@@ -273,7 +273,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZDJjYTJkNTE3ZGM0NWQ2YmFmYWE3OGI2NTYyNzEyZDc3ZDg1NGExZjhlMmVlMzRjMDllMDExNTc1NDQ5NDVmN2M2YjMzNmNiMWFhNGVmNWM5ZjE5YzM4NTNhNjYyNmNhMTI2NTUyOGZhZGI1ZGI0NTE0YzkzMThkMjE1YmE1ZjE=",
+            "integrity": "sha512-0sotUX3EXWuvqni2VicS132FSh+OLuNMCeARV1RJRffGszbLGqTvXJ8Zw4U6ZibKEmVSj62120UUyTGNIVul8Q==",
             "groupId": "ai.koog",
             "artifactId": "http-client-ktor-wasm-js",
             "version": "0.7.2",
@@ -302,7 +302,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MmJhNGQ2Njc4OWUzY2UyMmZhYWQzYzNmODFlZDVkMzQ5ZDZiMTQ4YWU4OWFiZmUzMzQ2NGZmMDZiOGNkNzFlNDUxMjZiYzE0ZDMyNjIzMTJjNWNiMDNjY2RmNzJhNWYwZGU5MmRlYzM4NjZiNjY1ZjczZDE0NzVhNmQzOGZiZDk=",
+            "integrity": "sha512-K6TWZ4njziL6rTw/ge1dNJ1rFIromr/jNGT/BrjNceRRJrwU0yYjEsXLA8zfcqXw3pLew4ZrZl9z0UdabTj72Q==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-clients-wasm-js",
             "version": "0.7.2",
@@ -312,7 +312,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MjNlNWY1MTllMWZiMGZmMDBmZDY4YzY1ZTAyNTM5OTI0YmNhODhkMGMzZWQ3YjA1Y2YwYWM2MWRjZTE1Y2VhOTBjNzkxOTE1ZDM3ZTFkOTVlYTM4ZjRiYmU0NDI2YTVlZmYwODZkMzRlOTlmZTU1ZDIxZDVmYjdlMWUxNGRmYTE=",
+            "integrity": "sha512-I+X1GeH7D/AP1oxl4CU5kkvKiNDD7XsFzwrGHc4VzqkMeRkV034dleo49LvkQmpe/whtNOmf5V0h1ft+HhTfoQ==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-clients-wasm-js",
             "version": "0.7.2",
@@ -343,7 +343,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-OTdmYTc5ODQxYzM2YTFhYWY5MzI1MjNmYTAzNjI2ZGQyN2E5OGYzMGVjYTA5NGI1MTVkZWJiOWUyZDU2YmM1NDYwMGIzYzRlMTMxYTFmNGIwMjNiNDRmY2Q2Mzc3OGQ3MjYyYzFiM2IwYTE0YjAyOTg3Mzg4OTc3NGIyOTMxNWU=",
+            "integrity": "sha512-l/p5hBw2oar5MlI/oDYm3SepjzDsoJS1Fd67ni1WvFRgCzxOExofSwI7RPzWN3jXJiwbOwoUsCmHOIl3SykxXg==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-model-wasm-js",
             "version": "0.7.2",
@@ -353,7 +353,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZmRmMGVmZTMyNWI1MDliMmVlNTc3Yzk4Y2YyYjM2OTAzMzg1OTMzM2IyMjY4OTk4ZjkzOTkxZGQ1OGQwMjM1OWVmYWU2MmY0MjZhMTUxYjg2NDNjNTdjMzgzNzMyYTViNDdjZDg4NGMxMmE3ZjMxYjQxOWU5YTk3ZDE4NTEyYzA=",
+            "integrity": "sha512-/fDv4yW1CbLuV3yYzys2kDOFkzOyJomY+TmR3VjQI1nvrmL0JqFRuGQ8V8ODcypbR82ITBKn8xtBnpqX0YUSwA==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-model-wasm-js",
             "version": "0.7.2",
@@ -384,7 +384,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MjFhZGFlNDg1ZTg3MjhlMzIzNDI3Zjk5MzRhMjNhNjFkNjU2MjU1M2NkZWYzYzE2ODgzZjE3Njk4ZjIzMjJlOGE0YzBjNmMwM2NiMzQwYjg2MWFlOGRiYjUxZmQ0OTg5YzM1MWNiM2M3ZjViODVlNDViODYwNmZhZWMwMDZhYzM=",
+            "integrity": "sha512-Ia2uSF6HKOMjQn+ZNKI6YdZWJVPN7zwWiD8XaY8jIuikwMbAPLNAuGGujbtR/UmJw1HLPH9bheRbhgb67ABqww==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-openai-client-base-wasm-js",
             "version": "0.7.2",
@@ -394,7 +394,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZWUxYjQzOTgwZDM2MzA1ZjM0NzM5YmIwYjY1ZmQ4YmRlYTBiMmU4YTA4ZTZjNWJlYmRiYjcyNzAyMmQ1NjY0OTk5OWIzZmYzZmZkZWI4Yzc0YWE5ZTM4ZWYyZjA5Y2U5ZDIzYmU0OTNhNDVmMjExODViZmJkZjBlNDFjZDRiMTY=",
+            "integrity": "sha512-7htDmA02MF80c5uwtl/YveoLLooI5sW+vbtycCLVZkmZmz/z/964x0qp447y8Jzp0jvkk6RfIRhb+98OQc1LFg==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-openai-client-base-wasm-js",
             "version": "0.7.2",
@@ -422,7 +422,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YWY2ZGM4YWY3NGExZmMzMmU1YzExNjhlMjliZDczNjJmNWI1YWVlYzVkNzZmZjVkMTc2YTMzM2YwYTY2MzMwYmNlZmI1YmEwNDRmNWQ5MDQwOWFiYzZlYTYyMjRmOTMyMWU3Mzk0YWYzYzllYTgzZGUxZWFiN2JmYWEzMWI4NGY=",
+            "integrity": "sha512-r23Ir3Sh/DLlwRaOKb1zYvW1ruxddv9dF2ozPwpmMwvO+1ugRPXZBAmrxupiJPkyHnOUrzyeqD3h6re/qjG4Tw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-openai-client-wasm-js",
             "version": "0.7.2",
@@ -432,7 +432,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NGE0YjA5MDQzOTFlNjZjNjFmZGY3MzBmNWRlNDhlM2YxN2YyMWMxNDE3MDg4YzYyMTkzMGMxNTc5NzdmYTA1NTc2Y2UyYzdiMDY1ZTAzMTlmZWFlNTZlMTljMmQ5ZWQ2OGU2NzBlMmRlMjcwOGViMjk5YzVjOTIxOWQyZTlmYjc=",
+            "integrity": "sha512-SksJBDkeZsYf33MPXeSOPxfyHBQXCIxiGTDBV5d/oFV2zix7Bl4DGf6uVuGcLZ7WjmcOLeJwjrKZxckhnS6ftw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-executor-openai-client-wasm-js",
             "version": "0.7.2",
@@ -459,7 +459,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZGQ3MmJhZWUyMjZlZTI3ZTFmYzZlMzY3MmVhYzlmNmFmOTk3MjBmNDhlNDYzMjBmZDA2YTNiMmYxMmIyYmUwNzkwOWFjMjI0M2I2MDZlN2JkZDg0MzFiYTVmNTNiNmQ1ZWY5OTZkODI3ZGJiMmYwODM2ZGI4NzUzMGJiNTA0Y2Q=",
+            "integrity": "sha512-3XK67iJu4n4fxuNnLqyfavmXIPSORjIP0Go7LxKyvgeQmsIkO2Bue92EMbpfU7bV75ltgn27Lwg224dTC7UEzQ==",
             "groupId": "ai.koog",
             "artifactId": "prompt-llm-wasm-js",
             "version": "0.7.2",
@@ -469,7 +469,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZmRlNjFkYzFlMzIwZDA5OWU3MGYxYjEyMTg5NTI4MDU4YTFlZDM5NjQxMmMyZjJhOGUxYjQ3N2ZlMmM3YWNlNzRiODNmNGVkYmM3ODllYjU0YTE2MzIxZGY4NzIzMTc3MzdkZjRjYmIyYjJjZTVkMDFkYTFmMjRhYmE1YjhiYzc=",
+            "integrity": "sha512-/eYdweMg0JnnDxsSGJUoBYoe05ZBLC8qjhtHf+LHrOdLg/TtvHietUoWMh34cjF3N99Muyss5dAdofJKuluLxw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-llm-wasm-js",
             "version": "0.7.2",
@@ -494,7 +494,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZTdlM2Y2NzRmNWNjNjk3YzQwMTYxNjQxMmI3NTNiNzc0ZDFmNDk1NjJhZGZjYTQwZDRlNDdlODE4MDJiZmNmNzg1MmIwMWI3M2MwNTgwNjNhODdmOWMyM2FmYjRlNDgyNzJhNGY2ZDRiNTI5NWY4YmYzMzJkMmU3N2U4MDU0Njc=",
+            "integrity": "sha512-5+P2dPXMaXxAFhZBK3U7d00fSVYq38pA1OR+gYAr/PeFKwG3PAWAY6h/nCOvtOSCcqT21LUpX4vzMtLnfoBUZw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-markdown-wasm-js",
             "version": "0.7.2",
@@ -504,7 +504,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-Y2NhYjgwZTJhM2YxNTY2YjAxMGZkYjIyMmNjNDMyNTk1NDY4NzI2MmM1NDBmN2EzYzIxNDEzOTg1YzU3NmE1NzhhNzFiYTk0ZjhmN2FhNTg2OGFjMTFiNjRlMWZkYTMxYmZkZTUzZGM3ZjkxMDJjMDkxMzdjMDQ5Y2JiNDJjODE=",
+            "integrity": "sha512-zKuA4qPxVmsBD9siLMQyWVRocmLFQPejwhQTmFxXaleKcbqU+PeqWGisEbZOH9oxv95T3H+RAsCRN8BJy7QsgQ==",
             "groupId": "ai.koog",
             "artifactId": "prompt-markdown-wasm-js",
             "version": "0.7.2",
@@ -533,7 +533,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZDVjMGZkNTgyZmUxNzRlNzM1OTg1MWQ5MzBmZjU5NjQwOGVkY2I4ZWQ2M2Y1OTY0MDY5ZjdjYjViYzRjOGFlNGU3Y2VjZWE0NGYzNWQ3NTVkNjMyMWY4OWIyZmE0YjE1ZDJhODBiNmEzYWFhODRkZjc3MzlmZmM4MDc3MGMyNTU=",
+            "integrity": "sha512-1cD9WC/hdOc1mFHZMP9ZZAjty47WP1lkBp98tbxMiuTnzs6kTzXXVdYyH4my+ksV0qgLajqqhN93Of/IB3DCVQ==",
             "groupId": "ai.koog",
             "artifactId": "prompt-model-wasm-js",
             "version": "0.7.2",
@@ -543,7 +543,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MmMyYzMzMTg0MzA5YTQ0MmY2YmExM2MwMThlMzkwMWZmZjNkMTEyNjNmNWIwMzgwMzY2MmEwNTI0OTE1ZjEyZDNkMTMxYjAwNTBhMTkwOTA1NGY5MTFhNjZiOTBiMjQ2NTI1ODFmNDIzYWUwM2MxZjg0YTk5NTQ3NzAzN2Y5NmY=",
+            "integrity": "sha512-LCwzGEMJpEL2uhPAGOOQH/89ESY/WwOANmKgUkkV8S09ExsAUKGQkFT5EaZrkLJGUlgfQjrgPB+EqZVHcDf5bw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-model-wasm-js",
             "version": "0.7.2",
@@ -571,7 +571,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZjMwMGUxMzlhMmQyMjc0NTBlMmFlYmI0ODFmMjJmM2E1MzY0OTYyOWQwYjk1OTdjNTMwZWE3MWJkZmE1MTU3ZjFmNzQwMjY5Nzc2ODkwZTZlODVmN2YyNWFhOWU5NDI0NjM0MGU1ZGM2MmI3ZTRjMjA3OTg4MzA1OThjNDNmZTM=",
+            "integrity": "sha512-8wDhOaLSJ0UOKuu0gfIvOlNklinQuVl8Uw6nG9+lFX8fdAJpd2iQ5uhffyWqnpQkY0Dl3GK35MIHmIMFmMQ/4w==",
             "groupId": "ai.koog",
             "artifactId": "prompt-processor-wasm-js",
             "version": "0.7.2",
@@ -581,7 +581,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZjY3MDI3ZGNiMzQ2OGIwMzliM2VjNDgzN2E1YjhjMGIxOTQzMTQ5OWRjNzBjODkyMGM4ODEzYTUyNzdhMGE2NjBiMTUwMGJjY2VmZmNiNWVkZDA4OWY1MjlkYjM0OGMwNzNlOGZiODZkY2IxYjY1MGQ0NzA1ZmFkMGFiNDVlMzc=",
+            "integrity": "sha512-9nAn3LNGiwObPsSDeluMCxlDFJnccMiSDIgTpSd6CmYLFQC8zv/LXt0In1Kds0jAc+j7htyxtlDUcF+tCrReNw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-processor-wasm-js",
             "version": "0.7.2",
@@ -610,7 +610,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZGVmYzZjODc3YTUxZTkwYmNjZGNhYWM4ZjU0MzhlMWRmNzRmYjVjMzlkZjFjMGY1ZTg2MGQ4YzRiNjJjMmVhMmZjOTBlZDgzZDU3YTM0ZmY2ZDI5MDQ1ZTBhYzIzOWNjYzg0ODBkZjE2NDY3NDRmOTVkY2M1ODQwZmU1ZDc5ZmM=",
+            "integrity": "sha512-3vxsh3pR6QvM3KrI9UOOHfdPtcOd8cD16GDYxLYsLqL8kO2D1Xo0/20pBF4KwjnMyEgN8WRnRPldzFhA/l15/A==",
             "groupId": "ai.koog",
             "artifactId": "prompt-structure-wasm-js",
             "version": "0.7.2",
@@ -620,7 +620,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NDNkOGQ1M2UwMGI3NTFmNzNiZTk1ZWRlNjNkZWI5NjI1NDI5NWE4ZmYzN2I1ZTI4NWQyYTQ2YzIwZDI1MjZjYzNjMGNjMTI3ODI4OTYzYTIzNjgwYjVlYzgwMDhkYTkzMmI1YmEyOTYwNjc2NWM4MDllM2VlNmNhNzU2YjRjOWY=",
+            "integrity": "sha512-Q9jVPgC3Ufc76V7eY965YlQpWo/ze14oXSpGwg0lJsw8DMEngoljojaAteyACNqTK1uilgZ2XICePubKdWtMnw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-structure-wasm-js",
             "version": "0.7.2",
@@ -645,7 +645,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-NjQzN2NhYjZiYWVhOTZiMDUxZDBhZTM1ZDFhYTYzNjJkMmE0ODA1MTAwNGJjM2Y4ZTJhYzhkOTEzOTMxYWQwNDkwY2U2MzI4ZDhiMDQ0YjRhZDIyNDAyNWJiMTZlYTljZjhmYTRjY2M2M2UyMTFhMGYwMzliYmYxN2E4YjNhZjU=",
+            "integrity": "sha512-ZDfKtrrqlrBR0K410apjYtKkgFEAS8P44qyNkTkxrQSQzmMo2LBEtK0iQCW7Fuqc+PpMzGPiEaDwObvxeos69Q==",
             "groupId": "ai.koog",
             "artifactId": "prompt-xml-wasm-js",
             "version": "0.7.2",
@@ -655,7 +655,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NmQ1MWE2NzA1MjhmMjE1ZjNhMmYyZDgzMjg2YjBhY2I0NTJiYzY1NWFiMzA5NWZmYzdjNjVkYjhmZTRmZjY4MzYwZjQ1MWM0MzM2ZDNjNjQxMzUwMWI0MmZjMDJjNzcxZGM3NmZiNTFkN2I5NjIxYzA1MzBjODc1OTQ2ODhmOWI=",
+            "integrity": "sha512-bVGmcFKPIV86Ly2DKGsKy0UrxlWrMJX/x8ZduP5P9oNg9FHEM208ZBNQG0L8Asdx3Hb7Ude5YhwFMMh1lGiPmw==",
             "groupId": "ai.koog",
             "artifactId": "prompt-xml-wasm-js",
             "version": "0.7.2",
@@ -682,7 +682,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-json"
           ],
           "klib": {
-            "integrity": "sha512-OWIwZWRjY2Y1OTkyZjc0ZjJjZjZlNDJjNDk1OWYyOGZjYWMwMjc2NDI4OTEyZTAxOTZjYzI4YzJhYTc3MTBjOTA2YjRjNDVhNWQxNzhkOWMxOTU3NGVlNmIyMTdlODgyMmUxNzc2N2QxMWNiOGI5NmExOWY3MjIzN2E2ZWJmZWM=",
+            "integrity": "sha512-mw7cz1mS908s9uQsSVnyj8rAJ2QokS4Blswowqp3EMkGtMRaXReNnBlXTuayF+iCLhd2fRHLi5ahn3Ijem6/7A==",
             "groupId": "ai.koog",
             "artifactId": "rag-base-wasm-js",
             "version": "0.7.2",
@@ -692,7 +692,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ODUyOTU0ZDc0NDgxYWY3NWRmOTYwZDVjMWQwZWY2ZDMwYzVkMjk0NDllNjgxMWI4MzZhYTRlM2ZkYzgxMzRiNjc0NjgyMjgyMTlmMjgzZThlNmEwMDMyMzIxNDBkMmM5OGYyMzA1MDE0NGE0ZTAyOTA3OWRhNTk3MWU3YzViODk=",
+            "integrity": "sha512-hSlU10SBr3Xflg1cHQ720wxdKUSeaBG4NqpOP9yBNLZ0aCKCGfKD6OagAyMhQNLJjyMFAUSk4CkHnaWXHnxbiQ==",
             "groupId": "ai.koog",
             "artifactId": "rag-base-wasm-js",
             "version": "0.7.2",
@@ -717,7 +717,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MmZmYTMzOThlZmMwZWY0NmI4NGVhMjE1ZjRkODJiMGEwZTE5YTQ1YTY3YzFiOWQ5N2VmYTg2ODI0NDA1NzBjZDBiMThhYzYyZGVlZTE4YjJlN2ExYTg5YjM4MjBkOGFlZTQ3OTY2ZmFjMGZjNTEzMzA0ZjZmOTlkM2I2M2U4Zjc=",
+            "integrity": "sha512-L/ozmO/A70a4TqIV9NgrCg4ZpFpnwbnZfvqGgkQFcM0LGKxi3u4YsuehqJs4INiu5Hlm+sD8UTME9vmdO2Po9w==",
             "groupId": "ai.koog",
             "artifactId": "serialization-core-wasm-js",
             "version": "0.7.2",
@@ -727,7 +727,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YWQ5OTExNTg3YWEzYTc2NjZjMjU5MDk0MTY4YWQ1YjU5MDIwOTVkODBlM2U1NThkYTFjOTBhMjBlMmI5NzJhZmIxMjY0ODc3NWIzN2Q0NmViMDkzMzYwOTc1MTJhYmZkNmM1NDJkMzNmNWY5NmEyYWFhM2RjMGY3OGY5NmJmNmM=",
+            "integrity": "sha512-rZkRWHqjp2ZsJZCUForVtZAgldgOPlWNockKIOK5cq+xJkh3WzfUbrCTNgl1Eqv9bFQtM/X5aiqqPcD3j5a/bA==",
             "groupId": "ai.koog",
             "artifactId": "serialization-core-wasm-js",
             "version": "0.7.2",
@@ -755,7 +755,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YTU5MjZhOGE1Y2M3M2FhY2Q5Y2FjODliMzU1NzZhMjk1OGUwMWZmY2I3YjIyMTM3NDFhYTE5ZTU2ZWUzMDI3NDEwZjZhMWFkODhmMzE1OTk5YjQwY2ZmODU4NGZmZjJmZTIxOTMyZDAxYTJmM2ZhYmUxNjc4Yjk5MzhmNGVjOGY=",
+            "integrity": "sha512-pZJqilzHOqzZysibNVdqKVjgH/y3siE3QaoZ5W7jAnQQ9qGtiPMVmZtAz/hYT/8v4hky0BovP6vhZ4uZOPTsjw==",
             "groupId": "ai.koog",
             "artifactId": "utils-wasm-js",
             "version": "0.7.2",
@@ -765,7 +765,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MzVlMWY1NTI2MWNlMmVlNmM3M2I1NGQyNzA0OWNmMGIwZTgzODI0YmExNmM1MzgyODU5ZTBjMzNiNmUwODIzNGUwMmYwYjk1ZjIxN2I1ODQ3NDMxZTMxMGJjNjU0ZjJmYWU0MjE5NThlMWQzM2ZhN2E0YWYyYjU3ODBmY2I1M2U=",
+            "integrity": "sha512-NeH1UmHOLubHO1TScEnPCw6DgkuhbFOChZ4MM7bggjTgLwuV8he1hHQx4xC8ZU8vrkIZWOHTP6ekrytXgPy1Pg==",
             "groupId": "ai.koog",
             "artifactId": "utils-wasm-js",
             "version": "0.7.2",
@@ -789,7 +789,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZTZjMWZiYWY2NGRhNjVhZjc3YzVmZDIwODlkOWJhY2YxOTE5Zjk4MzZmZmVjZGQ0NDJhYzFmZTFjOTFhZTdkNGMxODQ2YTM0ZjE4NWM2ZmZkOTc1MGE3OGNlYTM3NzQ5YzQ3ZTJmNDg2ODI0OTIxMWUyM2M5MTM4NjRlOTUxNTE=",
+            "integrity": "sha512-5sH7r2TaZa93xf0gidm6zxkZ+YNv/s3UQqwf4cka59TBhGo08YXG/9l1CnjOo3dJxH4vSGgkkhHiPJE4ZOlRUQ==",
             "groupId": "io.github.oshai",
             "artifactId": "kotlin-logging-wasm-js",
             "version": "8.0.01",
@@ -798,7 +798,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YzdlZDY0MDJjZWFiOGZiMjdlNWY2ZjY0YTUxMjRlYjI1YjM0N2U5YmM0YmIzMTEwNzZlMTEwOGE3OGQ0NWEzN2E1ZGY5ZmFiOWFhNGMyZmY5OTg0ODVlOTY2ZGNhZjQ4MDNkMGE0MzcwNGQwNzRhODIxMWY5MWJjNDAzYTczYmU=",
+            "integrity": "sha512-x+1kAs6rj7J+X29kpRJOsls0fpvEuzEQduEQinjUWjel35+rmqTC/5mEhelm3K9IA9CkNwTQdKghH5G8QDpzvg==",
             "groupId": "io.github.oshai",
             "artifactId": "kotlin-logging-wasm-js",
             "version": "8.0.01",
@@ -826,7 +826,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZDcwNDY5ODU0N2U4ZGFiMjgxYTU2NDk3Njc3OWY4YmRmMzQyZjk4ZmYzNjU3YTk1M2M3MjRlZmJjMThjMWEyNGI5Yzk5MzE2MmE1NTM4YWM3YzMxYmFkZWE5ODUxMDk3YjcwOWUyN2IwNDRmN2JiYWRjZDNjMDBkNTg2NWVlMWI=",
+            "integrity": "sha512-1wRphUfo2rKBpWSXZ3n4vfNC+Y/zZXqVPHJO+8GMGiS5yZMWKlU4rHwxut6phRCXtwniewRPe7rc08ANWGXuGw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-content-negotiation-wasm-js",
             "version": "3.2.2",
@@ -835,7 +835,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ODA4NjZmNTA3MjdhNTg2NzAwMjc0MTY5N2UzZDcyMjkyZmZiYWZhYWRjZGZiNjRkMTRiYWYyZmIyMjZiODY5MGZlNDZhOWQ2NWY2YjcxMTFhYzFiNTUzNjI5YjE3NTVhOTRlZWQ4ODk4Y2RjYWEwNTk1MmMxNDA5YmZhMmNhYmE=",
+            "integrity": "sha512-gIZvUHJ6WGcAJ0Fpfj1yKS/7r6rc37ZNFLry+yJrhpD+RqnWX2txEawbVTYpsXValO7YiYzcqgWVLBQJv6LKug==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-content-negotiation-wasm-js",
             "version": "3.2.2",
@@ -866,7 +866,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ODhmNzE4NzAxMThiYzg4Y2NlMDNmM2RmOGRjNGNlZmE1ZGI1YmMyOGZlNjE4MWYzZWQxMWI0ZDU5NjIyNzJiZjFmN2VjZTA5MjliNTlkOTg2OWI1NTcyYmIzYmMwZmI3NTU3ZTIxNjM0N2FiZWE4ZjlkOGE1NGE0MmZkYzBlOWI=",
+            "integrity": "sha512-iPcYcBGLyIzOA/PfjcTO+l21vCj+YYHz7RG01ZYicr8ffs4JKbWdmGm1VyuzvA+3VX4hY0er6o+dilSkL9wOmw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.2.2",
@@ -875,7 +875,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTBjMTZmMTljYTVhYmZlM2U2MmQwMTY2YjA2NjRhNjUwNTdkMzM0MWI1M2FiNWNlZjNlMjZhZTdkOGZjZmIzZGVjMWIzNzAzMDBlZjc0OTRkMDIzODI2Mzc2MTBjYThjYTZjZjdkYjE3NTU1ZTFkNzk0ZjY3MDg0MTdkMzM1ZDc=",
+            "integrity": "sha512-4MFvGcpav+PmLQFmsGZKZQV9M0G1OrXO8+Jq59j8+z3sGzcDAO90lNAjgmN2EMqMps99sXVV4deU9nCEF9M11w==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-core-wasm-js",
             "version": "3.2.2",
@@ -902,7 +902,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZWUxNTk5NTc2M2RiZDVkNzFkMjcyYzAxOTE0N2E3ZWJlMDlhMzE5NzgxNWYzYzlkNzE1ZDk0ZTJmNzQ3YWYxZTQ1ZDI5ZDIwYmI5YTZhNmY2ODI2YWE0MTNjMzhhNDBhZGE4MWIxY2QwMGRhNWVjMTk1NDU5ZWVjOGM2MmM0NjI=",
+            "integrity": "sha512-7hWZV2Pb1dcdJywBkUen6+CaMZeBXzydcV2U4vdHrx5F0p0gu5pqb2gmqkE8OKQK2oGxzQDaXsGVRZ7sjGLEYg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-logging-wasm-js",
             "version": "3.2.2",
@@ -911,7 +911,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-M2Q3NDE0MjU3MTg2Yjc1ZTAxY2IyYjQ1Y2IzMzc4NjhhMzRjYTQ1MDViOGYyNzk5MGNjMWNlM2ZhYmRhMzk4ZjI0ZDUxNmFjYjVmYmI4ZDk1ZGJlZDc3OTNjM2IyMTMwOWFmZDBjYmJjNmI0YzlmYzZiNDA0NTBkNmIyMWQ1ZjE=",
+            "integrity": "sha512-PXQUJXGGt14ByytFyzN4aKNMpFBbjyeZDMHOP6vaOY8k1Rastfu42V2+13k8OyEwmv0Mu8a0yfxrQEUNayHV8Q==",
             "groupId": "io.ktor",
             "artifactId": "ktor-client-logging-wasm-js",
             "version": "3.2.2",
@@ -938,7 +938,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MTQxZTUxMGM3YTI4M2MxMTVjYWMzMmQzMjk4NjZiNDIzMGRkNmZkY2I5NjgxYmYzOTU0MDVjZmZlZjFiMzkxZGQwYTg0MWQxZmNiYjI1ZTU5YTkwM2EzNDVhMmM5NTM0ZjBlMzkzMzM0MjIyZjkzNDA2ZDQwYWJiNzk2MjBmNWY=",
+            "integrity": "sha512-FB5RDHooPBFcrDLTKYZrQjDdb9y5aBvzlUBc/+8bOR3QqEHR/Lsl5ZqQOjRaLJU08OOTM0Ii+TQG1Aq7eWIPXw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.2.2",
@@ -947,7 +947,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-N2RhYTg0NzY0M2FjY2JlYzBkMGZmNzZiMWUzMTVjYmMxYmE4ZWMyNzljZjkyZTg3N2IzZjE4NjFiYzQwNGZiODBhOGQxM2U3NjBlMWFiODE0NzE0MDQ3NWI2NGZiMmJlMDcxMzE4OWYzMDZmYTkyODczYWM5MjYzZmVhOTMyMjY=",
+            "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-events-wasm-js",
             "version": "3.2.2",
@@ -975,7 +975,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-Zjc2NWZmYjYzN2U2OWIwZTA2YjkzYjRjMzBiMTgwMjExOTFlNTM4YTBkOWRkYTM4ZGUxNzc0YmVkYjQ4NzBkN2Y1MTAwZDE0ZDVhNGY2Mzg0ZmI3NTAwYjkzN2Q1YWM5YmYyYTkxOWZmYmIzZDVmMjRiNGFmMGJmNmQwMjRkYzE=",
+            "integrity": "sha512-92X/tjfmmw4GuTtMMLGAIRkeU4oNndo43hd0vttIcNf1EA0U1aT2OE+3UAuTfVrJvyqRn/uz1fJLSvC/bQJNwQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.2.2",
@@ -984,7 +984,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-N2IzMDZhMzNkYzM0YTUzZWVlMWI5ZDFkMjQ1MjY3N2NmM2Q2ZTY5OGE3ODQ3NzNjYTFjNzBlNDg3NDc2NTk5ZTg2Yjk5NjVkZWM3OTdhNzIwMzUwODg4NGMzMmE4MTZmZDRjOTBiYzI5Mjg2NGJiZDgyOTI0ZGY4YzAyMWQ0N2Y=",
+            "integrity": "sha512-ezBqM9w0pT7uG50dJFJnfPPW5pinhHc8occOSHR2WZ6GuZZd7Hl6cgNQiITDKoFv1MkLwpKGS72Ckk34wCHUfw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-cio-wasm-js",
             "version": "3.2.2",
@@ -1012,7 +1012,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YjBkMDgwM2E0YjA4Yjg1ZDQxNmIyY2QyYjM5Y2I4YWYyMDQ3MmFjNmZmMmZhMjUxZjUwYTljMmQ2M2NlYjhmNmE3N2E1ZmJhZDgxZDgzNWNhY2Q2OTI3MGYxMjkxOWNkY2MzMTNkYWQ0MjM2NWJjNmY0MDhkNzg5MmYzZmFkYjA=",
+            "integrity": "sha512-sNCAOksIuF1BayzSs5y4ryBHKsb/L6JR9QqcLWPOuPanel+62B2DXKzWknDxKRnNzDE9rUI2W8b0CNeJLz+tsA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.2.2",
@@ -1021,7 +1021,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZDAxOGQwZTk5YzMxNDhlN2RkN2YzZjMzYmUxOGUwNDE2ZmU3YmQ0MGQwYTFhMmY5M2I3NjhkODFmZDQ4OGUxMjE3MDAxZDQ5OWNkZjI1OGQzNGJlZWVjMzA2ZTk0NTk4NmFmYzM0ZWJlN2Q5MmFiNjRhNWI3M2Y1YTgxN2E1NGI=",
+            "integrity": "sha512-0BjQ6ZwxSOfdfz8zvhjgQW/nvUDQoaL5O3aNgf1IjhIXAB1JnN8ljTS+7sMG6UWYavw06+fZKrZKW3P1qBelSw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-http-wasm-js",
             "version": "3.2.2",
@@ -1048,7 +1048,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YzAwMDgzNDA5ODgwY2MzMWJjNWIzMWJkYzhmMWVhMzNkMDkzNDgxMTdjZjhiZDE3MzM0ZDI1ZWJiYTk0Zjc3MjU5YjI5OWQ4ZTExNjRlMmVlZWUzZmZmZTlhNmJjMzA5NjFiMjI0ZTM3MTFiNjMxODM3MjczNzdjOWU3NmY2ZDY=",
+            "integrity": "sha512-wACDQJiAzDG8WzG9yPHqM9CTSBF8+L0XM00l67qU93JZspnY4RZOLu7j//6aa8MJYbIk43EbYxg3Jzd8nnb21g==",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.2.2",
@@ -1057,7 +1057,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZmZhODQ2YWU4YmJhOTQ2NWNhNTUzNGNkYzc3MjMxNzZiNmU5ZmRiOTZiMGUyY2UwNjNhY2FlYjRmNjliZjI2OTFmMjUzNTNiZDAyYTBhMGQ3NDNmMjlkZWVlYjMxOWYxZDAyYmRmMWJkYTBmMjE0ZTk2ODBmNTUzYzk5NjI1M2Q=",
+            "integrity": "sha512-/6hGrou6lGXKVTTNx3Ixdrbp/blrDizgY6yutPab8mkfJTU70CoKDXQ/Kd7usxnx0CvfG9oPIU6WgPVTyZYlPQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-io-wasm-js",
             "version": "3.2.2",
@@ -1084,7 +1084,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MGJhZWNiMzcxMjFkMDdmZDYzYTU3NjhmNTczOWI4OTdlMTI3OWIyYWU0NmEwNGVkZjk1Y2IyMzg0NDUyYmJlYWY2MDhiYTlkMzc4YWJiM2M3NDQ1YTI5MTljOTczYzMxM2Y1ZGQ0ZDg4MjY2NjljMzBlODc3ZjI0ZmMzYTUxNjU=",
+            "integrity": "sha512-C67LNxIdB/1jpXaPVzm4l+EnmyrkagTt+VyyOERSu+r2CLqdN4q7PHRFopGclzwxP13U2IJmacMOh38k/DpRZQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.2.2",
@@ -1093,7 +1093,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NTRiY2M4OGIzODY3NmQ4YTIzNDVlYWIxZGQ1MDZjY2I1OGU5M2M4YmFkYjM1MmNhM2U2MjZiYTcxYjVkMzk0OWE2MDVkZmUxMzdiMzE2NzE0ZDUzMGRlZTAzYTE2MDJhYTBkZjUyNDk2YmU5Mjk0MDU2YjBiMGFkM2QwYmI5MjQ=",
+            "integrity": "sha512-VLzIizhnbYojReqx3VBsy1jpPIuts1LKPmJrpxtdOUmmBd/hN7MWcU1TDe4DoWAqoN9SSWvpKUBWsLCtPQu5JA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-network-wasm-js",
             "version": "3.2.2",
@@ -1122,7 +1122,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MGVjMTc2MDJiMzg0Yjc3Y2U1NDFhZjZjOTUxYmEyZjk2MGYwNzkzOTI3NjMyZjYyZjc4ODZlOTIyZjk1YjY1NWVjZTE0ZTAxMGY2ODdmMzNkOWQwMzg1NGVjZjY3MWY4ZmZkYWYwM2Q1N2FlMjhiYmE0NzhhMWZjYjMzNDI5Mjk=",
+            "integrity": "sha512-DsF2ArOEt3zlQa9slRui+WDweTknYy9i94huki+VtlXs4U4BD2h/M9nQOFTs9nH4/9rwPVeuKLukeKH8szQpKQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-kotlinx-json-wasm-js",
             "version": "3.2.2",
@@ -1131,7 +1131,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZWNiMjM3Zjg3NWNiYmZjYjJmMmRjOTUyMzJhMDVhMmJlODkwMWMxMzgwNGU1YTIzNmY2ZDFlOTI2NjVlZWI4MmZmMTFkOWE0YzBiYzlhZGZjZGQ5ZjgwYWVjMjJhNWQ5NmU2ODVlNTgxNzk4YzI4NjZmZDBhZDQwZGE3MmYwYmQ=",
+            "integrity": "sha512-7LI3+HXLv8svLclSMqBaK+iQHBOATlojb20ekmZe64L/EdmkwLya383Z+ArsIqXZbmheWBeYwoZv0K1A2nLwvQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-kotlinx-json-wasm-js",
             "version": "3.2.2",
@@ -1159,7 +1159,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-NDU2YjM1NDVhNjAzM2M1ZmE3YTM2YmQ3ZjAzYWI1M2YxZjkyMzgzMjM0YWEyNzg5NDBiMjY0NTlkYTM2MzJhYzAzYTFjMzkwN2QzMTdlOTlkZmFmY2U2MmJkZjIwZmVjMWI4YWY2MjVhNTdmMDQ0YjIzMWI3ZTU2NWU5NjgyY2U=",
+            "integrity": "sha512-RWs1RaYDPF+no2vX8Dq1Px+SODI0qieJQLJkWdo2MqwDocOQfTF+md+vzmK98g/sG4r2JaV/BEsjG35WXpaCzg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-kotlinx-wasm-js",
             "version": "3.2.2",
@@ -1168,7 +1168,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MjNhZmM2NWNiNjg0MjEzNjQ4ZWE0NzhhZDE5MDRmZWY5NmVjODAwYzFhZDUxMzI2ZDdkMzk4Y2RlYWIwYmE1Zjc3M2FlMWI4ZjFlOWU4OGRkZjRlOWExM2RjN2E3ZWRmNjA5MzQwZmQwMWViMWQ5NDViM2MwM2ZiMDY1ZjFiZjU=",
+            "integrity": "sha512-I6/GXLaEITZI6keK0ZBP75bsgAwa1RMm19OYzeqwul93OuG48enojd9OmhPcen7fYJNA/QHrHZRbPAP7Bl8b9Q==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-kotlinx-wasm-js",
             "version": "3.2.2",
@@ -1195,7 +1195,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YTUyYjg1ZjI0ODYyM2RmOTBlMTA1YmE1NzlmMzZhMDdjYTBhNDg4YWI5NTQzMTI3NzY1ODQ3NzgxOGFhYjlhNDU4YzQxZjMxMTQyZjRlODcyNGNlZDA2ZTc5NDg2MGE5MDUwMjgxMjdjNWE4MTIyMzkzNmJlNWJjODVjNDkxN2E=",
+            "integrity": "sha512-pSuF8khiPfkOEFulefNqB8oKSIq5VDEndlhHeBiquaRYxB8xFC9OhyTO0G55SGCpBQKBJ8WoEiOTa+W8hcSReg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.2.2",
@@ -1204,7 +1204,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YjRmM2VlNDQ0NDc0ODY2MWNiNGFmOGFkYjQxMTk1NzBkNGIwNmFiYjYyMmU3ZjM5MjYxNTY2ODRlOGQ3MDYxMGE3ZTI0MjJiNDZkZWM4OGVlNmQyN2RiYjcyZjI5NTBkOGQ2OTkxMTMyZDYxMjIwNDIwNTc0NzdiYTRiN2EwOTg=",
+            "integrity": "sha512-tPPuRER0hmHLSvittBGVcNSwartiLn85JhVmhOjXBhCn4kIrRt7IjubSfbty8pUNjWmREy1hIgQgV0d7pLegmA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-serialization-wasm-js",
             "version": "3.2.2",
@@ -1234,7 +1234,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MmFhYWRlNzllZDhmNmQzZTViZTYyOWMyOGVmNjliM2I1ZjUyMmEzMWI4ODU1NGJhNjllMDU3ODdhNGE2NDk1NWYxZjg2Y2MyMzM1NGZiY2YwMGRjNDZlMGFiN2Y5MGJjMjNkNzczZThiMDNlNDQ4MjgyZDFjMmMwMTNlMDk2MmI=",
+            "integrity": "sha512-Kqreee2PbT5b5inCjvabO19SKjG4hVS6aeBXh6SmSVXx+GzCM1T7zwDcRuCrf5C8I9dz6LA+RIKC0cLAE+CWKw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-cio-wasm-js",
             "version": "3.2.2",
@@ -1243,7 +1243,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YWEzYmM5NzI1ZjIxMWI5YmY3N2FkZjJmMWVmNDA0NDRiYTkxOGU0OTAyZGQ0MTgyMTc0YzI4NjM0NjdiNjBkOTQ1ZTM3MWM0Njc0ZGNkNmJlZDNjZmZjNTIzOWNiOTU4NTMxZmZhNTYxODEwYjQyOGE2NTRkMDBmMGMwMzExYWQ=",
+            "integrity": "sha512-qjvJcl8hG5v3et8vHvQERLqRjkkC3UGCF0woY0Z7YNlF43HEZ03Na+08/8UjnLlYUx/6VhgQtCimVNAPDAMRrQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-cio-wasm-js",
             "version": "3.2.2",
@@ -1275,7 +1275,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-Y2JkYjIwOWI1YmUwZWI2Njg3OGIyMTE3ZTcwNzA5MTRhZmEyMzliNmIzNGI0ZDAzYmZmNGI2MjhlNjM4ZWY2Zjc3MzU1MzM5NmFlYmM5MDViODZkMzk4Yzg2ZjYzYWQxMzY0OGM0NWY1MjNmOTg4OWNmZGY4YmEwY2Y1ZDE2MDM=",
+            "integrity": "sha512-y9sgm1vg62aHiyEX5wcJFK+iObazS00Dv/S2KOY47293NVM5auvJBbhtOYyG9jrRNkjEX1I/mInP34ugz10WAw==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-core-wasm-js",
             "version": "3.2.2",
@@ -1284,7 +1284,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MDU0ZjUyNzZhY2RjZjkyMDQzMDFmMzNmN2UzMDExNzU5MjI1ODAzMDZmN2NiNjczMTg0ZTIxNWIzZjgzZjg1NjQxYTQ2ZTNhMWYzNmJlNDQ3MjM3ZmZhZGYzZDg4ZDIzMzlmYzkwM2ZmNGY3OTBhMmRkZjQwOGQ0YmVkNzFkOTQ=",
+            "integrity": "sha512-BU9Sdqzc+SBDAfM/fjARdZIlgDBvfLZzGE4hWz+D+FZBpG46Hza+RHI3/63z2I0jOfyQP/T3kKLd9AjUvtcdlA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-core-wasm-js",
             "version": "3.2.2",
@@ -1312,7 +1312,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YjA1NjAwMDU1MmE0Y2Y2MTNlMDk2NmFhZjMwZDNjYTRlMjU3NWU1MjgyNjRlYWZlY2EwNDU0ODM4NTdhZjIxYmY4ZDU2MDk3YjMzYWRlYWU0NThmZGRjMmQxYWI3OWQ3MWYzZWRmZjgyMGEyNmE1MWQ1YmQ3ZDU4MGEyMGEzYjQ=",
+            "integrity": "sha512-sFYABVKkz2E+CWaq8w08pOJXXlKCZOr+ygRUg4V68hv41WCXszrerkWP3cLRq3nXHz7f+CCialHVvX1YCiCjtA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-sse-wasm-js",
             "version": "3.2.2",
@@ -1321,7 +1321,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MmM2MDgzMGNiZmQ2NGZkZmU5MTFiZjY1OTY0MjNiZjA5NGNhMjVkZWFhNzdjZGQwNWZkOWIzMmZiYTBlMDNiZjRlMTgyMTg3YjNiYzQ5Zjc4NDFhOTRiYWRhNjA5MzRiOWM2YTcyNjAxOGIzZDRiMTg2ZGEzMGMyMTU3MmY4YmM=",
+            "integrity": "sha512-LGCDDL/WT9/pEb9llkI78JTKJd6qd83QX9mzL7oOA79OGCGHs7xJ94QalLraYJNLnGpyYBiz1LGG2jDCFXL4vA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-server-sse-wasm-js",
             "version": "3.2.2",
@@ -1348,7 +1348,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-OGU5NjM1ZjJlYWM0MzU0MGE2NWE2YzAwMTAxYTY5M2M4NGY4YzcxMWU3YTlhOGY4YjZlMTRhMjVjZjgwMWFmM2JiMDBhOTE4ZTMzMjFjNzllNDMxNTRjNzFjYThiMmU5NmU3NWFkNTdlMmU0YWFhYTIzM2FiOGI0YTM5NTE5NWE=",
+            "integrity": "sha512-jpY18urENUCmWmwAEBppPIT4xxHnqaj4tuFKJc+AGvO7AKkY4zIceeQxVMccqLLpbnWtV+LkqqojOri0o5UZWg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.2.2",
@@ -1357,7 +1357,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NjZlYmMyZWNkYTAzZTFkOTZiZjdmODZkYjExOWY3MTBjNzk4ZDkxMmZjMDEwNjZhNjI1MTVjYzRhYjgzOTk2MjliMDY0MWMwOGFlMGU2MGQ1YzJmMTc2OGYwOTMxZTg4Yzg3Njc1OGY4OWNmM2Y1OTU1ZDA5MWM0YWEyZjJhM2M=",
+            "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
             "groupId": "io.ktor",
             "artifactId": "ktor-sse-wasm-js",
             "version": "3.2.2",
@@ -1385,7 +1385,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-MDI4YTFmZjE1YjJlM2RiZTFjODY3NWEyNDU5MTk3ZTU3MzA2OTdlNjY1NDY2YzBjZDEzYzkzNzY5OTVmMTQ2MTg0ODFjOTg2MjlmYjRhMDQ3OWIzNDk5MmIyZjg2MTdlNTM4YThjYmYwYmI4ODQxMDJlZTY2ZjM4MmVkNGUzZTc=",
+            "integrity": "sha512-Aoof8VsuPb4chnWiRZGX5XMGl+ZlRmwM0TyTdplfFGGEgcmGKftKBHmzSZKy+GF+U4qMvwu4hBAu5m84LtTj5w==",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.2.2",
@@ -1394,7 +1394,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NWM2YTYwMGE0NWFjNjFhMWRjMjI1ZTUwMDhlN2VmZDBlNzliNjcyZmU0MzY5ODBhODYyY2MxNjBkNGQ3OWE3MzI5YjM5YzNhNDY1NWMwOGRmMjE4YThlYzAwOTc2Zjc4ZDdkNjc3NjE3ZTliYTU5YzMwMjliYzZjMmFjODI0ZmY=",
+            "integrity": "sha512-XGpgCkWsYaHcIl5QCOfv0OebZy/kNpgKhizBYNTXmnMps5w6RlXAjfIYqOwAl29419Z3YX6bpZwwKbxsKsgk/w==",
             "groupId": "io.ktor",
             "artifactId": "ktor-utils-wasm-js",
             "version": "3.2.2",
@@ -1421,7 +1421,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZjI4MzkzNThhMmYwMDIxYzRmMDNiMWI2NDM4NmExNzNmNTVmYjRkZjI3MzVmOTY5MmM3NDNmYWM3OTRmY2FkZjkwOGNjM2I5ZTE2NzhiMWVjOTQ5YTBlMWE5MWQ3NTc3ODFiYWIwMmZhNjA3MTQ5Zjc2YmRmN2M5ZTBjM2Q3ODI=",
+            "integrity": "sha512-8oOTWKLwAhxPA7G2Q4ahc/VftN8nNflpLHQ/rHlPyt+QjMO54WeLHslJoOGpHXV3gbqwL6YHFJ92vffJ4MPXgg==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.2.2",
@@ -1430,7 +1430,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTdmZThjNWQwZjFiYWI3NDc1NTUwN2ZjZmM4MjE0YmVjNjA5MzU3MzZjMGRjMWFkNTRmMTA3NjExNWNhNThmNjNkNDA3MDJmMzg1MDNiM2IyYTNiOWQ4ZDAyYmE1NWI5MWQ2MmY1ZDRlMzI2YjliY2I1YzQ1NDg1OTI1OGUzZjg=",
+            "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websocket-serialization-wasm-js",
             "version": "3.2.2",
@@ -1458,7 +1458,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZDY4Y2JjNWM4Y2IxYTJjNjM2Nzk1MDAxODhhYmU2MWU3YThkOGMwZTJmZTk1MjBjNzQxZTFlYTk5ODllNWIyOGUwOTI4ZTBmNWRmNjU0ZjE1NWQwZGYyOTc5N2IxMDNlYmNlY2JiNmIwZDQ4ZjAwOTg3Mjg2ZTMzY2ZlMjhkZGQ=",
+            "integrity": "sha512-1oy8XIyxosY2eVABiKvmHnqNjA4v6VIMdB4eqZieWyjgko4PXfZU8VXQ3yl5exA+vOy7aw1I8AmHKG4zz+KN3Q==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.2.2",
@@ -1467,7 +1467,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MjNiZWE3YTExYjg4ODI5M2Q0MGJkNGU2OGMyOGU4NzY4YmY1MzFkNzE0MzJkMmE4ZTNjYjhlYzllZTY3YjJlOGI3Yjk3NzhlMjNiOThlYmMyMzEyYTMzNTg2MDViOWI1MmU2ZTk4ZjUwNGJiNGU4NDFhY2UwYjljYWJiNTk3N2Q=",
+            "integrity": "sha512-I76noRuIgpPUC9TmjCjodov1MdcUMtKo48uOye5nsui3uXeOI7mOvCMSozWGBbm1Lm6Y9QS7ToQazgucq7WXfQ==",
             "groupId": "io.ktor",
             "artifactId": "ktor-websockets-wasm-js",
             "version": "3.2.2",
@@ -1488,7 +1488,7 @@
           "dependencies": [],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YzQ2ZGQxMzZlOTc5NjQxZTFhN2FiNzgzOTMzODliYmU4ZmQxNGNkNGE1ZTQzMWZlMmM4NTM0Y2U5YjU2NzBlNWJhZTI5OThjMmY1NjNmM2ExZDkxMDE5YWFhZmM2N2E1NDdiNDlmMmI5YjkyNzhkOWZmNTcxZDdlZDQ1YTgyMTY=",
+            "integrity": "sha512-xG3RNul5ZB4aereDkzibvo/RTNSl5DH+LIU0zptWcOW64pmML1Y/Oh2RAZqq/GelR7SfK5uSeNn/Vx1+1FqCFg==",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.3.20",
@@ -1497,7 +1497,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YjE0MTBlNDUwZDFkYWRlY2Q4NGUwMzFlNzA3NjU4MWI4NTI1ZTFiMTE3YjBhMGU5M2NjMDJlYjUyMGFjOTdlZThmM2VmMjNhNmFkMDY1Yzk3ZGIyNDM1NDMxMjVmNDMwODdmODdkMmMzZDkyMjg5NTA3ZWZhMDdlY2MxMjUyYTU=",
+            "integrity": "sha512-sUEORQ0drezYTgMecHZYG4Ul4bEXsKDpPMAutSCsl+6PPvI6atBlyX2yQ1QxJfQwh/h9LD2SKJUH76B+zBJSpQ==",
             "groupId": "org.jetbrains.kotlin",
             "artifactId": "kotlin-stdlib-wasm-js",
             "version": "2.3.20",
@@ -1520,7 +1520,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-NjcxYzVmNGE2YTg1Nzc1MDg4ZTFhZTc2MDY0MGM0OWE1MWQ3N2U1MGUxNzhlMWU2MTViZWU2ZmM2ZTMwMDMwMjQ1ODI0ZWE0YWE0N2ExOTRlMWE1MTY3M2ZiZjllMTc0OWE2MGJlODkwYTdkYzA1NDhiMjcxODQyMjdiOGU4Yjk=",
+            "integrity": "sha512-ZxxfSmqFd1CI4a52BkDEmlHXflDheOHmFb7m/G4wAwJFgk6kqkehlOGlFnP7+eF0mmC+iQp9wFSLJxhCJ7jouQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.28.0",
@@ -1529,7 +1529,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-Yzg2ZmM4OTM1N2QzYzE3MzM5NzY5YTI4NTg1ZTA1Njk0ZjIxMzI4YjBkOTRlYmViNTRjM2QwYmVmNjYzNGQ3OTMxMjdkNDAzMDJlOGNjYzZlYWQ0MTA2OTYyMzI0NmQ0MzBhYzI0NDYwNGRlOTRhZDRhNzlhOGNiYjVjNWE2NmI=",
+            "integrity": "sha512-yG/Ik1fTwXM5dpooWF4FaU8hMosNlOvrVMPQvvZjTXkxJ9QDAujMxurUEGliMkbUMKwkRgTelK1KeajLtcWmaw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "atomicfu-wasm-js",
             "version": "0.28.0",
@@ -1552,7 +1552,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YjJkZmZlZDRhOWFlNDJmZTkxMjFjMDgzZWIwMjk0ZWQ0OTEzOTE1NDBlZTVlYzJlOWUyOTM0OTlkMzVmMTVjNDljZTBjYjIxYjQ1Mzc0ZGRkY2QxNjRkZDBlMzJjYWM1N2E0M2RiYWI3NTBlYTcyNTRkOGQzMTgzYTY5N2ZkNDA=",
+            "integrity": "sha512-st/+1KmuQv6RIcCD6wKU7UkTkVQO5ewunik0mdNfFcSc4MshtFN03dzRZN0OMsrFekPbq3UOpyVNjTGDppf9QA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.3",
@@ -1561,7 +1561,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YzJmMzQ5ZDcwMGEwMjhkY2VjMGVhMzQ4NmFmZDRjMTZlN2JhNzgzY2I1NzU0OGZmM2JmOWNjODQ4NjY0NDFhZmJhMjY0MjViZDEyOWQxZWM4YmU4NzBlZWYyYWI4MjViZThlNGUyMTUwZGYwODNkYTQ5ZDJjNDA4ZTZmNTIxZDg=",
+            "integrity": "sha512-wvNJ1wCgKNzsDqNIav1MFue6eDy1dUj/O/nMhIZkQa+6JkJb0SnR7IvocO7yq4Jb6OTiFQ3wg9pJ0sQI5vUh2A==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-browser-wasm-js",
             "version": "0.3",
@@ -1586,7 +1586,7 @@
             "org.jetbrains.kotlinx:atomicfu-wasm-js"
           ],
           "klib": {
-            "integrity": "sha512-ZjEyYTYxNGMzYzY2NWQ0Zjk3NTQxYmU4MTAzZDUwYjkxYmUzMjAyNWUwYjNhZTczMmE4NjAwY2M5NDQzNmU0YTMxOTlhOWI3NjhmZGE0ZTc5OTAzOWJkZTllOWMwZWI2YTMwZmUxZGRhMzA5NWFlZWNlOGU2NzYxZDE1OTE4ZGY=",
+            "integrity": "sha512-8SphTDxmXU+XVBvoED1QuRvjICXgs65zKoYAzJRDbkoxmam3aP2k55kDm96enA62ow/h3aMJWu7Ojmdh0VkY3w==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2",
@@ -1595,7 +1595,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZTY3ZDhjNWYwMjdjNWJiYmQ3NDZhNGFkOThkYjVmMzg4MjA2NDAzZWE0YTc4NjM1NTM2MmE2MTNkMDRhYjA4MDdkMmMxN2UxNWQ0NDhlNTJkZTRiYjEwY2UyMjQxMGJmZWM1N2U0OTlmMGFhOTBiYWQ0MWRmMGJjNWMwZGJmZjM=",
+            "integrity": "sha512-5n2MXwJ8W7vXRqStmNtfOIIGQD6kp4Y1U2KmE9BKsIB9LBfhXUSOUt5LsQziJBC/7FfkmfCqkLrUHfC8XA2/8w==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2",
@@ -1618,7 +1618,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "integrity": "sha512-OWI5NjhhYjU2YWQ2ZjlhNmVlNzNjMTZkZmY1ZTc0ODExODRiNGY0ZTg2NDhiYzdkY2Y5NGY5ZjQ2MzNiN2FjODczYTc0NWUyMDY4ODM1NTY0N2I3ZDBlZDA3NTU5NWRhMDZiNzFkMTk0NzRiM2RmNmY0MjM5MDY0YzY4YTY4YWU=",
+            "integrity": "sha512-m5aKtWrW+abuc8Ft/150gRhLT06GSLx9z5T59GM7eshzp0XiBog1Vke30O0HVZXaBrcdGUdLPfb0I5Bkxoporg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.7.0",
@@ -1627,7 +1627,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZGEyZjkxNzI4OGRhZjM5YTU2MjMwNmNmOWZjODNlZGQ1ZGI4YTg5ZjUyM2RjOTVjYmZiYjFmNTg2ZjgzYjBkYWJhMDk5NmVlMWI4ZGVkMGZjODFhYzcyNjcwNzcwNTAyNzJlZDdlODhmMjNiZTAxNmY3NmM0ZmFlOTNmOTZlNGE=",
+            "integrity": "sha512-2i+Rcoja85pWIwbPn8g+3V24qJ9SPclcv7sfWG+DsNq6CZbuG43tD8gaxyZwdwUCcu1+iPI74Bb3bE+uk/luSg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-bytestring-wasm-js",
             "version": "0.7.0",
@@ -1651,7 +1651,7 @@
             "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
           "klib": {
-            "integrity": "sha512-ZDQyZDk5YmJiM2FjM2MyZDE5OWM5MWI5ZWMzZDUxODg2NmFhY2RlYmZmYmYzOTVkOWQ5YThlYWI0ZjM5YzhhMzcxZGVjMmQxOGVhZDMxODg4ODQ4Y2U4MDRiNTYwZGM4NzcwZDk5NGI3ZTUyZGYwNzJmYTdjZDZlOTQxNzk4ZDE=",
+            "integrity": "sha512-1C2Zu7OsPC0ZnJG57D1RiGaqzev/vzldnZqOq085yKNx3sLRjq0xiIhIzoBLVg3Idw2ZS35S3wcvp81ulBeY0Q==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.7.0",
@@ -1660,7 +1660,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YTUzMjcwMDY5YzNjZjQxZDc2Njg2OWE0YzEyZjI2MGM3OTY4YTAxOTA4OTFkYThlODEwZTRlYWUxMGNkOGE4NzIzMDc0ZmM2MDhmZTZkYzFiNmEwZWUyZWUwNjFkYmM5M2M1MTY5MWQwNWNjOWUwNjZkZTVkZWFjZDk0ZWFhOTk=",
+            "integrity": "sha512-pTJwBpw89B12aGmkwS8mDHlooBkIkdqOgQ5OrhDNiocjB0/GCP5twbag7i7gYdvJPFFpHQXMngZt5d6s2U6qmQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-io-core-wasm-js",
             "version": "0.7.0",
@@ -1683,7 +1683,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-NjA2NjU1NzhhYTMwZjFmNjdmNTczZDllODYxMzVjOTBhNWFkYWY2NDg5ZTczNzljNWQ2ZWJhNDc3ODc1MWQwODRkNTZjYTA0ZTAyYjgzMGZlOTAxNzhmOWExNjc2MmI2OTQ0MDFiMzBhMzU0MjQzOTNmZDcyNGIwMDMyZTQ2OTE=",
+            "integrity": "sha512-YGZVeKow8fZ/Vz2ehhNckKWtr2SJ5zecXW66R3h1HQhNVsoE4CuDD+kBePmhZ2K2lEAbMKNUJDk/1ySwAy5GkQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-annotations-wasm-js",
             "version": "0.4.2",
@@ -1692,7 +1692,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-MGJjZWY0OGE3MTUyZjVmM2VkMjBiYjUxNGI0OGZmNzI0ODgyYTE1N2I2YTI1ZWQyYmUxMTcyMjUwN2ZhMGM4NThlZGYxMmMxNTZiM2IzZmI4OTA5ZDRlOGZkMzA0NGVkNWRkODI3ZGFkYjFmZGU5NDc1NDVjNzQ2NDQ0MTIxZjI=",
+            "integrity": "sha512-C870inFS9fPtILtRS0j/ckiCoVe2ol7SvhFyJQf6DIWO3xLBVrOz+4kJ1Oj9METtXdgn2tsf3pR1RcdGREEh8g==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-annotations-wasm-js",
             "version": "0.4.2",
@@ -1718,7 +1718,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ODc0MWVjYTM5OTQ0YTAyZjA1YTI4Y2MwOGZhZTQxNTA3NGMzOTAxZTdmMTNlNzQ4M2ZmYTU4NzkzODM1NWFkMTUzOTQwMzI3NWRiYmEzODBmNzY2OTEyOGQwYjYyZTExMjVmNmY1ZGY2YWUxYjNlZGRhYWE1MzE5NTA5MjcwYmI=",
+            "integrity": "sha512-h0Hso5lEoC8FoozAj65BUHTDkB5/E+dIP/pYeTg1WtFTlAMnXbujgPdmkSjQti4RJfb132rhs+3aqlMZUJJwuw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-generator-core-wasm-js",
             "version": "0.4.2",
@@ -1727,7 +1727,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-YWJhNWVkMzNkMzlmMmQyOGRmYzhkOTUxZTBjODRkM2M0MTE4NGRiZTRjMjdhNjY3NzVjZGRlYzI1ZDBjMjg1ZDhiZTY1ZmRjMzhjM2RlNDBjY2M3YTU1Njg1MmI2ODdiOTVhOTQ1Njg5MzE2ZThhM2ZjMDg1MjFiMzExZmUzYzE=",
+            "integrity": "sha512-q6XtM9OfLSjfyNlR4MhNPEEYTb5MJ6Zndc3ewl0MKF2L5l/cOMPeQMzHpVaFK2h7lalFaJMW6KP8CFIbMR/jwQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-generator-core-wasm-js",
             "version": "0.4.2",
@@ -1754,7 +1754,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-YmRjODFkMmMzNjFiYWFlODk0OWEwOTNmMGQwNGMwNTdlNDkwZmU1MzRmZWRhZjE3ZDE5OGZjM2RkMzMwOGIzMGE0ZjMwYjM3MDUwMTEwYzRlNjFhZTY3OWQxMzNiOTI5YmY5ZWI3ZDE5ZDFjMDZkZWIyMDUxNDQwMDlkYzEwOTQ=",
+            "integrity": "sha512-vcgdLDYbquiUmgk/DQTAV+SQ/lNP7a8X0Zj8PdMwizCk8ws3BQEQxOYa5nnRM7kpv5630Z0cBt6yBRRACdwQlA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-generator-json-wasm-js",
             "version": "0.4.2",
@@ -1763,7 +1763,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NWU4NTlkYTNiYTIwNmY0ODNmMDgwMGYyMjY4ZmE1YjQxMjY2YzIxOTEwMTQ2MzQ0NDIzNDZiMjBjNGIwYjQ3MDFmMzcwOTk4NDRmZDA0YWJjN2VkZmU2NDczYTQyYjgzMzFhNDcxZGFjNDEyZmM0NDVkMzNhNmI5M2IwN2E4ZmY=",
+            "integrity": "sha512-XoWdo7ogb0g/CADyJo+ltBJmwhkQFGNEQjRrIMSwtHAfNwmYRP0Eq8ft/mRzpCuDMaRx2sQS/ERdM6a5Oweo/w==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-generator-json-wasm-js",
             "version": "0.4.2",
@@ -1787,7 +1787,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ZTYzMDc3NWYxNDNlNmQyMGYwYTcyYTcwMzY3MThlNzE4NTQyN2I4MTU3OGY5NDllZDk1ZThmNjI0ZjM5MThhYTM0MTQ5Y2UxNmIzNmVkYzJmNzg5NGQ1ZmRiMTdmZmIxMDFiNWZlYTE5ZjQxNGY4YmRjMGRhZmE1YjVhYzVhYjM=",
+            "integrity": "sha512-5jB3XxQ+bSDwpypwNnGOcYVCe4FXj5Se2V6PYk85GKo0FJzhazbtwveJTV/bF/+xAbX+oZ9BT4vcDa+ltaxasw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-json-wasm-js",
             "version": "0.4.2",
@@ -1796,7 +1796,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-N2Q0NWYxNDQ2MjU5NDBjNmNjMzJjODdiMjMwNjE1MThiNjFkMWFjZmI1ZmRiODNkOTJmNmU4ZmE3OGQ3NTk5YTVlNjIxZGFkZGVhNTQ1YjEyMzFlMGM1YmE0OTlhY2UyOTdkZjJiMmVmNjIzNzJiYzZkM2M3MjVkYmYwNmZkZWQ=",
+            "integrity": "sha512-fUXxRGJZQMbMMsh7IwYVGLYdGs+1/bg9kvbo+njXWZpeYh2t3qVFsSMeDFukmazil98rLvYjcrxtPHJdvwb97Q==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-schema-json-wasm-js",
             "version": "0.4.2",
@@ -1819,7 +1819,7 @@
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
-            "integrity": "sha512-NTE4NDhmM2VjOThiNjhmMjkxYjQ1NmJiYWM2YzEzMzQ0NTFhNjhkMTU3Zjg0ZGMzOGU5ZjVmOWRjNzc4N2ZlMzBkOThlYTEzYzY2MTgwOGZkNDZjYzIzMzVjODhiNjU1NzczNTA4NTUxNThjYTBkNThjMjVhYzI0Nzk0NGQ3OGY=",
+            "integrity": "sha512-UYSPPsmLaPKRtFa7rGwTNEUaaNFX+E3Djp9fncd4f+MNmOoTxmGAj9RswjNciLZVdzUIVRWMoNWMJawkeUTXjw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.10.0",
@@ -1828,7 +1828,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZmFmZmIwMDI5NTMzODI0YTQxNTdjMDdkNWQ2NzkxY2FhMGZiNzNiOTFhYTc2MzY2ZDBiN2E0NjA1YWI4Njk1ODI3Y2NiMTI2YWZiNjYzMzg2NzMxMWQzYjY4NTRlYzMxNmE1N2I1ODllYTlkZjU3NGM5ZTYzMWQ5ODllYjQ3Mjg=",
+            "integrity": "sha512-+v+wApUzgkpBV8B9XWeRyqD7c7kap2Nm0LekYFq4aVgnzLEmr7ZjOGcxHTtoVOwxale1ieqd9XTJ5jHZietHKA==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-core-wasm-js",
             "version": "1.10.0",
@@ -1854,7 +1854,7 @@
           ],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-N2RlYjkzZDIxZTQ4ZDEzMjQwODQyNzg3NjNlZjVlYTJjYWEyMDBiODFhZjQyMjdkMjA5NGIwNjMyMmI4NTU1OTU1NDA1NGU0NjI3ZjIyODNlNDI4YWRlMzcwYzQ4YTdmNWIyZjg3MjFkZjdjM2VhZGJiYTM4NmNjYTg4NWUzYmQ=",
+            "integrity": "sha512-feuT0h5I0TJAhCeHY+9eosqiALga9CJ9IJSwYyK4VVlVQFTkYn8ig+QoreNwxIp/Wy+HId98Pq27o4bMqIXjvQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-json-io-wasm-js",
             "version": "1.8.1",
@@ -1863,7 +1863,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NDU3ZDY2MjNlNzM1YTQwYWNjMTllZjgyYThlZDQ5NzJhNGE2YjY2OTVjYTc3MWY4ZjdhNjQ0MWE1YzU4OWUwZGUwZGQyYmM5N2QyY2RhZTNhN2IxN2ZlYjI2OTUyNzIzMTg2MTliNjMxZTQ5YmEwYmU2Y2NkNmFlODc1NzA3MjM=",
+            "integrity": "sha512-RX1mI+c1pArMGe+CqO1JcqSmtmlcp3H496ZEGlxYng3g3SvJfSza46exf+smlScjGGGbYx5JugvmzNauh1cHIw==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-json-io-wasm-js",
             "version": "1.8.1",
@@ -1887,7 +1887,7 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
           "klib": {
-            "integrity": "sha512-ZDZlN2IwNTExZGU5NzQyY2VlOTcxMzc0MGQ0ZGIwMTlkYThkMTQ1ZDQ2ZDVmNmE1M2I2ODM5ZmUyOTYxZmQ3MWQ5Y2RiZmI4OTc2MWRjZGIzODAzMDk1MWEzN2EyNjEwOWZiMjA1NzM5MGU3ZmRjODllN2RkMGU1MDMzMTlhOTE=",
+            "integrity": "sha512-1uewUR3pdCzulxN0DU2wGdqNFF1G1falO2g5/ilh/XHZzb+4l2Hc2zgDCVGjeiYQn7IFc5Dn/ciefdDlAzGakQ==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-json-wasm-js",
             "version": "1.10.0",
@@ -1896,7 +1896,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-NDU1YjY4NWNiYjg3ZGRjNzA0ZjYyZTJmNmM3YzVkYzY0ZmU3NjcyN2Y1YWZmNTNhNzgzNDhmYTU5NDFlMDkzNWRiYTY5NzM3YWE4ZDhmZjA0MThmOTcxOTBjMDk1ODY2OWFiMmVkYTA2MjI4ZTc0YzJmNWU2NTY2N2Q0N2U0YTY=",
+            "integrity": "sha512-RVtoXLuH3ccE9i4vbHxdxk/nZyf1r/U6eDSPpZQeCTXbppc3qo2P8EGPlxkMCVhmmrLtoGIo50wvXmVmfUfkpg==",
             "groupId": "org.jetbrains.kotlinx",
             "artifactId": "kotlinx-serialization-json-wasm-js",
             "version": "1.10.0",
@@ -1917,7 +1917,7 @@
           "dependencies": [],
           "exportedDependencies": [],
           "klib": {
-            "integrity": "sha512-ODIxNGQ1Y2FiMzExZTJmYzQzM2U0MDMzOWQ3YWNlMTI3MzJiNWE0OTI4NjcxNjgzMWU2YWQ1MTNhZTQ5ZDZhMzFlZDdjZWJjMDllNTg0NTU5YzUxODM3MDZhYTBhYTRkODUwN2MyMmRkZDQxZjdjNzM2ZmU1NTJlZTRlNzY1ZjY=",
+            "integrity": "sha512-ghTVyrMR4vxDPkAznXrOEnMrWkkoZxaDHmrVE65J1qMe1868CeWEVZxRg3BqoKpNhQfCLd1B98c2/lUu5Odl9g==",
             "groupId": "org.jetbrains",
             "artifactId": "annotations-wasmJs",
             "version": "26.0.2-1",
@@ -1926,7 +1926,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZjljNWVkZGU1NjhkOTBjMWM4YmE5YjI0YTg1MmQwZTA0MDNkNzIwMTRjOGY3M2NiYjQ5YzdkMDkxMWNkNDg1MTg5YjhlOTkyZjFlZWE1ZGQ3MDcxMjE1ZDQzNmNlOGJmMzk4YmFkMzk5ODFiMWNhOTU5YmZkMTUxNDQ2NmE4M2Q=",
+            "integrity": "sha512-+cXt3laNkMHIupskqFLQ4EA9cgFMj3PLtJx9CRHNSFGJuOmS8e6l3XBxIV1DbOi/OYutOZgbHKlZv9FRRGaoPQ==",
             "groupId": "org.jetbrains",
             "artifactId": "annotations-wasmJs",
             "version": "26.0.2-1",

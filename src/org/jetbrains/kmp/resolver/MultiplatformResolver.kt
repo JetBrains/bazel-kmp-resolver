@@ -120,14 +120,14 @@ internal sealed class MultiplatformLibraryArtifactIntegrity {
     }
 
     fun asBazelIntegrityString(): String {
-        val base64Hash = Base64.encode(hash.encodeToByteArray())
+        val base64Hash = Base64.encode(hash.hexToBytes())
         return "$algorithm-$base64Hash"
     }
 
     companion object {
         fun fromBazelIntegrityString(bazelIntegrity: String): MultiplatformLibraryArtifactIntegrity {
-            val (algorithm, base64Hash) = bazelIntegrity.split("-")
-            val hash = Base64.decode(base64Hash).toString(Charsets.UTF_8)
+            val (algorithm, base64Hash) = bazelIntegrity.split("-", limit = 2)
+            val hash = Base64.decode(base64Hash).toHexString()
             return fromHash(algorithm, hash)
         }
 
@@ -137,6 +137,32 @@ internal sealed class MultiplatformLibraryArtifactIntegrity {
             else -> throw IllegalArgumentException("Unknown hash algorithm: $algorithm")
         }
     }
+}
+
+private val HEX_DIGITS = "0123456789abcdef".toCharArray()
+
+private fun String.hexToBytes(): ByteArray {
+    require(length % 2 == 0) { "Hash must have an even number of hexadecimal characters: $this" }
+    return ByteArray(length / 2) { index ->
+        val high = this[index * 2].hexDigitToInt()
+        val low = this[index * 2 + 1].hexDigitToInt()
+        ((high shl 4) or low).toByte()
+    }
+}
+
+private fun ByteArray.toHexString(): String = buildString(size * 2) {
+    for (byte in this@toHexString) {
+        val value = byte.toInt() and 0xff
+        append(HEX_DIGITS[value ushr 4])
+        append(HEX_DIGITS[value and 0x0f])
+    }
+}
+
+private fun Char.hexDigitToInt(): Int = when (this) {
+    in '0'..'9' -> this - '0'
+    in 'a'..'f' -> this - 'a' + 10
+    in 'A'..'F' -> this - 'A' + 10
+    else -> throw IllegalArgumentException("Invalid hexadecimal digit: $this")
 }
 
 internal class MultiplatformLibraryArtifactIntegritySerializer() : KSerializer<MultiplatformLibraryArtifactIntegrity> {
