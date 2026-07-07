@@ -1,0 +1,20 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "logback\\.xml"
+      },
+      {
+        "pattern": "META-INF/services/.*"
+      },
+      {
+        "pattern": "META-INF/maven/ch\\.qos\\.logback/.*"
+      }
+    ]
+  },
+  "bundles": [
+    {
+      "name": "messages.DependencyResolutionBundle"
+    }
+  ]
+}

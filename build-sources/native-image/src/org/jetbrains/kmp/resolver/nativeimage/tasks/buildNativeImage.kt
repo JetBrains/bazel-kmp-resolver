@@ -5,8 +5,6 @@ import org.jetbrains.amper.plugins.*
 import org.jetbrains.amper.processes.runProcessWithInheritedIO
 import org.jetbrains.kmp.resolver.nativeimage.*
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.*
@@ -33,10 +31,16 @@ fun buildNativeImage(
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
+    val resourceConfigurationFile = Path.of("resource-config.json").toAbsolutePath().normalize()
+    require(resourceConfigurationFile.exists()) {
+        "Native image resource configuration was not found: ${resourceConfigurationFile.absolutePathString()}"
+    }
     println("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
     val cmd = nativeImageCommand(graalVm.nativeImage, platform) + listOf(
         "--no-fallback",
         "-O3",
+        "-H:+UnlockExperimentalVMOptions",
+        "-H:ResourceConfigurationFiles=${resourceConfigurationFile.absolutePathString()}",
         "-cp",
         classpath,
         "-o",
