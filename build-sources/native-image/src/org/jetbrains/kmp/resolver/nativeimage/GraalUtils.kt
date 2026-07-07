@@ -1,7 +1,7 @@
 package org.jetbrains.kmp.resolver.nativeimage
 
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
-import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.net.URI
 import java.nio.file.Path
 import kotlin.io.path.*
@@ -25,7 +25,7 @@ internal fun nativeImageCacheRoot(): Path {
 }
 
 
-internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: Logger): Path {
+internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive): Path {
     val downloadsDir = cacheRoot.resolve("downloads")
     downloadsDir.createDirectories()
     val expectedSha = archive.sha256.lowercase()
@@ -40,7 +40,7 @@ internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: L
         else -> {
             archivePath.deleteIfExists()
             val tempArchive = createTempFile(directory = downloadsDir, prefix = "$expectedSha-", suffix = ".tmp")
-            logger.info("Downloading ${archive.url}")
+            println("Downloading ${archive.url}")
             try {
                 URI(archive.url).toURL().openStream().use { input ->
                     tempArchive.outputStream().use { output ->
@@ -62,14 +62,15 @@ internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: L
 }
 
 @OptIn(ExperimentalPathApi::class)
-internal fun extractArchive(archivePath: Path, destination: Path, logger: Logger) {
+internal fun extractArchive(archivePath: Path, destination: Path) {
+    val dummyLogger = LoggerFactory.getLogger("dummy")
     when {
         archivePath.extension == "zip" -> extractZip(
             archive = archivePath,
             destination = destination,
             stripTopLevelFolder = false,
             cleanDestination = true,
-            logger = logger,
+            logger = dummyLogger,
             temporaryDir = createTempDirectory("extracted")
         )
 
@@ -78,7 +79,7 @@ internal fun extractArchive(archivePath: Path, destination: Path, logger: Logger
             destination = destination,
             stripTopLevelFolder = false,
             cleanDestination = true,
-            logger = logger,
+            logger = dummyLogger,
             temporaryDir = createTempDirectory("extracted")
         )
 

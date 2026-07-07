@@ -11,10 +11,6 @@ import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.*
 
-private object BuildNativeImageTask {
-    val logger: Logger = LoggerFactory.getLogger(this::class.java)
-}
-
 @TaskAction
 fun buildNativeImage(
     graalVmVersion: String,
@@ -24,20 +20,20 @@ fun buildNativeImage(
     mainClass: String,
     @Output outputDirectory: Path,
 ): Unit = runBlocking {
-    val logger = BuildNativeImageTask.logger
     val platform = Platform.current()
     val archive =
         archives.singleOrNull { it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch }
             ?: error("No GraalVM Native Image archive configured for ${platform.suffix}.")
 
-    val graalVm = provisionGraalVm(graalVmVersion, archive, platform, logger)
+    val graalVm = provisionGraalVm(graalVmVersion, archive, platform)
 
     outputDirectory.createDirectories()
-    val outputBinary = outputDirectory.resolve("bazel-kmp-resolver-${platform.suffix}") // no platform suffix, Graal handles that internally
+    val outputBinary =
+        outputDirectory.resolve("bazel-kmp-resolver-${platform.suffix}") // no platform suffix, Graal handles that internally
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
-    logger.info("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
+    println("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
     val cmd = nativeImageCommand(graalVm.nativeImage, platform) + listOf(
         "--no-fallback",
         "-O3",
@@ -64,7 +60,6 @@ private fun provisionGraalVm(
     graalVmVersion: String,
     archive: GraalVmArchive,
     platform: Platform,
-    logger: Logger,
 ): GraalVmInstallation {
     val cacheRoot = nativeImageCacheRoot()
     val installDir = cacheRoot.resolve("graalvm-$graalVmVersion-${platform.suffix}")
@@ -79,16 +74,16 @@ private fun provisionGraalVm(
     val nativeImagePath = archive.nativeImagePath.resolveUnder(installDir)
     return when {
         marker.exists() && marker.readText().trim() == expectedMarker && nativeImagePath.exists() -> {
-            logger.info("Reusing cached GraalVM $graalVmVersion for ${platform.suffix} from ${installDir.absolutePathString()}")
+            println("Reusing cached GraalVM $graalVmVersion for ${platform.suffix} from ${installDir.absolutePathString()}")
             GraalVmInstallation(home = nativeImagePath.parent.parent, nativeImage = nativeImagePath)
         }
 
         else -> {
-            val archivePath = downloadArchive(cacheRoot, archive, logger)
+            val archivePath = downloadArchive(cacheRoot, archive)
             installDir.deleteRecursively()
             installDir.createDirectories()
-            logger.info("Extracting GraalVM $graalVmVersion for ${platform.suffix}")
-            extractArchive(archivePath, installDir, logger)
+            println("Extracting GraalVM $graalVmVersion for ${platform.suffix}")
+            extractArchive(archivePath, installDir)
             marker.writeText(expectedMarker)
             check(nativeImagePath.exists()) {
                 "Configured native-image path ${archive.nativeImagePath} was not found under ${installDir.absolutePathString()}."
