@@ -36,7 +36,7 @@ internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: L
     }
     val archivePath = downloadsDir.resolve("$expectedSha$suffix")
     return when {
-        archivePath.isRegularFile() && sha256(archivePath.readBytesForSha256()) == expectedSha -> archivePath
+        archivePath.isRegularFile() && archivePath.sha256() == expectedSha -> archivePath
         else -> {
             archivePath.deleteIfExists()
             val tempArchive = createTempFile(directory = downloadsDir, prefix = "$expectedSha-", suffix = ".tmp")
@@ -48,7 +48,7 @@ internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: L
                     }
                 }
 
-                val actualSha = sha256(tempArchive.readBytesForSha256())
+                val actualSha = tempArchive.sha256()
                 check(actualSha == expectedSha) {
                     "Checksum mismatch for ${archive.url}: expected ${archive.sha256}, got $actualSha"
                 }

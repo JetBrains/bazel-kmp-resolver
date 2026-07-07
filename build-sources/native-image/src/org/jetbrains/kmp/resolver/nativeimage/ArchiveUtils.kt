@@ -9,7 +9,6 @@ import org.apache.commons.compress.compressors.xz.XZCompressorInputStream
 import org.apache.commons.compress.compressors.zstandard.ZstdCompressorInputStream
 import org.slf4j.Logger
 import java.io.InputStream
-import java.nio.charset.Charset
 import java.nio.file.LinkOption
 import java.nio.file.Path
 import java.nio.file.attribute.PosixFileAttributeView
@@ -18,21 +17,18 @@ import java.security.MessageDigest
 import java.util.zip.ZipInputStream
 import kotlin.io.path.*
 
-internal fun sha256(bytes: ByteArray): String {
+internal fun Path.sha256(): String {
     val md = MessageDigest.getInstance("SHA-256")
-    val digest = md.digest(bytes)
-    return digest.fold(StringBuilder()) { sb, it -> sb.append("%02x".format(it)) }.toString()
+    inputStream().use { input ->
+        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+        var read = input.read(buffer)
+        while (read >= 0) {
+            md.update(buffer, 0, read)
+            read = input.read(buffer)
+        }
+    }
+    return md.digest().fold(StringBuilder()) { sb, it -> sb.append("%02x".format(it)) }.toString()
 }
-
-/**
- * Read content of file at [this] path and normalize it for reliable cross-platform SHA256 hashing
- *
- * Line endings will be normalized to '\n' to ensure the hash result produces identical result on Windows and UNIX.
- */
-fun Path.readBytesForSha256(charset: Charset = Charsets.UTF_8): ByteArray =
-    readText(charset).normaliseLineSeparators().toByteArray(charset)
-
-private fun String.normaliseLineSeparators() = lineSequence().joinToString("\n")
 
 /**
  * Extracts a ZIP archive to a specified output path. Output files will preserve symlinks and file permissions from an archive.
