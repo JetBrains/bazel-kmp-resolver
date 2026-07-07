@@ -1,9 +1,12 @@
 [versions]
+commonsCompress = "1.28.0"
 ktor = "3.4.3"
 serialization = "1.10.0"
 
 [libraries]
 clikt-jvm = "com.github.ajalt.clikt:clikt-jvm:5.1.0"
+async-processes = "org.jetbrains.amper:async-processes:0.12.0-dev-4100"
+commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commonsCompress" }
 ktor-client-cio-jvm = { group = "io.ktor", name = "ktor-client-cio-jvm", version.ref = "ktor" }
 ktor-client-core-jvm = { group = "io.ktor", name = "ktor-client-core-jvm", version.ref = "ktor" }
 dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.12.0-dev-4100"

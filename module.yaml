@@ -19,3 +19,35 @@ settings:
   kotlin:
     version: 2.4.0
     serialization: json
+plugins:
+  native-image:
+    enabled: true
+    graalVmVersion: 24.0.2
+    mainClass: org.jetbrains.kmp.resolver.MainKt
+    outputDirectory: build/native-image
+    archives:
+      - os: linux
+        arch: x64
+        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_linux-x64_bin.tar.gz
+        sha256: b0161a49bbc1d0f40697532ddfabb8052a5a15e463775e6945fe3e4920259bae
+        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image
+      - os: linux
+        arch: arm64
+        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_linux-aarch64_bin.tar.gz
+        sha256: 76f2557f32e8cfbe6d8b7bbf331f0f092ebbe1cc36a2678e098305892076298b
+        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image
+      - os: macos
+        arch: x64
+        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_macos-x64_bin.tar.gz
+        sha256: df0f9e5d101201c50bfa6baa3c657a81a2883c5b5097a9f5ab93dab86f7e3ba2
+        nativeImagePath: graalvm-jdk-24.0.2+11.1/Contents/Home/bin/native-image
+      - os: macos
+        arch: arm64
+        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_macos-aarch64_bin.tar.gz
+        sha256: 2dc7634ed939c725d41a353f73443ff32e70f2fb577367f12a6936107e3494dc
+        nativeImagePath: graalvm-jdk-24.0.2+11.1/Contents/Home/bin/native-image
+      - os: windows
+        arch: x64
+        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_windows-x64_bin.zip
+        sha256: a70785104855c181f2b56993d117e0e991eab6bd6dde99c32c2c5af857756653
+        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image.cmd

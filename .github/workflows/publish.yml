@@ -12,12 +12,16 @@ on:
         required: true
         type: string
 
+concurrency:
+  group: release-${{ github.event.inputs.tag_name || github.ref_name }}
+  cancel-in-progress: false
+
 jobs:
-  publish:
+  prepare-release:
     runs-on: ubuntu-latest
-    concurrency:
-      group: release-${{ github.event.inputs.tag_name || github.ref_name }}
-      cancel-in-progress: false
+    outputs:
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_sha: ${{ steps.source.outputs.release_sha }}
     permissions:
       contents: write
     steps:
@@ -60,19 +64,13 @@ jobs:
           fi
 
           echo "tag_name=$tag_name" >> "$GITHUB_OUTPUT"
-      - name: Run tests
-        run: ./kotlin test
-      - name: Package executable jar
-        run: ./kotlin package
-      - name: Create release with executable jar
+      - name: Create draft release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
-          jar_path="build/tasks/_bazel-kmp-resolver_executableJarJvm/bazel-kmp-resolver-jvm-executable.jar"
-          test -f "$jar_path"
-
           release_args=(
+            --draft
             --generate-notes
             --title "$TAG_NAME"
           )
@@ -81,6 +79,113 @@ jobs:
             release_args+=(--target "${{ steps.source.outputs.release_sha }}")
           fi
 
-          gh release create "$TAG_NAME" "$jar_path" "${release_args[@]}"
-          asset_name="${jar_path##*/}"
-          gh release view "$TAG_NAME" --json assets --jq '.assets[].name' | grep -Fx "$asset_name"
+          gh release create "$TAG_NAME" "${release_args[@]}"
+
+  graalvm-native-image-cache:
+    needs: prepare-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore or save GraalVM archive cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.GRAALVM_NATIVE_IMAGE_CACHE_DIR }}/downloads
+          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Download GraalVM archives
+        shell: bash
+        run: ./kotlin do cacheGraalVmArchives
+
+  native-image:
+    needs:
+      - prepare-release
+      - graalvm-native-image-cache
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux-x64
+            runner: ubuntu-latest
+            executable_extension: ""
+          - platform: linux-arm64
+            runner: ubuntu-24.04-arm
+            executable_extension: ""
+          - platform: macos-x64
+            runner: macos-15-intel
+            executable_extension: ""
+          - platform: macos-arm64
+            runner: macos-15
+            executable_extension: ""
+          - platform: windows-x64
+            runner: windows-latest
+            executable_extension: ".exe"
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: write
+    env:
+      GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore GraalVM archive cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.GRAALVM_NATIVE_IMAGE_CACHE_DIR }}/downloads
+          key: graalvm-caches-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Run tests
+        shell: bash
+        run: ./kotlin test
+      - name: Build native image
+        shell: bash
+        run: ./kotlin do buildNativeImage
+      - name: Smoke-test native binary
+        shell: bash
+        run: |
+          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
+          test -f "$binary"
+          "$binary" --help >/dev/null
+      - name: Upload native binary
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.prepare-release.outputs.tag_name }}
+        shell: bash
+        run: |
+          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
+          gh release upload "$TAG_NAME" "$binary"
+
+  publish:
+    needs:
+      - prepare-release
+      - native-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Verify release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.prepare-release.outputs.tag_name }}
+        run: |
+          expected_assets=(
+            bazel-kmp-resolver-linux-x64
+            bazel-kmp-resolver-linux-arm64
+            bazel-kmp-resolver-macos-x64
+            bazel-kmp-resolver-macos-arm64
+            bazel-kmp-resolver-windows-x64.exe
+          )
+
+          actual_assets="$(gh release view "$TAG_NAME" --json assets --jq '.assets[].name')"
+          for asset in "${expected_assets[@]}"; do
+            grep -Fx "$asset" <<< "$actual_assets"
+          done
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.prepare-release.outputs.tag_name }}
+        run: gh release edit "$TAG_NAME" --draft=false

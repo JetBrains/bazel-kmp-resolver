@@ -1,0 +1,17 @@
+tasks:
+  buildNativeImage:
+    action: !org.jetbrains.kmp.resolver.nativeimage.tasks.buildNativeImage
+      graalVmVersion: ${pluginSettings.graalVmVersion}
+      archives: ${pluginSettings.archives}
+      applicationJar: ${module.jar}
+      runtimeClasspath: ${module.runtimeClasspath}
+      mainClass: ${pluginSettings.mainClass}
+      outputDirectory: ${pluginSettings.outputDirectory}
+  cacheGraalVmArchives:
+    action: !org.jetbrains.kmp.resolver.nativeimage.tasks.cacheGraalVmArchives
+      graalVmVersion: ${pluginSettings.graalVmVersion}
+      archives: ${pluginSettings.archives}
+
+commands:
+  - buildNativeImage
+  - cacheGraalVmArchives
