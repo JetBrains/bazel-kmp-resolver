@@ -25,7 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Restore or save GraalVM archive cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
           key: graalvm-native-image-${{ hashFiles('module.yaml') }}
