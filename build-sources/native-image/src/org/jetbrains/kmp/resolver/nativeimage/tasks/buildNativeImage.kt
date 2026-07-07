@@ -40,6 +40,7 @@ fun buildNativeImage(
     logger.info("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
     val cmd = nativeImageCommand(graalVm.nativeImage, platform) + listOf(
         "--no-fallback",
+        "-O3",
         "-cp",
         classpath,
         "-o",
