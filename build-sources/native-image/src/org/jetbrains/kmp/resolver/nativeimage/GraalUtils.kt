@@ -61,27 +61,32 @@ internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive, logger: L
     }
 }
 
+@OptIn(ExperimentalPathApi::class)
 internal fun extractArchive(archivePath: Path, destination: Path, logger: Logger) {
-    val tempDir = createTempFile("extracted")
-    when {
-        archivePath.extension == "zip" -> extractZip(
-            archive = archivePath,
-            destination = destination,
-            stripTopLevelFolder = false,
-            cleanDestination = true,
-            logger = logger,
-            temporaryDir = tempDir
-        )
+    val tempDir = createTempDirectory("extracted")
+    try {
+        when {
+            archivePath.extension == "zip" -> extractZip(
+                archive = archivePath,
+                destination = destination,
+                stripTopLevelFolder = false,
+                cleanDestination = true,
+                logger = logger,
+                temporaryDir = tempDir
+            )
 
-        archivePath.pathString.endsWith(".tar.gz") -> extractTarGz(
-            archive = archivePath,
-            destination = destination,
-            stripTopLevelFolder = false,
-            cleanDestination = true,
-            logger = logger,
-            temporaryDir = tempDir
-        )
+            archivePath.pathString.endsWith(".tar.gz") -> extractTarGz(
+                archive = archivePath,
+                destination = destination,
+                stripTopLevelFolder = false,
+                cleanDestination = true,
+                logger = logger,
+                temporaryDir = tempDir
+            )
 
-        else -> error("Unsupported GraalVM archive format: ${archivePath.absolutePathString()}")
+            else -> error("Unsupported GraalVM archive format: ${archivePath.absolutePathString()}")
+        }
+    } finally {
+        tempDir.deleteRecursively()
     }
 }
