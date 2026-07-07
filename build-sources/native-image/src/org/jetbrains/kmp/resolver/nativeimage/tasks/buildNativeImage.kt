@@ -31,16 +31,10 @@ fun buildNativeImage(
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
-    val resourceConfigurationFile = Path.of("resource-config.json").toAbsolutePath().normalize()
-    require(resourceConfigurationFile.exists()) {
-        "Native image resource configuration was not found: ${resourceConfigurationFile.absolutePathString()}"
-    }
     println("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
     val cmd = nativeImageCommand(graalVm.nativeImage, platform) + listOf(
         "--no-fallback",
         "-O3",
-        "-H:+UnlockExperimentalVMOptions",
-        "-H:ResourceConfigurationFiles=${resourceConfigurationFile.absolutePathString()}",
         "-cp",
         classpath,
         "-o",
