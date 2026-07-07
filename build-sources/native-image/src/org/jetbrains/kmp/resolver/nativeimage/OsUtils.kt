@@ -5,10 +5,6 @@ internal data class Platform(
     val arch: String,
 ) {
     val suffix = "$os-$arch"
-    val executableExtension = when (os) {
-        "windows" -> ".exe"
-        else -> ""
-    }
     val classpathSeparator = when (os) {
         "windows" -> ";"
         else -> ":"

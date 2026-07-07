@@ -33,7 +33,7 @@ fun buildNativeImage(
     val graalVm = provisionGraalVm(graalVmVersion, archive, platform, logger)
 
     outputDirectory.createDirectories()
-    val outputBinary = outputDirectory.resolve("bazel-kmp-resolver-${platform.suffix}${platform.executableExtension}")
+    val outputBinary = outputDirectory.resolve("bazel-kmp-resolver-${platform.suffix}") // no platform suffix, Graal handles that internally
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
