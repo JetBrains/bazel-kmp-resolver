@@ -30,7 +30,12 @@ internal class ArtifactUrlResolver(
         }
     }
 
-    private val connectionSemaphore = Semaphore(allowedConcurrentConnections)
+    private val hostSemaphores = ConcurrentHashMap<String, Semaphore>()
+
+    private fun hostSemaphore(artifactUrl: String): Semaphore =
+        hostSemaphores.computeIfAbsent(Url(artifactUrl).hostWithPort) {
+            Semaphore(allowedConcurrentConnections)
+        }
 
     private val httpClient = HttpClient(Java) {
         followRedirects = true
@@ -53,7 +58,7 @@ internal class ArtifactUrlResolver(
     suspend fun artifactExistsAt(artifactUrl: String, credentials: RepositoryCredentials): ArtifactFile {
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
-            val resolved = connectionSemaphore.withPermit {
+            val resolved = hostSemaphore(artifactUrl).withPermit {
                 httpClient.head {
                     url(artifactUrl)
                     when {

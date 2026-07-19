@@ -49,7 +49,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     private val allowedConcurrentConnections: Int by option(
         "--allowed-concurrent-connections",
-        help = "Maximum number of concurrent artifact HTTP checks across all repositories.",
+        help = "Maximum number of concurrent artifact HTTP checks per repository host.",
     ).int().default(100)
 
     private val requestTimeoutMillis: Long by option(
