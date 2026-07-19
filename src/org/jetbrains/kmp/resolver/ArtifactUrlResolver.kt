@@ -32,11 +32,6 @@ internal class ArtifactUrlResolver(
 
     private val connectionSemaphore = Semaphore(allowedConcurrentConnections)
 
-    private fun hostSemaphore(artifactUrl: String): Semaphore =
-        hostSemaphores.computeIfAbsent(Url(artifactUrl).hostWithPort) {
-            Semaphore(allowedConcurrentConnections)
-        }
-
     private val httpClient = HttpClient(Java) {
         followRedirects = true
         expectSuccess = false
