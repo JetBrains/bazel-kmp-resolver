@@ -2,7 +2,7 @@ product:
   type: jvm/app
 dependencies:
   - $libs.clikt.jvm
-  - $libs.ktor.client.cio.jvm
+  - $libs.ktor.client.java.jvm
   - $libs.ktor.client.core.jvm
   - $libs.logback.core
   - $libs.logback.classic

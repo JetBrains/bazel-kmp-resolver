@@ -1,7 +1,7 @@
 package org.jetbrains.kmp.resolver
 
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
+import io.ktor.client.engine.java.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -32,7 +32,12 @@ internal class ArtifactUrlResolver(
 
     private val connectionSemaphore = Semaphore(allowedConcurrentConnections)
 
-    private val httpClient = HttpClient(CIO) {
+    private fun hostSemaphore(artifactUrl: String): Semaphore =
+        hostSemaphores.computeIfAbsent(Url(artifactUrl).hostWithPort) {
+            Semaphore(allowedConcurrentConnections)
+        }
+
+    private val httpClient = HttpClient(Java) {
         followRedirects = true
         expectSuccess = false
         install(HttpRequestRetry) {
@@ -42,9 +47,6 @@ internal class ArtifactUrlResolver(
         install(HttpTimeout) {
             requestTimeoutMillis = requestTimeout.inWholeMilliseconds
             connectTimeoutMillis = connectTimeout.inWholeMilliseconds
-        }
-        engine {
-            maxConnectionsCount = allowedConcurrentConnections
         }
         defaultRequest {
             header("User-Agent", "JetBrainsBazelKmpResolver/1.0")
