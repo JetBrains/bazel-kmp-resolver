@@ -41,7 +41,8 @@ internal class ArtifactUrlResolver(
         followRedirects = true
         expectSuccess = false
         install(HttpRequestRetry) {
-            retryOnExceptionOrServerErrors(maxRetries = 5)
+            retryOnServerErrors(maxRetries = 5)
+            retryOnException(maxRetries = 5, retryOnTimeout = true)
             exponentialDelay(baseDelayMs = 3000)
         }
         install(HttpTimeout) {
