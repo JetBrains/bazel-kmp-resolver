@@ -50,7 +50,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
     private val allowedConcurrentConnections: Int by option(
         "--allowed-concurrent-connections",
         help = "Maximum number of concurrent artifact HTTP checks per repository host.",
-    ).int().default(100)
+    ).int().default(32)
 
     private val requestTimeoutMillis: Long by option(
         "--request-timeout-ms",
@@ -60,7 +60,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
     private val connectTimeoutMillis: Long by option(
         "--connect-timeout-ms",
         help = "HTTP connect timeout in milliseconds when checking artifact URLs.",
-    ).long().default(30.seconds.inWholeMilliseconds)
+    ).long().default(10.seconds.inWholeMilliseconds)
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {

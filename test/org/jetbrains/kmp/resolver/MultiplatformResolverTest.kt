@@ -38,9 +38,9 @@ class MultiplatformResolverTest {
             "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
         )
         val artifactResolver = ArtifactUrlResolver(
-            allowedConcurrentConnections = 100,
+            allowedConcurrentConnections = 32,
             connectTimeout = 30.seconds,
-            requestTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
@@ -70,9 +70,9 @@ class MultiplatformResolverTest {
             "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
         )
         val artifactResolver = ArtifactUrlResolver(
-            allowedConcurrentConnections = 100,
+            allowedConcurrentConnections = 32,
             connectTimeout = 30.seconds,
-            requestTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
@@ -102,9 +102,9 @@ class MultiplatformResolverTest {
             "io.ktor:ktor-client-core:3.4.3",
         )
         val artifactResolver = ArtifactUrlResolver(
-            allowedConcurrentConnections = 100,
+            allowedConcurrentConnections = 32,
             connectTimeout = 30.seconds,
-            requestTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
@@ -138,9 +138,9 @@ class MultiplatformResolverTest {
             "ai.jetbrains.code.files:code-files-model:1.0.0-beta.167",
         )
         val artifactResolver = ArtifactUrlResolver(
-            allowedConcurrentConnections = 100,
+            allowedConcurrentConnections = 32,
             connectTimeout = 30.seconds,
-            requestTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
@@ -170,9 +170,9 @@ class MultiplatformResolverTest {
             "com.github.ajalt.clikt:clikt-core:5.0.3", // previous implementation was unable to resolve the hahs of `com/github/ajalt/clikt/clikt-core-wasm-js/5.0.3/clikt-core-wasm-js-5.0.3-sources.jar`
         )
         val artifactResolver = ArtifactUrlResolver(
-            allowedConcurrentConnections = 100,
+            allowedConcurrentConnections = 32,
             connectTimeout = 30.seconds,
-            requestTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
         )
 
         val cache = createTempDirectory("resolution-cache")
