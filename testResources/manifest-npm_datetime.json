@@ -1,0 +1,114 @@
+{
+  "askedCoordinates": [
+    "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "org.jetbrains.kotlin:kotlin-stdlib:2.1.20": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.1.20",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "klib": {
+            "integrity": "sha512-fRqrOWTMepDkqhu2UAWBKRAGflaDUg4OjYUgxYN/0BzJs+MmLu4ZbWF/7bC2vq2P/b1YfrnnqaCwjPN2e5S6vw==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib-wasm-js",
+            "version": "2.1.20",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.1.20/kotlin-stdlib-wasm-js-2.1.20.klib"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-JLaAeTGTkDnHo0KEBttExYqb8nK/gzjF7A33ibNQ9vHA7qbIfYwIcm5Ffpte4sJw6kQ0oAq6KRKbcbKudnwvHQ==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib-wasm-js",
+            "version": "2.1.20",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.1.20/kotlin-stdlib-wasm-js-2.1.20-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1": {
+      "id": "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-datetime-wasm-js:0.7.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core"
+          ],
+          "klib": {
+            "integrity": "sha512-EyaLc6e2ti1DsTRrqfossN3mhmURO1gMxAOAu+L9xMP5xB8TgGg22CHw1XRhfMybVs9EadB4suPPFBSS6HUuiw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-datetime-wasm-js",
+            "version": "0.7.1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-wasm-js/0.7.1/kotlinx-datetime-wasm-js-0.7.1.klib"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-wg9NQYjcH56wX0YMv+46pJUUM64BJQ5MFfrm96WFbqlfwfR//qd1oBkvfRXvD5Y36HxPtU6+13W5UJgioOKbbw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-datetime-wasm-js",
+            "version": "0.7.1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-wasm-js/0.7.1/kotlinx-datetime-wasm-js-0.7.1-sources.jar"
+            ]
+          },
+          "npmPackages": [
+            {
+              "integrity": "sha512-PMqgJ0sw5B7FKb2d5bWYIoxjri+QlW/Pys7+Rw82jSH0QN3rB05jZ/VrrsUdh1w4+i2kw9JOejXGq/KhDOX7Kg==",
+              "name": "@js-joda/core",
+              "version": "3.2.0",
+              "url": "https://registry.npmjs.org/@js-joda/core/-/core-3.2.0.tgz"
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2": {
+      "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2",
+      "variants": [
+        {
+          "type": "wasmjs",
+          "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.6.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-wasm-js"
+          ],
+          "klib": {
+            "integrity": "sha512-EGyM5ux1hA605lgPsC6tUaxtMr+Sdf7ZNJw+nUEppO+lf6kcf6KLP36cxgg/lJCTGs3xr2iIkz06PZcrCeYbzw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-wasm-js",
+            "version": "1.6.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-wasm-js/1.6.2/kotlinx-serialization-core-wasm-js-1.6.2.klib"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-OqOGFKGCsd3kvY80ngVP8CEJ+00ZUGWkCAxNoQ8jJ7Sb5em2P9VXkYdDTws0LBTmeGG0CvhEA2WXBaaL7VFhjQ==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-wasm-js",
+            "version": "1.6.2",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-wasm-js/1.6.2/kotlinx-serialization-core-wasm-js-1.6.2-sources.jar"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

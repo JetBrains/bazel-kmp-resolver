@@ -47,6 +47,29 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         help = "Path to JSON repository credentials resolved by the caller.",
     ).convert { Path.of(it) }
 
+    private val nodeExecutable: Path by option(
+        "--node-executable",
+        help = "Path to the Node.js executable used to run npm when resolving klib-declared NPM dependencies.",
+    ).convert { Path.of(it) }.required()
+
+    private val npmCliJs: Path by option(
+        "--npm-cli-js",
+        help = "Path to npm's `npm-cli.js` entry point, run with the Node.js executable (portable, unlike the `npm` wrapper scripts).",
+    ).convert { Path.of(it) }.required()
+
+    private val npmRegistry: String? by option(
+        "--npm-registry",
+        help = "NPM registry URL used to resolve klib-declared NPM dependencies. Defaults to https://registry.npmjs.org.",
+    )
+
+    private val npmPackageVersions: List<Pair<String, String>> by option(
+        "--npm-package-version",
+        help = "Hardcoded `name=version` of an NPM package, resolving version conflicts between klibs manually, can be specified multiple times.",
+    ).convert {
+        val (name, version) = it.split("=", limit = 2)
+        name to version
+    }.multiple(required = false)
+
     private val allowedConcurrentConnections: Int by option(
         "--allowed-concurrent-connections",
         help = "Maximum number of concurrent artifact HTTP checks per repository host.",
@@ -79,6 +102,13 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 repositories = repositories.withRepositoryCredentials(credentials),
                 artifactResolver = artifactResolver,
                 substitutions = substitutions.toMap(),
+                npmResolver = NpmResolver(
+                    nodeExecutable = nodeExecutable,
+                    npmCliJs = npmCliJs,
+                    registryUrl = npmRegistry,
+                    packageVersionOverrides = npmPackageVersions.toMap(),
+                    workDir = outputManifest.parent,
+                ),
             )
             BazelManifest(
                 askedCoordinates = coordinates.sorted(),

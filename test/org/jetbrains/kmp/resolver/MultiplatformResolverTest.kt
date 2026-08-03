@@ -2,7 +2,6 @@ package org.jetbrains.kmp.resolver
 
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
-import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
@@ -43,11 +42,10 @@ class MultiplatformResolverTest {
             requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
-            val resolver = MultiplatformResolver(
+            val resolver = testMultiplatformResolver(
                 cachePath = createTempDirectory("resolution-cache"),
-                repositories = repositories.map { MavenRepository(it) },
+                repositories = repositories,
                 artifactResolver = artifactResolver,
-                substitutions = emptyMap()
             )
             resolver.resolve(coordinates)
         }
@@ -75,11 +73,10 @@ class MultiplatformResolverTest {
             requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
-            val resolver = MultiplatformResolver(
+            val resolver = testMultiplatformResolver(
                 cachePath = createTempDirectory("resolution-cache"),
-                repositories = repositories.map { MavenRepository(it) },
+                repositories = repositories,
                 artifactResolver = artifactResolver,
-                substitutions = emptyMap()
             )
             resolver.resolve(coordinates)
         }
@@ -107,14 +104,14 @@ class MultiplatformResolverTest {
             requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
-            val resolver = MultiplatformResolver(
+            val resolver = testMultiplatformResolver(
                 cachePath = createTempDirectory("resolution-cache"),
-                repositories = repositories.map { MavenRepository(it) },
+                repositories = repositories,
                 artifactResolver = artifactResolver,
                 substitutions = mapOf(
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
-                )
+                ),
             )
             resolver.resolve(coordinates)
         }
@@ -143,11 +140,10 @@ class MultiplatformResolverTest {
             requestTimeout = 10.seconds,
         )
         val actual = artifactResolver.use { artifactResolver ->
-            val resolver = MultiplatformResolver(
+            val resolver = testMultiplatformResolver(
                 cachePath = createTempDirectory("resolution-cache"),
-                repositories = repositories.map { MavenRepository(it) },
+                repositories = repositories,
                 artifactResolver = artifactResolver,
-                substitutions = emptyMap(),
             )
             resolver.resolve(coordinates)
         }
@@ -157,6 +153,37 @@ class MultiplatformResolverTest {
             repositories = repositories,
             libraries = actual,
             manifestResourceFilepath = "manifest-no_jvm_deps.json",
+        )
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    @Test
+    fun `klib-declared npm dependencies are resolved`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1", // its klib embeds a package.json requiring `@js-joda/core`
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-npm_datetime.json",
         )
     }
 
@@ -178,11 +205,10 @@ class MultiplatformResolverTest {
         val cache = createTempDirectory("resolution-cache")
         cache.deleteRecursively()
         artifactResolver.use { artifactResolver ->
-            val resolver = MultiplatformResolver(
+            val resolver = testMultiplatformResolver(
                 cachePath = cache,
-                repositories = repositories.map { MavenRepository(it) },
+                repositories = repositories,
                 artifactResolver = artifactResolver,
-                substitutions = emptyMap()
             )
             assertDoesNotThrow {
                 resolver.resolve(coordinates)

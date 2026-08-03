@@ -1,8 +1,10 @@
 package org.jetbrains.kmp.resolver
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -92,19 +94,40 @@ internal sealed class MultiplatformVariant {
         /**
          * .klib of this imported dependency, exposed to the compile library path of direct dependents.
          */
-        val klib: MultiplatformLibraryArtifact,
-        val sourceJar: MultiplatformLibraryArtifact?,
+        val klib: MavenMultiplatformLibraryArtifact,
+        val sourceJar: MavenMultiplatformLibraryArtifact?,
+
+        /**
+         * NPM packages required at runtime by this library, declared by the `package.json` embedded in its klib,
+         * listed with their transitive NPM dependencies.
+         */
+        val npmPackages: List<NpmMultiplatformLibraryArtifact> = emptyList(),
     ) : MultiplatformVariant()
 }
 
 @Serializable
-internal data class MultiplatformLibraryArtifact(
-    val integrity: MultiplatformLibraryArtifactIntegrity,
+internal sealed class MultiplatformLibraryArtifact {
+    abstract val integrity: MultiplatformLibraryArtifactIntegrity
+}
+
+@Serializable
+@SerialName("maven")
+internal data class MavenMultiplatformLibraryArtifact(
+    override val integrity: MultiplatformLibraryArtifactIntegrity,
     val groupId: String,
     val artifactId: String,
     val version: String,
     val urls: List<String>,
-)
+) : MultiplatformLibraryArtifact()
+
+@Serializable
+@SerialName("npm")
+internal data class NpmMultiplatformLibraryArtifact(
+    override val integrity: MultiplatformLibraryArtifactIntegrity,
+    val name: String,
+    val version: String,
+    val url: String,
+) : MultiplatformLibraryArtifact()
 
 @Serializable(with = MultiplatformLibraryArtifactIntegritySerializer::class)
 internal sealed class MultiplatformLibraryArtifactIntegrity {
@@ -183,6 +206,7 @@ internal class MultiplatformResolver(
     private val repositories: List<MavenRepository>,
     private val substitutions: Substitutions,
     private val artifactResolver: ArtifactUrlResolver,
+    private val npmResolver: NpmResolver,
 ) {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -212,8 +236,27 @@ internal class MultiplatformResolver(
             }
             hasKmpParent && hasRelevantArtifacts
         }
+        logger.debug("Resolving NPM dependencies declared by the klibs of the dependency graph...")
+        val npmPackagesByVariant = resolveNpmPackages(nodes)
         logger.debug("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
-        return resolveArtifacts(nodes)
+        return resolveArtifacts(nodes, npmPackagesByVariant)
+    }
+
+    private suspend fun resolveNpmPackages(
+        nodes: List<UnresolvedMultiplatformLibrary>,
+    ): Map<MultiplatformLibraryId, List<NpmMultiplatformLibraryArtifact>> {
+        val requests = nodes.mapNotNull { node ->
+            when (node) {
+                is UnresolvedMultiplatformLibrary.WasmJs -> {
+                    val manifest = withContext(Dispatchers.IO) { readEmbeddedNpmManifest(node.klibPath()) }
+                    when {
+                        manifest == null || manifest.dependencies.isEmpty() -> null
+                        else -> NpmResolutionRequest(variantId = node.variantId, manifest = manifest)
+                    }
+                }
+            }
+        }
+        return npmResolver.resolve(requests)
     }
 
     private suspend fun callAmperResolution(
@@ -295,12 +338,15 @@ internal class MultiplatformResolver(
         }
     }
 
-    private suspend fun resolveArtifacts(nodes: List<UnresolvedMultiplatformLibrary>): List<MultiplatformVariant> =
+    private suspend fun resolveArtifacts(
+        nodes: List<UnresolvedMultiplatformLibrary>,
+        npmPackagesByVariant: Map<MultiplatformLibraryId, List<NpmMultiplatformLibraryArtifact>>,
+    ): List<MultiplatformVariant> =
         coroutineScope {
             nodes.map { unresolvedNode ->
                 when (unresolvedNode) {
                     is UnresolvedMultiplatformLibrary.WasmJs -> async {
-                        unresolvedNode.resolve(artifactResolver)
+                        unresolvedNode.resolve(artifactResolver, npmPackagesByVariant[unresolvedNode.variantId].orEmpty())
                     }
                 }
             }.awaitAll()
@@ -416,6 +462,15 @@ private sealed class UnresolvedMultiplatformLibrary {
             return klibs.single().toUnresolvedMultiplatformLibraryArtifact()
         }
 
+        /**
+         * Local path of the klib downloaded by the Amper resolution, allowing the inspection of its contents.
+         */
+        suspend fun klibPath(): Path {
+            val klibs = files.filter { file -> file.isWasmKlib() }
+            require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
+            return klibs.single().getPath() ?: error("[$variantId] klib was not downloaded to the local cache")
+        }
+
         // TODO: could we do something about this super hacky substitution resolution?
         override val exportedDependencies: Set<SubstitutionId> =
             substitutions.substituteSubstitutionIds(compileNode?.wasmJsDependencies() ?: emptySet())
@@ -465,7 +520,7 @@ private sealed class UnresolvedMultiplatformLibrary {
 
 private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     artifactUrlResolver: ArtifactUrlResolver,
-): MultiplatformLibraryArtifact {
+): MavenMultiplatformLibraryArtifact {
     val urls = coroutineScope {
         possibleLocations.map { location ->
             async { artifactUrlResolver.artifactExistsAt(location.url, location.credentials) }
@@ -473,7 +528,7 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     }
     require(urls.isNotEmpty()) { "[$groupId:$artifactId:$version] artifact could not be find in any of the specified repositories" }
 
-    return MultiplatformLibraryArtifact(
+    return MavenMultiplatformLibraryArtifact(
         integrity = integrity,
         groupId = groupId,
         artifactId = artifactId,
@@ -484,6 +539,7 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
 
 private suspend fun UnresolvedMultiplatformLibrary.WasmJs.resolve(
     artifactUrlResolver: ArtifactUrlResolver,
+    npmPackages: List<NpmMultiplatformLibraryArtifact>,
 ): MultiplatformVariant.WasmJs = coroutineScope {
     val resolvedKlib = async { klib().resolve(artifactUrlResolver) }
     val resolvedSourceJar = sourceJar()?.let { async { it.resolve(artifactUrlResolver) } }
@@ -494,6 +550,7 @@ private suspend fun UnresolvedMultiplatformLibrary.WasmJs.resolve(
         sourceJar = resolvedSourceJar?.await(),
         dependencies = dependencies.sorted(),
         exportedDependencies = exportedDependencies.sorted(),
+        npmPackages = npmPackages,
     )
 }
 

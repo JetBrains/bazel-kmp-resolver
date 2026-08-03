@@ -1,5 +1,7 @@
 modules:
   - build-sources/native-image
+  - build-sources/node
 
 plugins:
   - ./build-sources/native-image
+  - ./build-sources/node

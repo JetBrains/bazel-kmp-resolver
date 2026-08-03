@@ -1,0 +1,18 @@
+tasks:
+  provisionNode:
+    action: !org.jetbrains.kmp.resolver.node.tasks.provisionNode
+      version: ${pluginSettings.version}
+      distributions: ${pluginSettings.distributions}
+      distributionDirectory: ${pluginSettings.distributionDirectory}
+      generatedResourcesDirectory: ${pluginSettings.generatedResourcesDirectory}
+
+# the properties file is contributed to the test fragment, which makes the JVM test compilation (and therefore the
+# test run) depend on this task: the distribution is always provisioned before the tests run
+generated:
+  resources:
+    - directory: ${tasks.provisionNode.action.generatedResourcesDirectory}
+      fragment:
+        isTest: true
+
+commands:
+  - provisionNode

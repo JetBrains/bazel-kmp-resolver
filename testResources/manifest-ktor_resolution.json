@@ -86,7 +86,15 @@
             "urls": [
               "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-wasm-js/3.5.0/ktor-client-core-wasm-js-3.5.0-sources.jar"
             ]
-          }
+          },
+          "npmPackages": [
+            {
+              "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
+              "name": "ws",
+              "version": "8.18.3",
+              "url": "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz"
+            }
+          ]
         }
       ]
     },

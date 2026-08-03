@@ -8,6 +8,7 @@ dependencies:
   - $libs.logback.classic
   - $libs.slf4j.api
   - $libs.dependency.resolution
+  - $libs.async.processes
   - $libs.kotlinx.coroutines.core.jvm
   - $libs.kotlinx.serialization.core.jvm
   - $libs.kotlinx.serialization.json.jvm
@@ -51,3 +52,47 @@ plugins:
         url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_windows-x64_bin.zip
         sha256: a70785104855c181f2b56993d117e0e991eab6bd6dde99c32c2c5af857756653
         nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image.cmd
+  # provisions the hermetic Node.js distribution the tests run npm with, before the tests are compiled.
+  # sha256 values from https://nodejs.org/dist/v22.22.2/SHASUMS256.txt
+  node:
+    enabled: true
+    version: 22.22.2
+    distributionDirectory: build/node/dist
+    generatedResourcesDirectory: build/node/generated-resources
+    distributions:
+      - os: linux
+        arch: x64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.gz
+        sha256: 978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3
+        nodePath: bin/node
+        npmCliJsPath: lib/node_modules/npm/bin/npm-cli.js
+      - os: linux
+        arch: arm64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-arm64.tar.gz
+        sha256: b2f3a96f31486bfc365192ad65ced14833ad2a3c2e1bcefec4846902f264fa28
+        nodePath: bin/node
+        npmCliJsPath: lib/node_modules/npm/bin/npm-cli.js
+      - os: macos
+        arch: x64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-darwin-x64.tar.gz
+        sha256: 12a6abb9c2902cf48a21120da13f87fde1ed1b71a13330712949e8db818708ba
+        nodePath: bin/node
+        npmCliJsPath: lib/node_modules/npm/bin/npm-cli.js
+      - os: macos
+        arch: arm64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-darwin-arm64.tar.gz
+        sha256: db4b275b83736df67533529a18cc55de2549a8329ace6c7bcc68f8d22d3c9000
+        nodePath: bin/node
+        npmCliJsPath: lib/node_modules/npm/bin/npm-cli.js
+      - os: windows
+        arch: x64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip
+        sha256: 7c93e9d92bf68c07182b471aa187e35ee6cd08ef0f24ab060dfff605fcc1c57c
+        nodePath: node.exe
+        npmCliJsPath: node_modules/npm/bin/npm-cli.js
+      - os: windows
+        arch: arm64
+        url: https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-arm64.zip
+        sha256: 380d375cf650c5a7f2ef3ce29ac6ea9a1c9d2ec8ea8e8391e1a34fd543886ab3
+        nodePath: node.exe
+        npmCliJsPath: node_modules/npm/bin/npm-cli.js

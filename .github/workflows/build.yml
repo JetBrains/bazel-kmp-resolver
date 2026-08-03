@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+      - name: Restore or save Node.js distribution cache
+        uses: actions/cache@v6
+        with:
+          path: build/node
+          key: node-${{ hashFiles('module.yaml') }}
       - name: Run tests
         run: ./kotlin test
 
