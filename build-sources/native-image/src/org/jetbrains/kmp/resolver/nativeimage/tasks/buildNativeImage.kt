@@ -3,10 +3,13 @@ package org.jetbrains.kmp.resolver.nativeimage.tasks
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.*
 import org.jetbrains.amper.processes.runProcessWithInheritedIO
-import org.jetbrains.kmp.resolver.nativeimage.*
+import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
+import org.jetbrains.kmp.resolver.shared.Platform
+import org.jetbrains.kmp.resolver.shared.normalizedArch
+import org.jetbrains.kmp.resolver.shared.normalizedOs
+import org.jetbrains.kmp.resolver.nativeimage.downloadAndExtractGraalArchive
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
 import java.nio.file.Path
-import java.util.*
 import kotlin.io.path.*
 
 @TaskAction
@@ -23,7 +26,7 @@ fun buildNativeImage(
         archives.singleOrNull { it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch }
             ?: error("No GraalVM Native Image archive configured for ${platform.suffix}.")
 
-    val graalVm = provisionGraalVm(graalVmVersion, archive, platform)
+    val graalVm = provisionGraalVm(graalVmVersion, archive)
 
     outputDirectory.createDirectories()
     val outputBinary =
@@ -54,53 +57,22 @@ private data class GraalVmInstallation(
 )
 
 @OptIn(ExperimentalPathApi::class)
-private fun provisionGraalVm(
+private suspend fun provisionGraalVm(
     graalVmVersion: String,
     archive: GraalVmArchive,
-    platform: Platform,
 ): GraalVmInstallation {
-    val cacheRoot = nativeImageCacheRoot()
-    val installDir = cacheRoot.resolve("graalvm-$graalVmVersion-${platform.suffix}")
-    val marker = installDir.resolve(".native-image-cache")
-    val expectedMarker = """
-        graalVmVersion=$graalVmVersion
-        url=${archive.url}
-        sha256=${archive.sha256.lowercase(Locale.ROOT)}
-        nativeImagePath=${archive.nativeImagePath}
-    """.trimIndent()
-
-    val nativeImagePath = archive.nativeImagePath.resolveUnder(installDir)
-    return when {
-        marker.exists() && marker.readText().trim() == expectedMarker && nativeImagePath.exists() -> {
-            println("Reusing cached GraalVM $graalVmVersion for ${platform.suffix} from ${installDir.absolutePathString()}")
-            GraalVmInstallation(home = nativeImagePath.parent.parent, nativeImage = nativeImagePath)
-        }
-
-        else -> {
-            val archivePath = downloadArchive(cacheRoot, archive)
-            installDir.deleteRecursively()
-            installDir.createDirectories()
-            println("Extracting GraalVM $graalVmVersion for ${platform.suffix}")
-            extractArchive(archivePath, installDir)
-            marker.writeText(expectedMarker)
-            check(nativeImagePath.exists()) {
-                "Configured native-image path ${archive.nativeImagePath} was not found under ${installDir.absolutePathString()}."
-            }
-            GraalVmInstallation(home = nativeImagePath.parent.parent, nativeImage = nativeImagePath)
-        }
+    val extracted = ArchiveDownloadCache.downloadAndExtractGraalArchive(archive, graalVmVersion)
+    val nativeImagePath = extracted.resolve(archive.nativeImagePath)
+    check(nativeImagePath.exists()) {
+        "Configured native-image path ${archive.nativeImagePath} was not found under ${extracted.absolutePathString()}."
     }
-}
-
-private fun String.resolveUnder(root: Path): Path {
-    val relativePath = Path.of(this)
-    check(!relativePath.isAbsolute) { "Configured archive path must be relative: $this" }
-    val resolved = root.resolve(relativePath).normalize()
-    check(resolved.startsWith(root.normalize())) { "Configured archive path escapes extraction directory: $this" }
-    return resolved
+    return GraalVmInstallation(home = nativeImagePath.parent.parent, nativeImage = nativeImagePath)
 }
 
 private fun buildClasspath(
-    applicationJar: CompilationArtifact, runtimeClasspath: Classpath, platform: Platform
+    applicationJar: CompilationArtifact,
+    runtimeClasspath: Classpath,
+    platform: Platform,
 ): String {
     val classpathFiles = sequence {
         yield(applicationJar.artifact)

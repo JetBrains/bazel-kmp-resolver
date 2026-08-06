@@ -1,12 +1,35 @@
 package org.jetbrains.kmp.resolver.nativeimage
 
+import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
+import org.jetbrains.kmp.resolver.shared.CacheEntry
+import org.jetbrains.kmp.resolver.shared.Platform
+import org.jetbrains.kmp.resolver.shared.normalizedOs
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
-import org.slf4j.LoggerFactory
-import java.net.URI
 import java.nio.file.Path
-import kotlin.io.path.*
+import kotlin.io.path.createTempDirectory
 
-internal fun nativeImageCacheRoot(): Path {
+internal suspend fun ArchiveDownloadCache.downloadAndExtractGraalArchive(
+    archive: GraalVmArchive,
+    version: String,
+): Path {
+    val platform = Platform(archive.os, archive.arch)
+    return downloadAndExtract(
+        archive = CacheEntry.Archive(
+            url = archive.url,
+            sha256Checksum = archive.sha256,
+            location = graalDistributionCacheEntry(version, platform),
+        ),
+        stripTopLevelFolder = false,
+        temporaryDir = createTempDirectory("tmp_download_cache"),
+    )
+}
+
+private fun graalDistributionCacheEntry(
+    graalVmVersion: String,
+    platform: Platform,
+): Path = nativeImageCacheRoot().resolve("graalvm-$graalVmVersion-${platform.suffix}")
+
+private fun nativeImageCacheRoot(): Path {
     val envPath = System.getenv("GRAALVM_NATIVE_IMAGE_CACHE_DIR")
     val userHome = Path.of(System.getProperty("user.home"))
     return when {
@@ -21,68 +44,5 @@ internal fun nativeImageCacheRoot(): Path {
         }
 
         else -> userHome.resolve(".cache").resolve("bazel-kmp-resolver").resolve("native-image")
-    }
-}
-
-
-internal fun downloadArchive(cacheRoot: Path, archive: GraalVmArchive): Path {
-    val downloadsDir = cacheRoot.resolve("downloads")
-    downloadsDir.createDirectories()
-    val expectedSha = archive.sha256.lowercase()
-    val suffix = when {
-        archive.url.endsWith(".zip") -> ".zip"
-        archive.url.endsWith(".tar.gz") -> ".tar.gz"
-        else -> error("unsupported archive extension: ${archive.url}")
-    }
-    val archivePath = downloadsDir.resolve("$expectedSha$suffix")
-    return when {
-        archivePath.isRegularFile() && archivePath.sha256() == expectedSha -> archivePath
-        else -> {
-            archivePath.deleteIfExists()
-            val tempArchive = createTempFile(directory = downloadsDir, prefix = "$expectedSha-", suffix = ".tmp")
-            println("Downloading ${archive.url}")
-            try {
-                URI(archive.url).toURL().openStream().use { input ->
-                    tempArchive.outputStream().use { output ->
-                        input.copyTo(output)
-                    }
-                }
-
-                val actualSha = tempArchive.sha256()
-                check(actualSha == expectedSha) {
-                    "Checksum mismatch for ${archive.url}: expected ${archive.sha256}, got $actualSha"
-                }
-                tempArchive.moveTo(archivePath, overwrite = true)
-            } finally {
-                tempArchive.deleteIfExists()
-            }
-            archivePath
-        }
-    }
-}
-
-@OptIn(ExperimentalPathApi::class)
-internal fun extractArchive(archivePath: Path, destination: Path) {
-    val dummyLogger = LoggerFactory.getLogger("dummy")
-    when {
-        archivePath.extension == "zip" -> extractZip(
-            archive = archivePath,
-            destination = destination,
-            stripTopLevelFolder = false,
-            cleanDestination = true,
-            logger = dummyLogger,
-            temporaryDir = createTempDirectory("extracted")
-        )
-
-        archivePath.pathString.endsWith(".tar.gz") -> extractTarGz(
-            archive = archivePath,
-            destination = destination,
-            stripTopLevelFolder = false,
-            cleanDestination = true,
-            logger = dummyLogger,
-            temporaryDir = createTempDirectory("extracted")
-        )
-
-        else -> error("Unsupported GraalVM archive format: ${archivePath.absolutePathString()}")
     }
 }

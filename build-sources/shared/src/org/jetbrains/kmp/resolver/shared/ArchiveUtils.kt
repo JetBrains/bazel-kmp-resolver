@@ -1,4 +1,4 @@
-package org.jetbrains.kmp.resolver.nativeimage
+package org.jetbrains.kmp.resolver.shared
 
 import org.apache.commons.compress.archivers.ArchiveEntry
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
@@ -7,27 +7,26 @@ import org.apache.commons.compress.archivers.zip.ZipFile
 import org.apache.commons.compress.compressors.CompressorStreamFactory
 import org.apache.commons.compress.compressors.xz.XZCompressorInputStream
 import org.apache.commons.compress.compressors.zstandard.ZstdCompressorInputStream
-import org.slf4j.Logger
 import java.io.InputStream
 import java.nio.file.LinkOption
 import java.nio.file.Path
 import java.nio.file.attribute.PosixFileAttributeView
 import java.nio.file.attribute.PosixFilePermission
-import java.security.MessageDigest
 import java.util.zip.ZipInputStream
 import kotlin.io.path.*
 
-internal fun Path.sha256(): String {
-    val md = MessageDigest.getInstance("SHA-256")
-    inputStream().use { input ->
-        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
-        var read = input.read(buffer)
-        while (read >= 0) {
-            md.update(buffer, 0, read)
-            read = input.read(buffer)
-        }
-    }
-    return md.digest().fold(StringBuilder()) { sb, it -> sb.append("%02x".format(it)) }.toString()
+fun extractArchive(
+    archive: Path,
+    destination: Path,
+    stripTopLevelFolder: Boolean,
+    cleanDestination: Boolean,
+    temporaryDir: Path,
+) = when {
+    // @formatter:off
+    archive.name.endsWith(".tar.gz") -> extractTarGz(archive, destination, stripTopLevelFolder, cleanDestination, temporaryDir )
+    archive.extension == "zip" -> extractZip(archive, destination, stripTopLevelFolder, cleanDestination, temporaryDir)
+    else -> error("Unsupported archive extension: ${archive.name}")
+    // @formatter:on
 }
 
 /**
@@ -44,8 +43,7 @@ fun extractZip(
     stripTopLevelFolder: Boolean,
     cleanDestination: Boolean,
     temporaryDir: Path,
-    logger: Logger,
-) = extract(archive, destination, stripTopLevelFolder, cleanDestination, ArchiveType.ZIP, "", temporaryDir, logger)
+) = extract(archive, destination, stripTopLevelFolder, cleanDestination, ArchiveType.ZIP, "", temporaryDir)
 
 
 fun extractTarGz(
@@ -54,17 +52,9 @@ fun extractTarGz(
     stripTopLevelFolder: Boolean,
     cleanDestination: Boolean,
     temporaryDir: Path,
-    logger: Logger,
     encoding: String? = null,
 ) = extractCompressedTar(
-    archive,
-    destination,
-    stripTopLevelFolder,
-    cleanDestination,
-    CompressorStreamFactory.GZIP,
-    temporaryDir,
-    logger,
-    encoding
+    archive, destination, stripTopLevelFolder, cleanDestination, CompressorStreamFactory.GZIP, temporaryDir, encoding
 )
 
 private fun extractCompressedTar(
@@ -74,18 +64,9 @@ private fun extractCompressedTar(
     cleanDestination: Boolean,
     compressorName: String,
     temporaryDir: Path,
-    logger: Logger,
     encoding: String? = null,
 ) = extract(
-    archive,
-    destination,
-    stripTopLevelFolder,
-    cleanDestination,
-    ArchiveType.TAR,
-    compressorName,
-    temporaryDir,
-    logger,
-    encoding
+    archive, destination, stripTopLevelFolder, cleanDestination, ArchiveType.TAR, compressorName, temporaryDir, encoding
 )
 
 @OptIn(ExperimentalPathApi::class)
@@ -97,13 +78,12 @@ private fun extract(
     archiveType: ArchiveType,
     compressorName: String,
     temporaryDir: Path,
-    logger: Logger,
     encoding: String? = null,
 ) {
     val tmpFolder = temporaryDir.resolve("${archive.fileName}_extracted")
     tmpFolder.deleteRecursively()
     tmpFolder.createDirectories()
-    logger.info("Extracting '$archive' to '$tmpFolder'")
+    println("Extracting '$archive' to '$tmpFolder'")
 
     when (archiveType) {
         ArchiveType.ZIP -> {
@@ -116,7 +96,6 @@ private fun extract(
                         isSymbolicLink = entry.isUnixSymlink,
                         unixMode = entry.unixMode,
                         symLink = zipFile.getUnixSymlink(entry),
-                        logger = logger,
                         entryInputStreamProducer = { zipFile.getInputStream(entry).buffered() },
                     )
                 }
@@ -130,13 +109,13 @@ private fun extract(
                 else -> CompressorStreamFactory().createCompressorInputStream(compressorName, bufferedInputStream)
             }.use { `in` ->
                 TarArchiveInputStream(`in`, encoding).use { archiveInputStream ->
-                    archiveInputStream.extractEntriesTo(stripTopLevelFolder, tmpFolder, logger)
+                    archiveInputStream.extractEntriesTo(stripTopLevelFolder, tmpFolder)
                 }
             }
         }
     }
-    logger.info("Extracted '$archive' to '$tmpFolder'")
-    logger.info("Moving '$tmpFolder' to '$destination'")
+    println("Extracted '$archive' to '$tmpFolder'")
+    println("Moving '$tmpFolder' to '$destination'")
     when {
         cleanDestination -> destination.deleteRecursively()
         else -> require(!destination.exists() || destination.isDirectory()) { "destination be a directory is it exists" }
@@ -144,11 +123,11 @@ private fun extract(
     destination.parent.createDirectories()
     tmpFolder.copyToRecursively(destination, followLinks = false, overwrite = cleanDestination)
     tmpFolder.deleteRecursively()
-    logger.info("Moved '$tmpFolder' to '$destination'")
+    println("Moved '$tmpFolder' to '$destination'")
 }
 
 
-private fun TarArchiveInputStream.extractEntriesTo(stripTopLevelFolder: Boolean, destination: Path, logger: Logger) {
+private fun TarArchiveInputStream.extractEntriesTo(stripTopLevelFolder: Boolean, destination: Path) {
     val archiveInputStream = this
     var entry = archiveInputStream.nextEntry
     while (entry != null) {
@@ -159,7 +138,6 @@ private fun TarArchiveInputStream.extractEntriesTo(stripTopLevelFolder: Boolean,
             isSymbolicLink = entry.isSymbolicLink,
             symLink = entry.linkName,
             unixMode = entry.mode,
-            logger = logger
         ) { archiveInputStream }
         entry = archiveInputStream.nextEntry
     }
@@ -175,7 +153,6 @@ private fun extractEntry(
     isSymbolicLink: Boolean,
     symLink: String?,
     unixMode: Int,
-    logger: Logger,
     entryInputStreamProducer: () -> InputStream,
 ) {
     val relative = when {
@@ -206,11 +183,11 @@ private fun extractEntry(
             }
         }
 
-        restorePermissions(destinationFile, unixMode, isSymbolicLink, logger)
+        restorePermissions(destinationFile, unixMode, isSymbolicLink)
     }
 }
 
-private fun restorePermissions(destinationFile: Path, unixMode: Int, isSymbolicLink: Boolean, logger: Logger) {
+private fun restorePermissions(destinationFile: Path, unixMode: Int, isSymbolicLink: Boolean) {
     when {
         isSymbolicLink -> {}
         unixMode == 0 -> {}
@@ -218,7 +195,7 @@ private fun restorePermissions(destinationFile: Path, unixMode: Int, isSymbolicL
             val attr = destinationFile.fileAttributesView<PosixFileAttributeView>(LinkOption.NOFOLLOW_LINKS)
             attr.setPermissions(unixMode.toPosixPermissions())
         } catch (_: UnsupportedOperationException) {
-            logger.debug("Could not restore permissions on {}, file system is not POSIX compliant", destinationFile)
+            println("Could not restore permissions on $destinationFile, file system is not POSIX compliant")
         }
     }
 }

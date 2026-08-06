@@ -13,7 +13,7 @@ pluginInfo:
   settingsClass: org.jetbrains.kmp.resolver.nativeimage.models.NativeImageSettings
 
 dependencies:
-  - $libs.slf4j.api
+  - ../shared
   - $libs.async.processes
-  - $libs.commons.compress
+  - $libs.ktor.client.java.jvm
   - $libs.kotlinx.coroutines.core.jvm

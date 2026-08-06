@@ -2,27 +2,13 @@ package org.jetbrains.kmp.resolver
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.add
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.decodeFromStream
-import kotlinx.serialization.json.put
-import kotlinx.serialization.json.putJsonArray
-import kotlinx.serialization.json.putJsonObject
+import kotlinx.serialization.json.*
 import org.jetbrains.amper.processes.runProcessAndCaptureOutput
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.Path
 import java.util.zip.ZipFile
-import kotlin.io.path.ExperimentalPathApi
-import kotlin.io.path.absolutePathString
-import kotlin.io.path.createDirectories
-import kotlin.io.path.createFile
-import kotlin.io.path.deleteRecursively
-import kotlin.io.path.div
-import kotlin.io.path.exists
-import kotlin.io.path.inputStream
-import kotlin.io.path.writeText
+import kotlin.io.path.*
 
 private val json = Json {
     ignoreUnknownKeys = true
@@ -42,13 +28,12 @@ internal data class EmbeddedNpmManifest(
  * Reads the NPM manifest embedded at the root of the given [klib], if any.
  */
 @OptIn(ExperimentalSerializationApi::class)
-internal fun readEmbeddedNpmManifest(klib: Path): EmbeddedNpmManifest? =
-    ZipFile(klib.toFile()).use { zip ->
-        when (val entry = zip.getEntry("package.json")) {
-            null -> null
-            else -> zip.getInputStream(entry).use { input -> json.decodeFromStream<EmbeddedNpmManifest>(input) }
-        }
+internal fun readEmbeddedNpmManifest(klib: Path): EmbeddedNpmManifest? = ZipFile(klib.toFile()).use { zip ->
+    when (val entry = zip.getEntry("package.json")) {
+        null -> null
+        else -> zip.getInputStream(entry).use { input -> json.decodeFromStream<EmbeddedNpmManifest>(input) }
     }
+}
 
 /**
  * A single klib variant asking for the resolution of the NPM dependencies of its embedded manifest.
@@ -116,7 +101,8 @@ internal class NpmResolver(
             }
         }
         val requestedDependencyNames = requests.flatMap { it.manifest.dependencies.keys }.toSet()
-        val embeddedNamesUsedAsDependencies = requests.map { it.manifest.name }.filter { it in requestedDependencyNames }
+        val embeddedNamesUsedAsDependencies =
+            requests.map { it.manifest.name }.filter { it in requestedDependencyNames }
         require(embeddedNamesUsedAsDependencies.isEmpty()) {
             "NPM packages embedded in klibs cannot also be depended upon by other klibs, but got: $embeddedNamesUsedAsDependencies"
         }
@@ -201,13 +187,11 @@ internal class NpmResolver(
     }
 
     private fun requireSingleVersionPerPackage(artifactsByVariant: Map<MultiplatformLibraryId, List<NpmMultiplatformLibraryArtifact>>) {
-        val conflicts = artifactsByVariant.entries
-            .flatMap { (variantId, artifacts) -> artifacts.map { variantId to it } }
-            .groupBy { (_, artifact) -> artifact.name }
-            .mapValues { (_, requesters) ->
-                requesters.groupBy({ (_, artifact) -> artifact.version }, { (variantId, _) -> variantId })
-            }
-            .filterValues { versions -> versions.size > 1 }
+        val conflicts =
+            artifactsByVariant.entries.flatMap { (variantId, artifacts) -> artifacts.map { variantId to it } }
+                .groupBy { (_, artifact) -> artifact.name }.mapValues { (_, requesters) ->
+                    requesters.groupBy({ (_, artifact) -> artifact.version }, { (variantId, _) -> variantId })
+                }.filterValues { versions -> versions.size > 1 }
         require(conflicts.isEmpty()) {
             buildString {
                 appendLine("NPM packages resolved to multiple versions, hardcode a single version with --npm-package-version:")
@@ -261,32 +245,36 @@ internal data class NpmPeerDependencyMeta(
  * Walks the lock graph from the workspace member at [memberPath] and returns the artifacts of its transitive NPM
  * closure, sorted by package name. Workspace members themselves (embedded in klibs) are never emitted as artifacts.
  */
-internal fun NpmPackageLock.closureArtifacts(memberPath: String, request: NpmResolutionRequest): List<NpmMultiplatformLibraryArtifact> =
-    transitiveClosure(pending = setOf(memberPath), visited = emptySet(), request = request)
-        .mapNotNull { path -> entryAt(path, request).toNpmArtifactOrNull(path, request) }
-        .sortedBy { it.name }
+internal fun NpmPackageLock.closureArtifacts(
+    memberPath: String, request: NpmResolutionRequest
+): List<NpmMultiplatformLibraryArtifact> = transitiveClosure(
+    pending = setOf(memberPath),
+    visited = emptySet(),
+    request = request
+).mapNotNull { path -> entryAt(path, request).toNpmArtifactOrNull(path, request) }.sortedBy { it.name }
 
-private tailrec fun NpmPackageLock.transitiveClosure(pending: Set<String>, visited: Set<String>, request: NpmResolutionRequest): Set<String> =
-    when {
-        pending.isEmpty() -> visited
-        else -> {
-            val discovered = pending.flatMap { path -> neighborsOf(path, request) }.toSet() - visited - pending
-            transitiveClosure(pending = discovered, visited = visited + pending, request = request)
-        }
+private tailrec fun NpmPackageLock.transitiveClosure(
+    pending: Set<String>, visited: Set<String>, request: NpmResolutionRequest
+): Set<String> = when {
+    pending.isEmpty() -> visited
+    else -> {
+        val discovered = pending.flatMap { path -> neighborsOf(path, request) }.toSet() - visited - pending
+        transitiveClosure(pending = discovered, visited = visited + pending, request = request)
     }
+}
 
 private fun NpmPackageLock.neighborsOf(path: String, request: NpmResolutionRequest): Set<String> {
     val entry = entryAt(path, request)
     return when {
         entry.link -> setOfNotNull(
-            entry.resolved ?: error("[${request.variantId.gav}] package-lock.json link entry $path has no resolution target"),
+            entry.resolved
+                ?: error("[${request.variantId.gav}] package-lock.json link entry $path has no resolution target"),
         )
 
         else -> entry.dependencyNames().mapNotNull { dependencyName ->
             when (val dependencyPath = resolveDependencyPath(fromPath = path, dependencyName = dependencyName)) {
                 null if entry.isOptionalDependency(dependencyName) -> null
-                null ->
-                    error("[${request.variantId.gav}] package-lock.json does not resolve dependency $dependencyName of $path")
+                null -> error("[${request.variantId.gav}] package-lock.json does not resolve dependency $dependencyName of $path")
 
                 else -> dependencyPath
             }
@@ -319,7 +307,10 @@ private fun NpmPackageLock.resolveDependencyPath(fromPath: String, dependencyNam
         }
     }.firstOrNull { candidate -> candidate in packages }
 
-private fun NpmPackageLockEntry.toNpmArtifactOrNull(path: String, request: NpmResolutionRequest): NpmMultiplatformLibraryArtifact? {
+private fun NpmPackageLockEntry.toNpmArtifactOrNull(
+    path: String,
+    request: NpmResolutionRequest,
+): NpmMultiplatformLibraryArtifact? {
     val resolvedUrl = resolved
     return when {
         // workspace members (packages/*) and link entries carry no registry artifact
@@ -329,7 +320,10 @@ private fun NpmPackageLockEntry.toNpmArtifactOrNull(path: String, request: NpmRe
             version = version ?: error("[${request.variantId.gav}] package-lock.json entry $path has no version"),
             url = resolvedUrl,
             integrity = MultiplatformLibraryArtifactIntegrity.fromBazelIntegrityString(
-                (integrity ?: error("[${request.variantId.gav}] package-lock.json entry $path has no integrity")).substringBefore(' '),
+                (integrity
+                    ?: error("[${request.variantId.gav}] package-lock.json entry $path has no integrity")).substringBefore(
+                    ' '
+                ),
             ),
         )
     }

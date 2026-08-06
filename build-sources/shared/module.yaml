@@ -1,0 +1,15 @@
+product: jvm/lib
+
+repositories:
+  - https://packages.jetbrains.team/maven/p/amper/amper
+
+settings:
+  kotlin:
+    version: 2.4.0
+  jvm:
+    release: 21
+
+dependencies:
+  - $libs.commons.compress
+  - $libs.ktor.client.core.jvm
+  - $libs.ktor.client.logging.jvm

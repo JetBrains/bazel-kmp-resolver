@@ -1,10 +1,6 @@
 package org.jetbrains.kmp.resolver
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -346,7 +342,10 @@ internal class MultiplatformResolver(
             nodes.map { unresolvedNode ->
                 when (unresolvedNode) {
                     is UnresolvedMultiplatformLibrary.WasmJs -> async {
-                        unresolvedNode.resolve(artifactResolver, npmPackagesByVariant[unresolvedNode.variantId].orEmpty())
+                        unresolvedNode.resolve(
+                            artifactResolver,
+                            npmPackagesByVariant[unresolvedNode.variantId].orEmpty()
+                        )
                     }
                 }
             }.awaitAll()

@@ -13,4 +13,6 @@ pluginInfo:
   settingsClass: org.jetbrains.kmp.resolver.node.models.NodeSettings
 
 dependencies:
-  - $libs.commons.compress
+  - ../shared
+  - $libs.kotlinx.coroutines.core.jvm
+  - $libs.ktor.client.java.jvm
