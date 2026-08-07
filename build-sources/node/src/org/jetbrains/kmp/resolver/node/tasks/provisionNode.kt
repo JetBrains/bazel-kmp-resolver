@@ -39,7 +39,6 @@ fun provisionNode(
             location = distributionDirectory,
         ),
         stripTopLevelFolder = true,
-        temporaryDir = createTempDirectory("tmp_download_cache"),
     )
 
     val node = extracted.resolve(distribution.nodePath)

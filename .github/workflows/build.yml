@@ -37,7 +37,7 @@ jobs:
           enableCrossOsArchive: true
       - name: Download GraalVM archives
         env:
-          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+          BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
         shell: bash
         run: ./kotlin do cacheGraalVmArchives
 
@@ -76,7 +76,7 @@ jobs:
           enableCrossOsArchive: true
       - name: Build native image
         env:
-          GRAALVM_NATIVE_IMAGE_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+          BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
         shell: bash
         run: ./kotlin do buildNativeImage
       - name: Smoke-test native binary

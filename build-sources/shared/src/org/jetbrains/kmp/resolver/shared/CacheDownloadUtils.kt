@@ -9,6 +9,27 @@ import java.nio.file.Path
 import kotlin.io.encoding.Base64
 import kotlin.io.path.*
 
+fun kmpResolverCacheRoot(): Path {
+    val envPath = System.getenv("BAZEL_KMP_RESOLVER_CACHE_DIR")
+    val userHome = Path.of(System.getProperty("user.home"))
+    return when {
+        !envPath.isNullOrBlank() -> Path.of(envPath)
+        else -> when (val os = System.getProperty("os.name").normalizedOs()) {
+            "windows" -> {
+                val localAppData = System.getenv("LOCALAPPDATA")
+                when {
+                    localAppData.isNullOrBlank() -> userHome.resolve("AppData").resolve("Local")
+                    else -> Path.of(localAppData)
+                }
+            }
+
+            "macos" -> userHome.resolve("Library").resolve("Caches")
+            "linux" -> userHome.resolve(".cache")
+            else -> error("Unsupported OS name: $os")
+        }.resolve("JetBrains").resolve("bazel-kmp-resolver")
+    }
+}
+
 typealias CacheKey = String
 
 sealed class CacheEntry {
@@ -30,14 +51,17 @@ object ArchiveDownloadCache {
     suspend fun downloadAndExtract(
         archive: CacheEntry.Archive,
         stripTopLevelFolder: Boolean,
-        temporaryDir: Path,
     ): Path = semaphoreByUrl.computeIfAbsent(archive.url) { Semaphore(1) }.withPermit {
         withContext(Dispatchers.IO) { // TODO: this is racing
-            val marker = archive.location.resolveSibling(archive.key)
+            val marker = archive.location.resolveSibling("${archive.sha256Checksum}.marker")
             when {
                 marker.exists() -> archive.location
                 else -> {
-                    val tmp = temporaryDir.resolve(archive.key)
+                    // @formatter:off
+                    val tmp = kmpResolverCacheRoot()
+                        .resolve("downloads") // used in CI for caching, do not change lightly
+                        .resolve(archive.sha256Checksum)
+                    // @formatter:on
                     tmp.createDirectories()
                     val archiveName = archive.url.substringAfterLast("/")
                     val downloaded = httpClient().downloadFile(
