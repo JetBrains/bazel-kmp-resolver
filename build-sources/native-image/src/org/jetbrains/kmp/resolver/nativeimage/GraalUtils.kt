@@ -13,11 +13,9 @@ internal suspend fun ArchiveDownloadCache.downloadAndExtractGraalArchive(
 ): Path {
     val platform = Platform(archive.os, archive.arch)
     return downloadAndExtract(
-        archive = CacheEntry.Archive(
-            url = archive.url,
-            sha256Checksum = archive.sha256,
-            location = kmpResolverCacheRoot().resolve("graalvm-$version-${platform.suffix}"),
-        ),
+        archiveUrl = archive.url,
+        archiveSha256Checksum = archive.sha256,
+        destination = kmpResolverCacheRoot().resolve("graalvm-$version-${platform.suffix}"),
         stripTopLevelFolder = false,
     )
 }

@@ -4,7 +4,10 @@ import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.Output
 import org.jetbrains.amper.plugins.TaskAction
 import org.jetbrains.kmp.resolver.node.models.NodeDistributionArchive
-import org.jetbrains.kmp.resolver.shared.*
+import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
+import org.jetbrains.kmp.resolver.shared.Platform
+import org.jetbrains.kmp.resolver.shared.normalizedArch
+import org.jetbrains.kmp.resolver.shared.normalizedOs
 import java.nio.file.Path
 import kotlin.io.path.*
 
@@ -33,11 +36,9 @@ fun provisionNode(
 
     distributionDirectory.createDirectories()
     val extracted = ArchiveDownloadCache.downloadAndExtract(
-        archive = CacheEntry.Archive(
-            url = distribution.url,
-            sha256Checksum = distribution.sha256,
-            location = distributionDirectory,
-        ),
+        archiveUrl = distribution.url,
+        archiveSha256Checksum = distribution.sha256,
+        destination = distributionDirectory,
         stripTopLevelFolder = true,
     )
 

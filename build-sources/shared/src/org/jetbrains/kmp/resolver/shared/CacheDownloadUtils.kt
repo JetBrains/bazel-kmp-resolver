@@ -6,7 +6,6 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import java.nio.file.Path
-import kotlin.io.encoding.Base64
 import kotlin.io.path.*
 
 fun kmpResolverCacheRoot(): Path {
@@ -30,18 +29,12 @@ fun kmpResolverCacheRoot(): Path {
     }
 }
 
-typealias CacheKey = String
-
 sealed class CacheEntry {
-    abstract val key: CacheKey
-
     data class Archive(
         val url: String,
         val sha256Checksum: String,
         val location: Path,
-    ) : CacheEntry() {
-        override val key: CacheKey = "${sha256Checksum}_${Base64.encode(location.absolutePathString().toByteArray())}"
-    }
+    ) : CacheEntry()
 }
 
 object ArchiveDownloadCache {
@@ -49,38 +42,42 @@ object ArchiveDownloadCache {
 
     @OptIn(ExperimentalPathApi::class)
     suspend fun downloadAndExtract(
-        archive: CacheEntry.Archive,
+        archiveUrl: String,
+        archiveSha256Checksum: String,
+        destination: Path,
         stripTopLevelFolder: Boolean,
-    ): Path = semaphoreByUrl.computeIfAbsent(archive.url) { Semaphore(1) }.withPermit {
+    ): Path = semaphoreByUrl.computeIfAbsent(archiveUrl) { Semaphore(1) }.withPermit {
         withContext(Dispatchers.IO) { // TODO: this is racing
-            val marker = archive.location.resolve("${archive.sha256Checksum}.marker")
+            val marker = destination.resolve("$archiveSha256Checksum.marker")
             when {
-                marker.exists() -> archive.location
+                marker.exists() -> destination
                 else -> {
                     // @formatter:off
-                    val tmp = kmpResolverCacheRoot()
+                    val downloadCache = kmpResolverCacheRoot()
                         .resolve("downloads") // used in CI for caching, do not change lightly
-                        .resolve(archive.sha256Checksum)
+                        .resolve(archiveSha256Checksum)
                     // @formatter:on
-                    tmp.createDirectories()
-                    val archiveName = archive.url.substringAfterLast("/")
+                    downloadCache.createDirectories()
+                    val archiveName = archiveUrl.substringAfterLast("/")
                     val downloaded = httpClient().downloadFile(
-                        url = archive.url,
-                        destination = tmp.resolve(archiveName),
+                        url = archiveUrl,
+                        destination = downloadCache.resolve(archiveName),
                         checksumValidation = ChecksumValidation.UsingHash(
-                            expected = archive.sha256Checksum,
+                            expected = archiveSha256Checksum,
                             algorithm = ChecksumAlgorithm.SHA256,
                         ),
                     )
+                    val tmp = kmpResolverCacheRoot().resolve("tmp")
                     extractArchive(
                         archive = downloaded,
-                        destination = archive.location,
+                        destination = destination,
                         stripTopLevelFolder = stripTopLevelFolder,
                         cleanDestination = true,
                         temporaryDir = tmp,
                     )
+                    tmp.deleteRecursively()
                     marker.createFile()
-                    archive.location
+                    destination
                 }
             }
         }
