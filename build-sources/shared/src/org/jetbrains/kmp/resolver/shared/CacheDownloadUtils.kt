@@ -79,7 +79,6 @@ object ArchiveDownloadCache {
                         cleanDestination = true,
                         temporaryDir = tmp,
                     )
-                    downloaded.deleteIfExists()
                     marker.createFile()
                     archive.location
                 }
