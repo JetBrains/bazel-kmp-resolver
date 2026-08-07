@@ -3,12 +3,12 @@ package org.jetbrains.kmp.resolver.nativeimage.tasks
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.*
 import org.jetbrains.amper.processes.runProcessWithInheritedIO
+import org.jetbrains.kmp.resolver.nativeimage.downloadAndExtractGraalArchive
+import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
 import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
 import org.jetbrains.kmp.resolver.shared.Platform
 import org.jetbrains.kmp.resolver.shared.normalizedArch
 import org.jetbrains.kmp.resolver.shared.normalizedOs
-import org.jetbrains.kmp.resolver.nativeimage.downloadAndExtractGraalArchive
-import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
 import java.nio.file.Path
 import kotlin.io.path.*
 

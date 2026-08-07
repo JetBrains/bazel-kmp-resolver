@@ -3,8 +3,8 @@ package org.jetbrains.kmp.resolver.node.tasks
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.Output
 import org.jetbrains.amper.plugins.TaskAction
-import org.jetbrains.kmp.resolver.shared.*
 import org.jetbrains.kmp.resolver.node.models.NodeDistributionArchive
+import org.jetbrains.kmp.resolver.shared.*
 import java.nio.file.Path
 import kotlin.io.path.*
 

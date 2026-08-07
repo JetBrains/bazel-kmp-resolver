@@ -337,19 +337,17 @@ internal class MultiplatformResolver(
     private suspend fun resolveArtifacts(
         nodes: List<UnresolvedMultiplatformLibrary>,
         npmPackagesByVariant: Map<MultiplatformLibraryId, List<NpmMultiplatformLibraryArtifact>>,
-    ): List<MultiplatformVariant> =
-        coroutineScope {
-            nodes.map { unresolvedNode ->
-                when (unresolvedNode) {
-                    is UnresolvedMultiplatformLibrary.WasmJs -> async {
-                        unresolvedNode.resolve(
-                            artifactResolver,
-                            npmPackagesByVariant[unresolvedNode.variantId].orEmpty()
-                        )
-                    }
+    ): List<MultiplatformVariant> = coroutineScope {
+        nodes.map { unresolvedNode ->
+            when (unresolvedNode) {
+                is UnresolvedMultiplatformLibrary.WasmJs -> async {
+                    unresolvedNode.resolve(
+                        artifactResolver, npmPackagesByVariant[unresolvedNode.variantId].orEmpty()
+                    )
                 }
-            }.awaitAll()
-        }
+            }
+        }.awaitAll()
+    }
 }
 
 private val MavenDependencyNode.gav

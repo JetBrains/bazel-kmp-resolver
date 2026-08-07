@@ -1,7 +1,7 @@
 package org.jetbrains.kmp.resolver
 
 import java.nio.file.Path
-import java.util.Properties
+import java.util.*
 import kotlin.io.path.exists
 
 /**

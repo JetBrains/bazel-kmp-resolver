@@ -2,9 +2,9 @@ package org.jetbrains.kmp.resolver.nativeimage.tasks
 
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.TaskAction
-import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
 import org.jetbrains.kmp.resolver.nativeimage.downloadAndExtractGraalArchive
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
+import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
 
 @TaskAction
 fun cacheGraalVmArchives(
