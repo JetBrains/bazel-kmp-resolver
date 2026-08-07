@@ -75,7 +75,6 @@ object ArchiveDownloadCache {
                         cleanDestination = true,
                         temporaryDir = tmp,
                     )
-                    tmp.deleteRecursively()
                     marker.createFile()
                     destination
                 }
