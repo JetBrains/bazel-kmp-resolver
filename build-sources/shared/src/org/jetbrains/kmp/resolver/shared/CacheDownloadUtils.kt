@@ -53,7 +53,7 @@ object ArchiveDownloadCache {
         stripTopLevelFolder: Boolean,
     ): Path = semaphoreByUrl.computeIfAbsent(archive.url) { Semaphore(1) }.withPermit {
         withContext(Dispatchers.IO) { // TODO: this is racing
-            val marker = archive.location.resolveSibling("${archive.sha256Checksum}.marker")
+            val marker = archive.location.resolve("${archive.sha256Checksum}.marker")
             when {
                 marker.exists() -> archive.location
                 else -> {
