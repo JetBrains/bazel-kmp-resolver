@@ -47,6 +47,24 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         help = "Path to JSON repository credentials resolved by the caller.",
     ).convert { Path.of(it) }
 
+    private val credentialHelpers: List<CredentialHelper> by option(
+        "--credential-helper",
+        help = "Bazel credential helper as `[<pattern>=]<path>`, using the syntax and the semantics of Bazel's " +
+            "own `--credential_helper` flag so that `.bazelrc` values can be forwarded verbatim. Can be " +
+            "specified multiple times. Takes precedence over --repository-credentials-file.",
+    ).convert { parseCredentialHelper(it) }.multiple(required = false)
+
+    private val credentialHelperTimeoutMillis: Long by option(
+        "--credential-helper-timeout-ms",
+        help = "Timeout of a credential helper invocation in milliseconds.",
+    ).long().default(10.seconds.inWholeMilliseconds)
+
+    private val workspaceDirectory: Path by option(
+        "--workspace-directory",
+        help = "Bazel workspace directory, used as the working directory of the credential helpers and to " +
+            "expand the `%workspace%` prefix of their paths. Defaults to the current directory.",
+    ).convert { Path.of(it) }.defaultLazy { Path.of("").toAbsolutePath() }
+
     private val nodeExecutable: Path by option(
         "--node-executable",
         help = "Path to the Node.js executable used to run npm when resolving klib-declared NPM dependencies.",
@@ -87,9 +105,20 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
-        val credentials = when (val credentialsFile = repositoryCredentialsFile) {
+        val fileCredentials = when (val credentialsFile = repositoryCredentialsFile) {
             null -> emptyMap()
             else -> RepositoryCredentials.fromFile(credentialsFile)
+        }
+        val effectiveNpmRegistry = npmRegistry ?: NpmResolver.DEFAULT_REGISTRY_URL
+        // A credential helper mints credentials on demand, so it wins over the statically passed ones. This is
+        // the precedence Bazel applies between credential helpers and `.netrc` for the downloads it performs.
+        val credentials = fileCredentials + when {
+            credentialHelpers.isEmpty() -> emptyMap()
+            else -> CredentialHelperProvider(
+                helpers = credentialHelpers,
+                workspaceDirectory = workspaceDirectory,
+                timeout = credentialHelperTimeoutMillis.milliseconds,
+            ).credentialsFor(repositories + effectiveNpmRegistry)
         }
         val credentialsResolver = RepositoryCredentialsResolver(credentials.values)
         // Amper sends HTTP Basic auth natively, so a resolution only needing that is left running on Amper's own

@@ -42,26 +42,34 @@ The resolver never resolves credentials itself: the caller resolves them (from a
 - Credentials apply to a repository URL and everything below it. When several entries match an artifact URL, the
   longest `repositoryUrl` wins.
 
-### Calling a Bazel credential helper from a repository rule
+## Bazel credential helpers
 
-Bazel exposes **no Starlark API for credential helpers**, and `repository_ctx.execute` has no `stdin` parameter,
-so a repository rule cannot speak the helper protocol directly. Run the helper through a small Node shim instead
-(this resolver already requires a Node.js executable, so no extra toolchain is needed):
+Bazel authenticates the downloads it performs itself by running a
+[credential helper](https://github.com/bazelbuild/proposals/blob/main/designs/2022-06-07-bazel-credential-helpers.md),
+but it exposes no credential helper API to Starlark, and `repository_ctx.execute` cannot write to the standard
+input of the process it spawns, which the protocol requires. So a repository rule cannot resolve the credentials
+on the resolver's behalf: instead it forwards the helper configuration, and the resolver speaks the protocol
+itself for the requests it performs while resolving the dependency graph.
 
-```python
-result = module_ctx.execute([node, shim_js, helper_path, repository_url])
-headers = json.decode(result.stdout).get("headers", {})
+```shell
+--credential-helper=/usr/bin/helper                  # every host
+--credential-helper=example.com=/usr/bin/helper      # exactly example.com
+--credential-helper='*.example.com=%workspace%/tools/helper.sh'  # example.com and its subdomains
+--workspace-directory=/path/to/workspace             # `%workspace%` expansion, and the helpers' working directory
 ```
 
-Two things worth getting right on the Bazel side:
+`--credential-helper` takes the syntax and the semantics of Bazel's own `--credential_helper` flag, so the values
+of a `.bazelrc` can be forwarded verbatim: the pattern is separated from the path by the left-most `=`, the most
+specific match wins (exact name, then longest wildcard, then unscoped), a later entry overrides an earlier one
+with the same pattern, and a host no helper matches is queried without credentials. A path carrying no separator
+is looked up on `PATH`. Helpers take precedence over `--repository-credentials-file`.
 
-- Resolve the credentials **inside** the rule with `execute`, never as a rule attribute. Attribute values go into
-  the repository's reproducibility marker, so a rotating token would trigger a refetch on every rotation.
-- The resolved credentials file holds a bearer token. Keep it out of anything cached or shared, and note that
-  `repository_ctx.execute` passes a restricted environment: a helper usually needs at least `HOME` and `PATH`.
+Credentials are resolved **once per repository**, before the resolution, rather than once per artifact URL: a
+helper is a subprocess and a resolution issues thousands of requests. This is the caching the protocol explicitly
+allows, and it means `expires` is not acted upon — a resolution outliving its token fails rather than renewing it.
 
-The same hosts still need `--credential_helper` configured in `.bazelrc`, so that Bazel's own download of the
-artifact URLs listed in the manifest is authenticated too.
+Note that the same hosts still need `--credential_helper` configured in `.bazelrc`, so that Bazel's own download
+of the artifact URLs listed in the manifest is authenticated too.
 
 ## Tests
 

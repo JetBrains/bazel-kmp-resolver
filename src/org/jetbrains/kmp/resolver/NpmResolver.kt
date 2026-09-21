@@ -224,7 +224,7 @@ internal class NpmResolver(
     }
 
     companion object {
-        private const val DEFAULT_REGISTRY_URL = "https://registry.npmjs.org"
+        internal const val DEFAULT_REGISTRY_URL = "https://registry.npmjs.org"
     }
 }
 
