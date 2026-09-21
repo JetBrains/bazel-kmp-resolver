@@ -61,6 +61,7 @@ internal class NpmResolver(
     registryUrl: String?,
     private val packageVersionOverrides: Map<String, String>,
     private val workDir: Path,
+    private val credentials: RepositoryCredentialsResolver = RepositoryCredentialsResolver(emptyList()),
 ) {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -152,38 +153,55 @@ internal class NpmResolver(
 
     private suspend fun runNpmInstall(workspacePath: Path) {
         val npmCachePath = workDir.resolve("npm-cache")
-        val emptyUserConfig = workspacePath.resolve(".empty-userconfig").createFile()
         val emptyGlobalConfig = workspacePath.resolve(".empty-globalconfig").createFile()
-        val command = listOf(
-            nodeExecutable.absolutePathString(),
-            npmCliJs.absolutePathString(),
-            "install",
-            "--ignore-scripts",
-            "--package-lock-only",
-            "--no-audit",
-            "--no-fund",
-            "--progress=false",
-            "--loglevel=error",
-            "--registry=$registryUrl",
-            "--cache=${npmCachePath.absolutePathString()}",
-            "--userconfig=${emptyUserConfig.absolutePathString()}",
-            "--globalconfig=${emptyGlobalConfig.absolutePathString()}",
-        )
-        logger.info("Resolving NPM dependencies against $registryUrl...")
-        logger.debug("Running: {}", command.joinToString(" "))
-        val result = runProcessAndCaptureOutput(
-            workingDir = workspacePath,
-            command = command,
-        )
-        require(result.exitCode == 0) {
-            buildString {
-                appendLine("npm install failed with exit code ${result.exitCode}: ${command.joinToString(" ")}")
-                appendLine("stdout:")
-                appendLine(result.stdout)
-                appendLine("stderr:")
-                appendLine(result.stderr)
+        val userConfig = createUserConfig()
+        try {
+            val command = listOf(
+                nodeExecutable.absolutePathString(),
+                npmCliJs.absolutePathString(),
+                "install",
+                "--ignore-scripts",
+                "--package-lock-only",
+                "--no-audit",
+                "--no-fund",
+                "--progress=false",
+                "--loglevel=error",
+                "--registry=$registryUrl",
+                "--cache=${npmCachePath.absolutePathString()}",
+                "--userconfig=${userConfig.absolutePathString()}",
+                "--globalconfig=${emptyGlobalConfig.absolutePathString()}",
+            )
+            logger.info("Resolving NPM dependencies against $registryUrl...")
+            // the command only carries the path of the user config, never the credentials it may contain
+            logger.debug("Running: {}", command.joinToString(" "))
+            val result = runProcessAndCaptureOutput(
+                workingDir = workspacePath,
+                command = command,
+            )
+            require(result.exitCode == 0) {
+                buildString {
+                    appendLine("npm install failed with exit code ${result.exitCode}: ${command.joinToString(" ")}")
+                    appendLine("stdout:")
+                    appendLine(result.stdout)
+                    appendLine("stderr:")
+                    appendLine(result.stderr)
+                }
             }
+        } finally {
+            userConfig.deleteIfExists()
         }
+    }
+
+    /**
+     * Materializes the credentials of the registry into an npm user config, the only place npm reads them from.
+     *
+     * The file is created outside of [workDir]: that directory is the Bazel external repository the manifest is
+     * generated into, which is no place for a credential. `createTempFile` restricts it to its owner on POSIX.
+     */
+    private fun createUserConfig(): Path {
+        val userConfig = createTempFile(prefix = "kmp-resolver-npmrc", suffix = ".ini")
+        userConfig.writeText(npmAuthConfig(registryUrl, credentials.credentialsFor(registryUrl)))
+        return userConfig
     }
 
     private fun requireSingleVersionPerPackage(artifactsByVariant: Map<MultiplatformLibraryId, List<NpmMultiplatformLibraryArtifact>>) {
@@ -209,6 +227,52 @@ internal class NpmResolver(
         private const val DEFAULT_REGISTRY_URL = "https://registry.npmjs.org"
     }
 }
+
+/**
+ * Renders the npm user config authenticating against [registryUrl] with [credentials], empty when there are none.
+ *
+ * npm has no way to send an arbitrary header, so the `Authorization` header the caller resolved is translated into
+ * the npm config it understands. Credentials that cannot be translated fail the resolution instead of being
+ * silently dropped, which would surface much later as an opaque npm 401.
+ */
+internal fun npmAuthConfig(registryUrl: String, credentials: RepositoryCredentials?): String {
+    val headers = credentials?.requestHeaders().orEmpty()
+    if (headers.isEmpty()) return ""
+
+    val unsupportedHeaders = headers.keys.filterNot { it.equals(AUTHORIZATION_HEADER, ignoreCase = true) }.sorted()
+    if (unsupportedHeaders.isNotEmpty()) {
+        throw UnsupportedCredentialsException(
+            "npm can only be authenticated with an `$AUTHORIZATION_HEADER` header, but the credentials of " +
+                "$registryUrl also declare: ${unsupportedHeaders.joinToString(", ")}",
+        )
+    }
+    val authorization = credentials?.singleAuthorizationValue() ?: throw UnsupportedCredentialsException(
+        "npm can only be authenticated with a single `$AUTHORIZATION_HEADER` header, but the credentials of " +
+            "$registryUrl declare several",
+    )
+
+    val nerfDart = registryUrl.toNpmNerfDart()
+    return when {
+        authorization.startsWith(BEARER_PREFIX) ->
+            "$nerfDart:_authToken=${authorization.removePrefix(BEARER_PREFIX)}\n"
+
+        authorization.startsWith(BASIC_PREFIX) ->
+            "$nerfDart:_auth=${authorization.removePrefix(BASIC_PREFIX)}\n"
+
+        else -> throw UnsupportedCredentialsException(
+            "npm only supports `Bearer` and `Basic` authorization, but the credentials of $registryUrl declare " +
+                "`${authorization.substringBefore(' ')}`",
+        )
+    }
+}
+
+/**
+ * The npm "nerf dart" of a registry URL, which is how npm keys the credentials of a registry in its config:
+ * the URL without its scheme, always ending with a slash (`https://registry.example.com/npm` becomes
+ * `//registry.example.com/npm/`).
+ */
+internal fun String.toNpmNerfDart(): String = "//" + substringAfter("://", missingDelimiterValue = this)
+    .trimEnd('/') + "/"
 
 private fun String.sanitizedAsDirectoryName(): String = map { c ->
     when {

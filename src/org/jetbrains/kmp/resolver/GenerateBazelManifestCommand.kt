@@ -91,6 +91,15 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             null -> emptyMap()
             else -> RepositoryCredentials.fromFile(credentialsFile)
         }
+        val credentialsResolver = RepositoryCredentialsResolver(credentials.values)
+        // Amper sends HTTP Basic auth natively, so a resolution only needing that is left running on Amper's own
+        // client, exactly as it did before credentials could carry arbitrary headers.
+        val credentialAwareHttpClient = when {
+            credentialsResolver.requiresHeaderInjection ->
+                CredentialAwareHttpClient.wrappingDefaultClient(credentialsResolver)
+
+            else -> null
+        }
         val artifactResolver = ArtifactUrlResolver(
             allowedConcurrentConnections = allowedConcurrentConnections,
             requestTimeout = requestTimeoutMillis.milliseconds,
@@ -108,7 +117,9 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                     registryUrl = npmRegistry,
                     packageVersionOverrides = npmPackageVersions.toMap(),
                     workDir = outputManifest.parent,
+                    credentials = credentialsResolver,
                 ),
+                credentialAwareHttpClient = credentialAwareHttpClient,
             )
             BazelManifest(
                 askedCoordinates = coordinates.sorted(),

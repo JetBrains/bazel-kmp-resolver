@@ -61,13 +61,8 @@ internal class ArtifactUrlResolver(
             val resolved = hostSemaphore(artifactUrl).withPermit {
                 httpClient.head {
                     url(artifactUrl)
-                    when {
-                        credentials.username != null && credentials.password != null -> basicAuth(
-                            credentials.username,
-                            credentials.password,
-                        )
-
-                        else -> {}
+                    credentials.requestHeaders().forEach { (name, values) ->
+                        values.forEach { value -> header(name, value) }
                     }
                 }.status.isSuccess()
             }

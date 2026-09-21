@@ -1,15 +1,48 @@
 package org.jetbrains.kmp.resolver
 
+import com.sun.net.httpserver.HttpServer
 import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import java.io.InputStream
+import java.net.InetSocketAddress
 import java.nio.file.Path
+import java.util.Collections
 import kotlin.test.assertEquals
 
 object TestResourceReader {
     fun readResource(path: String): InputStream {
         return this::class.java.getResourceAsStream("/$path") ?: error("Resource not found: $path")
     }
+}
+
+internal data class RecordedRequest(val path: String, val authorizations: List<String>)
+
+/**
+ * Local HTTP server recording the `Authorization` headers of the requests it receives, so that tests can assert on
+ * what was actually sent over the wire rather than on what we think we configured.
+ */
+internal class RecordingHttpServer(private val statusCode: Int = 200) : AutoCloseable {
+    private val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
+    private val recorded = Collections.synchronizedList(mutableListOf<RecordedRequest>())
+
+    val requests: List<RecordedRequest> get() = recorded.toList()
+    val baseUrl: String get() = "http://127.0.0.1:${server.address.port}"
+
+    init {
+        server.createContext("/") { exchange ->
+            recorded.add(
+                RecordedRequest(
+                    path = exchange.requestURI.path,
+                    authorizations = exchange.requestHeaders["Authorization"].orEmpty().toList(),
+                ),
+            )
+            exchange.sendResponseHeaders(statusCode, -1)
+            exchange.close()
+        }
+        server.start()
+    }
+
+    override fun close() = server.stop(0)
 }
 
 /**

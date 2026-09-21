@@ -14,9 +14,18 @@ import org.jetbrains.amper.dependency.resolution.diagnostics.Message
 import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.net.http.HttpClient
 import java.nio.file.Path
 import kotlin.io.encoding.Base64
 import kotlin.io.path.absolutePathString
+
+/**
+ * Key under which the Amper dependency resolution looks up the [HttpClient] to download artifacts with, before
+ * falling back to building its own.
+ *
+ * [org.jetbrains.amper.dependency.resolution.Key] compares by name and type, so this is the very key Amper uses.
+ */
+internal val AMPER_HTTP_CLIENT_KEY: Key<HttpClient> = Key("httpClient")
 
 /**
  * Substitution ID represents a groupId:artifactId string
@@ -203,6 +212,13 @@ internal class MultiplatformResolver(
     private val substitutions: Substitutions,
     private val artifactResolver: ArtifactUrlResolver,
     private val npmResolver: NpmResolver,
+    /**
+     * Client used by the Amper resolution to download artifacts, or `null` to let Amper use its own.
+     *
+     * Amper can only send HTTP Basic auth by itself, so this is the only way to authenticate the resolution
+     * against a repository requiring anything else, a bearer token typically.
+     */
+    private val credentialAwareHttpClient: HttpClient? = null,
 ) {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -265,11 +281,11 @@ internal class MultiplatformResolver(
             repositories = this@MultiplatformResolver.repositories
             cache = getDefaultFileCacheBuilder(amperCachePath)
         }
-        val templateContext = Context {
+        val templateContext = Context(newResolutionCache()) {
             defaultSettings()
         }
         val contexts = scope.map {
-            Context {
+            Context(newResolutionCache()) {
                 defaultSettings()
                 this.scope = it
             }
@@ -290,6 +306,18 @@ internal class MultiplatformResolver(
         )
 
         return root
+    }
+
+    /**
+     * Builds the resolution cache of a [Context], pre-populated with [credentialAwareHttpClient] when there is one.
+     *
+     * Amper reads the client it downloads with out of that cache, only falling back to its own when the key is
+     * absent, and [Cache.close] deliberately skips that key so that the lifecycle of an injected client stays with
+     * the caller. The key name is internal to Amper: if it ever changes, the injection stops taking effect and
+     * authenticated downloads start failing, which `AmperHttpClientInjectionTest` guards against.
+     */
+    private fun newResolutionCache(): Cache = Cache().apply {
+        credentialAwareHttpClient?.let { client -> this[AMPER_HTTP_CLIENT_KEY] = client }
     }
 
     private fun collectNodes(
