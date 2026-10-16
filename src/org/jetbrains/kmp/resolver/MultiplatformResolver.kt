@@ -440,17 +440,27 @@ private sealed class UnresolvedMultiplatformLibrary(
         }
     }
 
-    val id: MultiplatformLibraryId by lazy {
-        val parent = node.getParentKmpLibraryCoordinates() ?: error("$node must have a KMP parent library")
-        val parentId = MultiplatformLibraryId(
-            groupId = parent.groupId,
-            artifactId = parent.artifactId,
-            version = parent.version ?: error("$node parent $parent must have a version"),
-        )
-        // TODO: could we do something about this super hacky substitution resolution?
-        substitutions.substituteMultiplatformLibraryIds(listOf(parentId)).single()
-    }
     private val originalId: MultiplatformLibraryId = node.gav
+
+    /**
+     * ID of the KMP umbrella library this node is a platform-specific variant of, or the node's own ID when it is
+     * not such a variant: a JVM-only library, or a KMP library publishing its JVM artifact in the umbrella module
+     * itself, like `kotlin-stdlib`. The latter makes the JVM variant of `kotlin-stdlib` land under the same library
+     * as its wasmJs variant.
+     */
+    val id: MultiplatformLibraryId by lazy {
+        val parent = node.getParentKmpLibraryCoordinates()
+        val unsubstitutedId = when (parent) {
+            null -> originalId
+            else -> MultiplatformLibraryId(
+                groupId = parent.groupId,
+                artifactId = parent.artifactId,
+                version = parent.version ?: error("$node parent $parent must have a version"),
+            )
+        }
+        // TODO: could we do something about this super hacky substitution resolution?
+        substitutions.substituteMultiplatformLibraryIds(listOf(unsubstitutedId)).single()
+    }
 
     // TODO: could we do something about this super hacky substitution resolution?
     val variantId: MultiplatformLibraryId =
