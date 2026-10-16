@@ -391,6 +391,19 @@ private data class UnresolvedMultiplatformLibraryArtifactLocation(
 )
 
 /**
+ * The node of the given [scope] among nodes sharing the same resolved coordinates.
+ *
+ * Several nodes of the graph can request the same library at different versions (common on JVM, where POMs declare
+ * all kinds of `kotlin-stdlib` versions), but conflict resolution makes them point at the same dependency, hence
+ * the same files and children, so they collapse into one.
+ */
+private fun List<MavenDependencyNode>.singleNodeOfScope(scope: ResolutionScope): MavenDependencyNode? {
+    val scopeNodes = filter { it.dependency.resolutionConfig.scope == scope }.distinctBy { it.dependency }
+    require(scopeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple $scope scope instance, but got $scopeNodes" }
+    return scopeNodes.singleOrNull()
+}
+
+/**
  * A library of the dependency graph, built from its runtime and compile scoped nodes, which share the same coordinates.
  * The platform-specific subclasses only add the accessors of the artifacts specific to their platform.
  */
@@ -400,18 +413,8 @@ private sealed class UnresolvedMultiplatformLibrary(
     private val substitutions: Substitutions,
     private val possibleDependencies: Set<SubstitutionId>,
 ) {
-    private val runtimeNode: MavenDependencyNode? =
-        resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
-            .let { runtimeNodes ->
-                require(runtimeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple runtime scope instance, but got $runtimeNodes" }
-                runtimeNodes.singleOrNull()
-            }
-    private val compileNode: MavenDependencyNode? =
-        resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }
-            .let { compileNodes ->
-                require(compileNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple compile scope instance, but got $compileNodes" }
-                compileNodes.singleOrNull()
-            }
+    private val runtimeNode: MavenDependencyNode? = resolvedNodes.singleNodeOfScope(ResolutionScope.RUNTIME)
+    private val compileNode: MavenDependencyNode? = resolvedNodes.singleNodeOfScope(ResolutionScope.COMPILE)
     private val node: MavenDependencyNode =
         runtimeNode ?: compileNode ?: error("must at least have one of compile or runtime node set")
 
