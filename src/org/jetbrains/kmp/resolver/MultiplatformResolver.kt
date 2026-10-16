@@ -387,72 +387,121 @@ private data class UnresolvedMultiplatformLibraryArtifactLocation(
     val credentials: RepositoryCredentials,
 )
 
-private sealed class UnresolvedMultiplatformLibrary {
-    abstract val id: MultiplatformLibraryId
-    abstract val variantId: MultiplatformLibraryId
-    abstract val dependencies: Set<SubstitutionId>
-    abstract val exportedDependencies: Set<SubstitutionId>
-
-    data class WasmJs(
-        private val resolvedNodes: List<MavenDependencyNode>,
-        private val repositories: List<MavenRepository>,
-        private val substitutions: Substitutions,
-        private val possibleDependencies: Set<SubstitutionId>,
-    ) : UnresolvedMultiplatformLibrary() {
-        private val runtimeNode: MavenDependencyNode? =
-            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
-                .let { runtimeNodes ->
-                    require(runtimeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple runtime scope instance, but got $runtimeNodes" }
-                    runtimeNodes.singleOrNull()
-                }
-        private val compileNode: MavenDependencyNode? =
-            resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }
-                .let { compileNodes ->
-                    require(compileNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple compile scope instance, but got $compileNodes" }
-                    compileNodes.singleOrNull()
-                }
-        private val node: MavenDependencyNode =
-            runtimeNode ?: compileNode ?: error("must at least have one of compile or runtime node set")
-
-        init {
-            require(runtimeNode != null || compileNode != null) {
-                "must at least have one of compile or runtime node set"
+/**
+ * A library of the dependency graph, built from its runtime and compile scoped nodes, which share the same coordinates.
+ * The platform-specific subclasses only add the accessors of the artifacts specific to their platform.
+ */
+private sealed class UnresolvedMultiplatformLibrary(
+    resolvedNodes: List<MavenDependencyNode>,
+    private val repositories: List<MavenRepository>,
+    private val substitutions: Substitutions,
+    private val possibleDependencies: Set<SubstitutionId>,
+) {
+    private val runtimeNode: MavenDependencyNode? =
+        resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.RUNTIME }
+            .let { runtimeNodes ->
+                require(runtimeNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple runtime scope instance, but got $runtimeNodes" }
+                runtimeNodes.singleOrNull()
             }
-            require(runtimeNode == null || compileNode == null || runtimeNode.gav == compileNode.gav) {
-                """
-                    runtime and compile scopped nodes are from different coordinates:
-                      - ${runtimeNode?.gav}
-                      - ${compileNode?.gav}
-                """.trimIndent()
+    private val compileNode: MavenDependencyNode? =
+        resolvedNodes.filter { it.dependency.resolutionConfig.scope == ResolutionScope.COMPILE }
+            .let { compileNodes ->
+                require(compileNodes.size <= 1) { "UnresolvedMultiplatformLibrary cannot have multiple compile scope instance, but got $compileNodes" }
+                compileNodes.singleOrNull()
             }
-        }
+    private val node: MavenDependencyNode =
+        runtimeNode ?: compileNode ?: error("must at least have one of compile or runtime node set")
 
-        override val id: MultiplatformLibraryId by lazy {
-            val parent = node.getParentKmpLibraryCoordinates() ?: error("$node must have a KMP parent library")
-            val parentId = MultiplatformLibraryId(
-                groupId = parent.groupId,
-                artifactId = parent.artifactId,
-                version = parent.version ?: error("$node parent $parent must have a version"),
-            )
-            // TODO: could we do something about this super hacky substitution resolution?
-            substitutions.substituteMultiplatformLibraryIds(listOf(parentId)).single()
+    init {
+        require(runtimeNode != null || compileNode != null) {
+            "must at least have one of compile or runtime node set"
         }
-        private val originalId: MultiplatformLibraryId = node.gav
+        require(runtimeNode == null || compileNode == null || runtimeNode.gav == compileNode.gav) {
+            """
+                runtime and compile scopped nodes are from different coordinates:
+                  - ${runtimeNode?.gav}
+                  - ${compileNode?.gav}
+            """.trimIndent()
+        }
+    }
 
+    val id: MultiplatformLibraryId by lazy {
+        val parent = node.getParentKmpLibraryCoordinates() ?: error("$node must have a KMP parent library")
+        val parentId = MultiplatformLibraryId(
+            groupId = parent.groupId,
+            artifactId = parent.artifactId,
+            version = parent.version ?: error("$node parent $parent must have a version"),
+        )
         // TODO: could we do something about this super hacky substitution resolution?
-        override val variantId: MultiplatformLibraryId =
-            substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
+        substitutions.substituteMultiplatformLibraryIds(listOf(parentId)).single()
+    }
+    private val originalId: MultiplatformLibraryId = node.gav
 
-        private val files: List<DependencyFileImpl> by lazy {
-            node.dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>()
-        }
+    // TODO: could we do something about this super hacky substitution resolution?
+    val variantId: MultiplatformLibraryId =
+        substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
 
-        suspend fun sourceJar(): UnresolvedMultiplatformLibraryArtifact? {
-            val sourceJars = files.filter { file -> file.isSourceJar() }
-            require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
-            return sourceJars.singleOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
-        }
+    protected val files: List<DependencyFileImpl> by lazy {
+        node.dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>()
+    }
 
+    suspend fun sourceJar(): UnresolvedMultiplatformLibraryArtifact? {
+        val sourceJars = files.filter { file -> file.isSourceJar() }
+        require(sourceJars.size <= 1) { "Expected at most one source jar, found ${sourceJars.size}: $sourceJars" }
+        return sourceJars.singleOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
+    }
+
+    // TODO: could we do something about this super hacky substitution resolution?
+    val exportedDependencies: Set<SubstitutionId> =
+        substitutions.substituteSubstitutionIds(compileNode?.platformDependencies() ?: emptySet())
+
+    // TODO: could we do something about this super hacky substitution resolution?
+    val dependencies: Set<SubstitutionId> = substitutions.substituteSubstitutionIds(
+        runtimeNode?.platformDependencies() ?: emptySet()
+    ) - exportedDependencies
+
+    private fun MavenDependencyNode.platformDependencies(): Set<SubstitutionId> =
+        children.asSequence().filterIsInstance<MavenDependencyNode>().map { it.gav.toSubstitutionId() }
+            .filter { it in possibleDependencies }.toSet()
+
+    protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(): UnresolvedMultiplatformLibraryArtifact {
+        val file = this
+        return UnresolvedMultiplatformLibraryArtifact(
+            fileName = "${file.nameWithoutExtension}.${file.extension}",
+            groupId = variantId.groupId,
+            artifactId = variantId.artifactId,
+            version = variantId.version,
+            possibleLocations = repositories.map { repository ->
+                val url = file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
+                    // TODO: could we do something about this super hacky substitution resolution?
+                    .replace(originalId.groupId.replace(".", "/"), variantId.groupId.replace(".", "/"))
+                    .replace(originalId.artifactId, variantId.artifactId)
+                    .replace(originalId.version, variantId.version)
+                UnresolvedMultiplatformLibraryArtifactLocation(
+                    url = url,
+                    credentials = RepositoryCredentials(
+                        repositoryUrl = repository.url,
+                        username = repository.userName,
+                        password = repository.password,
+                    ),
+                )
+            },
+            // Amper will not resolve all hashes, but from the more robust to the least robust.
+            // We chose to support only 512 and 256 for now and we have to query them in that order.
+            integrity = listOf("sha512", "sha256").firstNotNullOfOrNull { algorithm ->
+                file.getExpectedHash(HashAlgorithm(algorithm))?.let { hash ->
+                    MultiplatformLibraryArtifactIntegrity.fromHash(algorithm, hash)
+                }
+            } ?: error("could not find hash for artifact $file"),
+        )
+    }
+
+    class WasmJs(
+        resolvedNodes: List<MavenDependencyNode>,
+        repositories: List<MavenRepository>,
+        substitutions: Substitutions,
+        possibleDependencies: Set<SubstitutionId>,
+    ) : UnresolvedMultiplatformLibrary(resolvedNodes, repositories, substitutions, possibleDependencies) {
         suspend fun klib(): UnresolvedMultiplatformLibraryArtifact {
             val klibs = files.filter { file -> file.isWasmKlib() }
             require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
@@ -466,51 +515,6 @@ private sealed class UnresolvedMultiplatformLibrary {
             val klibs = files.filter { file -> file.isWasmKlib() }
             require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
             return klibs.single().getPath() ?: error("[$variantId] klib was not downloaded to the local cache")
-        }
-
-        // TODO: could we do something about this super hacky substitution resolution?
-        override val exportedDependencies: Set<SubstitutionId> =
-            substitutions.substituteSubstitutionIds(compileNode?.wasmJsDependencies() ?: emptySet())
-
-        // TODO: could we do something about this super hacky substitution resolution?
-        override val dependencies: Set<SubstitutionId> = substitutions.substituteSubstitutionIds(
-            runtimeNode?.wasmJsDependencies() ?: emptySet()
-        ) - exportedDependencies
-
-        private fun MavenDependencyNode.wasmJsDependencies(): Set<SubstitutionId> =
-            children.asSequence().filterIsInstance<MavenDependencyNode>().map { it.gav.toSubstitutionId() }
-                .filter { it in possibleDependencies }.toSet()
-
-        private suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(): UnresolvedMultiplatformLibraryArtifact {
-            val file = this
-            return UnresolvedMultiplatformLibraryArtifact(
-                fileName = "${file.nameWithoutExtension}.${file.extension}",
-                groupId = variantId.groupId,
-                artifactId = variantId.artifactId,
-                version = variantId.version,
-                possibleLocations = repositories.map { repository ->
-                    val url = file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
-                        // TODO: could we do something about this super hacky substitution resolution?
-                        .replace(originalId.groupId.replace(".", "/"), variantId.groupId.replace(".", "/"))
-                        .replace(originalId.artifactId, variantId.artifactId)
-                        .replace(originalId.version, variantId.version)
-                    UnresolvedMultiplatformLibraryArtifactLocation(
-                        url = url,
-                        credentials = RepositoryCredentials(
-                            repositoryUrl = repository.url,
-                            username = repository.userName,
-                            password = repository.password,
-                        ),
-                    )
-                },
-                // Amper will not resolve all hashes, but from the more robust to the least robust.
-                // We chose to support only 512 and 256 for now and we have to query them in that order.
-                integrity = listOf("sha512", "sha256").firstNotNullOfOrNull { algorithm ->
-                    file.getExpectedHash(HashAlgorithm(algorithm))?.let { hash ->
-                        MultiplatformLibraryArtifactIntegrity.fromHash(algorithm, hash)
-                    }
-                } ?: error("could not find hash for artifact $file"),
-            )
         }
     }
 }
