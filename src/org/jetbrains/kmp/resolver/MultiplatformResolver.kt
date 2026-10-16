@@ -11,6 +11,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import org.jetbrains.amper.dependency.resolution.*
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
+import org.jetbrains.amper.dependency.resolution.diagnostics.PlatformsAreNotSupported
 import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -359,9 +360,10 @@ private val MavenDependencyNode.gav
 
 private fun DependencyNode.resolutionErrors(logger: Logger): List<Message> =
     messages.filter { it.severity >= Severity.ERROR }.mapNotNull {
-        when {
-            it.message.contains("Platform wasmJs is not supported by the library") -> {
-                logger.warn("[${it.id}] skipping wasmJs platform")
+        when (it) {
+            // the library is not published for the platform being resolved, it is simply not part of this platform's graph
+            is PlatformsAreNotSupported -> {
+                logger.warn("[${it.coordinates}] skipping unsupported platform(s): ${it.unsupportedPlatforms.joinToString { p -> p.pretty }}")
                 null
             }
 
