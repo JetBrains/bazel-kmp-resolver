@@ -485,8 +485,19 @@ private sealed class UnresolvedMultiplatformLibrary(
         runtimeNode?.platformDependencies() ?: emptySet()
     ) - exportedDependencies
 
+    /**
+     * Dependencies of this node that are libraries of the manifest, identified by the ID of the library they are
+     * (or are a platform-specific variant of): a dependency declared directly on a `*-jvm` variant, as POM-only JVM
+     * libraries commonly do, must point at the library of that variant.
+     */
     private fun MavenDependencyNode.platformDependencies(): Set<SubstitutionId> =
-        children.asSequence().filterIsInstance<MavenDependencyNode>().map { it.gav.toSubstitutionId() }
+        children.asSequence().filterIsInstance<MavenDependencyNode>()
+            .map { child ->
+                when (val parent = child.getParentKmpLibraryCoordinates()) {
+                    null -> child.gav.toSubstitutionId()
+                    else -> substitutionId(parent.groupId, parent.artifactId)
+                }
+            }
             .filter { it in possibleDependencies }.toSet()
 
     protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(): UnresolvedMultiplatformLibraryArtifact {
