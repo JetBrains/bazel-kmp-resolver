@@ -135,6 +135,14 @@ internal sealed class MultiplatformLibraryArtifactIntegrity {
         override val algorithm: String = "sha256"
     }
 
+    /**
+     * Fallback for repositories publishing neither a sha512 nor a sha256 checksum: Maven Central only publishes sha1
+     * and md5 checksums for artifacts deployed without Gradle module metadata, i.e. most JVM-only libraries.
+     */
+    data class Sha1(override val hash: String) : MultiplatformLibraryArtifactIntegrity() {
+        override val algorithm: String = "sha1"
+    }
+
     data class Sha512(override val hash: String) : MultiplatformLibraryArtifactIntegrity() {
         override val algorithm: String = "sha512"
     }
@@ -152,6 +160,7 @@ internal sealed class MultiplatformLibraryArtifactIntegrity {
         }
 
         fun fromHash(algorithm: String, hash: String): MultiplatformLibraryArtifactIntegrity = when (algorithm) {
+            "sha1" -> Sha1(hash)
             "sha256" -> Sha256(hash)
             "sha512" -> Sha512(hash)
             else -> throw IllegalArgumentException("Unknown hash algorithm: $algorithm")
@@ -492,9 +501,10 @@ private sealed class UnresolvedMultiplatformLibrary(
                     ),
                 )
             },
-            // Amper will not resolve all hashes, but from the more robust to the least robust.
-            // We chose to support only 512 and 256 for now and we have to query them in that order.
-            integrity = listOf("sha512", "sha256").firstNotNullOfOrNull { algorithm ->
+            // Amper will not resolve all hashes, but from the more robust to the least robust, so they are queried in
+            // that order. sha1 is the fallback for repositories publishing nothing stronger (see [MultiplatformLibraryArtifactIntegrity.Sha1]);
+            // Bazel accepts it in `integrity` strings.
+            integrity = listOf("sha512", "sha256", "sha1").firstNotNullOfOrNull { algorithm ->
                 file.getExpectedHash(HashAlgorithm(algorithm))?.let { hash ->
                     MultiplatformLibraryArtifactIntegrity.fromHash(algorithm, hash)
                 }
