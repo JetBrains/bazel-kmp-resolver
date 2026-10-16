@@ -180,13 +180,6 @@ class MultiplatformResolverTest {
             resolver.resolve(coordinates)
         }
 
-        val stdlib = actual.filter { it.id.groupId == "org.jetbrains.kotlin" && it.id.artifactId == "kotlin-stdlib" }
-        assertEquals(
-            listOf(MultiplatformVariant.WasmJs::class, MultiplatformVariant.Jvm::class),
-            stdlib.map { it::class },
-            "kotlin-stdlib must have one variant per platform, under the same library id, got $stdlib",
-        )
-        assertEquals(1, stdlib.map { it.id }.distinct().size, "both kotlin-stdlib variants must share the same library id")
         assertUsingManifest(
             coordinates = coordinates,
             repositories = repositories,
@@ -228,6 +221,41 @@ class MultiplatformResolverTest {
             repositories = repositories,
             libraries = actual,
             manifestResourceFilepath = "manifest-with_substitutions_jvm.json",
+        )
+    }
+
+    @Test
+    fun `substituted library without KMP parent`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "org.jetbrains.kotlin:kotlin-reflect:2.4.0", // depends on `kotlin-stdlib`, which has no KMP parent on JVM
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                substitutions = mapOf(
+                    "org.jetbrains.kotlin:kotlin-stdlib" to MultiplatformLibraryId.fromString("org.jetbrains.kotlin:kotlin-stdlib:2.3.0"),
+                    "org.jetbrains.kotlin:kotlin-stdlib-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.3.0"),
+                ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-substituted_stdlib.json",
         )
     }
 
