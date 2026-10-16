@@ -1,0 +1,770 @@
+{
+  "askedCoordinates": [
+    "io.ktor:ktor-client-cio:3.5.0",
+    "org.jetbrains.kotlin:kotlin-reflect:2.4.0"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "io.ktor:ktor-client-cio:3.5.0": {
+      "id": "io.ktor:ktor-client-cio:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-client-cio:3.5.0",
+          "variantId": "io.ktor:ktor-client-cio-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-client-core",
+            "io.ktor:ktor-http-cio",
+            "io.ktor:ktor-network-tls",
+            "io.ktor:ktor-websockets",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-qxia5gGC3go3msqTy+VAtNS7sAFC7Y1T/JsmNfhVOACADUmBiz0BrhHjZQK1g5zf4Rw4noqSHpUer/A9ZfZkvQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-cio-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-cio-jvm/3.5.0/ktor-client-cio-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-cOkBxfnLgPjvw3nN5lkmlWT/hofpYZmp3ZcRrLVPrLt/ZfXyu7C4Lpgl1RXbmqb+5yKO3ea+NNxdFH8lLsDfXQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-cio-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-cio-jvm/3.5.0/ktor-client-cio-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-client-core:3.5.0": {
+      "id": "io.ktor:ktor-client-core:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-client-core:3.5.0",
+          "variantId": "io.ktor:ktor-client-core-jvm:3.5.0",
+          "dependencies": [
+            "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j"
+          ],
+          "exportedDependencies": [
+            "io.ktor:ktor-events",
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-http-cio",
+            "io.ktor:ktor-sse",
+            "io.ktor:ktor-websocket-serialization",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-eldcljtQujWJ3mIF4J4MLTV5ZSQA7yxUoPVUkS/+dyW9zZlmLfOW2W4oM5ZAss3AeXcTs+59+DCD6BvQtiiPgQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-core-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.5.0/ktor-client-core-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-d3niEVnC7dwC6IFQxoA7zg1l2HfLtfQ8LbakzoQuY7bvnk5iXlajA+xLsz2g2qcGVyQYC++JKZZLnCyIuwBTpg==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-client-core-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.5.0/ktor-client-core-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-events:3.5.0": {
+      "id": "io.ktor:ktor-events:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-events:3.5.0",
+          "variantId": "io.ktor:ktor-events-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-7WIWdKIpr16rIR1nFJvaE3xA3csB2NLEA+/ffzOu9wlE+HEJikHblikLxwATL9MqQslelEzqhyNJhol4Wfm43Q==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-events-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.5.0/ktor-events-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-events-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.5.0/ktor-events-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-http-cio:3.5.0": {
+      "id": "io.ktor:ktor-http-cio:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-http-cio:3.5.0",
+          "variantId": "io.ktor:ktor-http-cio-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-io",
+            "io.ktor:ktor-network",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-v04ZH4Ux34G4slJudvIQR2lUDNgDru6ltpzegWJ5h+5wNTYn1aXB/9vFqeaFZ0UMavuckbmnaRdGPBZbum/ilw==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-cio-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.5.0/ktor-http-cio-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-6l92cGfw1FG3Y7QEnA7+nI8Kxr9H0hNKYY7ptsKjNE5m4l/Y17BEZ4NrOVZ62nZFXQ/uYjPXm7/+IAVrPxB44g==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-cio-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.5.0/ktor-http-cio-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-http:3.5.0": {
+      "id": "io.ktor:ktor-http:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-http:3.5.0",
+          "variantId": "io.ktor:ktor-http-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-+PBwjHUTFe/WdzP+QssJp3jQdAabg05Ymp51zsq5icV77g4UvCajDscw2ToIcC9YFkPnpqLKLPgXZrLBnbjkJQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.5.0/ktor-http-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-nj3PqUp3we1KeWWdqrj5mRnXvuP/5Fp3prKLBROW09HhC/8IIJ/VjyDllQL0Acbm4h7Q5DpAi8Ak7148WmetPw==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-http-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.5.0/ktor-http-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-io:3.5.0": {
+      "id": "io.ktor:ktor-io:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-io:3.5.0",
+          "variantId": "io.ktor:ktor-io-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlinx:kotlinx-io-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-IHdBcJ8Jec5soD3Yv/yvoqK7od7ReAHuo2A20/01FYj9hGnvUyrKnQbv2qgtffhngND27YvfUjuXsteP8GxiJA==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-io-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.5.0/ktor-io-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-FSgTm4g22iNpA4upccnKS8sAtf6OIr0vUtuCea9D4oqjFO2JS/oJjSyuFzLFCR6+z0/qsvRl8B3frch989THZQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-io-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.5.0/ktor-io-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-network-tls:3.5.0": {
+      "id": "io.ktor:ktor-network-tls:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-network-tls:3.5.0",
+          "variantId": "io.ktor:ktor-network-tls-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-network",
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-7K5dp/bXf017mhynsfZY+b6tSC6xkPr9jGp0QqMdr4qw4/tj+LklzeuzAP7fGNK34KLL0hywsWmxH/tUQqmNig==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-network-tls-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-network-tls-jvm/3.5.0/ktor-network-tls-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-8cmQCZR23SpI98px5TRLGTK03AYBwLmK9hQ9sU7UBP4+dr4j58IIxEtDhGe0UkYIs6H0cFbNJwX2N3Toy7inYg==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-network-tls-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-network-tls-jvm/3.5.0/ktor-network-tls-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-network:3.5.0": {
+      "id": "io.ktor:ktor-network:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-network:3.5.0",
+          "variantId": "io.ktor:ktor-network-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-GDKa4183/zvaXdpyzTXoix4jq1LBlewWv5dFVyY9HKUKkradFhvApArhuh+TYphYzjRzSv4ilcznpXwgYxwcng==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-network-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.5.0/ktor-network-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-PrNH7UoiY1nd85QG+PhL5H8ob9BS+NsD41eOK1P554noBDkpUu6bDGbOQ6xjCatxuogRyqz72M24rhTFiHIcfQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-network-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.5.0/ktor-network-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-serialization:3.5.0": {
+      "id": "io.ktor:ktor-serialization:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-serialization:3.5.0",
+          "variantId": "io.ktor:ktor-serialization-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-websockets",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-IrEDOrN/5Qb13AwdZMqP4G0oTYNyPanW00KzBtl/vIhn3AwLsOUcD1B0AM3QtaUHDcSDypvQohT1mAjwOVsr5Q==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-serialization-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.5.0/ktor-serialization-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-p16G1rpSgk7U75PzjiN5f1kDnNgy9kT6ehNbFTB9g0uTRlChgXPo2L7B7tihnupG+xdP/G1dFI9lkWKE/ApBzw==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-serialization-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.5.0/ktor-serialization-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-sse:3.5.0": {
+      "id": "io.ktor:ktor-sse:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-sse:3.5.0",
+          "variantId": "io.ktor:ktor-sse-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-jkJxeysU93nEq73Cf8sgtpUZaoydtkX64bJG5T5yg66LZ8hBC0ipZtBWsv1jPNkW/l8paWLeHB1ufhPhs69yfg==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-sse-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.5.0/ktor-sse-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-sse-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.5.0/ktor-sse-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-utils:3.5.0": {
+      "id": "io.ktor:ktor-utils:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-utils:3.5.0",
+          "variantId": "io.ktor:ktor-utils-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-io",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlinx:kotlinx-serialization-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-T/+ttK8EjNQ/Uqq0jEABu44XBMuRdAj5m2vRQEFY7U0LxW0AaFM+jZ3o6O08Dg1I6sGUL/noPG3UfhEjdcvYFQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-utils-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.5.0/ktor-utils-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-LIuhOq/VUReNH9A7n5ZqgukhTBEQq2b4FI2/4c7acV0AoyP4Po/IAXOLSffYRtLP512YB5O+mZomDU3g8A8aBw==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-utils-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.5.0/ktor-utils-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-websocket-serialization:3.5.0": {
+      "id": "io.ktor:ktor-websocket-serialization:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-websocket-serialization:3.5.0",
+          "variantId": "io.ktor:ktor-websocket-serialization-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-serialization",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-mNOqBDdFLCQmyNx+t+ttEtodSYr2Ycs556iQUCNyEeRDg3iLNjQYdCy+0UpwHC1SZZd28VAm+mMgGkrqW8LJaA==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websocket-serialization-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.5.0/ktor-websocket-serialization-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websocket-serialization-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.5.0/ktor-websocket-serialization-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "io.ktor:ktor-websockets:3.5.0": {
+      "id": "io.ktor:ktor-websockets:3.5.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "io.ktor:ktor-websockets:3.5.0",
+          "variantId": "io.ktor:ktor-websockets-jvm:3.5.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "io.ktor:ktor-http",
+            "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "jar": {
+            "integrity": "sha512-6j6fveXlbTza3dHRRJ/wWJFwMxjjCX9SvLZVoL1i1MEFkHiL7mpHtbXA8myPP5YJCua/oX1cmAfxfUAR6TWHiw==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websockets-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.5.0/ktor-websockets-jvm-3.5.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-7rHIEf1aMDpn0YSZlDKfg9VifFtjE0dC1JqXCmveGO1l786RxzMjf0urhKw752e58dXQGgg1P8SlYJvQIRODBQ==",
+            "groupId": "io.ktor",
+            "artifactId": "ktor-websockets-jvm",
+            "version": "3.5.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.5.0/ktor-websockets-jvm-3.5.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-reflect:2.4.0": {
+      "id": "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
+          "variantId": "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "jar": {
+            "integrity": "sha1-BTLMcnwJYNEvTJrLamwsSj4IGHs=",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-reflect",
+            "version": "2.4.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.4.0/kotlin-reflect-2.4.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha1-ubKUp7Lz3DHK9W61hPbFg84zd2Q=",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-reflect",
+            "version": "2.4.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-reflect/2.4.0/kotlin-reflect-2.4.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:2.4.0": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains:annotations"
+          ],
+          "jar": {
+            "integrity": "sha512-K6yLh0Ca4Zqp2R+OP6q+kJBUnQWBEknTDdGBERLjf4ZQrOjNyx8hyWVS7ezX1wDESLPd+AzU259ho7x+40NWJw==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib",
+            "version": "2.4.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.0/kotlin-stdlib-2.4.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-mawZcQ8d1qXryFLRhtESc1WAer6a9VptFAJS0heSmTCvy13BA5ccvEBI3b5904OE5n8T/o9VmLr5oMf0caioiA==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib",
+            "version": "2.4.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.0/kotlin-stdlib-2.4.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains:annotations"
+          ],
+          "jar": {
+            "integrity": "sha512-bX2u5MjXltvyDzEiXNCl0BxF1vV/7NTjuRwOR/pZrAlflgXtrQ/dIZVPsG7qtKezqcUsvgH3AzsFgnNkLsheeA==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-jvm",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-MSvBsNi1+Spj1qpBhPEAwPHQTDTidXuPufMYWdhI/W4xNn1KDKkbr641EkXjDOXPcpyitucHS+Vt18cCOhnCpw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-jvm",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.11.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.11.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.11.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.11.0",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            "org.slf4j:slf4j-api"
+          ],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha512-CKtPZiTxs109MkE7I2s364iTHWl4NKhW2nS3DLWMbKIWLV0rcYwMlvEo1o/lVEYHG5hhuvOego3+ysHovsCwIQ==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-coroutines-slf4j",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.11.0/kotlinx-coroutines-slf4j-1.11.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-bDHZ6lynheCXXIROltR38d+Qs9I4jb+wVfPqFeldKyZFh8aJBztyyjGaUtUg3Rs1hF1kn9AUK6WjECqAHYk2Vg==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-coroutines-slf4j",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.11.0/kotlinx-coroutines-slf4j-1.11.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-io-bytestring-jvm:0.9.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "jar": {
+            "integrity": "sha512-x+pZZ/uPXrulR6TRX5I/alUPb3zJBHxp8JuQXioP/TMZtfM2RzrpPKKQaKRm2X2D84+AB19KVWeHlU3mhJE47A==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-bytestring-jvm",
+            "version": "0.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.9.0/kotlinx-io-bytestring-jvm-0.9.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-WrG5Zjr/9dUgZL3uQl1BQ96FcOmyo/kH6+KV2UOBxjHarkTDz8ObVsN33hUNynSv5kKxbQvxqYZTDKzDrGJQpw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-bytestring-jvm",
+            "version": "0.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.9.0/kotlinx-io-bytestring-jvm-0.9.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-io-core-jvm:0.9.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-io-bytestring"
+          ],
+          "jar": {
+            "integrity": "sha512-dkKxPYtlmY1SqLEZCrzSYnjE7scoZYOjWnx2cj06cOo4fLTjHG3PC8yLBIZtjZB6AZHumblwvC3oPsGNIYk0iw==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-core-jvm",
+            "version": "0.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.9.0/kotlinx-io-core-jvm-0.9.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-bxvqwvB8cJX94uyJXgUKoBQn2vksmTVeo0XloIn7DBUdWpkz8jxRSFrj6tfysyubR99D94hNDAPm/zGKMhChmg==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-io-core-jvm",
+            "version": "0.9.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.9.0/kotlinx-io-core-jvm-0.9.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0": {
+      "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.11.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "jar": {
+            "integrity": "sha512-CYmTI40mlRrMcXIRdoWGHYco+6aXv6IL1rJG/HS2vLC3PMNs35v8FOi0CEUlnHj1mkaY9ujf/yrmxnMRPs/BNQ==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-jvm",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-yzqQKEME+6VEJZoi/VjWqAt/JqYJLN86YLAZEy1zuc45tifuhBsTamlxTjhRsUzvCoNYwtjl7B6a3NYjGgBR1g==",
+            "groupId": "org.jetbrains.kotlinx",
+            "artifactId": "kotlinx-serialization-core-jvm",
+            "version": "1.11.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.11.0/kotlinx-serialization-core-jvm-1.11.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains:annotations:23.0.0": {
+      "id": "org.jetbrains:annotations:23.0.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains:annotations:23.0.0",
+          "variantId": "org.jetbrains:annotations:23.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=",
+            "groupId": "org.jetbrains",
+            "artifactId": "annotations",
+            "version": "23.0.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha1-ylCI1hWsyqvSqpVrELI2pOdc/Ms=",
+            "groupId": "org.jetbrains",
+            "artifactId": "annotations",
+            "version": "23.0.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.slf4j:slf4j-api:2.0.18": {
+      "id": "org.slf4j:slf4j-api:2.0.18",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.slf4j:slf4j-api:2.0.18",
+          "variantId": "org.slf4j:slf4j-api:2.0.18",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha512-U5KI+gyWzqdQ0RKT2+1MViYwWHqnzYi792rQQ5DRxAY2UG2kj6pkUwkMfpuqa2kLn73tVafitKkVR+7qAR+XGg==",
+            "groupId": "org.slf4j",
+            "artifactId": "slf4j-api",
+            "version": "2.0.18",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-ilplR5dyoskofrILfaUiIgUZBn8E1VfCv4GjNOj8ue8boflu6EnVdo673trwGGw8DvxFGIDGAWwAz6mmFB1UGw==",
+            "groupId": "org.slf4j",
+            "artifactId": "slf4j-api",
+            "version": "2.0.18",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18-sources.jar"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,6 +2,7 @@ package org.jetbrains.kmp.resolver
 
 import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
+import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import java.io.InputStream
 import java.nio.file.Path
 import kotlin.test.assertEquals
@@ -21,8 +22,10 @@ internal fun testMultiplatformResolver(
     repositories: List<String>,
     artifactResolver: ArtifactUrlResolver,
     substitutions: Substitutions = emptyMap(),
+    platforms: Set<ResolutionPlatform>,
 ): MultiplatformResolver = MultiplatformResolver(
     cachePath = cachePath,
+    platforms = platforms,
     repositories = repositories.map { MavenRepository(it) },
     artifactResolver = artifactResolver,
     substitutions = substitutions,

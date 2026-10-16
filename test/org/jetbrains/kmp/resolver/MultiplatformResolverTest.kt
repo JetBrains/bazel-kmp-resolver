@@ -1,7 +1,7 @@
 package org.jetbrains.kmp.resolver
 
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.ExperimentalSerializationApi
+import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
@@ -24,7 +24,6 @@ class MultiplatformResolverTest {
         assertEquals(sha256, MultiplatformLibraryArtifactIntegrity.fromBazelIntegrityString(bazelIntegrity))
     }
 
-    @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
     @Test
     fun `multi-repository resolution`() = runBlocking {
         val repositories = listOf(
@@ -46,6 +45,7 @@ class MultiplatformResolverTest {
                 cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories,
                 artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             resolver.resolve(coordinates)
         }
@@ -58,7 +58,6 @@ class MultiplatformResolverTest {
         )
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `do not resolve JVM nodes`() = runBlocking {
         val repositories = listOf(
@@ -77,6 +76,7 @@ class MultiplatformResolverTest {
                 cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories,
                 artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             resolver.resolve(coordinates)
         }
@@ -89,7 +89,6 @@ class MultiplatformResolverTest {
         )
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `substituted resolution`() = runBlocking {
         val repositories = listOf(
@@ -112,6 +111,7 @@ class MultiplatformResolverTest {
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
                 ),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             resolver.resolve(coordinates)
         }
@@ -124,7 +124,113 @@ class MultiplatformResolverTest {
         )
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
+    @Test
+    fun `jvm resolution`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "io.ktor:ktor-client-cio:3.5.0",
+            "org.jetbrains.kotlin:kotlin-reflect:2.4.0", // JVM-only library, its id is its variantId
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.JVM),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-jvm_resolution.json",
+        )
+    }
+
+    @Test
+    fun `wasmjs and jvm resolution`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "io.ktor:ktor-client-core:3.4.3", // depends on the wasmJs-only `kotlinx-browser`, skipped on JVM
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                // reversed on purpose: the manifest must not depend on the order platforms are requested in
+                platforms = setOf(ResolutionPlatform.JVM, ResolutionPlatform.WASM_JS),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        val stdlib = actual.filter { it.id.groupId == "org.jetbrains.kotlin" && it.id.artifactId == "kotlin-stdlib" }
+        assertEquals(
+            listOf(MultiplatformVariant.WasmJs::class, MultiplatformVariant.Jvm::class),
+            stdlib.map { it::class },
+            "kotlin-stdlib must have one variant per platform, under the same library id, got $stdlib",
+        )
+        assertEquals(1, stdlib.map { it.id }.distinct().size, "both kotlin-stdlib variants must share the same library id")
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-wasmjs_jvm.json",
+        )
+    }
+
+    @Test
+    fun `substituted wasmjs and jvm resolution`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "io.ktor:ktor-client-core:3.4.3",
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                substitutions = mapOf(
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-jvm:1.10.2-intellij-1"),
+                ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-with_substitutions_jvm.json",
+        )
+    }
+
     @Test
     fun `dependency on JVM-only dependencies are excluded`() = runBlocking {
         val repositories = listOf(
@@ -144,6 +250,7 @@ class MultiplatformResolverTest {
                 cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories,
                 artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             resolver.resolve(coordinates)
         }
@@ -156,7 +263,6 @@ class MultiplatformResolverTest {
         )
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Test
     fun `klib-declared npm dependencies are resolved`() = runBlocking {
         val repositories = listOf(
@@ -175,6 +281,7 @@ class MultiplatformResolverTest {
                 cachePath = createTempDirectory("resolution-cache"),
                 repositories = repositories,
                 artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             resolver.resolve(coordinates)
         }
@@ -187,7 +294,7 @@ class MultiplatformResolverTest {
         )
     }
 
-    @OptIn(ExperimentalSerializationApi::class, ExperimentalPathApi::class)
+    @OptIn(ExperimentalPathApi::class)
     @Test
     fun `ensure hash of artifacts are resolved`(): Unit = runBlocking {
         val repositories = listOf(
@@ -209,6 +316,7 @@ class MultiplatformResolverTest {
                 cachePath = cache,
                 repositories = repositories,
                 artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.WASM_JS),
             )
             assertDoesNotThrow {
                 resolver.resolve(coordinates)

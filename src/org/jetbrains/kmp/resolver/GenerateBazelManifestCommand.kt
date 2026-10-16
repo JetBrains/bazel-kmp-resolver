@@ -2,12 +2,14 @@ package org.jetbrains.kmp.resolver
 
 import com.github.ajalt.clikt.command.SuspendingCliktCommand
 import com.github.ajalt.clikt.parameters.options.*
+import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.int
 import com.github.ajalt.clikt.parameters.types.long
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
+import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import java.nio.file.Path
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.outputStream
@@ -23,6 +25,15 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         "--coordinate",
         help = "Maven coordinate to resolve, can be specified multiple times for resolving many coordinates at once.",
     ).multiple(required = true)
+
+    private val platforms: Set<ResolutionPlatform> by option(
+        "--platform",
+        help = "Platform to resolve the coordinates for, can be specified multiple times to resolve many platforms at once. " +
+                "`wasmjs` produces the klib variants of KMP libraries, `jvm` their jar variants along with JVM-only libraries.",
+    ).choice(
+        "wasmjs" to ResolutionPlatform.WASM_JS,
+        "jvm" to ResolutionPlatform.JVM,
+    ).multiple(required = true).unique()
 
     private val substitutions: List<Pair<SubstitutionId, MultiplatformLibraryId>> by option(
         "--substitution",
@@ -99,6 +110,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
         val manifest = artifactResolver.use { artifactResolver ->
             val resolver = MultiplatformResolver(
                 cachePath = outputManifest.parent,
+                platforms = platforms,
                 repositories = repositories.withRepositoryCredentials(credentials),
                 artifactResolver = artifactResolver,
                 substitutions = substitutions.toMap(),
