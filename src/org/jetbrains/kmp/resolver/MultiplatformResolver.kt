@@ -372,7 +372,8 @@ private fun DependencyNode.resolutionErrors(logger: Logger): List<Message> =
     }
 
 // TODO: both of these are not necessarily true when resolving a dependency against many platforms
-private fun DependencyFileImpl.isSourceJar(): Boolean = extension == "jar" && nameWithoutExtension.endsWith("-sources")
+private fun DependencyFileImpl.isSourceJar(): Boolean =
+    isDocumentation && extension == "jar" && nameWithoutExtension.endsWith("-sources")
 private fun DependencyFile.isWasmKlib(): Boolean = extension == "klib"
 
 private data class UnresolvedMultiplatformLibraryArtifact(
