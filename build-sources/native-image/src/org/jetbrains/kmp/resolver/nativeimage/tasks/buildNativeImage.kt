@@ -35,20 +35,39 @@ fun buildNativeImage(
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
     println("Building ${outputBinary.absolutePathString()} with GraalVM $graalVmVersion")
-    val cmd = nativeImageCommand(graalVm.nativeImage, platform) + listOf(
-        "--no-fallback",
-        "-O3",
-        "-cp",
-        classpath,
-        "-o",
-        outputBinary.absolutePathString(),
-        mainClass,
+
+    // The classpath alone can exceed the 8191-character command line limit of cmd.exe on Windows,
+    // so all arguments go through an @argfile regardless of the platform.
+    val argFile = writeNativeImageArgfile(
+        targetArgfile = outputDirectory.resolve("native-image-${platform.suffix}.args"),
+        classpath = classpath,
+        outputBinary = outputBinary,
+        mainClass = mainClass,
     )
+    val cmd = nativeImageCommand(graalVm.nativeImage, platform, argFile)
     val exitCode = runProcessWithInheritedIO(
         command = cmd,
         environment = mapOf("JAVA_HOME" to graalVm.home.absolutePathString()),
     )
-    require(exitCode == 0) { "Command failed with exit code $exitCode: ${cmd.joinToString(" ")}" }
+    require(exitCode == 0) {
+        """
+Command failed with exit code $exitCode: ${cmd.joinToString(" ")}
+
+ArgFile '$argFile' content:
+${argFile.readLines().joinToString("\n")}
+        """
+    }
+}
+
+/**
+ * Quotes an argument for a native-image @argfile. The driver tokenizes such files like the `java` launcher does:
+ * within double quotes, a backslash escapes the next character, so backslashes (Windows path separators) and
+ * double quotes must be escaped.
+ */
+private fun String.quoteForArgFile(): String = buildString {
+    append("\"")
+    append(replace("\\", "\\\\").replace("\"", "\\\""))
+    append("\"")
 }
 
 private data class GraalVmInstallation(
@@ -56,7 +75,6 @@ private data class GraalVmInstallation(
     val nativeImage: Path,
 )
 
-@OptIn(ExperimentalPathApi::class)
 private suspend fun provisionGraalVm(
     graalVmVersion: String,
     archive: GraalVmArchive,
@@ -82,10 +100,35 @@ private fun buildClasspath(
     return classpathFiles.joinToString(platform.classpathSeparator)
 }
 
-private fun nativeImageCommand(nativeImage: Path, platform: Platform): List<String> = when {
+private fun nativeImageCommand(nativeImage: Path, platform: Platform, argFile: Path): List<String> = when {
     platform.os == "windows" && nativeImage.name.endsWith(".cmd", ignoreCase = true) -> listOf(
-        "cmd.exe", "/c", nativeImage.absolutePathString()
+        "cmd.exe",
+        "/c",
+        nativeImage.absolutePathString(),
+        "@${argFile.absolutePathString()}",
     )
 
-    else -> listOf(nativeImage.absolutePathString())
+    else -> listOf(
+        nativeImage.absolutePathString(),
+        "@${argFile.absolutePathString()}",
+    )
+}
+
+private fun writeNativeImageArgfile(
+    targetArgfile: Path,
+    classpath: String,
+    outputBinary: Path,
+    mainClass: String,
+): Path {
+    val nativeImageArgs = listOf(
+        "--no-fallback",
+        "-O3",
+        "-cp",
+        classpath,
+        "-o",
+        outputBinary.absolutePathString(),
+        mainClass,
+    )
+    targetArgfile.writeText(nativeImageArgs.joinToString("\n") { it.quoteForArgFile() })
+    return targetArgfile
 }
