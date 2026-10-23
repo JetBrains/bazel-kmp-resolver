@@ -244,6 +244,12 @@ internal class MultiplatformResolver(
 
     init {
         require(platforms.isNotEmpty()) { "At least one platform must be requested" }
+        substitutions.forEach { (substituted, substitute) ->
+            require(substituted != substitute.toSubstitutionId()) {
+                "Substitution of $substituted by ${substitute.gav} substitutes a library by another version of itself, " +
+                        "which is not supported: versions are picked by conflict resolution among the requested ones"
+            }
+        }
         platforms.forEach { platform ->
             require(platform in SUPPORTED_PLATFORMS) {
                 "Platform ${platform.pretty} is not supported, supported platforms: ${SUPPORTED_PLATFORMS.joinToString { it.pretty }}"
@@ -264,10 +270,14 @@ internal class MultiplatformResolver(
         // when resolving for a single platform, so each platform gets its own resolution.
         // Resolutions run sequentially because they share the same Amper cache directory, and platforms are
         // iterated in a fixed order so that the manifest does not depend on the order of the `--platform` flags.
+        // Substitutes are resolved in place of the libraries they substitute: they take part in the resolution as
+        // roots, so that their artifacts, hashes and dependencies are the ones Amper resolves for them, while the
+        // substituted libraries are dropped from the result and the edges pointing at them redirected (see [collectNodes]).
+        val substitutes = substitutions.values.map { it.gav }.distinct()
         val nodes = orderedPlatforms.flatMap { platform ->
             logger.debug("Resolving dependency graph for platform ${platform.pretty}...")
             val root = callAmperResolution(
-                coordinatesBag = coordinatesBag,
+                coordinatesBag = (coordinatesBag.toList() + substitutes).distinct(),
                 platforms = setOf(platform),
                 scope = listOf(
                     ResolutionScope.RUNTIME,
@@ -275,12 +285,27 @@ internal class MultiplatformResolver(
                 ),
             )
             logger.debug("Collecting nodes of the ${platform.pretty} dependency graph...")
-            collectNodes(root, platform)
+            collectNodes(root, platform).dropLibrariesOnlyReachableFromSubstitutes(coordinatesBag, substitutes)
         }
         logger.debug("Resolving NPM dependencies declared by the klibs of the dependency graph...")
         val npmPackagesByVariant = resolveNpmPackages(nodes)
         logger.debug("Resolving artifacts of nodes of the dependency graph against the specified repositories...")
-        return resolveArtifacts(nodes, npmPackagesByVariant)
+        return resolveArtifacts(nodes, npmPackagesByVariant).also { variants -> variants.requireOneVariantPerPlatform() }
+    }
+
+    /**
+     * A library has at most one variant per platform, otherwise consumers could not tell which artifacts to use.
+     */
+    private fun List<MultiplatformVariant>.requireOneVariantPerPlatform() {
+        val duplicates = groupBy { it.id to it::class }.filterValues { it.size > 1 }
+        require(duplicates.isEmpty()) {
+            buildString {
+                appendLine("Libraries resolved to several variants of the same platform:")
+                duplicates.forEach { (key, variants) ->
+                    appendLine("\t[${key.first.gav}] ${key.second.simpleName}: ${variants.map { it.variantId.gav }}")
+                }
+            }
+        }
     }
 
     private suspend fun resolveNpmPackages(
@@ -360,7 +385,11 @@ internal class MultiplatformResolver(
             }
         }
 
-        val filteredNodes = nodes.filter { node -> node.isCollectedFor(platform) }
+        val (substitutedNodes, filteredNodes) = nodes.filter { node -> node.isCollectedFor(platform) }
+            .partition { node -> node.isSubstituted() }
+        substitutedNodes.forEach { node ->
+            logger.debug("[${node.gav.gav}] dropped, it is substituted (platform ${platform.pretty})")
+        }
 
         // some KMP dependencies are incorrectly declaring a JVM dependency
         // e.g. `ai.jetbrains.code.files:code-files-model-wasm-js:1.0.0-beta.170` which depends on `org.slf4j:slf4j-api:2.0.17`
@@ -391,6 +420,52 @@ internal class MultiplatformResolver(
                 else -> error("Platform ${platform.pretty} is not supported")
             }
         }
+    }
+
+    /**
+     * Whether this node, or the KMP library it is a platform-specific variant of, is substituted by another library:
+     * its substitute is resolved in its place (see [resolve]), so the node itself is not part of the result.
+     */
+    private fun MavenDependencyNode.isSubstituted(): Boolean =
+        gav.toSubstitutionId() in substitutions ||
+                getParentKmpLibraryCoordinates()?.let { parent -> substitutionId(parent.groupId, parent.artifactId) in substitutions } == true
+
+    /**
+     * Substitutes are resolved as roots whether or not something depends on them: those that nothing reachable from the
+     * asked [coordinatesBag] depends on are dropped, along with what only they pull in, so that the manifest only
+     * contains what the asked coordinates need. Libraries reachable from neither (e.g. pulled by a pom-only
+     * intermediate, which the manifest cannot express) are kept, as they were before substitutes became roots.
+     */
+    private fun List<UnresolvedMultiplatformLibrary>.dropLibrariesOnlyReachableFromSubstitutes(
+        coordinatesBag: Collection<String>,
+        substitutes: Collection<String>,
+    ): List<UnresolvedMultiplatformLibrary> {
+        val librariesByModule = associateBy { it.id.toSubstitutionId() }
+        val reachableFromAsked = librariesByModule.reachableFrom(coordinatesBag)
+        val onlyReachableFromSubstitutes = librariesByModule.reachableFrom(substitutes) - reachableFromAsked
+        onlyReachableFromSubstitutes.forEach { library ->
+            logger.debug("[${library.id.gav}] dropped, nothing asked depends on it, it is only reachable from a substitute")
+        }
+        return this - onlyReachableFromSubstitutes
+    }
+
+    /**
+     * Libraries (keyed by module) reachable from the given root coordinates through their dependencies, substitutions
+     * applied to the roots.
+     */
+    private fun Map<SubstitutionId, UnresolvedMultiplatformLibrary>.reachableFrom(roots: Collection<String>): Set<UnresolvedMultiplatformLibrary> {
+        val rootModules = substitutions.substituteSubstitutionIds(
+            roots.map { root -> root.toMavenCoordinates().let { substitutionId(it.groupId, it.artifactId) } }
+        )
+        val reached = linkedSetOf<UnresolvedMultiplatformLibrary>()
+        val pending = ArrayDeque(rootModules.mapNotNull { this[it] })
+        while (pending.isNotEmpty()) {
+            val library = pending.removeFirst()
+            if (reached.add(library)) {
+                (library.dependencies + library.exportedDependencies).mapNotNullTo(pending) { this[it] }
+            }
+        }
+        return reached
     }
 
     /**
@@ -530,8 +605,6 @@ private sealed class UnresolvedMultiplatformLibrary(
         }
     }
 
-    private val originalId: MultiplatformLibraryId = node.gav
-
     /**
      * ID of the KMP umbrella library this node is a platform-specific variant of, or the node's own ID when it is
      * not such a variant: a JVM-only library, or a KMP library publishing its JVM artifact in the umbrella module
@@ -539,21 +612,17 @@ private sealed class UnresolvedMultiplatformLibrary(
      * as its wasmJs variant.
      */
     val id: MultiplatformLibraryId by lazy {
-        val unsubstitutedId = when (val parent = node.getParentKmpLibraryCoordinates()) {
-            null -> originalId
+        when (val parent = node.getParentKmpLibraryCoordinates()) {
+            null -> variantId
             else -> MultiplatformLibraryId(
                 groupId = parent.groupId,
                 artifactId = parent.artifactId,
                 version = parent.version ?: error("$node parent $parent must have a version"),
             )
         }
-        // TODO: could we do something about this super hacky substitution resolution?
-        substitutions.substituteMultiplatformLibraryIds(listOf(unsubstitutedId)).single()
     }
 
-    // TODO: could we do something about this super hacky substitution resolution?
-    val variantId: MultiplatformLibraryId =
-        substitutions.substituteMultiplatformLibraryIds(listOf(originalId)).single()
+    val variantId: MultiplatformLibraryId = node.gav
 
     protected val files: List<DependencyFileImpl> by lazy {
         node.dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>()
@@ -565,19 +634,15 @@ private sealed class UnresolvedMultiplatformLibrary(
         return sourceJars.singleOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
     }
 
-    // TODO: could we do something about this super hacky substitution resolution?
-    val exportedDependencies: Set<SubstitutionId> =
-        substitutions.substituteSubstitutionIds(compileNode?.platformDependencies() ?: emptySet())
+    val exportedDependencies: Set<SubstitutionId> = compileNode?.platformDependencies() ?: emptySet()
 
-    // TODO: could we do something about this super hacky substitution resolution?
-    val dependencies: Set<SubstitutionId> = substitutions.substituteSubstitutionIds(
-        runtimeNode?.platformDependencies() ?: emptySet()
-    ) - exportedDependencies
+    val dependencies: Set<SubstitutionId> = (runtimeNode?.platformDependencies() ?: emptySet()) - exportedDependencies
 
     /**
      * Dependencies of this node that are libraries of the manifest, identified by the ID of the library they are
      * (or are a platform-specific variant of): a dependency declared directly on a `*-jvm` variant, as POM-only JVM
-     * libraries commonly do, must point at the library of that variant.
+     * libraries commonly do, must point at the library of that variant. A dependency on a substituted library points
+     * at its substitute, resolved in its place.
      */
     private fun MavenDependencyNode.platformDependencies(): Set<SubstitutionId> =
         children.asSequence().filterIsInstance<MavenDependencyNode>()
@@ -587,6 +652,7 @@ private sealed class UnresolvedMultiplatformLibrary(
                     else -> substitutionId(parent.groupId, parent.artifactId)
                 }
             }
+            .let { substitutions.substituteSubstitutionIds(it.toList()) }
             .filter { it in possibleDependencies }.toSet()
 
     protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(): UnresolvedMultiplatformLibraryArtifact {
@@ -598,10 +664,6 @@ private sealed class UnresolvedMultiplatformLibrary(
             version = variantId.version,
             possibleLocations = repositories.map { repository ->
                 val url = file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
-                    // TODO: could we do something about this super hacky substitution resolution?
-                    .replace(originalId.groupId.replace(".", "/"), variantId.groupId.replace(".", "/"))
-                    .replace(originalId.artifactId, variantId.artifactId)
-                    .replace(originalId.version, variantId.version)
                 UnresolvedMultiplatformLibraryArtifactLocation(
                     url = url,
                     credentials = RepositoryCredentials(
@@ -711,35 +773,23 @@ private suspend fun UnresolvedMultiplatformLibrary.Jvm.resolve(
     )
 }
 
-private fun String.toMavenNode(context: Context): MavenDependencyNodeWithContext {
-    val isBom = startsWith("bom:")
+private fun String.toMavenNode(context: Context): MavenDependencyNodeWithContext =
+    context.toMavenDependencyNode(coordinates = toMavenCoordinates(), isBom = startsWith("bom:"))
+
+private fun String.toMavenCoordinates(): MavenCoordinates {
     val parts = removePrefix("bom:").trim().split(":")
-    val group = parts[0]
-    val module = parts[1]
-    val version = when {
-        parts.size > 2 -> parts[2]
-        else -> null
-    }
-    return context.toMavenDependencyNode(
-        coordinates = MavenCoordinates(
-            groupId = group,
-            artifactId = module,
-            version = version,
-        ),
-        isBom = isBom,
+    return MavenCoordinates(
+        groupId = parts[0],
+        artifactId = parts[1],
+        version = when {
+            parts.size > 2 -> parts[2]
+            else -> null
+        },
     )
 }
 
 private fun MultiplatformLibraryId.toSubstitutionId(): SubstitutionId = substitutionId(groupId, artifactId)
 private fun substitutionId(groupId: String, artifactId: String) = "$groupId:$artifactId"
-
-private fun Substitutions.substituteMultiplatformLibraryIds(originalIds: Collection<MultiplatformLibraryId>): Set<MultiplatformLibraryId> =
-    originalIds.map { originalId ->
-        when (val subId = this[originalId.toSubstitutionId()]) {
-            null -> originalId
-            else -> subId
-        }
-    }.toSet()
 
 private fun Substitutions.substituteSubstitutionIds(originalIds: Collection<SubstitutionId>): Set<SubstitutionId> =
     originalIds.map { originalId ->

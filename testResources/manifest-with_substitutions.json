@@ -406,7 +406,7 @@
             "org.jetbrains.kotlinx:atomicfu-wasm-js"
           ],
           "klib": {
-            "integrity": "sha512-8SphTDxmXU+XVBvoED1QuRvjICXgs65zKoYAzJRDbkoxmam3aP2k55kDm96enA62ow/h3aMJWu7Ojmdh0VkY3w==",
+            "integrity": "sha512-waP/KfBN4KBctOvYp/oVYS0bAjnCvA4V+4LepIP8fHgTubFXDBcixtHpDCg7EY3FCiOmAUlS18s9JKUrBDY31Q==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2-intellij-1",
@@ -415,7 +415,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-5n2MXwJ8W7vXRqStmNtfOIIGQD6kp4Y1U2KmE9BKsIB9LBfhXUSOUt5LsQziJBC/7FfkmfCqkLrUHfC8XA2/8w==",
+            "integrity": "sha512-Sf9kOQRmHIzlAks7QYi0kb7jmT71rso527oumP8LAWUyImLtstdN0vadcXyXYs5cAxIGYuoOJnDJfCnpsZzmWg==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2-intellij-1",

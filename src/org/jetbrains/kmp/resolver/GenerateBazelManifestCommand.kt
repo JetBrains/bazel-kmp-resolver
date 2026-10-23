@@ -37,7 +37,8 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     private val substitutions: List<Pair<SubstitutionId, MultiplatformLibraryId>> by option(
         "--substitution",
-        help = "Pair to substitute a group/artifact pair into another at resolution time, can be specified multiple times.",
+        help = "`group:artifact=group:artifact:version` substituting a library by another one, resolved in its place with its own " +
+                "artifacts and dependencies; substituting a KMP library covers its platform-specific variants. Can be specified multiple times.",
     ).convert {
         val (original, sub) = it.split("=", limit = 2)
         original to MultiplatformLibraryId.fromString(sub)

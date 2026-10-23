@@ -752,7 +752,7 @@
             "org.jetbrains.kotlinx:atomicfu-wasm-js"
           ],
           "klib": {
-            "integrity": "sha512-8SphTDxmXU+XVBvoED1QuRvjICXgs65zKoYAzJRDbkoxmam3aP2k55kDm96enA62ow/h3aMJWu7Ojmdh0VkY3w==",
+            "integrity": "sha512-waP/KfBN4KBctOvYp/oVYS0bAjnCvA4V+4LepIP8fHgTubFXDBcixtHpDCg7EY3FCiOmAUlS18s9JKUrBDY31Q==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2-intellij-1",
@@ -761,7 +761,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-5n2MXwJ8W7vXRqStmNtfOIIGQD6kp4Y1U2KmE9BKsIB9LBfhXUSOUt5LsQziJBC/7FfkmfCqkLrUHfC8XA2/8w==",
+            "integrity": "sha512-Sf9kOQRmHIzlAks7QYi0kb7jmT71rso527oumP8LAWUyImLtstdN0vadcXyXYs5cAxIGYuoOJnDJfCnpsZzmWg==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-wasm-js",
             "version": "1.10.2-intellij-1",
@@ -780,7 +780,7 @@
             "org.jetbrains:annotations"
           ],
           "jar": {
-            "integrity": "sha512-I4/UUfgOIiSAyIDdi8/XbpIDtoM6AwalVIOz+esLJWUSQqPnvq91ENXjmSLx09mH/KeUaNlF6zWw8HFWp4h7oA==",
+            "integrity": "sha512-UMmSTlNL2CWfq9qg+c/BE3fgV4gfbFKv8XEEfyeXsTfcaGWa1SlHoGg8RUTgNsZWI7RAMve/janOCKQNQ+ht3w==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-jvm",
             "version": "1.10.2-intellij-1",
@@ -789,7 +789,7 @@
             ]
           },
           "sourceJar": {
-            "integrity": "sha512-ZNo9M9348wxSfmUiwJAnaBWOeEAzuFuwM+WW38KXYfWMzCQKjI1/4qOovkwVNcmUAWKfrm+cMrQrrBKq/4TXzg==",
+            "integrity": "sha512-BZt/TksnpnXzQEu9dyoFUyyEXhMT7aIKM2s6bM9rflU5Kwr1qXWY75QFaPSg4kCde2KpxHEtc6Gdpgg16BkCIw==",
             "groupId": "org.jetbrains.intellij.deps.kotlinx",
             "artifactId": "kotlinx-coroutines-core-jvm",
             "version": "1.10.2-intellij-1",

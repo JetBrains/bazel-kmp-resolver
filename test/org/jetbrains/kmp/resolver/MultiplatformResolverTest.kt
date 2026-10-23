@@ -208,8 +208,7 @@ class MultiplatformResolverTest {
                 artifactResolver = artifactResolver,
                 substitutions = mapOf(
                     "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
-                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
-                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-jvm:1.10.2-intellij-1"),
+                    // substituting the KMP library covers its platform-specific variants
                 ),
                 platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
             )
@@ -230,7 +229,7 @@ class MultiplatformResolverTest {
             "https://repo1.maven.org/maven2",
         )
         val coordinates = listOf(
-            "org.jetbrains.kotlin:kotlin-reflect:2.4.0", // depends on `kotlin-stdlib`, which has no KMP parent on JVM
+            "io.ktor:ktor-client-core:3.4.3", // depends on `kotlinx-coroutines-slf4j` on JVM, a JVM-only library without KMP parent
         )
         val artifactResolver = ArtifactUrlResolver(
             allowedConcurrentConnections = 32,
@@ -243,8 +242,8 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 artifactResolver = artifactResolver,
                 substitutions = mapOf(
-                    "org.jetbrains.kotlin:kotlin-stdlib" to MultiplatformLibraryId.fromString("org.jetbrains.kotlin:kotlin-stdlib:2.3.0"),
-                    "org.jetbrains.kotlin:kotlin-stdlib-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.3.0"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-slf4j:1.10.2-intellij-1"),
                 ),
                 platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
             )
@@ -255,7 +254,44 @@ class MultiplatformResolverTest {
             coordinates = coordinates,
             repositories = repositories,
             libraries = actual,
-            manifestResourceFilepath = "manifest-substituted_stdlib.json",
+            manifestResourceFilepath = "manifest-substituted_without_kmp_parent.json",
+        )
+    }
+
+    @Test
+    fun `substitute declared directly along with the substituted library`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            "io.ktor:ktor-client-core:3.4.3", // depends on `kotlinx-coroutines-core`, substituted below
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1", // the substitute itself
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                substitutions = mapOf(
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"),
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to MultiplatformLibraryId.fromString("org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1"),
+                    // a redundant variant key, as some generators emit: harmless
+                ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-with_substitutions_and_substitute.json",
         )
     }
 
