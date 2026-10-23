@@ -748,8 +748,7 @@
           "dependencies": [],
           "exportedDependencies": [
             "org.jetbrains.kotlin:kotlin-stdlib",
-            "org.jetbrains.kotlinx:atomicfu",
-            "org.jetbrains.kotlinx:atomicfu-wasm-js"
+            "org.jetbrains.kotlinx:atomicfu"
           ],
           "klib": {
             "integrity": "sha512-waP/KfBN4KBctOvYp/oVYS0bAjnCvA4V+4LepIP8fHgTubFXDBcixtHpDCg7EY3FCiOmAUlS18s9JKUrBDY31Q==",

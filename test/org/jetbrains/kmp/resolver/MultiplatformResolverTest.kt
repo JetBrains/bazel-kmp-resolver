@@ -296,6 +296,40 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `platform variant also requested directly by a POM-based library`() = runBlocking {
+        val repositories = listOf(
+            "https://repo1.maven.org/maven2",
+        )
+        val coordinates = listOf(
+            // a pom-only JVM library depending directly on `kotlinx-coroutines-core-jvm` (of the IntelliJ fork), listed first
+            // so that the dependency graph walk meets that variant as its child before meeting it as the KMP library's one
+            "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+        )
+        val artifactResolver = ArtifactUrlResolver(
+            allowedConcurrentConnections = 32,
+            connectTimeout = 30.seconds,
+            requestTimeout = 10.seconds,
+        )
+        val actual = artifactResolver.use { artifactResolver ->
+            val resolver = testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                artifactResolver = artifactResolver,
+                platforms = setOf(ResolutionPlatform.JVM),
+            )
+            resolver.resolve(coordinates)
+        }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-variant_requested_directly.json",
+        )
+    }
+
+    @Test
     fun `dependency on JVM-only dependencies are excluded`() = runBlocking {
         val repositories = listOf(
             "https://repo1.maven.org/maven2",

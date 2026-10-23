@@ -25,6 +25,12 @@ import kotlin.io.path.absolutePathString
 internal typealias SubstitutionId = String
 internal typealias Substitutions = Map<SubstitutionId, MultiplatformLibraryId>
 
+/**
+ * The KMP library (umbrella) a Maven module (`group:artifact`) is a platform-specific variant of, for the modules of a
+ * platform's dependency graph that are such variants.
+ */
+internal typealias KmpParents = Map<SubstitutionId, MultiplatformLibraryId>
+
 @Serializable(with = MultiplatformLibraryIdSerializer::class)
 internal data class MultiplatformLibraryId(
     val groupId: String,
@@ -369,12 +375,24 @@ internal class MultiplatformResolver(
         root: RootDependencyNode,
         platform: ResolutionPlatform,
     ): List<UnresolvedMultiplatformLibrary> {
-        val nodes = root.distinctBfsSequence().filterIsInstance<MavenDependencyNode>()
+        val nodes = root.distinctBfsSequence().filterIsInstance<MavenDependencyNode>().toList()
+        // Amper tells the KMP library a node is a platform-specific variant of per graph node, that is per requester: a
+        // variant also requested directly, as POM-only JVM libraries do with `*-jvm` artifacts, has nodes whose parent
+        // is that requester. The KMP parent is therefore looked up per Maven module, across all the nodes of the graph.
+        val kmpParents: KmpParents = nodes.mapNotNull { node ->
+            node.getParentKmpLibraryCoordinates()?.let { parent ->
+                node.gav.toSubstitutionId() to MultiplatformLibraryId(
+                    groupId = parent.groupId,
+                    artifactId = parent.artifactId,
+                    version = parent.version ?: error("${node.gav.gav} parent $parent must have a version"),
+                )
+            }
+        }.toMap()
         val errorsByNode = nodes.map { node ->
             node.gav to node.resolutionErrors(logger)
         }.filter { (_, errors) ->
             errors.isNotEmpty()
-        }.toList()
+        }
         require(errorsByNode.isEmpty()) {
             buildString {
                 appendLine("Amper resolution failed with errors:")
@@ -385,8 +403,8 @@ internal class MultiplatformResolver(
             }
         }
 
-        val (substitutedNodes, filteredNodes) = nodes.filter { node -> node.isCollectedFor(platform) }
-            .partition { node -> node.isSubstituted() }
+        val (substitutedNodes, filteredNodes) = nodes.filter { node -> node.isCollectedFor(platform, kmpParents) }
+            .partition { node -> node.isSubstituted(kmpParents) }
         substitutedNodes.forEach { node ->
             logger.debug("[${node.gav.gav}] dropped, it is substituted (platform ${platform.pretty})")
         }
@@ -395,10 +413,9 @@ internal class MultiplatformResolver(
         // e.g. `ai.jetbrains.code.files:code-files-model-wasm-js:1.0.0-beta.170` which depends on `org.slf4j:slf4j-api:2.0.17`
         // a purely JVM dependency
         val possibleDependencies = filteredNodes.flatMap { node ->
-            val parent = node.getParentKmpLibraryCoordinates()
             listOfNotNull(
                 node.gav.toSubstitutionId(),
-                parent?.let { p -> substitutionId(p.groupId, p.artifactId) },
+                kmpParents[node.gav.toSubstitutionId()]?.toSubstitutionId(),
             )
         }.toSet()
         return filteredNodes.groupBy { it.gav }.map { (_, scopedNodes) ->
@@ -406,6 +423,7 @@ internal class MultiplatformResolver(
                 ResolutionPlatform.WASM_JS -> UnresolvedMultiplatformLibrary.WasmJs(
                     resolvedNodes = scopedNodes,
                     substitutions = substitutions,
+                    kmpParents = kmpParents,
                     possibleDependencies = possibleDependencies,
                     repositories = repositories,
                 )
@@ -413,6 +431,7 @@ internal class MultiplatformResolver(
                 ResolutionPlatform.JVM -> UnresolvedMultiplatformLibrary.Jvm(
                     resolvedNodes = scopedNodes,
                     substitutions = substitutions,
+                    kmpParents = kmpParents,
                     possibleDependencies = possibleDependencies,
                     repositories = repositories,
                 )
@@ -426,9 +445,17 @@ internal class MultiplatformResolver(
      * Whether this node, or the KMP library it is a platform-specific variant of, is substituted by another library:
      * its substitute is resolved in its place (see [resolve]), so the node itself is not part of the result.
      */
-    private fun MavenDependencyNode.isSubstituted(): Boolean =
-        gav.toSubstitutionId() in substitutions ||
-                getParentKmpLibraryCoordinates()?.let { parent -> substitutionId(parent.groupId, parent.artifactId) in substitutions } == true
+    private fun MavenDependencyNode.isSubstituted(kmpParents: KmpParents): Boolean = substitutionKeys(kmpParents).isNotEmpty()
+
+    /**
+     * The substitution keys (`group:artifact`) this node matches, by its own coordinates or by the KMP library it is a
+     * platform-specific variant of.
+     */
+    private fun MavenDependencyNode.substitutionKeys(kmpParents: KmpParents): List<SubstitutionId> =
+        listOfNotNull(
+            gav.toSubstitutionId(),
+            kmpParents[gav.toSubstitutionId()]?.toSubstitutionId(),
+        ).filter { it in substitutions }
 
     /**
      * Substitutes are resolved as roots whether or not something depends on them: those that nothing reachable from the
@@ -474,11 +501,11 @@ internal class MultiplatformResolver(
      * In a single-platform resolution, KMP umbrella libraries, BOMs and pom-only libraries have no files, the
      * platform-specific variant of a KMP library (`*-wasm-js`, `*-jvm`) has them, and so has a JVM-only library.
      */
-    private fun MavenDependencyNode.isCollectedFor(platform: ResolutionPlatform): Boolean {
+    private fun MavenDependencyNode.isCollectedFor(platform: ResolutionPlatform, kmpParents: KmpParents): Boolean {
         val files = (dependency as MavenDependencyImpl).files(withSources = true)
         return when (platform) {
             ResolutionPlatform.WASM_JS -> {
-                val hasKmpParent = getParentKmpLibraryCoordinates() != null
+                val hasKmpParent = gav.toSubstitutionId() in kmpParents
                 hasKmpParent && files.any { it.isWasmKlib() || it.isSourceJar() }
             }
 
@@ -585,6 +612,7 @@ private sealed class UnresolvedMultiplatformLibrary(
     resolvedNodes: List<MavenDependencyNode>,
     private val repositories: List<MavenRepository>,
     private val substitutions: Substitutions,
+    private val kmpParents: KmpParents,
     private val possibleDependencies: Set<SubstitutionId>,
 ) {
     private val runtimeNode: MavenDependencyNode? = resolvedNodes.singleNodeOfScope(ResolutionScope.RUNTIME)
@@ -611,16 +639,7 @@ private sealed class UnresolvedMultiplatformLibrary(
      * itself, like `kotlin-stdlib`. The latter makes the JVM variant of `kotlin-stdlib` land under the same library
      * as its wasmJs variant.
      */
-    val id: MultiplatformLibraryId by lazy {
-        when (val parent = node.getParentKmpLibraryCoordinates()) {
-            null -> variantId
-            else -> MultiplatformLibraryId(
-                groupId = parent.groupId,
-                artifactId = parent.artifactId,
-                version = parent.version ?: error("$node parent $parent must have a version"),
-            )
-        }
-    }
+    val id: MultiplatformLibraryId by lazy { kmpParents[variantId.toSubstitutionId()] ?: variantId }
 
     val variantId: MultiplatformLibraryId = node.gav
 
@@ -646,12 +665,7 @@ private sealed class UnresolvedMultiplatformLibrary(
      */
     private fun MavenDependencyNode.platformDependencies(): Set<SubstitutionId> =
         children.asSequence().filterIsInstance<MavenDependencyNode>()
-            .map { child ->
-                when (val parent = child.getParentKmpLibraryCoordinates()) {
-                    null -> child.gav.toSubstitutionId()
-                    else -> substitutionId(parent.groupId, parent.artifactId)
-                }
-            }
+            .map { child -> kmpParents[child.gav.toSubstitutionId()]?.toSubstitutionId() ?: child.gav.toSubstitutionId() }
             .let { substitutions.substituteSubstitutionIds(it.toList()) }
             .filter { it in possibleDependencies }.toSet()
 
@@ -688,8 +702,9 @@ private sealed class UnresolvedMultiplatformLibrary(
         resolvedNodes: List<MavenDependencyNode>,
         repositories: List<MavenRepository>,
         substitutions: Substitutions,
+        kmpParents: KmpParents,
         possibleDependencies: Set<SubstitutionId>,
-    ) : UnresolvedMultiplatformLibrary(resolvedNodes, repositories, substitutions, possibleDependencies) {
+    ) : UnresolvedMultiplatformLibrary(resolvedNodes, repositories, substitutions, kmpParents, possibleDependencies) {
         suspend fun klib(): UnresolvedMultiplatformLibraryArtifact {
             val klibs = files.filter { file -> file.isWasmKlib() }
             require(klibs.isNotEmpty()) { "[$variantId] node must have at least one klib" }
@@ -710,8 +725,9 @@ private sealed class UnresolvedMultiplatformLibrary(
         resolvedNodes: List<MavenDependencyNode>,
         repositories: List<MavenRepository>,
         substitutions: Substitutions,
+        kmpParents: KmpParents,
         possibleDependencies: Set<SubstitutionId>,
-    ) : UnresolvedMultiplatformLibrary(resolvedNodes, repositories, substitutions, possibleDependencies) {
+    ) : UnresolvedMultiplatformLibrary(resolvedNodes, repositories, substitutions, kmpParents, possibleDependencies) {
         suspend fun jar(): UnresolvedMultiplatformLibraryArtifact {
             val jars = files.filter { file -> file.isClasspathJar() }
             require(jars.size == 1) {

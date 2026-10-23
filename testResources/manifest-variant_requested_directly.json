@@ -1,0 +1,205 @@
+{
+  "askedCoordinates": [
+    "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
+    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6": {
+      "id": "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
+          "variantId": "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
+          "dependencies": [
+            "com.google.devtools.ksp:symbol-processing-api",
+            "com.google.devtools.ksp:symbol-processing-common-deps",
+            "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha512-ZDsNjPFxuv6GHHHMnloh4ovV11Csv0jz3rxri6YKKrxnGQsWfJwGN8DfxMwkEksSjs3vhaH35FdlstIxgnmYgQ==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-aa-embeddable",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6/symbol-processing-aa-embeddable-2.3.6.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-0z78Yc3n+2mdn1FHr3gfZ5Gn12tsowyG5zR/m7QT0BPrmM0tfzLcAachrikNGWOkeTNx13/3RFekOAYFCcDidQ==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-aa-embeddable",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-aa-embeddable/2.3.6/symbol-processing-aa-embeddable-2.3.6-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "com.google.devtools.ksp:symbol-processing-api:2.3.6": {
+      "id": "com.google.devtools.ksp:symbol-processing-api:2.3.6",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "com.google.devtools.ksp:symbol-processing-api:2.3.6",
+          "variantId": "com.google.devtools.ksp:symbol-processing-api:2.3.6",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha512-YMUtwax8Cx6yhnDHf5TSKZurokWZFfbuc8EEw2MOdK7V2dPBcAOxMe158l27vj0QIktadQTaf1RF6xT/WvIsmA==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-api",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-api/2.3.6/symbol-processing-api-2.3.6.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-q7D7/NVN9+YhDGtGAlIOpe5Aj9zH+WqxmhLJaJDC4xzGyPcjBFyBW5IYerCCbuAXRcfdECFrJzGD1g0xQvua1g==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-api",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-api/2.3.6/symbol-processing-api-2.3.6-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "com.google.devtools.ksp:symbol-processing-common-deps:2.3.6": {
+      "id": "com.google.devtools.ksp:symbol-processing-common-deps:2.3.6",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "com.google.devtools.ksp:symbol-processing-common-deps:2.3.6",
+          "variantId": "com.google.devtools.ksp:symbol-processing-common-deps:2.3.6",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha512-FnOJYApwqczTeEFEKj11r6o7KrNRcFJG0MHWL/c0XANtZUDWtDDvGPBJptYtGNgiV+Kb95jGCkCj+wzyfEf6dg==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-common-deps",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-common-deps/2.3.6/symbol-processing-common-deps-2.3.6.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-BxKnrXXyLYkz2LmpgQVFniA+cjs1SVDBj+IevHURhm5x+rXvEZuZwUF2LB0nKgXjJJl/R+YJNh3hH4Jmr4G4Uw==",
+            "groupId": "com.google.devtools.ksp",
+            "artifactId": "symbol-processing-common-deps",
+            "version": "2.3.6",
+            "urls": [
+              "https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-common-deps/2.3.6/symbol-processing-common-deps-2.3.6-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1": {
+      "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+          "variantId": "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-jvm:1.10.2-intellij-1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains:annotations"
+          ],
+          "jar": {
+            "integrity": "sha512-UMmSTlNL2CWfq9qg+c/BE3fgV4gfbFKv8XEEfyeXsTfcaGWa1SlHoGg8RUTgNsZWI7RAMve/janOCKQNQ+ht3w==",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-jvm",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.10.2-intellij-1/kotlinx-coroutines-core-jvm-1.10.2-intellij-1.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-BZt/TksnpnXzQEu9dyoFUyyEXhMT7aIKM2s6bM9rflU5Kwr1qXWY75QFaPSg4kCde2KpxHEtc6Gdpgg16BkCIw==",
+            "groupId": "org.jetbrains.intellij.deps.kotlinx",
+            "artifactId": "kotlinx-coroutines-core-jvm",
+            "version": "1.10.2-intellij-1",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/intellij/deps/kotlinx/kotlinx-coroutines-core-jvm/1.10.2-intellij-1/kotlinx-coroutines-core-jvm-1.10.2-intellij-1-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:2.3.0": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains:annotations"
+          ],
+          "jar": {
+            "integrity": "sha512-LRmCnknOebhYf/wWIPlcR3PshXgPRcYJAX+kEQZMDtvXb8fBMzd1gUaTJYzZyTLYK8lNGNLFRfyQGY/dMIfWqA==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib",
+            "version": "2.3.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha512-71/bXwB78Ppjst/UJWcpjxMlxYjYi2TSBmULANbj0j2MBCI+XrmWexN0ycU5e5jZ6ciurpA9YxPv46xUCMFxRQ==",
+            "groupId": "org.jetbrains.kotlin",
+            "artifactId": "kotlin-stdlib",
+            "version": "2.3.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    },
+    "org.jetbrains:annotations:23.0.0": {
+      "id": "org.jetbrains:annotations:23.0.0",
+      "variants": [
+        {
+          "type": "jvm",
+          "id": "org.jetbrains:annotations:23.0.0",
+          "variantId": "org.jetbrains:annotations:23.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "jar": {
+            "integrity": "sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=",
+            "groupId": "org.jetbrains",
+            "artifactId": "annotations",
+            "version": "23.0.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+            ]
+          },
+          "sourceJar": {
+            "integrity": "sha1-ylCI1hWsyqvSqpVrELI2pOdc/Ms=",
+            "groupId": "org.jetbrains",
+            "artifactId": "annotations",
+            "version": "23.0.0",
+            "urls": [
+              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

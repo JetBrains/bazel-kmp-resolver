@@ -86,8 +86,7 @@
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.6.2",
           "dependencies": [],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib",
-            "org.jetbrains.kotlin:kotlin-stdlib-wasm-js"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "klib": {
             "integrity": "sha512-EGyM5ux1hA605lgPsC6tUaxtMr+Sdf7ZNJw+nUEppO+lf6kcf6KLP36cxgg/lJCTGs3xr2iIkz06PZcrCeYbzw==",
