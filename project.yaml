@@ -1,8 +1,10 @@
 modules:
-  - build-sources/shared
+  - build-sources/format
   - build-sources/native-image
   - build-sources/node
+  - build-sources/shared
 
 plugins:
+  - ./build-sources/format
   - ./build-sources/native-image
   - ./build-sources/node

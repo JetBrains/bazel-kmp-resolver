@@ -21,6 +21,33 @@ settings:
     version: 2.4.0
     serialization: json
 plugins:
+  # `./kotlin do format` runs the ktfmt native binary (kotlinlang style) over the Kotlin sources. ktfmt publishes no
+  # binary for linux-arm64 or macos-x64: formatting fails there.
+  # sha256 values from the .sha256 assets of https://github.com/Kotlin/ktfmt/releases/tag/v0.65
+  format:
+    enabled: true
+    ktfmt:
+      version: "0.65"
+      archives:
+        - os: linux
+          arch: x64
+          url: https://github.com/Kotlin/ktfmt/releases/download/v0.65/ktfmt-linux-x86_64-0.65.tar.gz
+          sha256: 3684327b092db9b76fffcb9525decf73f8331ed17e00ce3232769c11cd36d352
+          executablePath: ktfmt-linux-x86_64-0.65/ktfmt
+        - os: macos
+          arch: arm64
+          url: https://github.com/Kotlin/ktfmt/releases/download/v0.65/ktfmt-macos-aarch64-0.65.tar.gz
+          sha256: d10ec46dadc4ae19e5b8ddc72d10ce45e5be35d632ce9e73c9b8a59d2147fb85
+          executablePath: ktfmt-macos-aarch64-0.65/ktfmt
+        - os: windows
+          arch: x64
+          url: https://github.com/Kotlin/ktfmt/releases/download/v0.65/ktfmt-windows-x86_64-0.65.zip
+          sha256: 3286d659fa8df6a480e3b53ca4a30d9321c372286c46b8d74556b434189bee5f
+          executablePath: ktfmt-windows-x86_64-0.65/ktfmt.exe
+    directories:
+      - src
+      - test
+      - build-sources
   native-image:
     enabled: true
     graalVmVersion: 24.0.2

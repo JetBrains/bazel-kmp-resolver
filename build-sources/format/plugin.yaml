@@ -1,0 +1,8 @@
+tasks:
+  format:
+    action: !org.jetbrains.kmp.resolver.format.tasks.format
+      ktfmt: ${pluginSettings.ktfmt}
+      directories: ${pluginSettings.directories}
+
+commands:
+  - format

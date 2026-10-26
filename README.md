@@ -13,6 +13,14 @@ But you could try it out by running:
 ./kotlin run --module bazel-kmp-resolver --main-class org.jetbrains.kmp.resolver.MainKt -- --output-manifest-file=./build/kmp-local-cache/manifest.json --repository=https://repo1.maven.org/maven2 --repository=https://dl.google.com/dl/android/maven2 --repository-credentials-file=./testResources/credentials.json --coordinate=io.ktor:ktor-client-cio:3.5.0 --platform=wasmjs --platform=jvm
 ```
 
+## Formatting
+
+To format, run:
+
+```shell
+./kotlin do format
+```
+
 ## Tests
 
 To run tests, run:
