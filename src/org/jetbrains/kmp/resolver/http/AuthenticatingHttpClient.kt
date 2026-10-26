@@ -13,9 +13,11 @@ import java.util.concurrent.Executor
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLParameters
 import kotlin.time.Duration
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
-import kotlinx.coroutines.future.future
+import kotlinx.coroutines.launch
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
 
 /**
@@ -26,10 +28,10 @@ import org.jetbrains.kmp.resolver.auth.RequestCredentials
  * request. A request its credentials do not apply to is sent unchanged.
  *
  * [HttpClient.sendAsync] cannot suspend, so each call runs as a child coroutine of [scope]
- * completing the returned future: cancelling the future cancels the coroutine along with the
- * delegate's request, and the end of [scope] awaits the requests still running. Only [sendAsync] is
- * supported, the blocking [send] would wait on a future completed by [scope] and deadlock when
- * called from its thread.
+ * completing the returned future, exceptionally when the request fails, so that [scope] itself
+ * never fails: cancelling the future cancels the coroutine along with the delegate's request, and
+ * the end of [scope] awaits the requests still running. Only [sendAsync] is supported, the blocking
+ * [send] would wait on a future completed by [scope] and deadlock when called from its thread.
  *
  * Redirects are followed by [delegate] according to its policy, so redirected requests carry the
  * headers obtained for the original URI rather than headers requested for the redirect target.
@@ -66,7 +68,7 @@ internal class AuthenticatingHttpClient(
     override fun <T : Any?> sendAsync(
         request: HttpRequest,
         responseBodyHandler: HttpResponse.BodyHandler<T>,
-    ): CompletableFuture<HttpResponse<T>> = scope.future {
+    ): CompletableFuture<HttpResponse<T>> = futureOf {
         sendWithCredentials(request, responseBodyHandler, pushPromiseHandler = null)
     }
 
@@ -74,8 +76,30 @@ internal class AuthenticatingHttpClient(
         request: HttpRequest,
         responseBodyHandler: HttpResponse.BodyHandler<T>,
         pushPromiseHandler: HttpResponse.PushPromiseHandler<T>?,
-    ): CompletableFuture<HttpResponse<T>> = scope.future {
+    ): CompletableFuture<HttpResponse<T>> = futureOf {
         sendWithCredentials(request, responseBodyHandler, pushPromiseHandler)
+    }
+
+    /**
+     * A future completed by a coroutine of [scope] running [send]: a failure completes the future
+     * exceptionally without failing the coroutine, and cancelling the future cancels the coroutine.
+     */
+    private fun <T> futureOf(
+        send: suspend () -> HttpResponse<T>,
+    ): CompletableFuture<HttpResponse<T>> {
+        val future = CompletableFuture<HttpResponse<T>>()
+        val job = scope.launch {
+            try {
+                future.complete(send())
+            } catch (e: CancellationException) {
+                future.cancel(false)
+                throw e
+            } catch (e: Exception) {
+                future.completeExceptionally(e)
+            }
+        }
+        future.whenComplete { _, _ -> if (future.isCancelled) job.cancel() }
+        return future
     }
 
     override fun <T : Any?> send(
@@ -121,16 +145,19 @@ internal class AuthenticatingHttpClient(
 }
 
 /**
- * The resolver's [jdkHttpClient], authenticating requests with [credentials] through
- * [AuthenticatingHttpClient] whose requests run in [scope].
+ * Runs [block] with an [AuthenticatingHttpClient] over the resolver's [jdkHttpClient],
+ * authenticating requests with [credentials]; the requests run in the scope of this call, and the
+ * client is closed once [block] returns.
  */
-internal fun authenticatingHttpClient(
-    scope: CoroutineScope,
+internal suspend fun <T> withAuthenticatingHttpClient(
     credentials: RequestCredentials,
     connectTimeout: Duration,
-): HttpClient =
+    block: suspend (HttpClient) -> T,
+): T = coroutineScope {
     AuthenticatingHttpClient(
-        scope = scope,
-        delegate = jdkHttpClient(connectTimeout),
-        credentials = credentials,
-    )
+            scope = this,
+            delegate = jdkHttpClient(connectTimeout),
+            credentials = credentials,
+        )
+        .use { block(it) }
+}

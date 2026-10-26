@@ -13,10 +13,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.seconds
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.supervisorScope
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
@@ -30,11 +28,14 @@ class AuthenticatingHttpClientTest {
         exchange.respond(200, "ok".toByteArray())
     }
 
-    private fun CoroutineScope.client(credentials: RequestCredentials): HttpClient =
-        authenticatingHttpClient(
-            scope = this,
+    private suspend fun <T> withClient(
+        credentials: RequestCredentials,
+        block: suspend (HttpClient) -> T,
+    ): T =
+        withAuthenticatingHttpClient(
             credentials = credentials,
             connectTimeout = 10.seconds,
+            block = block,
         )
 
     private fun basic(
@@ -69,17 +70,13 @@ class AuthenticatingHttpClientTest {
 
     @Test
     fun `credential headers are added and replace headers of the same name`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(echo) { server ->
-                client(bearer).use { client ->
-                    val response =
-                        client
-                            .sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString())
-                            .await()
+        withLocalHttpServer(echo) { server ->
+            withClient(bearer) { client ->
+                val response =
+                    client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
 
-                    assertEquals(200, response.statusCode())
-                    assertEquals("ok", response.body())
-                }
+                assertEquals(200, response.statusCode())
+                assertEquals("ok", response.body())
             }
         }
         val headers = seenHeaders.single()
@@ -90,11 +87,9 @@ class AuthenticatingHttpClientTest {
 
     @Test
     fun `a request no credentials apply to is sent untouched`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(echo) { server ->
-                client(RequestCredentials { null }).use { client ->
-                    client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
-                }
+        withLocalHttpServer(echo) { server ->
+            withClient(RequestCredentials { null }) { client ->
+                client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
             }
         }
         assertEquals(listOf("Basic abc"), seenHeaders.single()["Authorization"])
@@ -102,17 +97,15 @@ class AuthenticatingHttpClientTest {
 
     @Test
     fun `repository credentials authenticate the requests under their URL`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(echo) { server ->
-                client(basic(server, "alice", "s3cret")).use { client ->
-                    client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
-                    client
-                        .sendAsync(
-                            request("http://127.0.0.1:${server.address.port}/a"),
-                            BodyHandlers.ofString(),
-                        )
-                        .await()
-                }
+        withLocalHttpServer(echo) { server ->
+            withClient(basic(server, "alice", "s3cret")) { client ->
+                client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
+                client
+                    .sendAsync(
+                        request("http://127.0.0.1:${server.address.port}/a"),
+                        BodyHandlers.ofString(),
+                    )
+                    .await()
             }
         }
         assertEquals(
@@ -123,14 +116,10 @@ class AuthenticatingHttpClientTest {
 
     @Test
     fun `credentials failing to resolve fail the request before it is sent`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(echo) { server ->
-                client(RequestCredentials { error("no token") }).use { client ->
-                    assertFailsWith<IllegalStateException> {
-                        client
-                            .sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString())
-                            .await()
-                    }
+        withLocalHttpServer(echo) { server ->
+            withClient(RequestCredentials { error("no token") }) { client ->
+                assertFailsWith<IllegalStateException> {
+                    client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
                 }
             }
         }
@@ -139,12 +128,10 @@ class AuthenticatingHttpClientTest {
 
     @Test
     fun `blocking send is not supported`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(echo) { server ->
-                client(bearer).use { client ->
-                    assertFailsWith<UnsupportedOperationException> {
-                        client.send(request(server.urlOf("/a")), BodyHandlers.ofString())
-                    }
+        withLocalHttpServer(echo) { server ->
+            withClient(bearer) { client ->
+                assertFailsWith<UnsupportedOperationException> {
+                    client.send(request(server.urlOf("/a")), BodyHandlers.ofString())
                 }
             }
         }

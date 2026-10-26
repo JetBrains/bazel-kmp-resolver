@@ -10,7 +10,6 @@ import kotlin.io.path.createParentDirectories
 import kotlin.io.path.outputStream
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
-import kotlinx.coroutines.supervisorScope
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -20,7 +19,7 @@ import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
 import org.jetbrains.kmp.resolver.http.RetryPolicy
-import org.jetbrains.kmp.resolver.http.authenticatingHttpClient
+import org.jetbrains.kmp.resolver.http.withAuthenticatingHttpClient
 
 /**
  * Commands that generates a manifest to be consumed by Bazel in a repository rule to produce
@@ -159,17 +158,11 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 null -> emptyList()
                 else -> RepositoryCredentials.fromFile(credentialsFile)
             }
-        // HTTP requests run as children of this scope, a supervisor so that a failed request fails
-        // only the caller
-        // awaiting it, which may retry it, rather than cancelling everything else.
-        val manifest = supervisorScope {
-            val httpClient =
-                authenticatingHttpClient(
-                    scope = this,
-                    credentials = BasicRepositoryCredentials(repositoryCredentials),
-                    connectTimeout = connectTimeoutMillis.milliseconds,
-                )
-            httpClient.use { httpClient ->
+        val manifest =
+            withAuthenticatingHttpClient(
+                credentials = BasicRepositoryCredentials(repositoryCredentials),
+                connectTimeout = connectTimeoutMillis.milliseconds,
+            ) { httpClient ->
                 val artifactResolver =
                     ArtifactUrlResolver(
                         httpClient = httpClient,
@@ -200,7 +193,6 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                     libraries = resolver.resolve(coordinates).asLibraries(),
                 )
             }
-        }
         outputManifest.createParentDirectories()
         outputManifest.outputStream().use { output ->
             json.encodeToStream(manifest, output)

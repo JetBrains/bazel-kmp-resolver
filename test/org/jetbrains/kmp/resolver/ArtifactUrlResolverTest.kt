@@ -10,14 +10,13 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.supervisorScope
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
 import org.jetbrains.kmp.resolver.http.RetryPolicy
-import org.jetbrains.kmp.resolver.http.authenticatingHttpClient
 import org.jetbrains.kmp.resolver.http.jdkHttpClient
 import org.jetbrains.kmp.resolver.http.respond
 import org.jetbrains.kmp.resolver.http.urlOf
+import org.jetbrains.kmp.resolver.http.withAuthenticatingHttpClient
 import org.jetbrains.kmp.resolver.http.withLocalHttpServer
 
 class ArtifactUrlResolverTest {
@@ -58,6 +57,17 @@ class ArtifactUrlResolverTest {
             allowedConcurrentConnections = 4,
             requestTimeout = 5.seconds,
             retryPolicy = fastRetries,
+        )
+
+    private fun basic(repositoryUrl: String) =
+        BasicRepositoryCredentials(
+            listOf(
+                RepositoryCredentials(
+                    repositoryUrl = repositoryUrl,
+                    username = "alice",
+                    password = "s3cret",
+                ),
+            ),
         )
 
     @Test
@@ -118,23 +128,12 @@ class ArtifactUrlResolverTest {
 
     @Test
     fun `repository credentials are sent as basic authentication`() = runBlocking {
-        supervisorScope {
-            withLocalHttpServer(artifacts) { server ->
-                authenticatingHttpClient(
-                        scope = this,
-                        credentials =
-                            BasicRepositoryCredentials(
-                                listOf(
-                                    RepositoryCredentials(
-                                        repositoryUrl = server.urlOf("/"),
-                                        username = "alice",
-                                        password = "s3cret",
-                                    ),
-                                ),
-                            ),
-                        connectTimeout = 5.seconds,
-                    )
-                    .use { resolver(it).artifactExistsAt(server.urlOf("/ok")) }
+        withLocalHttpServer(artifacts) { server ->
+            withAuthenticatingHttpClient(
+                credentials = basic(server.urlOf("/")),
+                connectTimeout = 5.seconds,
+            ) { httpClient ->
+                resolver(httpClient).artifactExistsAt(server.urlOf("/ok"))
             }
         }
         assertEquals(listOf("Basic YWxpY2U6czNjcmV0"), authorizations["/ok"])
