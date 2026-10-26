@@ -13,8 +13,10 @@ fun cacheGraalVmArchives(
     graalVmVersion: String,
     archives: List<GraalVmArchive>,
 ): Unit = runBlocking {
-    archives.map { archive ->
-        async { ArchiveDownloadCache.downloadAndExtractGraalArchive(archive, graalVmVersion) }
-    }.awaitAll()
+    archives
+        .map { archive ->
+            async { ArchiveDownloadCache.downloadAndExtractGraalArchive(archive, graalVmVersion) }
+        }
+        .awaitAll()
     println("Cached ${archives.size} GraalVM Native Image archives for $graalVmVersion.")
 }

@@ -1,5 +1,7 @@
 package org.jetbrains.kmp.resolver.node.tasks
 
+import java.nio.file.Path
+import kotlin.io.path.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.Output
 import org.jetbrains.amper.plugins.TaskAction
@@ -8,17 +10,16 @@ import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
 import org.jetbrains.kmp.resolver.shared.Platform
 import org.jetbrains.kmp.resolver.shared.normalizedArch
 import org.jetbrains.kmp.resolver.shared.normalizedOs
-import java.nio.file.Path
-import kotlin.io.path.*
 
 /**
  * Provisions the hermetic Node.js distribution the tests run npm with, downloaded from the official
- * https://nodejs.org/dist CDN (pinned version and sha256, matching the `rules_nodejs` default of the Bazel side)
- * instead of resolving node/npm from the host.
+ * https://nodejs.org/dist CDN (pinned version and sha256, matching the `rules_nodejs` default of
+ * the Bazel side) instead of resolving node/npm from the host.
  *
- * The distribution itself is extracted into [distributionDirectory]; [generatedResourcesDirectory] only receives a
- * small `node-distribution.properties` pointing at it, and is contributed to the test fragment (see `plugin.yaml`)
- * so that the tests can locate the distribution from their classpath.
+ * The distribution itself is extracted into [distributionDirectory]; [generatedResourcesDirectory]
+ * only receives a small `node-distribution.properties` pointing at it, and is contributed to the
+ * test fragment (see `plugin.yaml`) so that the tests can locate the distribution from their
+ * classpath.
  */
 @OptIn(ExperimentalPathApi::class)
 @TaskAction
@@ -30,17 +31,22 @@ fun provisionNode(
 ): Unit = runBlocking {
     val platform = Platform.current()
     val distribution =
-        distributions.singleOrNull { it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch }
+        distributions.singleOrNull {
+            it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch
+        }
             ?: error(
-                "No Node.js distribution configured for ${platform.suffix}. Configured platforms: " + distributions.joinToString { "${it.os}-${it.arch}" })
+                "No Node.js distribution configured for ${platform.suffix}. Configured platforms: " +
+                    distributions.joinToString { "${it.os}-${it.arch}" },
+            )
 
     distributionDirectory.createDirectories()
-    val extracted = ArchiveDownloadCache.downloadAndExtract(
-        archiveUrl = distribution.url,
-        archiveSha256Checksum = distribution.sha256,
-        destination = distributionDirectory,
-        stripTopLevelFolder = true,
-    )
+    val extracted =
+        ArchiveDownloadCache.downloadAndExtract(
+            archiveUrl = distribution.url,
+            archiveSha256Checksum = distribution.sha256,
+            destination = distributionDirectory,
+            stripTopLevelFolder = true,
+        )
 
     val node = extracted.resolve(distribution.nodePath)
     check(node.exists()) {
@@ -53,10 +59,13 @@ fun provisionNode(
     }
 
     generatedResourcesDirectory.createDirectories()
-    generatedResourcesDirectory.resolve("node-distribution.properties").writeText(
-        """
+    generatedResourcesDirectory
+        .resolve("node-distribution.properties")
+        .writeText(
+            """
             node=${node.absolutePathString()}
             npmCliJs=${npmCliJs.absolutePathString()}
-        """.trimIndent()
-    )
+        """
+                .trimIndent(),
+        )
 }

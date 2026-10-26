@@ -21,6 +21,17 @@ jobs:
         with:
           path: build/node
           key: node-${{ hashFiles('module.yaml') }}
+      - name: Restore or save download cache (ktfmt)
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/format-cache/downloads
+          key: format-${{ hashFiles('module.yaml') }}
+      - name: Check formatting
+        env:
+          BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/format-cache
+        run: |
+          ./kotlin do format
+          git diff --exit-code
       - name: Run tests
         run: ./kotlin test
 

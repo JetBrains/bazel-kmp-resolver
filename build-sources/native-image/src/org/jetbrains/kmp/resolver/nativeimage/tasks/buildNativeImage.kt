@@ -1,5 +1,7 @@
 package org.jetbrains.kmp.resolver.nativeimage.tasks
 
+import java.nio.file.Path
+import kotlin.io.path.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.*
 import org.jetbrains.amper.processes.runProcessWithInheritedIO
@@ -9,8 +11,6 @@ import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
 import org.jetbrains.kmp.resolver.shared.Platform
 import org.jetbrains.kmp.resolver.shared.normalizedArch
 import org.jetbrains.kmp.resolver.shared.normalizedOs
-import java.nio.file.Path
-import kotlin.io.path.*
 
 @TaskAction
 fun buildNativeImage(
@@ -23,14 +23,17 @@ fun buildNativeImage(
 ): Unit = runBlocking {
     val platform = Platform.current()
     val archive =
-        archives.singleOrNull { it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch }
-            ?: error("No GraalVM Native Image archive configured for ${platform.suffix}.")
+        archives.singleOrNull {
+            it.os.normalizedOs() == platform.os && it.arch.normalizedArch() == platform.arch
+        } ?: error("No GraalVM Native Image archive configured for ${platform.suffix}.")
 
     val graalVm = provisionGraalVm(graalVmVersion, archive)
 
     outputDirectory.createDirectories()
     val outputBinary =
-        outputDirectory.resolve("bazel-kmp-resolver-${platform.suffix}") // no platform suffix, Graal handles that internally
+        outputDirectory.resolve(
+            "bazel-kmp-resolver-${platform.suffix}",
+        ) // no platform suffix, Graal handles that internally
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
@@ -38,17 +41,19 @@ fun buildNativeImage(
 
     // The classpath alone can exceed the 8191-character command line limit of cmd.exe on Windows,
     // so all arguments go through an @argfile regardless of the platform.
-    val argFile = writeNativeImageArgfile(
-        targetArgfile = outputDirectory.resolve("native-image-${platform.suffix}.args"),
-        classpath = classpath,
-        outputBinary = outputBinary,
-        mainClass = mainClass,
-    )
+    val argFile =
+        writeNativeImageArgfile(
+            targetArgfile = outputDirectory.resolve("native-image-${platform.suffix}.args"),
+            classpath = classpath,
+            outputBinary = outputBinary,
+            mainClass = mainClass,
+        )
     val cmd = nativeImageCommand(graalVm.nativeImage, platform, argFile)
-    val exitCode = runProcessWithInheritedIO(
-        command = cmd,
-        environment = mapOf("JAVA_HOME" to graalVm.home.absolutePathString()),
-    )
+    val exitCode =
+        runProcessWithInheritedIO(
+            command = cmd,
+            environment = mapOf("JAVA_HOME" to graalVm.home.absolutePathString()),
+        )
     require(exitCode == 0) {
         """
 Command failed with exit code $exitCode: ${cmd.joinToString(" ")}
@@ -60,9 +65,9 @@ ${argFile.readLines().joinToString("\n")}
 }
 
 /**
- * Quotes an argument for a native-image @argfile. The driver tokenizes such files like the `java` launcher does:
- * within double quotes, a backslash escapes the next character, so backslashes (Windows path separators) and
- * double quotes must be escaped.
+ * Quotes an argument for a native-image @argfile. The driver tokenizes such files like the `java`
+ * launcher does: within double quotes, a backslash escapes the next character, so backslashes
+ * (Windows path separators) and double quotes must be escaped.
  */
 private fun String.quoteForArgFile(): String = buildString {
     append("\"")
@@ -95,24 +100,30 @@ private fun buildClasspath(
     val classpathFiles = sequence {
         yield(applicationJar.artifact)
         yieldAll(runtimeClasspath.resolvedFiles)
-    }.distinct().map { it.absolutePathString() }.toList()
+    }
+        .distinct()
+        .map { it.absolutePathString() }
+        .toList()
 
     return classpathFiles.joinToString(platform.classpathSeparator)
 }
 
-private fun nativeImageCommand(nativeImage: Path, platform: Platform, argFile: Path): List<String> = when {
-    platform.os == "windows" && nativeImage.name.endsWith(".cmd", ignoreCase = true) -> listOf(
-        "cmd.exe",
-        "/c",
-        nativeImage.absolutePathString(),
-        "@${argFile.absolutePathString()}",
-    )
+private fun nativeImageCommand(nativeImage: Path, platform: Platform, argFile: Path): List<String> =
+    when {
+        platform.os == "windows" && nativeImage.name.endsWith(".cmd", ignoreCase = true) ->
+            listOf(
+                "cmd.exe",
+                "/c",
+                nativeImage.absolutePathString(),
+                "@${argFile.absolutePathString()}",
+            )
 
-    else -> listOf(
-        nativeImage.absolutePathString(),
-        "@${argFile.absolutePathString()}",
-    )
-}
+        else ->
+            listOf(
+                nativeImage.absolutePathString(),
+                "@${argFile.absolutePathString()}",
+            )
+    }
 
 private fun writeNativeImageArgfile(
     targetArgfile: Path,
@@ -120,15 +131,16 @@ private fun writeNativeImageArgfile(
     outputBinary: Path,
     mainClass: String,
 ): Path {
-    val nativeImageArgs = listOf(
-        "--no-fallback",
-        "-O3",
-        "-cp",
-        classpath,
-        "-o",
-        outputBinary.absolutePathString(),
-        mainClass,
-    )
+    val nativeImageArgs =
+        listOf(
+            "--no-fallback",
+            "-O3",
+            "-cp",
+            classpath,
+            "-o",
+            outputBinary.absolutePathString(),
+            mainClass,
+        )
     targetArgfile.writeText(nativeImageArgs.joinToString("\n") { it.quoteForArgFile() })
     return targetArgfile
 }

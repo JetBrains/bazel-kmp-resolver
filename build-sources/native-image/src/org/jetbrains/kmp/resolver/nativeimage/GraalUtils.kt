@@ -1,11 +1,10 @@
 package org.jetbrains.kmp.resolver.nativeimage
 
+import java.nio.file.Path
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
 import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
-import org.jetbrains.kmp.resolver.shared.CacheEntry
 import org.jetbrains.kmp.resolver.shared.Platform
 import org.jetbrains.kmp.resolver.shared.kmpResolverCacheRoot
-import java.nio.file.Path
 
 internal suspend fun ArchiveDownloadCache.downloadAndExtractGraalArchive(
     archive: GraalVmArchive,

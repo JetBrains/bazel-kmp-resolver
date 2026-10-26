@@ -1,7 +1,7 @@
 package org.jetbrains.kmp.resolver.node.models
 
-import org.jetbrains.amper.plugins.Configurable
 import java.nio.file.Path
+import org.jetbrains.amper.plugins.Configurable
 
 @Configurable
 interface NodeSettings {

@@ -1,8 +1,5 @@
 package org.jetbrains.kmp.resolver
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import kotlin.io.path.createTempDirectory
@@ -12,6 +9,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromStream
 
 class NpmResolverTest {
     private val json = Json {
@@ -19,18 +19,22 @@ class NpmResolverTest {
     }
 
     @OptIn(ExperimentalSerializationApi::class)
-    private fun fixtureLock(): NpmPackageLock = TestResourceReader.readResource("npm-package-lock.json").use { input ->
-        json.decodeFromStream(input)
-    }
+    private fun fixtureLock(): NpmPackageLock =
+        TestResourceReader.readResource("npm-package-lock.json").use { input ->
+            json.decodeFromStream(input)
+        }
 
-    private fun request(name: String): NpmResolutionRequest = NpmResolutionRequest(
-        variantId = MultiplatformLibraryId("org.example", name, "1.0.0"),
-        manifest = EmbeddedNpmManifest(name = name),
-    )
+    private fun request(name: String): NpmResolutionRequest =
+        NpmResolutionRequest(
+            variantId = MultiplatformLibraryId("org.example", name, "1.0.0"),
+            manifest = EmbeddedNpmManifest(name = name),
+        )
 
     @Test
     fun `closure of a workspace member follows transitive dependencies and skips optional peers`() {
-        val artifacts = fixtureLock().closureArtifacts(memberPath = "packages/lib-a", request = request("lib-a"))
+        val artifacts =
+            fixtureLock()
+                .closureArtifacts(memberPath = "packages/lib-a", request = request("lib-a"))
 
         assertEquals(
             listOf(
@@ -43,7 +47,9 @@ class NpmResolverTest {
 
     @Test
     fun `closure follows nested versions and workspace links without emitting workspace members`() {
-        val artifacts = fixtureLock().closureArtifacts(memberPath = "packages/lib-b", request = request("lib-b"))
+        val artifacts =
+            fixtureLock()
+                .closureArtifacts(memberPath = "packages/lib-b", request = request("lib-b"))
 
         assertEquals(
             setOf(
@@ -58,17 +64,23 @@ class NpmResolverTest {
 
     @Test
     fun `closure artifacts carry the registry url and integrity`() {
-        val artifacts = fixtureLock().closureArtifacts(memberPath = "packages/lib-a", request = request("lib-a"))
+        val artifacts =
+            fixtureLock()
+                .closureArtifacts(memberPath = "packages/lib-a", request = request("lib-a"))
 
         val scopedX = artifacts.single { it.name == "@scope/x" }
         assertEquals("https://registry.npmjs.org/@scope/x/-/x-1.2.3.tgz", scopedX.url)
-        assertEquals("sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=", scopedX.integrity.asBazelIntegrityString())
+        assertEquals(
+            "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+            scopedX.integrity.asBazelIntegrityString(),
+        )
     }
 
     @Test
     fun `closure of an unknown member fails`() {
         assertFailsWith<IllegalStateException> {
-            fixtureLock().closureArtifacts(memberPath = "packages/unknown", request = request("unknown"))
+            fixtureLock()
+                .closureArtifacts(memberPath = "packages/unknown", request = request("unknown"))
         }
     }
 
