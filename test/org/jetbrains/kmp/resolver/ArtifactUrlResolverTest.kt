@@ -10,6 +10,15 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.supervisorScope
+import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
+import org.jetbrains.kmp.resolver.http.RetryPolicy
+import org.jetbrains.kmp.resolver.http.authenticatingHttpClient
+import org.jetbrains.kmp.resolver.http.jdkHttpClient
+import org.jetbrains.kmp.resolver.http.respond
+import org.jetbrains.kmp.resolver.http.urlOf
+import org.jetbrains.kmp.resolver.http.withLocalHttpServer
 
 class ArtifactUrlResolverTest {
     private val hits = ConcurrentHashMap<String, AtomicInteger>()
@@ -51,9 +60,6 @@ class ArtifactUrlResolverTest {
             retryPolicy = fastRetries,
         )
 
-    private val noCredentials =
-        RepositoryCredentials(repositoryUrl = "unused", username = null, password = null)
-
     @Test
     fun `existing and missing artifacts`() = runBlocking {
         withLocalHttpServer(artifacts) { server ->
@@ -62,11 +68,11 @@ class ArtifactUrlResolverTest {
 
                 assertEquals(
                     ArtifactFile.Resolved(server.urlOf("/ok")),
-                    resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials),
+                    resolver.artifactExistsAt(server.urlOf("/ok")),
                 )
                 assertEquals(
                     ArtifactFile.NotFound,
-                    resolver.artifactExistsAt(server.urlOf("/missing"), noCredentials),
+                    resolver.artifactExistsAt(server.urlOf("/missing")),
                 )
             }
         }
@@ -79,7 +85,7 @@ class ArtifactUrlResolverTest {
             jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
                 val resolver = resolver(httpClient)
 
-                repeat(3) { resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials) }
+                repeat(3) { resolver.artifactExistsAt(server.urlOf("/ok")) }
             }
         }
         assertEquals(1, hits["/ok"]?.get())
@@ -93,15 +99,15 @@ class ArtifactUrlResolverTest {
 
                 assertEquals(
                     ArtifactFile.Resolved(server.urlOf("/flaky")),
-                    resolver.artifactExistsAt(server.urlOf("/flaky"), noCredentials),
+                    resolver.artifactExistsAt(server.urlOf("/flaky")),
                 )
                 assertEquals(
                     ArtifactFile.NotFound,
-                    resolver.artifactExistsAt(server.urlOf("/down"), noCredentials),
+                    resolver.artifactExistsAt(server.urlOf("/down")),
                 )
                 assertEquals(
                     ArtifactFile.Resolved(server.urlOf("/throttled")),
-                    resolver.artifactExistsAt(server.urlOf("/throttled"), noCredentials),
+                    resolver.artifactExistsAt(server.urlOf("/throttled")),
                 )
             }
         }
@@ -112,17 +118,23 @@ class ArtifactUrlResolverTest {
 
     @Test
     fun `repository credentials are sent as basic authentication`() = runBlocking {
-        withLocalHttpServer(artifacts) { server ->
-            jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
-                resolver(httpClient)
-                    .artifactExistsAt(
-                        server.urlOf("/ok"),
-                        RepositoryCredentials(
-                            repositoryUrl = "unused",
-                            username = "alice",
-                            password = "s3cret",
-                        ),
+        supervisorScope {
+            withLocalHttpServer(artifacts) { server ->
+                authenticatingHttpClient(
+                        scope = this,
+                        credentials =
+                            BasicRepositoryCredentials(
+                                listOf(
+                                    RepositoryCredentials(
+                                        repositoryUrl = server.urlOf("/"),
+                                        username = "alice",
+                                        password = "s3cret",
+                                    ),
+                                ),
+                            ),
+                        connectTimeout = 5.seconds,
                     )
+                    .use { resolver(it).artifactExistsAt(server.urlOf("/ok")) }
             }
         }
         assertEquals(listOf("Basic YWxpY2U6czNjcmV0"), authorizations["/ok"])

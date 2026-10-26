@@ -1,4 +1,4 @@
-package org.jetbrains.kmp.resolver
+package org.jetbrains.kmp.resolver.http
 
 import java.io.IOException
 import java.net.http.HttpClient
@@ -69,8 +69,7 @@ internal data class RetryPolicy(
     }
 }
 
-private val retryLogger: Logger =
-    LoggerFactory.getLogger("org.jetbrains.kmp.resolver.sendWithRetry")
+private val retryLogger: Logger = LoggerFactory.getLogger(RetryPolicy::class.java)
 
 /**
  * Sends [request] with this client, retrying according to [policy] on 5xx responses and I/O

@@ -327,9 +327,11 @@ internal class MultiplatformResolver(
         logger.debug(
             "Resolving artifacts of nodes of the dependency graph against the specified repositories...",
         )
-        return resolveArtifacts(nodes, npmPackagesByVariant).also { variants ->
-            variants.requireOneVariantPerPlatform()
-        }
+        return resolveArtifacts(
+                nodes,
+                npmPackagesByVariant,
+            )
+            .also { variants -> variants.requireOneVariantPerPlatform() }
     }
 
     /**
@@ -695,12 +697,7 @@ private data class UnresolvedMultiplatformLibraryArtifact(
     val groupId: String,
     val artifactId: String,
     val version: String,
-    val possibleLocations: List<UnresolvedMultiplatformLibraryArtifactLocation>,
-)
-
-private data class UnresolvedMultiplatformLibraryArtifactLocation(
-    val url: String,
-    val credentials: RepositoryCredentials,
+    val possibleLocations: List<String>,
 )
 
 /**
@@ -812,17 +809,7 @@ private sealed class UnresolvedMultiplatformLibrary(
             version = variantId.version,
             possibleLocations =
                 repositories.map { repository ->
-                    val url =
-                        file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
-                    UnresolvedMultiplatformLibraryArtifactLocation(
-                        url = url,
-                        credentials =
-                            RepositoryCredentials(
-                                repositoryUrl = repository.url,
-                                username = repository.userName,
-                                password = repository.password,
-                            ),
-                    )
+                    file.getUrl(repository, (node as MavenDependencyNodeWithContext).context)
                 },
             // Amper will not resolve all hashes, but from the more robust to the least robust, so
             // they are queried in
@@ -900,7 +887,7 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
     val urls = coroutineScope {
         possibleLocations
             .map { location ->
-                async { artifactUrlResolver.artifactExistsAt(location.url, location.credentials) }
+                async { artifactUrlResolver.artifactExistsAt(location) }
             }
             .awaitAll()
             .filterIsInstance<ArtifactFile.Resolved>()

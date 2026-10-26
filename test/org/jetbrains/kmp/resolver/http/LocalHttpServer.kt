@@ -1,4 +1,4 @@
-package org.jetbrains.kmp.resolver
+package org.jetbrains.kmp.resolver.http
 
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpHandler

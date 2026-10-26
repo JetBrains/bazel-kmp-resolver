@@ -4,12 +4,13 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
-import java.util.Base64
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration
 import kotlin.time.toJavaDuration
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
+import org.jetbrains.kmp.resolver.http.RetryPolicy
+import org.jetbrains.kmp.resolver.http.sendWithRetry
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -20,9 +21,10 @@ internal sealed class ArtifactFile {
 }
 
 /**
- * Checks which candidate URLs of artifacts exist, with HEAD requests sent through [httpClient], at
- * most [allowedConcurrentConnections] at a time per host, each answered within [requestTimeout],
- * and retried according to [retryPolicy]. Results are cached per URL.
+ * Checks which candidate URLs of artifacts exist, with HEAD requests sent through [httpClient]
+ * (which authenticates them), at most [allowedConcurrentConnections] at a time per host, each
+ * answered within [requestTimeout], and retried according to [retryPolicy]. Results are cached per
+ * URL.
  */
 internal class ArtifactUrlResolver(
     private val httpClient: HttpClient,
@@ -47,10 +49,7 @@ internal class ArtifactUrlResolver(
 
     private val availabilityByUrl = ConcurrentHashMap<String, ArtifactFile>()
 
-    suspend fun artifactExistsAt(
-        artifactUrl: String,
-        credentials: RepositoryCredentials,
-    ): ArtifactFile {
+    suspend fun artifactExistsAt(artifactUrl: String): ArtifactFile {
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
             val uri = URI(artifactUrl)
@@ -59,14 +58,6 @@ internal class ArtifactUrlResolver(
                     .HEAD()
                     .timeout(requestTimeout.toJavaDuration())
                     .header("User-Agent", USER_AGENT)
-                    .apply {
-                        if (credentials.username != null && credentials.password != null) {
-                            header(
-                                "Authorization",
-                                basicAuthorization(credentials.username, credentials.password),
-                            )
-                        }
-                    }
                     .build()
             val resolved =
                 hostSemaphore(uri).withPermit {
@@ -90,8 +81,5 @@ internal class ArtifactUrlResolver(
 
     companion object {
         private const val USER_AGENT = "JetBrainsBazelKmpResolver/1.0"
-
-        private fun basicAuthorization(username: String, password: String): String =
-            "Basic ${Base64.getEncoder().encodeToString("$username:$password".toByteArray())}"
     }
 }

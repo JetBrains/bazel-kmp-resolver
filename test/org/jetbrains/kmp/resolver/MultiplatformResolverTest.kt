@@ -46,6 +46,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -74,6 +75,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -112,6 +114,7 @@ class MultiplatformResolverTest {
                             ),
                     ),
                 platforms = setOf(ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -142,6 +145,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.JVM),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -173,6 +177,7 @@ class MultiplatformResolverTest {
                 // reversed on purpose: the manifest must not depend on the order platforms are
                 // requested in
                 platforms = setOf(ResolutionPlatform.JVM, ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -208,6 +213,7 @@ class MultiplatformResolverTest {
                         // substituting the KMP library covers its platform-specific variants
                     ),
                 platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -247,6 +253,7 @@ class MultiplatformResolverTest {
                             ),
                     ),
                 platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -288,6 +295,7 @@ class MultiplatformResolverTest {
                         // a redundant variant key, as some generators emit: harmless
                     ),
                 platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -321,6 +329,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.JVM),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -350,6 +359,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -379,6 +389,7 @@ class MultiplatformResolverTest {
                 repositories = repositories,
                 substitutions = emptyMap(),
                 platforms = setOf(ResolutionPlatform.WASM_JS),
+                credentials = noCredentials,
             ) { resolver ->
                 resolver.resolve(coordinates)
             }
@@ -411,6 +422,7 @@ class MultiplatformResolverTest {
             repositories = repositories,
             substitutions = emptyMap(),
             platforms = setOf(ResolutionPlatform.WASM_JS),
+            credentials = noCredentials,
         ) { resolver ->
             assertDoesNotThrow {
                 resolver.resolve(coordinates)

@@ -10,11 +10,17 @@ import kotlin.io.path.createParentDirectories
 import kotlin.io.path.outputStream
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.supervisorScope
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
+import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
+import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
+import org.jetbrains.kmp.resolver.http.RetryPolicy
+import org.jetbrains.kmp.resolver.http.authenticatingHttpClient
 
 /**
  * Commands that generates a manifest to be consumed by Bazel in a repository rule to produce
@@ -75,7 +81,12 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
     private val repositoryCredentialsFile: Path? by
         option(
                 "--repository-credentials-file",
-                help = "Path to JSON repository credentials resolved by the caller.",
+                help =
+                    """
+                    Path to JSON repository credentials resolved by the caller, sent as basic authentication with the requests under
+                    each repository URL.
+                    """
+                        .trimIndent(),
             )
             .convert { Path.of(it) }
 
@@ -143,42 +154,52 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
 
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
-        val credentials =
+        val repositoryCredentials =
             when (val credentialsFile = repositoryCredentialsFile) {
-                null -> emptyMap()
+                null -> emptyList()
                 else -> RepositoryCredentials.fromFile(credentialsFile)
             }
-        val httpClient = jdkHttpClient(connectTimeout = connectTimeoutMillis.milliseconds)
-        val manifest = httpClient.use { httpClient ->
-            val artifactResolver =
-                ArtifactUrlResolver(
-                    httpClient = httpClient,
-                    allowedConcurrentConnections = allowedConcurrentConnections,
-                    requestTimeout = requestTimeoutMillis.milliseconds,
-                    retryPolicy = RetryPolicy.DEFAULT,
+        // HTTP requests run as children of this scope, a supervisor so that a failed request fails
+        // only the caller
+        // awaiting it, which may retry it, rather than cancelling everything else.
+        val manifest = supervisorScope {
+            val httpClient =
+                authenticatingHttpClient(
+                    scope = this,
+                    credentials = BasicRepositoryCredentials(repositoryCredentials),
+                    connectTimeout = connectTimeoutMillis.milliseconds,
                 )
-            val resolver =
-                MultiplatformResolver(
-                    cachePath = outputManifest.parent,
-                    platforms = platforms,
-                    repositories = repositories.withRepositoryCredentials(credentials),
-                    httpClient = httpClient,
-                    artifactResolver = artifactResolver,
-                    substitutions = substitutions.toMap(),
-                    npmResolver =
-                        NpmResolver(
-                            nodeExecutable = nodeExecutable,
-                            npmCliJs = npmCliJs,
-                            registryUrl = npmRegistry,
-                            packageVersionOverrides = npmPackageVersions.toMap(),
-                            workDir = outputManifest.parent,
-                        ),
+            httpClient.use { httpClient ->
+                val artifactResolver =
+                    ArtifactUrlResolver(
+                        httpClient = httpClient,
+                        allowedConcurrentConnections = allowedConcurrentConnections,
+                        requestTimeout = requestTimeoutMillis.milliseconds,
+                        retryPolicy = RetryPolicy.DEFAULT,
+                    )
+                val resolver =
+                    MultiplatformResolver(
+                        cachePath = outputManifest.parent,
+                        platforms = platforms,
+                        repositories = repositories.map { MavenRepository(it) },
+                        httpClient = httpClient,
+                        artifactResolver = artifactResolver,
+                        substitutions = substitutions.toMap(),
+                        npmResolver =
+                            NpmResolver(
+                                nodeExecutable = nodeExecutable,
+                                npmCliJs = npmCliJs,
+                                registryUrl = npmRegistry,
+                                packageVersionOverrides = npmPackageVersions.toMap(),
+                                workDir = outputManifest.parent,
+                            ),
+                    )
+                BazelManifest(
+                    askedCoordinates = coordinates.sorted(),
+                    askedRepositories = repositories.sorted(),
+                    libraries = resolver.resolve(coordinates).asLibraries(),
                 )
-            BazelManifest(
-                askedCoordinates = coordinates.sorted(),
-                askedRepositories = repositories.sorted(),
-                libraries = resolver.resolve(coordinates).asLibraries(),
-            )
+            }
         }
         outputManifest.createParentDirectories()
         outputManifest.outputStream().use { output ->
