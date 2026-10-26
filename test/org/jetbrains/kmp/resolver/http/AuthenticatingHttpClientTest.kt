@@ -15,6 +15,7 @@ import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.kmp.resolver.auth.Authentication
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
@@ -65,7 +66,9 @@ class AuthenticatingHttpClientTest {
             .build()
 
     private val bearer = RequestCredentials {
-        mapOf("authorization" to listOf("Bearer token"), "X-Two" to listOf("1", "2"))
+        Authentication.Headers(
+            mapOf("authorization" to listOf("Bearer token"), "X-Two" to listOf("1", "2")),
+        )
     }
 
     @Test
@@ -88,7 +91,7 @@ class AuthenticatingHttpClientTest {
     @Test
     fun `a request no credentials apply to is sent untouched`() = runBlocking {
         withLocalHttpServer(echo) { server ->
-            withClient(RequestCredentials { null }) { client ->
+            withClient({ Authentication.NotApplicable }) { client ->
                 client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
             }
         }

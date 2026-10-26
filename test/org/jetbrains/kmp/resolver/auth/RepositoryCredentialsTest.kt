@@ -3,7 +3,6 @@ package org.jetbrains.kmp.resolver.auth
 import java.net.URI
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.kmp.resolver.TestResourceReader
 
@@ -53,15 +52,24 @@ class RepositoryCredentialsTest {
             )
 
         assertEquals(
-            mapOf("Authorization" to listOf("Basic YWxpY2U6YQ==")),
-            credentials.headersFor(URI("https://repo.example.com/maven/com/a/a.jar")),
+            Authentication.Headers(mapOf("Authorization" to listOf("Basic YWxpY2U6YQ=="))),
+            credentials.authenticationFor(URI("https://repo.example.com/maven/com/a/a.jar")),
         )
         assertEquals(
-            mapOf("Authorization" to listOf("Basic Ym9iOmI=")),
-            credentials.headersFor(URI("https://repo.example.com/maven/private/a.jar")),
+            Authentication.Headers(mapOf("Authorization" to listOf("Basic Ym9iOmI="))),
+            credentials.authenticationFor(URI("https://repo.example.com/maven/private/a.jar")),
         )
-        assertNull(credentials.headersFor(URI("https://repo.example.com/mavenX/a.jar")))
-        assertNull(credentials.headersFor(URI("https://anonymous.example.com/maven/a.jar")))
-        assertNull(credentials.headersFor(URI("https://repo1.maven.org/maven2/a.jar")))
+        assertEquals(
+            Authentication.NotApplicable,
+            credentials.authenticationFor(URI("https://repo.example.com/mavenX/a.jar")),
+        )
+        assertEquals(
+            Authentication.NotApplicable,
+            credentials.authenticationFor(URI("https://anonymous.example.com/maven/a.jar")),
+        )
+        assertEquals(
+            Authentication.NotApplicable,
+            credentials.authenticationFor(URI("https://repo1.maven.org/maven2/a.jar")),
+        )
     }
 }

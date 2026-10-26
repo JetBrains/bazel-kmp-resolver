@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
+import org.jetbrains.kmp.resolver.auth.Authentication
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
 
 /**
@@ -46,8 +47,11 @@ internal class AuthenticatingHttpClient(
         responseBodyHandler: HttpResponse.BodyHandler<T>,
         pushPromiseHandler: HttpResponse.PushPromiseHandler<T>?,
     ): HttpResponse<T> {
-        val headers = credentials.headersFor(request.uri())
-        val authenticated = if (headers.isNullOrEmpty()) request else request.withHeaders(headers)
+        val authenticated =
+            when (val authentication = credentials.authenticationFor(request.uri())) {
+                Authentication.NotApplicable -> request
+                is Authentication.Headers -> request.withHeaders(authentication.headers)
+            }
         return when (pushPromiseHandler) {
             null -> delegate.sendAsync(authenticated, responseBodyHandler)
             else -> delegate.sendAsync(authenticated, responseBodyHandler, pushPromiseHandler)

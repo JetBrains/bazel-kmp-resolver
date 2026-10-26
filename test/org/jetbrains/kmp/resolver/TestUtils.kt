@@ -7,6 +7,7 @@ import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
+import org.jetbrains.kmp.resolver.auth.Authentication
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
 import org.jetbrains.kmp.resolver.http.RetryPolicy
 import org.jetbrains.kmp.resolver.http.withAuthenticatingHttpClient
@@ -59,7 +60,7 @@ internal suspend fun <T> testMultiplatformResolver(
     }
 
 /** Credentials applying to no request, for resolutions against public repositories. */
-internal val noCredentials = RequestCredentials { null }
+internal val noCredentials = RequestCredentials { Authentication.NotApplicable }
 
 private val json = Json {
     prettyPrintIndent = "  "

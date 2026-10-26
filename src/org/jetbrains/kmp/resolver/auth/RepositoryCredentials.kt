@@ -47,7 +47,7 @@ internal class BasicRepositoryCredentials(credentials: List<RepositoryCredential
                     basicAuthorization(it.username!!, it.password!!)
             }
 
-    override suspend fun headersFor(uri: URI): Map<String, List<String>>? {
+    override suspend fun authenticationFor(uri: URI): Authentication {
         val url = uri.toString()
         val authorization =
             authorizationByRepositoryPrefix.entries
@@ -55,8 +55,8 @@ internal class BasicRepositoryCredentials(credentials: List<RepositoryCredential
                 .maxByOrNull { (prefix, _) -> prefix.length }
                 ?.value
         return when (authorization) {
-            null -> null
-            else -> mapOf("Authorization" to listOf(authorization))
+            null -> Authentication.NotApplicable
+            else -> Authentication.Headers(mapOf("Authorization" to listOf(authorization)))
         }
     }
 
