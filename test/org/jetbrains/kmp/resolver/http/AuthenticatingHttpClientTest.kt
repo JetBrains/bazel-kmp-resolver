@@ -7,18 +7,27 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
+import java.nio.file.Path
 import java.util.concurrent.ConcurrentLinkedQueue
+import kotlin.io.path.createTempDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import kotlin.time.Clock
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.kmp.resolver.auth.Authentication
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.CredentialHelperOption
+import org.jetbrains.kmp.resolver.auth.CredentialHelperProvider
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
+import org.jetbrains.kmp.resolver.auth.withCredentialHelperCredentials
+import org.jetbrains.kmp.resolver.auth.writeFakeCredentialHelper
 
 class AuthenticatingHttpClientTest {
     private val seenHeaders = ConcurrentLinkedQueue<Headers>()
@@ -139,5 +148,80 @@ class AuthenticatingHttpClientTest {
             }
         }
         assertNull(seenHeaders.peek())
+    }
+
+    private val directory: Path = createTempDirectory("authenticating-http-client")
+
+    /**
+     * Runs [block] with a credential helper scoped to [helperScope] printing [stdout], composed
+     * before [repositoryCredentials] as the command does.
+     */
+    private suspend fun <T> withHelperThenBasic(
+        stdout: String,
+        helperScope: String,
+        repositoryCredentials: RequestCredentials,
+        block: suspend (RequestCredentials) -> T,
+    ): T {
+        val helper =
+            writeFakeCredentialHelper(
+                directory = directory,
+                name = "helper",
+                stdout = stdout,
+                stderr = "",
+                exitCode = 0,
+                delay = Duration.ZERO,
+                requestLog = directory.resolve("requests.log"),
+            )
+        return withCredentialHelperCredentials(
+            provider =
+                CredentialHelperProvider(
+                    listOf(CredentialHelperOption.parse("$helperScope=$helper")),
+                ),
+            timeout = 10.seconds,
+            cacheDuration = 30.minutes,
+            clock = Clock.System,
+            workingDir = directory,
+        ) { helperCredentials ->
+            block(
+                RequestCredentials.firstApplicable(
+                    listOf(helperCredentials, repositoryCredentials),
+                ),
+            )
+        }
+    }
+
+    @Test
+    fun `a helper applying to the host wins over repository credentials even without headers`() =
+        runBlocking {
+            withLocalHttpServer(echo) { server ->
+                withHelperThenBasic(
+                    stdout = """{"headers": {}}""",
+                    helperScope = "localhost",
+                    repositoryCredentials = basic(server, "alice", "s3cret"),
+                ) { credentials ->
+                    withClient(credentials) { client ->
+                        client
+                            .sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString())
+                            .await()
+                    }
+                }
+            }
+            assertEquals(listOf("Basic abc"), seenHeaders.single()["Authorization"])
+        }
+
+    @Test
+    fun `repository credentials serve the hosts no helper applies to`() = runBlocking {
+        withLocalHttpServer(echo) { server ->
+            withHelperThenBasic(
+                stdout = """{"headers": {}}""",
+                helperScope = "repo.example.com",
+                repositoryCredentials = basic(server, "alice", "s3cret"),
+            ) { credentials ->
+                withClient(credentials) { client ->
+                    client.sendAsync(request(server.urlOf("/a")), BodyHandlers.ofString()).await()
+                }
+            }
+        }
+        assertEquals(listOf("Basic YWxpY2U6czNjcmV0"), seenHeaders.single()["Authorization"])
     }
 }

@@ -8,7 +8,9 @@ import com.github.ajalt.clikt.parameters.types.long
 import java.nio.file.Path
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.outputStream
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
@@ -17,7 +19,11 @@ import kotlinx.serialization.json.encodeToStream
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.CredentialHelperOption
+import org.jetbrains.kmp.resolver.auth.CredentialHelperProvider
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.RequestCredentials
+import org.jetbrains.kmp.resolver.auth.withCredentialHelperCredentials
 import org.jetbrains.kmp.resolver.http.RetryPolicy
 import org.jetbrains.kmp.resolver.http.withAuthenticatingHttpClient
 
@@ -151,6 +157,44 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             .long()
             .default(10.seconds.inWholeMilliseconds)
 
+    private val credentialHelpers: List<CredentialHelperOption> by
+        option(
+                "--credential-helper",
+                help =
+                    """
+                    Bazel credential helper asked for the headers of every HTTP request, as `[scope=]path` like Bazel's
+                    `--credential_helper`: `path` is absolute or a bare executable name looked up on PATH (`%workspace%` is not
+                    expanded), `scope` is a domain name, optionally with a leading `*.` wildcard, restricting the helper to
+                    matching hosts; the most specific scope wins. A host a helper applies to is authenticated by that helper alone,
+                    the credentials of --repository-credentials-file serve the other hosts. Can be specified multiple times.
+                    """
+                        .trimIndent(),
+            )
+            .convert { CredentialHelperOption.parse(it) }
+            .multiple(required = false)
+
+    private val credentialHelperTimeoutMillis: Long by
+        option(
+                "--credential-helper-timeout-ms",
+                help =
+                    "Time in milliseconds a credential helper has to answer, after which the resolution fails.",
+            )
+            .long()
+            .default(10.seconds.inWholeMilliseconds)
+
+    private val credentialHelperCacheDurationMillis: Long by
+        option(
+                "--credential-helper-cache-duration-ms",
+                help =
+                    """
+                    Time in milliseconds the headers of a credential helper are cached for a URI, when the helper gives no
+                    `expires` timestamp.
+                    """
+                        .trimIndent(),
+            )
+            .long()
+            .default(30.minutes.inWholeMilliseconds)
+
     @OptIn(ExperimentalSerializationApi::class)
     override suspend fun run() {
         val repositoryCredentials =
@@ -159,44 +203,57 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 else -> RepositoryCredentials.fromFile(credentialsFile)
             }
         val manifest =
-            withAuthenticatingHttpClient(
-                credentials = BasicRepositoryCredentials(repositoryCredentials),
-                connectTimeout = connectTimeoutMillis.milliseconds,
-            ) { httpClient ->
-                val artifactResolver =
-                    ArtifactUrlResolver(
-                        httpClient = httpClient,
-                        allowedConcurrentConnections = allowedConcurrentConnections,
-                        requestTimeout = requestTimeoutMillis.milliseconds,
-                        retryPolicy = RetryPolicy.DEFAULT,
-                    )
-                val resolver =
-                    MultiplatformResolver(
-                        cachePath = outputManifest.parent,
-                        platforms = platforms,
-                        repositories = repositories.map { MavenRepository(it) },
-                        httpClient = httpClient,
-                        artifactResolver = artifactResolver,
-                        substitutions = substitutions.toMap(),
-                        npmResolver =
-                            NpmResolver(
-                                nodeExecutable = nodeExecutable,
-                                npmCliJs = npmCliJs,
-                                registryUrl = npmRegistry,
-                                packageVersionOverrides = npmPackageVersions.toMap(),
-                                workDir = outputManifest.parent,
+            withCredentialHelperCredentials(
+                provider = CredentialHelperProvider(credentialHelpers),
+                timeout = credentialHelperTimeoutMillis.milliseconds,
+                cacheDuration = credentialHelperCacheDurationMillis.milliseconds,
+                clock = Clock.System,
+                workingDir = null,
+            ) { credentialHelperCredentials ->
+                withAuthenticatingHttpClient(
+                    // A matching credential helper wins over the credentials file, as in Bazel.
+                    credentials =
+                        RequestCredentials.firstApplicable(
+                            listOf(
+                                credentialHelperCredentials,
+                                BasicRepositoryCredentials(repositoryCredentials),
                             ),
+                        ),
+                    connectTimeout = connectTimeoutMillis.milliseconds,
+                ) { httpClient ->
+                    val artifactResolver =
+                        ArtifactUrlResolver(
+                            httpClient = httpClient,
+                            allowedConcurrentConnections = allowedConcurrentConnections,
+                            requestTimeout = requestTimeoutMillis.milliseconds,
+                            retryPolicy = RetryPolicy.DEFAULT,
+                        )
+                    val resolver =
+                        MultiplatformResolver(
+                            cachePath = outputManifest.parent,
+                            platforms = platforms,
+                            repositories = repositories.map { MavenRepository(it) },
+                            httpClient = httpClient,
+                            artifactResolver = artifactResolver,
+                            substitutions = substitutions.toMap(),
+                            npmResolver =
+                                NpmResolver(
+                                    nodeExecutable = nodeExecutable,
+                                    npmCliJs = npmCliJs,
+                                    registryUrl = npmRegistry,
+                                    packageVersionOverrides = npmPackageVersions.toMap(),
+                                    workDir = outputManifest.parent,
+                                ),
+                        )
+                    BazelManifest(
+                        askedCoordinates = coordinates.sorted(),
+                        askedRepositories = repositories.sorted(),
+                        libraries = resolver.resolve(coordinates).asLibraries(),
                     )
-                BazelManifest(
-                    askedCoordinates = coordinates.sorted(),
-                    askedRepositories = repositories.sorted(),
-                    libraries = resolver.resolve(coordinates).asLibraries(),
-                )
+                }
             }
         outputManifest.createParentDirectories()
-        outputManifest.outputStream().use { output ->
-            json.encodeToStream(manifest, output)
-        }
+        outputManifest.outputStream().use { output -> json.encodeToStream(manifest, output) }
     }
 
     companion object {

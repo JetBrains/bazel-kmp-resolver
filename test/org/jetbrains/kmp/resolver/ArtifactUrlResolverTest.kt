@@ -2,16 +2,25 @@ package org.jetbrains.kmp.resolver
 
 import com.sun.net.httpserver.HttpHandler
 import java.net.http.HttpClient
+import java.nio.file.Path
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.io.path.createTempDirectory
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.kmp.resolver.auth.BasicRepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.CredentialHelperOption
+import org.jetbrains.kmp.resolver.auth.CredentialHelperProvider
 import org.jetbrains.kmp.resolver.auth.RepositoryCredentials
+import org.jetbrains.kmp.resolver.auth.RequestCredentials
+import org.jetbrains.kmp.resolver.auth.withCredentialHelperCredentials
+import org.jetbrains.kmp.resolver.auth.writeFakeCredentialHelper
 import org.jetbrains.kmp.resolver.http.RetryPolicy
 import org.jetbrains.kmp.resolver.http.jdkHttpClient
 import org.jetbrains.kmp.resolver.http.respond
@@ -137,6 +146,45 @@ class ArtifactUrlResolverTest {
             }
         }
         assertEquals(listOf("Basic YWxpY2U6czNjcmV0"), authorizations["/ok"])
+    }
+
+    private val directory: Path = createTempDirectory("artifact-url-resolver")
+
+    @Test
+    fun `credential helper headers take precedence over repository credentials`() = runBlocking {
+        val helper =
+            writeFakeCredentialHelper(
+                directory = directory,
+                name = "helper",
+                stdout = """{"headers": {"Authorization": ["Bearer token"]}}""",
+                stderr = "",
+                exitCode = 0,
+                delay = Duration.ZERO,
+                requestLog = directory.resolve("requests.log"),
+            )
+        withLocalHttpServer(artifacts) { server ->
+            withCredentialHelperCredentials(
+                provider =
+                    CredentialHelperProvider(
+                        listOf(CredentialHelperOption.parse("localhost=$helper")),
+                    ),
+                timeout = 10.seconds,
+                cacheDuration = 30.minutes,
+                clock = Clock.System,
+                workingDir = directory,
+            ) { helperCredentials ->
+                withAuthenticatingHttpClient(
+                    credentials =
+                        RequestCredentials.firstApplicable(
+                            listOf(helperCredentials, basic(server.urlOf("/"))),
+                        ),
+                    connectTimeout = 5.seconds,
+                ) { httpClient ->
+                    resolver(httpClient).artifactExistsAt(server.urlOf("/ok"))
+                }
+            }
+        }
+        assertEquals(listOf("Bearer token"), authorizations["/ok"])
     }
 
     @Test
