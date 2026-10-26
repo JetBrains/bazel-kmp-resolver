@@ -1,10 +1,9 @@
 package org.jetbrains.kmp.resolver
 
-import com.sun.net.httpserver.HttpServer
+import com.sun.net.httpserver.HttpHandler
 import java.net.http.HttpClient
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.time.Duration
@@ -20,7 +19,7 @@ class ArtifactUrlResolverTest {
      * `/ok` exists, `/missing` does not, `/flaky` fails twice before existing, `/down` always
      * fails, `/throttled` fails once asking to retry after a second.
      */
-    private val server: HttpServer = startLocalHttpServer { exchange ->
+    private val artifacts = HttpHandler { exchange ->
         val path = exchange.requestURI.path
         val hit = hits.computeIfAbsent(path) { AtomicInteger() }.incrementAndGet()
         authorizations[path] = exchange.requestHeaders["Authorization"] ?: emptyList()
@@ -34,11 +33,6 @@ class ArtifactUrlResolverTest {
             }
             else -> exchange.respond(500, ByteArray(0))
         }
-    }
-
-    @AfterTest
-    fun stopServer() {
-        server.stop(0)
     }
 
     private val fastRetries =
@@ -62,48 +56,54 @@ class ArtifactUrlResolverTest {
 
     @Test
     fun `existing and missing artifacts`() = runBlocking {
-        jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
-            val resolver = resolver(httpClient)
+        withLocalHttpServer(artifacts) { server ->
+            jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
+                val resolver = resolver(httpClient)
 
-            assertEquals(
-                ArtifactFile.Resolved(server.urlOf("/ok")),
-                resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials),
-            )
-            assertEquals(
-                ArtifactFile.NotFound,
-                resolver.artifactExistsAt(server.urlOf("/missing"), noCredentials),
-            )
+                assertEquals(
+                    ArtifactFile.Resolved(server.urlOf("/ok")),
+                    resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials),
+                )
+                assertEquals(
+                    ArtifactFile.NotFound,
+                    resolver.artifactExistsAt(server.urlOf("/missing"), noCredentials),
+                )
+            }
         }
         assertEquals(emptyList(), authorizations["/ok"])
     }
 
     @Test
     fun `results are cached per URL`() = runBlocking {
-        jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
-            val resolver = resolver(httpClient)
+        withLocalHttpServer(artifacts) { server ->
+            jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
+                val resolver = resolver(httpClient)
 
-            repeat(3) { resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials) }
+                repeat(3) { resolver.artifactExistsAt(server.urlOf("/ok"), noCredentials) }
+            }
         }
         assertEquals(1, hits["/ok"]?.get())
     }
 
     @Test
     fun `server errors are retried`() = runBlocking {
-        jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
-            val resolver = resolver(httpClient)
+        withLocalHttpServer(artifacts) { server ->
+            jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
+                val resolver = resolver(httpClient)
 
-            assertEquals(
-                ArtifactFile.Resolved(server.urlOf("/flaky")),
-                resolver.artifactExistsAt(server.urlOf("/flaky"), noCredentials),
-            )
-            assertEquals(
-                ArtifactFile.NotFound,
-                resolver.artifactExistsAt(server.urlOf("/down"), noCredentials),
-            )
-            assertEquals(
-                ArtifactFile.Resolved(server.urlOf("/throttled")),
-                resolver.artifactExistsAt(server.urlOf("/throttled"), noCredentials),
-            )
+                assertEquals(
+                    ArtifactFile.Resolved(server.urlOf("/flaky")),
+                    resolver.artifactExistsAt(server.urlOf("/flaky"), noCredentials),
+                )
+                assertEquals(
+                    ArtifactFile.NotFound,
+                    resolver.artifactExistsAt(server.urlOf("/down"), noCredentials),
+                )
+                assertEquals(
+                    ArtifactFile.Resolved(server.urlOf("/throttled")),
+                    resolver.artifactExistsAt(server.urlOf("/throttled"), noCredentials),
+                )
+            }
         }
         assertEquals(3, hits["/flaky"]?.get())
         assertEquals(6, hits["/down"]?.get())
@@ -112,16 +112,18 @@ class ArtifactUrlResolverTest {
 
     @Test
     fun `repository credentials are sent as basic authentication`() = runBlocking {
-        jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
-            resolver(httpClient)
-                .artifactExistsAt(
-                    server.urlOf("/ok"),
-                    RepositoryCredentials(
-                        repositoryUrl = "unused",
-                        username = "alice",
-                        password = "s3cret",
-                    ),
-                )
+        withLocalHttpServer(artifacts) { server ->
+            jdkHttpClient(connectTimeout = 5.seconds).use { httpClient ->
+                resolver(httpClient)
+                    .artifactExistsAt(
+                        server.urlOf("/ok"),
+                        RepositoryCredentials(
+                            repositoryUrl = "unused",
+                            username = "alice",
+                            password = "s3cret",
+                        ),
+                    )
+            }
         }
         assertEquals(listOf("Basic YWxpY2U6czNjcmV0"), authorizations["/ok"])
     }
