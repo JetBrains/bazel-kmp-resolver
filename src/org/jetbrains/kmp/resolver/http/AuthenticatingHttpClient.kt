@@ -151,17 +151,24 @@ internal class AuthenticatingHttpClient(
 /**
  * Runs [block] with an [AuthenticatingHttpClient] over the resolver's [jdkHttpClient],
  * authenticating requests with [credentials]; the requests run in the scope of this call, and the
- * client is closed once [block] returns.
+ * client is shut down once [block] returns.
  */
 internal suspend fun <T> withAuthenticatingHttpClient(
     credentials: RequestCredentials,
     connectTimeout: Duration,
     block: suspend (HttpClient) -> T,
 ): T = coroutineScope {
-    AuthenticatingHttpClient(
+    val client =
+        AuthenticatingHttpClient(
             scope = this,
             delegate = jdkHttpClient(connectTimeout),
             credentials = credentials,
         )
-        .use { block(it) }
+    try {
+        block(client)
+    } finally {
+        // Not close(): it waits minutes for streams closed before being read to the end, such as
+        // the bodies of 404 answers (JDK-8316580). shutdownNow() releases the client at once.
+        client.shutdownNow()
+    }
 }
