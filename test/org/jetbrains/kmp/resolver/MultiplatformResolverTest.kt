@@ -5,7 +5,6 @@ import kotlin.io.path.createTempDirectory
 import kotlin.io.path.deleteRecursively
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -41,22 +40,15 @@ class MultiplatformResolverTest {
                 "io.ktor:ktor-client-core:3.4.3",
                 "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -76,22 +68,15 @@ class MultiplatformResolverTest {
             listOf(
                 "org.jetbrains.kotlin:kotlin-reflect:2.4.0",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -111,33 +96,25 @@ class MultiplatformResolverTest {
             listOf(
                 "io.ktor:ktor-client-core:3.4.3",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    substitutions =
-                        mapOf(
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
-                                ),
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
-                                ),
-                        ),
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions =
+                    mapOf(
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+                            ),
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
+                            ),
+                    ),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -159,22 +136,15 @@ class MultiplatformResolverTest {
                 "org.jetbrains.kotlin:kotlin-reflect:2.4.0", // JVM-only library, its id is its
                 // variantId
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.JVM),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.JVM),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -195,24 +165,17 @@ class MultiplatformResolverTest {
                 "io.ktor:ktor-client-core:3.4.3", // depends on the wasmJs-only `kotlinx-browser`,
                 // skipped on JVM
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    // reversed on purpose: the manifest must not depend on the order platforms are
-                    // requested in
-                    platforms = setOf(ResolutionPlatform.JVM, ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                // reversed on purpose: the manifest must not depend on the order platforms are
+                // requested in
+                platforms = setOf(ResolutionPlatform.JVM, ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -232,30 +195,22 @@ class MultiplatformResolverTest {
             listOf(
                 "io.ktor:ktor-client-core:3.4.3",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    substitutions =
-                        mapOf(
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
-                                ),
-                            // substituting the KMP library covers its platform-specific variants
-                        ),
-                    platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions =
+                    mapOf(
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+                            ),
+                        // substituting the KMP library covers its platform-specific variants
+                    ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -276,33 +231,25 @@ class MultiplatformResolverTest {
                 "io.ktor:ktor-client-core:3.4.3", // depends on `kotlinx-coroutines-slf4j` on JVM, a
                 // JVM-only library without KMP parent
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    substitutions =
-                        mapOf(
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
-                                ),
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-slf4j:1.10.2-intellij-1",
-                                ),
-                        ),
-                    platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions =
+                    mapOf(
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+                            ),
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-slf4j:1.10.2-intellij-1",
+                            ),
+                    ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -324,34 +271,26 @@ class MultiplatformResolverTest {
                 // substituted below
                 "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1", // the substitute itself
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    substitutions =
-                        mapOf(
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
-                                ),
-                            "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to
-                                MultiplatformLibraryId.fromString(
-                                    "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
-                                ),
-                            // a redundant variant key, as some generators emit: harmless
-                        ),
-                    platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions =
+                    mapOf(
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
+                            ),
+                        "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js" to
+                            MultiplatformLibraryId.fromString(
+                                "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core-wasm-js:1.10.2-intellij-1",
+                            ),
+                        // a redundant variant key, as some generators emit: harmless
+                    ),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -376,22 +315,15 @@ class MultiplatformResolverTest {
                 "com.google.devtools.ksp:symbol-processing-aa-embeddable:2.3.6",
                 "org.jetbrains.intellij.deps.kotlinx:kotlinx-coroutines-core:1.10.2-intellij-1",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.JVM),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.JVM),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -412,22 +344,15 @@ class MultiplatformResolverTest {
             listOf(
                 "ai.jetbrains.code.files:code-files-model:1.0.0-beta.167",
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -448,22 +373,15 @@ class MultiplatformResolverTest {
                 "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1", // its klib embeds a package.json
                 // requiring `@js-joda/core`
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-        val actual = artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = createTempDirectory("resolution-cache"),
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
-            resolver.resolve(coordinates)
-        }
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.WASM_JS),
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
 
         assertUsingManifest(
             coordinates = coordinates,
@@ -486,23 +404,14 @@ class MultiplatformResolverTest {
                 // resolve the hahs of
                 // `com/github/ajalt/clikt/clikt-core-wasm-js/5.0.3/clikt-core-wasm-js-5.0.3-sources.jar`
             )
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = 32,
-                connectTimeout = 30.seconds,
-                requestTimeout = 10.seconds,
-            )
-
         val cache = createTempDirectory("resolution-cache")
         cache.deleteRecursively()
-        artifactResolver.use { artifactResolver ->
-            val resolver =
-                testMultiplatformResolver(
-                    cachePath = cache,
-                    repositories = repositories,
-                    artifactResolver = artifactResolver,
-                    platforms = setOf(ResolutionPlatform.WASM_JS),
-                )
+        testMultiplatformResolver(
+            cachePath = cache,
+            repositories = repositories,
+            substitutions = emptyMap(),
+            platforms = setOf(ResolutionPlatform.WASM_JS),
+        ) { resolver ->
             assertDoesNotThrow {
                 resolver.resolve(coordinates)
             }

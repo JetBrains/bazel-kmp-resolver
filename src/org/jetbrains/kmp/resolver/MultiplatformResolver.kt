@@ -1,5 +1,6 @@
 package org.jetbrains.kmp.resolver
 
+import java.net.http.HttpClient
 import java.nio.file.Path
 import kotlin.io.encoding.Base64
 import kotlin.io.path.absolutePathString
@@ -249,6 +250,7 @@ internal class MultiplatformResolver(
     private val platforms: Set<ResolutionPlatform>,
     private val repositories: List<MavenRepository>,
     private val substitutions: Substitutions,
+    private val httpClient: HttpClient,
     private val artifactResolver: ArtifactUrlResolver,
     private val npmResolver: NpmResolver,
 ) {
@@ -380,11 +382,19 @@ internal class MultiplatformResolver(
             repositories = this@MultiplatformResolver.repositories
             cache = getDefaultFileCacheBuilder(amperCachePath)
         }
-        val templateContext = Context {
-            defaultSettings()
-        }
+        // Amper takes the HTTP client of its downloads from the resolution cache under its internal
+        // `httpClientKey`, a
+        // `Key<java.net.http.HttpClient>("httpClient")`; `Key` is a data class so this key is equal
+        // to it. The cache is
+        // shared by every context of the session, as Amper expects, so all downloads go through
+        // [httpClient].
+        val resolutionCache = Cache().apply { set(Key<HttpClient>("httpClient"), httpClient) }
+        val templateContext =
+            Context(resolutionCache) {
+                defaultSettings()
+            }
         val contexts = scope.map {
-            Context {
+            Context(resolutionCache) {
                 defaultSettings()
                 this.scope = it
             }

@@ -1,12 +1,13 @@
 package org.jetbrains.kmp.resolver
 
-import io.ktor.client.*
-import io.ktor.client.engine.java.*
-import io.ktor.client.plugins.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse.BodyHandlers
+import java.util.Base64
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration
+import kotlin.time.toJavaDuration
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.slf4j.Logger
@@ -18,11 +19,17 @@ internal sealed class ArtifactFile {
     data object NotFound : ArtifactFile()
 }
 
+/**
+ * Checks which candidate URLs of artifacts exist, with HEAD requests sent through [httpClient], at
+ * most [allowedConcurrentConnections] at a time per host, each answered within [requestTimeout],
+ * and retried according to [retryPolicy]. Results are cached per URL.
+ */
 internal class ArtifactUrlResolver(
+    private val httpClient: HttpClient,
     private val allowedConcurrentConnections: Int,
     private val requestTimeout: Duration,
-    private val connectTimeout: Duration,
-) : AutoCloseable {
+    private val retryPolicy: RetryPolicy,
+) {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     init {
@@ -33,28 +40,11 @@ internal class ArtifactUrlResolver(
 
     private val hostSemaphores = ConcurrentHashMap<String, Semaphore>()
 
-    private fun hostSemaphore(artifactUrl: String): Semaphore =
-        hostSemaphores.computeIfAbsent(Url(artifactUrl).hostWithPort) {
+    private fun hostSemaphore(uri: URI): Semaphore =
+        hostSemaphores.computeIfAbsent("${uri.host}:${uri.port}") {
             Semaphore(allowedConcurrentConnections)
         }
 
-    private val httpClient =
-        HttpClient(Java) {
-            followRedirects = true
-            expectSuccess = false
-            install(HttpRequestRetry) {
-                retryOnServerErrors(maxRetries = 5)
-                retryOnException(maxRetries = 5, retryOnTimeout = true)
-                exponentialDelay(baseDelayMs = 3000)
-            }
-            install(HttpTimeout) {
-                requestTimeoutMillis = requestTimeout.inWholeMilliseconds
-                connectTimeoutMillis = connectTimeout.inWholeMilliseconds
-            }
-            defaultRequest {
-                header("User-Agent", "JetBrainsBazelKmpResolver/1.0")
-            }
-        }
     private val availabilityByUrl = ConcurrentHashMap<String, ArtifactFile>()
 
     suspend fun artifactExistsAt(
@@ -63,23 +53,26 @@ internal class ArtifactUrlResolver(
     ): ArtifactFile {
         return availabilityByUrl.getOrPut(artifactUrl) {
             logger.debug("[$artifactUrl] checking for existence of artifact...")
-            val resolved =
-                hostSemaphore(artifactUrl).withPermit {
-                    httpClient
-                        .head {
-                            url(artifactUrl)
-                            when {
-                                credentials.username != null && credentials.password != null ->
-                                    basicAuth(
-                                        credentials.username,
-                                        credentials.password,
-                                    )
-
-                                else -> {}
-                            }
+            val uri = URI(artifactUrl)
+            val request =
+                HttpRequest.newBuilder(uri)
+                    .HEAD()
+                    .timeout(requestTimeout.toJavaDuration())
+                    .header("User-Agent", USER_AGENT)
+                    .apply {
+                        if (credentials.username != null && credentials.password != null) {
+                            header(
+                                "Authorization",
+                                basicAuthorization(credentials.username, credentials.password),
+                            )
                         }
-                        .status
-                        .isSuccess()
+                    }
+                    .build()
+            val resolved =
+                hostSemaphore(uri).withPermit {
+                    httpClient
+                        .sendWithRetry(request, BodyHandlers.discarding(), retryPolicy)
+                        .statusCode() in 200..299
                 }
             when {
                 resolved -> {
@@ -95,7 +88,10 @@ internal class ArtifactUrlResolver(
         }
     }
 
-    override fun close() {
-        httpClient.close()
+    companion object {
+        private const val USER_AGENT = "JetBrainsBazelKmpResolver/1.0"
+
+        private fun basicAuthorization(username: String, password: String): String =
+            "Basic ${Base64.getEncoder().encodeToString("$username:$password".toByteArray())}"
     }
 }

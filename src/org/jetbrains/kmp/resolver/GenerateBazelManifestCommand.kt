@@ -135,7 +135,8 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
     private val connectTimeoutMillis: Long by
         option(
                 "--connect-timeout-ms",
-                help = "HTTP connect timeout in milliseconds when checking artifact URLs.",
+                help =
+                    "HTTP connect timeout in milliseconds, for artifact URL checks and downloads alike.",
             )
             .long()
             .default(10.seconds.inWholeMilliseconds)
@@ -147,18 +148,21 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 null -> emptyMap()
                 else -> RepositoryCredentials.fromFile(credentialsFile)
             }
-        val artifactResolver =
-            ArtifactUrlResolver(
-                allowedConcurrentConnections = allowedConcurrentConnections,
-                requestTimeout = requestTimeoutMillis.milliseconds,
-                connectTimeout = connectTimeoutMillis.milliseconds,
-            )
-        val manifest = artifactResolver.use { artifactResolver ->
+        val httpClient = jdkHttpClient(connectTimeout = connectTimeoutMillis.milliseconds)
+        val manifest = httpClient.use { httpClient ->
+            val artifactResolver =
+                ArtifactUrlResolver(
+                    httpClient = httpClient,
+                    allowedConcurrentConnections = allowedConcurrentConnections,
+                    requestTimeout = requestTimeoutMillis.milliseconds,
+                    retryPolicy = RetryPolicy.DEFAULT,
+                )
             val resolver =
                 MultiplatformResolver(
                     cachePath = outputManifest.parent,
                     platforms = platforms,
                     repositories = repositories.withRepositoryCredentials(credentials),
+                    httpClient = httpClient,
                     artifactResolver = artifactResolver,
                     substitutions = substitutions.toMap(),
                     npmResolver =

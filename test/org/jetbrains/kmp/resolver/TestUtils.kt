@@ -3,6 +3,7 @@ package org.jetbrains.kmp.resolver
 import java.io.InputStream
 import java.nio.file.Path
 import kotlin.test.assertEquals
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
@@ -14,31 +15,43 @@ object TestResourceReader {
 }
 
 /**
- * Builds a [MultiplatformResolver] wired to the hermetic [NodeDistribution] provisioned by the
- * `node` build plugin, so the tests never depend on a node/npm installation of the host.
+ * Runs [block] with a [MultiplatformResolver] wired to the hermetic [NodeDistribution] provisioned
+ * by the `node` build plugin, so the tests never depend on a node/npm installation of the host, and
+ * to a JDK HTTP client closed once [block] returns.
  */
-internal fun testMultiplatformResolver(
+internal suspend fun <T> testMultiplatformResolver(
     cachePath: Path,
     repositories: List<String>,
-    artifactResolver: ArtifactUrlResolver,
-    substitutions: Substitutions = emptyMap(),
+    substitutions: Substitutions,
     platforms: Set<ResolutionPlatform>,
-): MultiplatformResolver =
-    MultiplatformResolver(
-        cachePath = cachePath,
-        platforms = platforms,
-        repositories = repositories.map { MavenRepository(it) },
-        artifactResolver = artifactResolver,
-        substitutions = substitutions,
-        npmResolver =
-            NpmResolver(
-                nodeExecutable = NodeDistribution.node,
-                npmCliJs = NodeDistribution.npmCliJs,
-                registryUrl = null,
-                packageVersionOverrides = emptyMap(),
-                workDir = cachePath,
+    block: suspend (MultiplatformResolver) -> T,
+): T =
+    jdkHttpClient(connectTimeout = 30.seconds).use { httpClient ->
+        block(
+            MultiplatformResolver(
+                cachePath = cachePath,
+                platforms = platforms,
+                repositories = repositories.map { MavenRepository(it) },
+                httpClient = httpClient,
+                artifactResolver =
+                    ArtifactUrlResolver(
+                        httpClient = httpClient,
+                        allowedConcurrentConnections = 32,
+                        requestTimeout = 10.seconds,
+                        retryPolicy = RetryPolicy.DEFAULT,
+                    ),
+                substitutions = substitutions,
+                npmResolver =
+                    NpmResolver(
+                        nodeExecutable = NodeDistribution.node,
+                        npmCliJs = NodeDistribution.npmCliJs,
+                        registryUrl = null,
+                        packageVersionOverrides = emptyMap(),
+                        workDir = cachePath,
+                    ),
             ),
-    )
+        )
+    }
 
 private val json = Json {
     prettyPrintIndent = "  "
