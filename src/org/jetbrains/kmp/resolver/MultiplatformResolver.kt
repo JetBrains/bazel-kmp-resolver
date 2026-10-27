@@ -2,6 +2,7 @@ package org.jetbrains.kmp.resolver
 
 import java.net.http.HttpClient
 import java.nio.file.Path
+import java.security.MessageDigest
 import kotlin.io.encoding.Base64
 import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.*
@@ -256,7 +257,14 @@ internal class MultiplatformResolver(
 ) {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
-    private val amperCachePath: Path = cachePath.resolve("amper-cache")
+    /**
+     * Amper caches files by their Maven path, whatever the repository they come from, while a
+     * library could be published with different contents in different repositories: each ordered
+     * list of repositories gets its own cache, so that a cache filled with other repositories is
+     * never used for a resolution against these ones.
+     */
+    private val amperCachePath: Path =
+        cachePath.resolve("amper-cache").resolve(repositories.cacheDirectoryName())
 
     /**
      * Requested platforms in the order of [SUPPORTED_PLATFORMS], which is the order variants are
@@ -656,6 +664,13 @@ internal class MultiplatformResolver(
             listOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM)
     }
 }
+
+/** Name of the cache directory of these repositories, a digest of their URLs in order. */
+private fun List<MavenRepository>.cacheDirectoryName(): String =
+    MessageDigest.getInstance("SHA-256")
+        .digest(joinToString("\n") { it.url }.toByteArray())
+        .toHexString()
+        .take(16)
 
 private val MavenDependencyNode.gav
     get(): MultiplatformLibraryId =

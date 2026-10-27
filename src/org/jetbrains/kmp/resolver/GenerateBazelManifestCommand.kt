@@ -95,6 +95,19 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             )
             .convert { Path.of(it) }
 
+    private val cacheDir: Path by
+        option(
+                "--cache-dir",
+                help =
+                    """
+                    Directory of the cache of Maven metadata and artifacts, reused across runs. It never changes the manifest,
+                    deleting it only makes the next run slower, and each ordered list of --repository gets its own cache in it.
+                    """
+                        .trimIndent(),
+            )
+            .convert { Path.of(it) }
+            .required()
+
     private val nodeExecutable: Path by
         option(
                 "--node-executable",
@@ -230,7 +243,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                         )
                     val resolver =
                         MultiplatformResolver(
-                            cachePath = outputManifest.parent,
+                            cachePath = cacheDir,
                             platforms = platforms,
                             repositories = repositories.map { MavenRepository(it) },
                             httpClient = httpClient,

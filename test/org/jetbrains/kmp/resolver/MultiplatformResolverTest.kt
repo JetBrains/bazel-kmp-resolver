@@ -3,8 +3,12 @@ package org.jetbrains.kmp.resolver
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.deleteRecursively
+import kotlin.io.path.extension
+import kotlin.io.path.walk
+import kotlin.io.path.writeText
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -428,5 +432,41 @@ class MultiplatformResolverTest {
                 resolver.resolve(coordinates)
             }
         }
+    }
+
+    @OptIn(ExperimentalPathApi::class)
+    @Test
+    fun `a reused cache resolves as an empty one, even with corrupted artifacts`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1",
+            )
+        val cache = createTempDirectory("resolution-cache")
+        val resolve: suspend () -> List<MultiplatformVariant> = {
+            testMultiplatformResolver(
+                cachePath = cache,
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.WASM_JS, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+        }
+
+        val cold = resolve()
+        val warm = resolve()
+        val cachedArtifacts =
+            cache.walk().filter { it.extension == "klib" || it.extension == "jar" }.toList()
+        assertTrue(cachedArtifacts.isNotEmpty(), "no artifact was cached in $cache")
+        cachedArtifacts.forEach { it.writeText("") }
+        val corrupted = resolve()
+
+        assertEquals(cold, warm)
+        assertEquals(cold, corrupted)
     }
 }
