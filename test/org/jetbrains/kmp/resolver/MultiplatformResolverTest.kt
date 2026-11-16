@@ -195,6 +195,65 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `jvm and ios_arm64 resolution`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                "io.ktor:ktor-client-core:3.4.3",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.JVM, ResolutionPlatform.IOS_ARM64),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-jvm_iosArm64.json",
+        )
+    }
+
+    @Test
+    fun `ios_simulator_arm64 and ios_arm64 resolution`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                "io.ktor:ktor-client-core:3.4.3",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms =
+                    setOf(ResolutionPlatform.IOS_SIMULATOR_ARM64, ResolutionPlatform.IOS_ARM64),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-iosSimulatorArm64_iosArm64.json",
+        )
+    }
+
+    @Test
     fun `substituted wasmjs and jvm resolution`() = runBlocking {
         val repositories =
             listOf(

@@ -10,7 +10,7 @@
       "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
           "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.4.0",
           "dependencies": [],

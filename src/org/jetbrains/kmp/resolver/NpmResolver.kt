@@ -33,7 +33,7 @@ internal fun readEmbeddedNpmManifest(klib: Path): EmbeddedNpmManifest? =
             null -> null
             else ->
                 zip.getInputStream(entry).use { input ->
-                    json.decodeFromStream<EmbeddedNpmManifest>(input)
+                    npmManifestJson.decodeFromStream<EmbeddedNpmManifest>(input)
                 }
         }
     }
@@ -86,7 +86,7 @@ internal class NpmResolver(
         runNpmInstall(workspacePath)
         val lock =
             workspacePath.resolve("package-lock.json").inputStream().use { input ->
-                json.decodeFromStream<NpmPackageLock>(input)
+                npmManifestJson.decodeFromStream<NpmPackageLock>(input)
             }
         require(lock.lockfileVersion >= 2) {
             "Unsupported package-lock.json lockfileVersion ${lock.lockfileVersion}, expected 2 or newer"

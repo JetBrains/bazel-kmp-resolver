@@ -4,7 +4,6 @@ import java.io.InputStream
 import java.nio.file.Path
 import kotlin.test.assertEquals
 import kotlin.time.Duration.Companion.seconds
-import kotlinx.serialization.json.Json
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 import org.jetbrains.kmp.resolver.auth.Authentication
@@ -62,11 +61,6 @@ internal suspend fun <T> testMultiplatformResolver(
 /** Credentials applying to no request, for resolutions against public repositories. */
 internal val noCredentials = RequestCredentials { Authentication.NotApplicable }
 
-private val json = Json {
-    prettyPrintIndent = "  "
-    prettyPrint = true
-}
-
 /**
  * Asserts using the given [manifestResourceFilepath] to improve readability of diff in tests, it's
  * easier to read a JSON diff.
@@ -83,7 +77,12 @@ internal fun assertUsingManifest(
             askedRepositories = repositories.sorted(),
             libraries = libraries.asLibraries(),
         )
-    val actualJson = json.encodeToString(BazelManifest.serializer(), actual)
+    val actualJson = bazelManifestJson.encodeToString(BazelManifest.serializer(), actual)
+
+    // The manifest is round-tripped to check that the platform, the only discriminator of a
+    // variant,
+    // discriminates it on deserialization as well.
+    assertEquals(actual, bazelManifestJson.decodeFromString(BazelManifest.serializer(), actualJson))
 
     TestResourceReader.readResource(manifestResourceFilepath).use { expected ->
         val expectedManifest = expected.readAllBytes()
