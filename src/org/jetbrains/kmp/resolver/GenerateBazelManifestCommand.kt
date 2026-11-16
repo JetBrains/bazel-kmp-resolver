@@ -14,7 +14,6 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
 import org.jetbrains.amper.dependency.resolution.MavenRepository
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
@@ -48,8 +47,7 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                         "`wasmjs` produces the klib variants of KMP libraries, `jvm` their jar variants along with JVM-only libraries.",
             )
             .choice(
-                "wasmjs" to ResolutionPlatform.WASM_JS,
-                "jvm" to ResolutionPlatform.JVM,
+                *supportedPlatforms.map { platform -> platform.cliName to platform }.toTypedArray(),
             )
             .multiple(required = true)
             .unique()
@@ -266,12 +264,8 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 }
             }
         outputManifest.createParentDirectories()
-        outputManifest.outputStream().use { output -> json.encodeToStream(manifest, output) }
-    }
-
-    companion object {
-        private val json = Json {
-            allowStructuredMapKeys = true
+        outputManifest.outputStream().use { output ->
+            bazelManifestJson.encodeToStream(manifest, output)
         }
     }
 }

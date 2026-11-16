@@ -10,7 +10,7 @@
       "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
           "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.1.20",
           "dependencies": [],
@@ -40,7 +40,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1",
           "variantId": "org.jetbrains.kotlinx:kotlinx-datetime-wasm-js:0.7.1",
           "dependencies": [],
@@ -81,7 +81,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2",
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.6.2",
           "dependencies": [],

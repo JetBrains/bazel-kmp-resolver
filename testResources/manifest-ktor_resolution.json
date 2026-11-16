@@ -13,7 +13,7 @@
       "id": "io.ktor:ktor-client-cio:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-client-cio:3.5.0",
           "variantId": "io.ktor:ktor-client-cio-wasm-js:3.5.0",
           "dependencies": [
@@ -53,7 +53,7 @@
       "id": "io.ktor:ktor-client-core:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-client-core:3.5.0",
           "variantId": "io.ktor:ktor-client-core-wasm-js:3.5.0",
           "dependencies": [
@@ -102,7 +102,7 @@
       "id": "io.ktor:ktor-events:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-events:3.5.0",
           "variantId": "io.ktor:ktor-events-wasm-js:3.5.0",
           "dependencies": [
@@ -139,7 +139,7 @@
       "id": "io.ktor:ktor-http-cio:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-http-cio:3.5.0",
           "variantId": "io.ktor:ktor-http-cio-wasm-js:3.5.0",
           "dependencies": [
@@ -177,7 +177,7 @@
       "id": "io.ktor:ktor-http:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-http:3.5.0",
           "variantId": "io.ktor:ktor-http-wasm-js:3.5.0",
           "dependencies": [
@@ -215,7 +215,7 @@
       "id": "io.ktor:ktor-io:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-io:3.5.0",
           "variantId": "io.ktor:ktor-io-wasm-js:3.5.0",
           "dependencies": [
@@ -252,7 +252,7 @@
       "id": "io.ktor:ktor-network-tls:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-network-tls:3.5.0",
           "variantId": "io.ktor:ktor-network-tls-wasm-js:3.5.0",
           "dependencies": [
@@ -291,7 +291,7 @@
       "id": "io.ktor:ktor-network:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-network:3.5.0",
           "variantId": "io.ktor:ktor-network-wasm-js:3.5.0",
           "dependencies": [
@@ -328,7 +328,7 @@
       "id": "io.ktor:ktor-serialization:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-serialization:3.5.0",
           "variantId": "io.ktor:ktor-serialization-wasm-js:3.5.0",
           "dependencies": [
@@ -365,7 +365,7 @@
       "id": "io.ktor:ktor-sse:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-sse:3.5.0",
           "variantId": "io.ktor:ktor-sse-wasm-js:3.5.0",
           "dependencies": [
@@ -402,7 +402,7 @@
       "id": "io.ktor:ktor-utils:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-utils:3.5.0",
           "variantId": "io.ktor:ktor-utils-wasm-js:3.5.0",
           "dependencies": [
@@ -440,7 +440,7 @@
       "id": "io.ktor:ktor-websocket-serialization:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-websocket-serialization:3.5.0",
           "variantId": "io.ktor:ktor-websocket-serialization-wasm-js:3.5.0",
           "dependencies": [
@@ -477,7 +477,7 @@
       "id": "io.ktor:ktor-websockets:3.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "io.ktor:ktor-websockets:3.5.0",
           "variantId": "io.ktor:ktor-websockets-wasm-js:3.5.0",
           "dependencies": [
@@ -515,7 +515,7 @@
       "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlin:kotlin-stdlib:2.4.0",
           "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.4.0",
           "dependencies": [],
@@ -545,7 +545,7 @@
       "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
           "variantId": "org.jetbrains.kotlinx:atomicfu-wasm-js:0.32.1",
           "dependencies": [
@@ -577,7 +577,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-browser:0.5.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-browser:0.5.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-browser-wasm-js:0.5.0",
           "dependencies": [
@@ -609,7 +609,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js:1.11.0",
           "dependencies": [],
@@ -642,7 +642,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.9.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-bytestring-wasm-js:0.9.0",
           "dependencies": [],
@@ -674,7 +674,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-io-core:0.9.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-core-wasm-js:0.9.0",
           "dependencies": [],
@@ -707,7 +707,7 @@
       "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0",
       "variants": [
         {
-          "type": "wasmjs",
+          "platform": "wasm_js",
           "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-wasm-js:1.11.0",
           "dependencies": [],
