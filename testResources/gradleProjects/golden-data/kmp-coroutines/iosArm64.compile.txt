@@ -1,0 +1,14 @@
+org.jetbrains.kotlinx:atomicfu-iosarm64:0.32.1
+sha512-sKP8OBiOHreVT3dEni3V18usHNLUD1Kg3XFQ3/OOJ8MSNXlXzLUnJ96u31xJ4lrzMie6URPJuYEGnQVDUNi+/A==
+sha256-REEduw5KPv3UzC10237xhHf2X9ug1LeVbhZYVG/NlH0=
+sha1-Sz1k+GiPC+G/z0FmaHfyvV7Bv3s=
+
+org.jetbrains.kotlinx:atomicfu-iosarm64:0.32.1
+sha512-ZMZrmwjhKdycHn4PiIM4mRYrp+bJBkv0e3oQp++GhNAeTyYsj5Hmu4wsvBehq64IC+Qc1zRLd9cQGrKS47JY1g==
+sha256-O4IzLQiMk4cUUQJW2BK+xcfjQGR1rsgM6jLJEIndE38=
+sha1-yqvsH0XZ6uPOhx0nD7Nka6Jme50=
+
+org.jetbrains.kotlinx:kotlinx-coroutines-core-iosarm64:1.11.0
+sha512-jRr0RYSFVNMEbwPnM4kYZ32x1vQYotYYREcrq3mMUHVT7FV/bo12QO9iOLtwsQYMlLHFED4i7F07ZzIIeSwylQ==
+sha256-nQcaj1e1vzFIe6x1aOxP2FL8L9TCQWh2303z67ASntQ=
+sha1-i4IYX0iev53PKukc1Si6ZBN8Vc8=

@@ -1,0 +1,9 @@
+co.touchlab:sqliter-driver-macosarm64:1.4.0
+sha512-ehAcM7jotj+N1tSRiVsqmtXJu3zLgS35PVKiuG8k34V9FVLE0wzSx+IO8dMN2pthKLjB/Ouabki1zAEmgC1T6Q==
+sha256-DqOlwfoBAhE5tVq1QXz1whEHiqxcWF4kEO4CbwkpuCY=
+sha1-pKcO9toffZ7qq2k4TAabGzeoqVY=
+
+co.touchlab:sqliter-driver-macosarm64:1.4.0
+sha512-VTfau2haYtRN7DdjDVP5aNlIl2h3Tuss35/dDa1gdyFGux66gKBsNjr9zAh4llHRXi+i03Ep4wp3wopyYBaANg==
+sha256-oNP2qoMFGe1hPnTPRWgazyo5Ky1qn0YlhORLIEhYdJ8=
+sha1-Na2YM+ldTdER2VwgUV02orXIp/s=

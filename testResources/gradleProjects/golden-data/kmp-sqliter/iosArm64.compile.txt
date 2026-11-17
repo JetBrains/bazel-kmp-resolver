@@ -1,0 +1,9 @@
+co.touchlab:sqliter-driver-iosarm64:1.4.0
+sha512-enNrlbHn6U21Afht4KgfrxRv7aB30tobSOdEtbtQeDzAxHoXi03b8Mq3wxowo4a+4VSGjAgtQjX6cT/kdo2lzQ==
+sha256-Rtr2L0bjVmiRpfZ0yev/1B5rShpo2DrnzJdLmAlz+Gc=
+sha1-X9zVki3INuAC+IL4HWFJDXUQ4lI=
+
+co.touchlab:sqliter-driver-iosarm64:1.4.0
+sha512-fsqI0TSWuZ8r5MBYBfJEpokJbp4vNnmrUDqln1TDPRaAXEp414pV1OFTm5PACn296VSl148hc/dEoZ1n8Qra5w==
+sha256-2/y81mwNmGEp3pM5U6zShPU2hoFuUpW7bUsv4R9TKis=
+sha1-FqO6+LDvKBNvXUex3N0PLHAY5SQ=

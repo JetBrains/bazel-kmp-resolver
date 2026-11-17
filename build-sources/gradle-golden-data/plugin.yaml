@@ -1,0 +1,7 @@
+tasks:
+  updateGradleGoldenData:
+    action: !org.jetbrains.kmp.resolver.gradlegoldendata.tasks.updateGradleGoldenData
+      gradleProjectsDirectory: ${pluginSettings.gradleProjectsDirectory}
+
+commands:
+  - updateGradleGoldenData

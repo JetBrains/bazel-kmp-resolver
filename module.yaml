@@ -12,6 +12,7 @@ dependencies:
   - $libs.kotlinx.serialization.json.jvm
 test-dependencies:
   - $kotlin.test
+  - $libs.kotlin.tooling.core
 repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper
 settings:
@@ -19,6 +20,11 @@ settings:
     version: 2.4.0
     serialization: json
 plugins:
+  # `./kotlin do updateGradleGoldenData` re-resolves the Gradle test projects with their own Gradle wrapper, updating the
+  # golden data the resolver tests compare against.
+  gradle-golden-data:
+    enabled: true
+    gradleProjectsDirectory: testResources/gradleProjects
   # `./kotlin do format` runs the ktfmt native binary (kotlinlang style) over the Kotlin sources. ktfmt publishes no
   # binary for linux-arm64 or macos-x64: formatting fails there.
   # sha256 values from the .sha256 assets of https://github.com/Kotlin/ktfmt/releases/tag/v0.65

@@ -1,0 +1,9 @@
+co.touchlab:sqliter-driver-iossimulatorarm64:1.4.0
+sha512-lEceQ4C03rHJWP6G1Pb4cew/a+0EwO7IffBrycULjyvVdcPCk44rmi3OWL0+DHvFwNAwMTMUM0kigJD7doYkrA==
+sha256-5SMwkuKJ45HyWMLvdSvmBz+QBMq6nESIRjglxfmRQsI=
+sha1-tlEhJrxtwv+AW4EpAN9NIrtYUGY=
+
+co.touchlab:sqliter-driver-iossimulatorarm64:1.4.0
+sha512-8UAew16GmStlpZo16YuDuByyP07sdbUYBrG5yuPv4M08cKoOo2kFNGJUqgsrAHdtDh1CTYtFLS/4Ww6mT3R9qg==
+sha256-lfV6rghTKqXn0bf92tvVhSiOzkX2NGZ66Fy1LCy2+dY=
+sha1-KW2s0lKtoAMgvtDqDYAsdg8uq8g=

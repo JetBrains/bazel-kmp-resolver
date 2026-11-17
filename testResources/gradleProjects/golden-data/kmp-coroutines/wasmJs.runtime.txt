@@ -1,0 +1,14 @@
+org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.4.21
+sha512-vFDMAxXL477FarZV7qi2e8puzmlT/N863AlC9Mq+/6Kg/mxiYkuCNqwVXAj0BkarX2wZjUCgBS+Trjnrj0Cy7w==
+sha256-SMIGEGHQdESH4d/BlpoN5YKybACU6j8q6YbqL/LCVpM=
+sha1-T76nw2oBNn7x30TSMZUtLbHzFbs=
+
+org.jetbrains.kotlinx:atomicfu-wasm-js:0.32.1
+sha512-xdhqOVuUV1xwbPjkEfSychf6DiVCcRlqEphn3zO3kFzQrx13I2WcZJ8uYOfXsvsvLcIUdAsKvIECs8kn8MnQjA==
+sha256-G9xaUhaUS4+aOW0vDH3zILQ9aSFyW6rRr8BMyOKuSOM=
+sha1-bP+8FoVeuYSdQUppG3FoDXDbtBk=
+
+org.jetbrains.kotlinx:kotlinx-coroutines-core-wasm-js:1.11.0
+sha512-QjMJDbUMsj21Sp4GILQqSk9iF+5RFMZtn25kG+f4rT++4poewxy4ZHifNu7uDtllOtndWKJ3z8/Lv9IR0KhlWA==
+sha256-EoC590hQpIkqNkHvoqV3nlQjuEqnB3zGDd1Q3surkh8=
+sha1-ghZI/jgAFc6RBQ0jr+KMmQ1nDYc=

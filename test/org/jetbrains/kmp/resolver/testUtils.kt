@@ -1,7 +1,9 @@
 package org.jetbrains.kmp.resolver
 
 import java.io.InputStream
+import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.absolute
 import kotlin.test.assertEquals
 import kotlin.time.Duration.Companion.seconds
 import org.jetbrains.amper.dependency.resolution.MavenRepository
@@ -10,6 +12,8 @@ import org.jetbrains.kmp.resolver.auth.Authentication
 import org.jetbrains.kmp.resolver.auth.RequestCredentials
 import org.jetbrains.kmp.resolver.http.RetryPolicy
 import org.jetbrains.kmp.resolver.http.withAuthenticatingHttpClient
+import org.opentest4j.AssertionFailedError
+import org.opentest4j.FileInfo
 
 object TestResourceReader {
     fun readResource(path: String): InputStream {
@@ -88,4 +92,43 @@ internal fun assertUsingManifest(
         val expectedManifest = expected.readAllBytes()
         assertEquals(expectedManifest.toString(Charsets.UTF_8), actualJson)
     }
+}
+
+/**
+ * Thrown when the actual content does not match the expected content of [expectedFile].
+ *
+ * Both comparison values are file-backed because the test runner only emits IDE file-diff metadata
+ * when both values are [FileInfo]s. The actual content is saved under `build/test-diffs`; the
+ * expected file is never modified.
+ */
+class FileComparisonFailure(
+    expectedFile: Path,
+    expected: String,
+    actual: String,
+) :
+    AssertionFailedError(
+        "Actual content differs from '${expectedFile.absolute()}'",
+        PresentableFileInfo(expectedFile.absolute().toString(), expected),
+        actualFileInfo(actual),
+    )
+
+private fun actualFileInfo(text: String): FileInfo {
+    val directory = Path.of("build/test-diffs").absolute()
+    Files.createDirectories(directory)
+    val path = Files.createTempFile(directory, "actual-", ".txt")
+    Files.writeString(path, text, Charsets.UTF_8)
+    return PresentableFileInfo(path.toString(), text)
+}
+
+private class PresentableFileInfo(
+    path: String,
+    private val text: String,
+) : FileInfo(path, text.toByteArray(Charsets.UTF_8)) {
+    override fun toString(): String = text
+}
+
+fun String.sanitizedLineEndings(): String {
+    return replace(Regex("\\v"), System.lineSeparator())
+        .removePrefix(System.lineSeparator())
+        .removeSuffix(System.lineSeparator())
 }

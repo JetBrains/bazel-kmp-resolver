@@ -1,10 +1,12 @@
 modules:
   - build-sources/format
+  - build-sources/gradle-golden-data
   - build-sources/native-image
   - build-sources/node
   - build-sources/shared
 
 plugins:
   - ./build-sources/format
+  - ./build-sources/gradle-golden-data
   - ./build-sources/native-image
   - ./build-sources/node
