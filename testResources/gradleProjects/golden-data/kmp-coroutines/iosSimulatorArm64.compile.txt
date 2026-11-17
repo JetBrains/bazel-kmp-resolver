@@ -1,0 +1,14 @@
+org.jetbrains.kotlinx:atomicfu-iossimulatorarm64:0.32.1
+sha512-XDuTkpC0Fcrez2hWgPfsl1thEC10cJfzJCxqROdVozd5FH+9s445jP1hIF2qgVLs3/XS/mNrTrWf9ljQpbnPLg==
+sha256-EBAOHmjyXdIJ+gibvJNEw6qEMOhxIvHdnIuF4cxGx/I=
+sha1-Op2/y30UTNT6v0oKqaDOyECCHYY=
+
+org.jetbrains.kotlinx:atomicfu-iossimulatorarm64:0.32.1
+sha512-FKYtITnBOguVx5UKVA4VvE9ckl0+Mp2tn5M6Dxr669mpMr16mCEHUcVf8r7xOvI9VD3ozSXSpKa7DNLf/jvm/A==
+sha256-xro7WI/66QmsAhEFuoff3lqA3hniZ5QT828FuH5/qOI=
+sha1-VhJzyFHnikc7lIydkaKXvVFKypQ=
+
+org.jetbrains.kotlinx:kotlinx-coroutines-core-iossimulatorarm64:1.11.0
+sha512-8mJckXveH2cqbpvGiiA0NfxGpMuEDFjqGrislQOz33RKj00Cnmmhf+eRHOT6l1M2tTDoEFxo0WsJjV5SXWHb3g==
+sha256-MgDVkhXn9Mb/zMMtMNBeVCXYAUSop7r7cPmdhrlAI3k=
+sha1-MyMYDEX9kurEro5NgPFzOJ0tU1Y=

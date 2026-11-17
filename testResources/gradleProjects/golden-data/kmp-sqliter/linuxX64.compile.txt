@@ -1,0 +1,9 @@
+co.touchlab:sqliter-driver-linuxx64:1.4.0
+sha512-HWkOdWLxUvwv7GQ5HUXS0Afmn2NSenVBwnjs7JvCkwBeH7P042fsZC0IwD+8Vx6OHS6714TlFdqEGIaXpauosg==
+sha256-U2+R5e1pXaAiJ3clXpPmdXAoOBFCv1YgTqrJPg3f2Hw=
+sha1-1Pa6pP6nIZK1EVh3VRtK9nVGmPE=
+
+co.touchlab:sqliter-driver-linuxx64:1.4.0
+sha512-Q8XXf49ZdWp/ce1adQ30G9zqSYalLuF8XRUFyTB9AfEhP2A3DAiLPlZ3qvPljw5QfOeaeVX8AMYl2b0OyJ4Q+g==
+sha256-GU1Vvl2qzrR2xHC1tj24bjl2vtI/y76JPR19/1nVq/k=
+sha1-tO073m+RF9BOsYahocsVHULH65Y=

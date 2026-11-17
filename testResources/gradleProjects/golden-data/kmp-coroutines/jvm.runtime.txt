@@ -1,0 +1,14 @@
+org.jetbrains.kotlin:kotlin-stdlib:2.4.21
+sha512-3bS9Qpoz16AH9xwPguQgurMU7oY2ffG9nCOZzMIqLS+CC48JNPs5z8ZHfR0jxo4+3aPHYT/jqgtiNy5O6X+FtQ==
+sha256-vYJQIQWEy2WYR9zpzaZg+OmQbl3vf7686pPcbctqiKM=
+sha1-w0PhNb0efdlLftdrQVkGjYiNCds=
+
+org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0
+sha512-bX2u5MjXltvyDzEiXNCl0BxF1vV/7NTjuRwOR/pZrAlflgXtrQ/dIZVPsG7qtKezqcUsvgH3AzsFgnNkLsheeA==
+sha256-0ddaoB3/u00cUg5n5MTn9fYXRxjny0YyQSUD8vDmBPo=
+sha1-PVfcZ4vY1ypg563w7KXFTj9PS3k=
+
+org.jetbrains:annotations:23.0.0
+sha512-y4LrCqrojjKDspmSkXMpbjDHsHgQXg/F7PvNTrIwAm+afMRmgIMtA25sH/A2rZnUxQ3CltSRnSI4eQgawWFpRA==
+sha256-ew8ZckCCy/y8ZuWr6iubySzwih6hHhkZM+1DgB6zzQU=
+sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=

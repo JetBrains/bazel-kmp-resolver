@@ -1,0 +1,14 @@
+org.jetbrains.kotlinx:atomicfu-macosarm64:0.32.1
+sha512-LDzhs7+MLR6AxwyYcorXYbE1pGoz9qfGkNqZKrdF6Ic4iec9mHqKsYfaxjPY5fu/oEbBVbpav01FvgRtJZ0lMA==
+sha256-NohlmHv6Xadl5AsVtN9g/RLyV2iO1lqWynHr8s8aUmE=
+sha1-BKJ0+Cn3gMMy0Quora8HbFslHKE=
+
+org.jetbrains.kotlinx:atomicfu-macosarm64:0.32.1
+sha512-Ce34f3hGVzfUKJyI8yAzrtYn+ZM4Nb0exR7m3+gQr5Ck7TkmFKP7CmEENFjrH04Kcf9eiooaW42r8vcsbm6J7g==
+sha256-FlxYTHf3xxbNxaCDCT7yNcm6z+q61u0yyp97korL4pI=
+sha1-ptmQtVK/k5ZQP4MYrhGIqpYd5UI=
+
+org.jetbrains.kotlinx:kotlinx-coroutines-core-macosarm64:1.11.0
+sha512-a8QONv5gTU1mYxu1oSXMzzVn3tvp8On4roxzGE5TF9+pIdSsafSrSE1wborTbheYBd5D14gR86Dn3PJj12vUSQ==
+sha256-eCqDfIWTr3ATU3j7kLmZzwy5iA3HRmGfZNbFwiTQFNA=
+sha1-uu3t8TK6KfiOxESnIJaSlR9rwCA=
