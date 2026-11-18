@@ -106,23 +106,33 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
             .convert { Path.of(it) }
             .required()
 
-    private val nodeExecutable: Path by
+    private val nodeExecutable: Path? by
         option(
                 "--node-executable",
                 help =
-                    "Path to the Node.js executable used to run npm when resolving klib-declared NPM dependencies.",
+                    "Path to the Node.js executable used to run npm when resolving klib-declared NPM dependencies. " +
+                        "Required when `wasmjs` is among the requested platforms.",
             )
             .convert { Path.of(it) }
-            .required()
+            .check(
+                "--node-executable must be provided when ${ResolutionPlatform.WASM_JS.cliName} is among resolution platforms",
+            ) {
+                ResolutionPlatform.WASM_JS in platforms
+            }
 
-    private val npmCliJs: Path by
+    private val npmCliJs: Path? by
         option(
                 "--npm-cli-js",
                 help =
-                    "Path to npm's `npm-cli.js` entry point, run with the Node.js executable (portable, unlike the `npm` wrapper scripts).",
+                    "Path to npm's `npm-cli.js` entry point, run with the Node.js executable (portable, unlike the `npm` wrapper scripts). " +
+                        "Required when `wasmjs` is among the requested platforms.",
             )
             .convert { Path.of(it) }
-            .required()
+            .check(
+                "--npm-cli-js must be provided when ${ResolutionPlatform.WASM_JS.cliName} is among resolution platforms",
+            ) {
+                ResolutionPlatform.WASM_JS in platforms
+            }
 
     private val npmRegistry: String? by
         option(
@@ -248,13 +258,21 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                             artifactResolver = artifactResolver,
                             substitutions = substitutions.toMap(),
                             npmResolver =
-                                NpmResolver(
-                                    nodeExecutable = nodeExecutable,
-                                    npmCliJs = npmCliJs,
-                                    registryUrl = npmRegistry,
-                                    packageVersionOverrides = npmPackageVersions.toMap(),
-                                    workDir = outputManifest.parent,
-                                ),
+                                if (ResolutionPlatform.WASM_JS in platforms)
+                                    NpmResolver(
+                                        nodeExecutable =
+                                            requireNotNull(nodeExecutable) {
+                                                "--node-executable is required to resolve the `wasmjs` platform"
+                                            },
+                                        npmCliJs =
+                                            requireNotNull(npmCliJs) {
+                                                "--npm-cli-js is required to resolve the `wasmjs` platform"
+                                            },
+                                        registryUrl = npmRegistry,
+                                        packageVersionOverrides = npmPackageVersions.toMap(),
+                                        workDir = outputManifest.parent,
+                                    )
+                                else null,
                         )
                     BazelManifest(
                         askedCoordinates = coordinates.sorted(),

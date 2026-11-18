@@ -51,13 +51,15 @@ internal suspend fun <T> testMultiplatformResolver(
                     ),
                 substitutions = substitutions,
                 npmResolver =
-                    NpmResolver(
-                        nodeExecutable = NodeDistribution.node,
-                        npmCliJs = NodeDistribution.npmCliJs,
-                        registryUrl = null,
-                        packageVersionOverrides = emptyMap(),
-                        workDir = cachePath,
-                    ),
+                    if (ResolutionPlatform.WASM_JS in platforms)
+                        NpmResolver(
+                            nodeExecutable = NodeDistribution.node,
+                            npmCliJs = NodeDistribution.npmCliJs,
+                            registryUrl = null,
+                            packageVersionOverrides = emptyMap(),
+                            workDir = cachePath,
+                        )
+                    else null,
             ),
         )
     }
