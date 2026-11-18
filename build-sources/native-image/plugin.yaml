@@ -7,6 +7,11 @@ tasks:
       runtimeClasspath: ${module.runtimeClasspath}
       mainClass: ${pluginSettings.mainClass}
       outputDirectory: ${pluginSettings.outputDirectory}
+  testNativeImage:
+    action: !org.jetbrains.kmp.resolver.nativeimage.tasks.testNativeImage
+      nativeBinaryDirectory: ${pluginSettings.outputDirectory}
+      nodeDistributionPropertiesFile: ${pluginSettings.test.nodeDistributionPropertiesFile}
+      goldenManifestFile: ${pluginSettings.test.goldenManifestFile}
   cacheGraalVmArchives:
     action: !org.jetbrains.kmp.resolver.nativeimage.tasks.cacheGraalVmArchives
       graalVmVersion: ${pluginSettings.graalVmVersion}
@@ -14,4 +19,7 @@ tasks:
 
 commands:
   - buildNativeImage
+  - testNativeImage
   - cacheGraalVmArchives
+
+

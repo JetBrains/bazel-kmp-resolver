@@ -9,4 +9,5 @@ interface NativeImageSettings {
     val mainClass: String
     val outputDirectory: Path
     val archives: List<GraalVmArchive>
+    val test: NativeImageTestSettings
 }
