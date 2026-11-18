@@ -337,7 +337,7 @@ internal class MultiplatformResolver(
     private val substitutions: Substitutions,
     private val httpClient: HttpClient,
     private val artifactResolver: ArtifactUrlResolver,
-    private val npmResolver: NpmResolver,
+    private val npmResolver: NpmResolver?,
 ) {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -465,7 +465,20 @@ internal class MultiplatformResolver(
                     }
                 }
 
-        return npmResolver.resolve(requests)
+        /*
+        Guard:
+        A npmResolver may only be configured when resolving relevant platforms (e.g. wasm_js).
+        When not resolving any web platforms, we do not expect any npm dependencies/requests.
+         */
+        return when {
+            requests.isEmpty() -> emptyMap()
+            npmResolver == null -> {
+                logger.warn("Cannot resolve NPM packages: Missing 'npmResolver' ")
+                emptyMap()
+            }
+
+            else -> npmResolver.resolve(requests)
+        }
     }
 
     private suspend fun callAmperResolution(
