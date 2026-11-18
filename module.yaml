@@ -57,6 +57,9 @@ plugins:
     graalVmVersion: 24.0.2
     mainClass: org.jetbrains.kmp.resolver.MainKt
     outputDirectory: build/native-image
+    test:
+      nodeDistributionPropertiesFile: build/node/generated-resources/node-distribution.properties
+      goldenManifestFile: testResources/manifest-coroutines_ios_wasmjs_jvm.json
     archives:
       - os: linux
         arch: x64

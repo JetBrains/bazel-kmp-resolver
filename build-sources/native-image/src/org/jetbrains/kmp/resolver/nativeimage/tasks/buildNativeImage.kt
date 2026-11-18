@@ -30,10 +30,7 @@ fun buildNativeImage(
     val graalVm = provisionGraalVm(graalVmVersion, archive)
 
     outputDirectory.createDirectories()
-    val outputBinary =
-        outputDirectory.resolve(
-            "bazel-kmp-resolver-${platform.suffix}",
-        ) // no platform suffix, Graal handles that internally
+    val outputBinary = outputDirectory.resolve(nativeImageBinaryFileName(platform))
     outputBinary.deleteIfExists()
 
     val classpath = buildClasspath(applicationJar, runtimeClasspath, platform)
@@ -45,7 +42,9 @@ fun buildNativeImage(
         writeNativeImageArgfile(
             targetArgfile = outputDirectory.resolve("native-image-${platform.suffix}.args"),
             classpath = classpath,
-            outputBinary = outputBinary,
+            /* Provide the output binary by name (without extension): Graal handles the extension internally */
+            outputBinary =
+                outputDirectory.resolve(nativeImageBinaryName(platform)).absolutePathString(),
             mainClass = mainClass,
         )
     val cmd = nativeImageCommand(graalVm.nativeImage, platform, argFile)
@@ -128,7 +127,7 @@ private fun nativeImageCommand(nativeImage: Path, platform: Platform, argFile: P
 private fun writeNativeImageArgfile(
     targetArgfile: Path,
     classpath: String,
-    outputBinary: Path,
+    outputBinary: String,
     mainClass: String,
 ): Path {
     val nativeImageArgs =
@@ -138,9 +137,17 @@ private fun writeNativeImageArgfile(
             "-cp",
             classpath,
             "-o",
-            outputBinary.absolutePathString(),
+            outputBinary,
             mainClass,
         )
     targetArgfile.writeText(nativeImageArgs.joinToString("\n") { it.quoteForArgFile() })
     return targetArgfile
 }
+
+fun nativeImageBinaryName(platform: Platform): String = "bazel-kmp-resolver-${platform.suffix}"
+
+fun nativeImageBinaryFileName(platform: Platform): String =
+    when (platform.os) {
+        "windows" -> nativeImageBinaryName(platform) + ".exe"
+        else -> nativeImageBinaryName(platform)
+    }

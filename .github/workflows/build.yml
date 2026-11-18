@@ -90,12 +90,11 @@ jobs:
           BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
         shell: bash
         run: ./kotlin do buildNativeImage
-      - name: Smoke-test native binary
+      - name: Test native binary
+        env:
+          BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
         shell: bash
-        run: |
-          binary="build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}"
-          test -f "$binary"
-          "$binary" --help >/dev/null
+        run: ./kotlin do testNativeImage
       - name: Upload native binary artifact
         uses: actions/upload-artifact@v7
         with:
