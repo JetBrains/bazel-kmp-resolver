@@ -564,7 +564,7 @@ internal class MultiplatformResolver(
 
         val (substitutedNodes, filteredNodes) =
             nodes
-                .filter { node -> node.isCollectedFor(platform, kmpParents) }
+                .filter { node -> node.isCollectedFor(platform) }
                 .partition { node -> node.isSubstituted(kmpParents) }
         substitutedNodes.forEach { node ->
             logger.debug(
@@ -692,7 +692,6 @@ internal class MultiplatformResolver(
      */
     private fun MavenDependencyNode.isCollectedFor(
         platform: ResolutionPlatform,
-        kmpParents: KmpParents,
     ): Boolean {
         val files = (dependency as MavenDependencyImpl).files(withSources = true)
 
@@ -957,7 +956,9 @@ private sealed class UnresolvedMultiplatformLibrary(
          */
         fun mainKlibPath(): Path {
             val klibs = klibs[KlibRole.MAIN].orEmpty()
-            if (klibs.size != 1) error("Expected one main klib. Found ${klibs.size}")
+            if (klibs.size != 1) {
+                error("Expected one main klib. Found ${klibs.size}")
+            }
             return klibs.single().path
                 ?: error("[$variantId] klib was not downloaded to the local cache")
         }

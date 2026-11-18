@@ -10,10 +10,6 @@ import org.jetbrains.amper.processes.runProcessAndCaptureOutput
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-private val json = Json {
-    ignoreUnknownKeys = true
-}
-
 /**
  * `package.json` embedded at the root of a klib, declaring the NPM dependencies its library
  * requires at runtime.

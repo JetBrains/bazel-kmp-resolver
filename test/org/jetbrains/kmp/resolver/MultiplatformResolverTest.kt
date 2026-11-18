@@ -254,6 +254,37 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `directly requested native module without KMP parent`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                // the linuxx64 variant itself, not the `kotlinx-datetime` umbrella: no node of
+                // this graph has a KMP parent, and the requested module must still be collected
+                "org.jetbrains.kotlinx:kotlinx-datetime-linuxx64:0.7.1",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.LINUX_X64),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-native_module_requested_directly.json",
+        )
+    }
+
+    @Test
     fun `substituted wasmjs and jvm resolution`() = runBlocking {
         val repositories =
             listOf(
