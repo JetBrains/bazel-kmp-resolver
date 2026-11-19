@@ -8,7 +8,10 @@ import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.ExecutionAvoidance
 import org.jetbrains.amper.plugins.Input
 import org.jetbrains.amper.plugins.TaskAction
-import org.jetbrains.amper.processes.runProcessWithInheritedIO
+import org.jetbrains.amper.processes.ExitCode
+import org.jetbrains.amper.processes.ProcessInput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.jetbrains.kmp.resolver.format.models.KtfmtDistribution
 import org.jetbrains.kmp.resolver.shared.*
 
@@ -41,8 +44,14 @@ fun format(
     // first pass gets a trailing comma it then wraps differently), and the CI check requires a
     // clean tree after one `format`.
     repeat(2) {
-        val exitCode = runProcessWithInheritedIO(command = command)
-        require(exitCode == 0) {
+        val exitCode =
+            runProcess(
+                    command = command,
+                    outputMode = ProcessOutputMode.Inherit,
+                    input = ProcessInput.Empty,
+                )
+                .exitCode
+        require(exitCode == ExitCode(0)) {
             "ktfmt failed with exit code $exitCode: ${command.joinToString(" ")}"
         }
     }

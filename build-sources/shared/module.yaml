@@ -5,7 +5,7 @@ repositories:
 
 settings:
   kotlin:
-    version: 2.4.0
+    version: 2.4.21
   jvm:
     release: 21
 

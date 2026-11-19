@@ -11,8 +11,10 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import org.jetbrains.amper.processes.ExitCode
 import org.jetbrains.amper.processes.ProcessInput
-import org.jetbrains.amper.processes.runProcessAndCaptureOutput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -186,11 +188,12 @@ internal class CredentialHelperCredentials(
         val result =
             try {
                 withTimeout(timeout) {
-                    runProcessAndCaptureOutput(
+                    runProcess(
                         workingDir = workingDir,
                         command = listOf(helper.path, "get"),
+                        outputMode = ProcessOutputMode.capture(),
                         input =
-                            ProcessInput.Text(
+                            ProcessInput.text(
                                 json.encodeToString(
                                     GetCredentialsRequest.serializer(),
                                     GetCredentialsRequest(uri = uri.toString()),
@@ -209,7 +212,7 @@ internal class CredentialHelperCredentials(
                     e,
                 )
             }
-        if (result.exitCode != 0) {
+        if (result.exitCode != ExitCode(0)) {
             throw CredentialHelperException(
                 buildString {
                     appendLine(

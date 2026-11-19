@@ -8,7 +8,10 @@ import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.ExecutionAvoidance
 import org.jetbrains.amper.plugins.Input
 import org.jetbrains.amper.plugins.TaskAction
-import org.jetbrains.amper.processes.runProcessWithInheritedIO
+import org.jetbrains.amper.processes.ExitCode
+import org.jetbrains.amper.processes.ProcessInput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.jetbrains.kmp.resolver.shared.Platform
 
 /**
@@ -36,11 +39,14 @@ fun updateGradleGoldenData(
         "The Gradle wrapper ${gradleWrapper.absolutePathString()} is missing or not executable."
     }
     val exitCode =
-        runProcessWithInheritedIO(
-            workingDir = gradleProjectsDirectory,
-            command = listOf(gradleWrapper.absolutePathString(), "resolveDependencies"),
-        )
-    require(exitCode == 0) {
+        runProcess(
+                workingDir = gradleProjectsDirectory,
+                command = listOf(gradleWrapper.absolutePathString(), "resolveDependencies"),
+                outputMode = ProcessOutputMode.Inherit,
+                input = ProcessInput.Empty,
+            )
+            .exitCode
+    require(exitCode == ExitCode(0)) {
         "'gradlew resolveDependencies' failed with exit code $exitCode, see the output above"
     }
 }

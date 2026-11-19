@@ -8,8 +8,7 @@ dependencies:
   - $libs.dependency.resolution
   - $libs.async.processes
   - $libs.kotlinx.coroutines.core.jvm
-  - $libs.kotlinx.serialization.core.jvm
-  - $libs.kotlinx.serialization.json.jvm
+  - $kotlin.serialization.json
 test-dependencies:
   - $kotlin.test
   - $libs.kotlin.tooling.core
@@ -17,8 +16,10 @@ repositories:
   - https://packages.jetbrains.team/maven/p/amper/amper
 settings:
   kotlin:
-    version: 2.4.0
-    serialization: json
+    version: 2.4.21
+    serialization: enabled
+  jvm:
+    release: 21
 plugins:
   # `./kotlin do updateGradleGoldenData` re-resolves the Gradle test projects with their own Gradle wrapper, updating the
   # golden data the resolver tests compare against.

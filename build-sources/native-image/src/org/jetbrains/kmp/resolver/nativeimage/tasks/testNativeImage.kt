@@ -15,7 +15,10 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import org.jetbrains.amper.plugins.Input
 import org.jetbrains.amper.plugins.TaskAction
-import org.jetbrains.amper.processes.runProcessWithInheritedIO
+import org.jetbrains.amper.processes.ExitCode
+import org.jetbrains.amper.processes.ProcessInput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.jetbrains.kmp.resolver.shared.Platform
 import org.jetbrains.kmp.resolver.shared.kmpResolverCacheRoot
 
@@ -45,36 +48,39 @@ fun testNativeImage(
 
     val exitCode =
         withTimeout(5.minutes) {
-            runProcessWithInheritedIO(
-                command =
-                    listOf(
-                        binary.absolutePathString(),
-                        "--coordinate",
-                        COROUTINES,
-                        "--platform",
-                        "ios_arm64",
-                        "--platform",
-                        "ios_simulator_arm64",
-                        "--platform",
-                        "wasmjs",
-                        "--platform",
-                        "jvm",
-                        "--repository",
-                        MAVEN_CENTRAL,
-                        "--cache-dir",
-                        cacheDir.absolutePathString(),
-                        "--output-manifest-file",
-                        manifestFile.absolutePathString(),
-                        // resolving the `wasmjs` platform needs a Node.js installation
-                        "--node-executable",
-                        nodeDistribution.node.absolutePathString(),
-                        "--npm-cli-js",
-                        nodeDistribution.npmCliJs.absolutePathString(),
-                    ),
-            )
+            runProcess(
+                    command =
+                        listOf(
+                            binary.absolutePathString(),
+                            "--coordinate",
+                            COROUTINES,
+                            "--platform",
+                            "ios_arm64",
+                            "--platform",
+                            "ios_simulator_arm64",
+                            "--platform",
+                            "wasmjs",
+                            "--platform",
+                            "jvm",
+                            "--repository",
+                            MAVEN_CENTRAL,
+                            "--cache-dir",
+                            cacheDir.absolutePathString(),
+                            "--output-manifest-file",
+                            manifestFile.absolutePathString(),
+                            // resolving the `wasmjs` platform needs a Node.js installation
+                            "--node-executable",
+                            nodeDistribution.node.absolutePathString(),
+                            "--npm-cli-js",
+                            nodeDistribution.npmCliJs.absolutePathString(),
+                        ),
+                    outputMode = ProcessOutputMode.Inherit,
+                    input = ProcessInput.Empty,
+                )
+                .exitCode
         }
 
-    require(exitCode == 0) {
+    require(exitCode == ExitCode(0)) {
         "the native image failed with exit code $exitCode, see the output above"
     }
 

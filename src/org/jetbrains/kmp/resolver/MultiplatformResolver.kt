@@ -779,7 +779,7 @@ private fun DependencyNode.resolutionErrors(logger: Logger): List<Message> =
                 // part of this platform's graph
                 is PlatformsAreNotSupported -> {
                     logger.warn(
-                        "[${it.coordinates}] skipping unsupported platform(s): ${it.unsupportedPlatforms.joinToString { p -> p.pretty }}",
+                        "[${it.coordinates}] skipping unsupported platform(s): ${it.requestedUnsupportedPlatforms.joinToString { p -> p.pretty }}",
                     )
                     null
                 }

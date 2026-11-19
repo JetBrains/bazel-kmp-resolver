@@ -4,7 +4,10 @@ import java.nio.file.Path
 import kotlin.io.path.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.*
-import org.jetbrains.amper.processes.runProcessWithInheritedIO
+import org.jetbrains.amper.processes.ExitCode
+import org.jetbrains.amper.processes.ProcessInput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.jetbrains.kmp.resolver.nativeimage.downloadAndExtractGraalArchive
 import org.jetbrains.kmp.resolver.nativeimage.models.GraalVmArchive
 import org.jetbrains.kmp.resolver.shared.ArchiveDownloadCache
@@ -49,11 +52,14 @@ fun buildNativeImage(
         )
     val cmd = nativeImageCommand(graalVm.nativeImage, platform, argFile)
     val exitCode =
-        runProcessWithInheritedIO(
-            command = cmd,
-            environment = mapOf("JAVA_HOME" to graalVm.home.absolutePathString()),
-        )
-    require(exitCode == 0) {
+        runProcess(
+                command = cmd,
+                configureEnvironment = { put("JAVA_HOME", graalVm.home.absolutePathString()) },
+                outputMode = ProcessOutputMode.Inherit,
+                input = ProcessInput.Empty,
+            )
+            .exitCode
+    require(exitCode == ExitCode(0)) {
         """
 Command failed with exit code $exitCode: ${cmd.joinToString(" ")}
 

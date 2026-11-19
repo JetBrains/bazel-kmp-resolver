@@ -6,7 +6,10 @@ import kotlin.io.path.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
-import org.jetbrains.amper.processes.runProcessAndCaptureOutput
+import org.jetbrains.amper.processes.ExitCode
+import org.jetbrains.amper.processes.ProcessInput
+import org.jetbrains.amper.processes.output.ProcessOutputMode
+import org.jetbrains.amper.processes.runProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -197,11 +200,13 @@ internal class NpmResolver(
         logger.info("Resolving NPM dependencies against $registryUrl...")
         logger.debug("Running: {}", command.joinToString(" "))
         val result =
-            runProcessAndCaptureOutput(
+            runProcess(
                 workingDir = workspacePath,
                 command = command,
+                outputMode = ProcessOutputMode.capture(),
+                input = ProcessInput.Empty,
             )
-        require(result.exitCode == 0) {
+        require(result.exitCode == ExitCode(0)) {
             buildString {
                 appendLine(
                     "npm install failed with exit code ${result.exitCode}: ${command.joinToString(" ")}",
