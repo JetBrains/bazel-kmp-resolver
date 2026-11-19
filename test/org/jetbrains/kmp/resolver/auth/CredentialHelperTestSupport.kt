@@ -19,8 +19,11 @@ private val isWindows = System.getProperty("os.name").startsWith("Windows")
 
 /**
  * Writes an executable credential helper at `directory/name` which appends its standard input
- * followed by a newline to [requestLog], prints [stderr] to its standard error when not empty,
- * waits for [delay], prints [stdout] and exits with [exitCode]. Returns its path.
+ * followed by a newline to [requestLog] in a single write, prints [stderr] to its standard error
+ * when not empty, waits for [delay], prints [stdout] and exits with [exitCode]. Returns its path.
+ *
+ * The log append is a single write, because concurrent helper invocations appending to the same log
+ * in separate writes interleave and corrupt the lines.
  */
 internal fun writeFakeCredentialHelper(
     directory: Path,
@@ -54,8 +57,7 @@ internal fun writeFakeCredentialHelper(
                 writeText(
                     buildString {
                         appendLine("#!/bin/sh")
-                        appendLine("cat >> '$requestLog'")
-                        appendLine("printf '\\n' >> '$requestLog'")
+                        appendLine("printf '%s\\n' \"\$(cat)\" >> '$requestLog'")
                         if (stderr.isNotEmpty()) appendLine("printf '%s\\n' '$stderr' >&2")
                         if (delay.isPositive())
                             appendLine("sleep ${delay.inWholeMilliseconds / 1000.0}")

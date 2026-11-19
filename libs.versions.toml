@@ -1,22 +1,19 @@
 [versions]
 commonsCompress = "1.28.0"
-kotlin = "2.4.0"
+kotlin = "2.4.21"
 ktor = "3.4.3"
-serialization = "1.10.0"
 
 [libraries]
 clikt-jvm = "com.github.ajalt.clikt:clikt-jvm:5.1.0"
-async-processes = "org.jetbrains.amper:async-processes:0.12.0-dev-4100"
+async-processes = "org.jetbrains.amper:async-processes:0.14.0"
 commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commonsCompress" }
 ktor-client-java-jvm = { group = "io.ktor", name = "ktor-client-java-jvm", version.ref = "ktor" }
 ktor-client-core-jvm = { group = "io.ktor", name = "ktor-client-core-jvm", version.ref = "ktor" }
 ktor-client-logging-jvm = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
-dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.13.0"
+dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.14.0"
 kotlinx-coroutines-core-jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2"
-kotlinx-serialization-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core-jvm", version.ref = "serialization" }
-kotlinx-serialization-json-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json-jvm", version.ref = "serialization" }
 kotlin-tooling-core = { group = "org.jetbrains.kotlin", name = "kotlin-tooling-core", version.ref = "kotlin" }
 logback-core = "ch.qos.logback:logback-core:1.5.34"
 logback-classic = "ch.qos.logback:logback-classic:1.5.34"
-slf4j-api = "org.slf4j:slf4j-api:2.0.18"
+slf4j-api = "org.slf4j:slf4j-api:2.0.20"
 junit = "junit:junit:4.13.2"
