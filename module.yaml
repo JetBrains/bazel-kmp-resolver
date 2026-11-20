@@ -55,7 +55,7 @@ plugins:
       - build-sources
   native-image:
     enabled: true
-    graalVmVersion: 24.0.2
+    graalVmVersion: 25.5.5.0.3
     mainClass: org.jetbrains.kmp.resolver.MainKt
     outputDirectory: build/native-image
     test:
@@ -64,29 +64,30 @@ plugins:
     archives:
       - os: linux
         arch: x64
-        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_linux-x64_bin.tar.gz
-        sha256: b0161a49bbc1d0f40697532ddfabb8052a5a15e463775e6945fe3e4920259bae
-        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image
+        url: https://gds.oracle.com/download/graal/25i5/archive/graalvm-jdk-25i5-25.0.5.0.3_linux-x64_bin.tar.gz
+        sha256: 90582f405cb89a825a43297cdacc7f427ce04039a249f5f0fc75c95b50600b08
+        nativeImagePath: graalvm-25.5.5.0.3+1.1/bin/native-image
       - os: linux
         arch: arm64
-        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_linux-aarch64_bin.tar.gz
-        sha256: 76f2557f32e8cfbe6d8b7bbf331f0f092ebbe1cc36a2678e098305892076298b
-        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image
+        url: https://gds.oracle.com/download/graal/25i5/archive/graalvm-jdk-25i5-25.0.5.0.3_linux-aarch64_bin.tar.gz
+        sha256: c4e423cdbf21963329d4fb7846fdc2236dcd9cb3e996484d06c3b6d363b58a83
+        nativeImagePath: graalvm-25.5.5.0.3+1.1/bin/native-image
+      # GraalVM 25.0.1 is the last release supporting macOS x64.
       - os: macos
         arch: x64
-        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_macos-x64_bin.tar.gz
-        sha256: df0f9e5d101201c50bfa6baa3c657a81a2883c5b5097a9f5ab93dab86f7e3ba2
-        nativeImagePath: graalvm-jdk-24.0.2+11.1/Contents/Home/bin/native-image
+        url: https://download.oracle.com/graalvm/25/archive/graalvm-jdk-25.0.1_macos-x64_bin.tar.gz
+        sha256: a762ca1d9a163e32790b9286f3af4c16369729ff27999d8dbab60d7be16cff2f
+        nativeImagePath: graalvm-jdk-25.0.1+8.1/Contents/Home/bin/native-image
       - os: macos
         arch: arm64
-        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_macos-aarch64_bin.tar.gz
-        sha256: 2dc7634ed939c725d41a353f73443ff32e70f2fb577367f12a6936107e3494dc
-        nativeImagePath: graalvm-jdk-24.0.2+11.1/Contents/Home/bin/native-image
+        url: https://gds.oracle.com/download/graal/25i5/archive/graalvm-jdk-25i5-25.0.5.0.3_macos-aarch64_bin.tar.gz
+        sha256: 3c51d8ef62c63eb8454727f32d67aaff39afabe4c90b3c811c11547029c10819
+        nativeImagePath: graalvm-25.5.5.0.3+1.1/Contents/Home/bin/native-image
       - os: windows
         arch: x64
-        url: https://download.oracle.com/graalvm/24/archive/graalvm-jdk-24.0.2_windows-x64_bin.zip
-        sha256: a70785104855c181f2b56993d117e0e991eab6bd6dde99c32c2c5af857756653
-        nativeImagePath: graalvm-jdk-24.0.2+11.1/bin/native-image.cmd
+        url: https://gds.oracle.com/download/graal/25i5/archive/graalvm-jdk-25i5-25.0.5.0.3_windows-x64_bin.zip
+        sha256: dc28ad6ea38a24768c10571b47fbee84318f0f0c64883237efbba26cfc5cede0
+        nativeImagePath: graalvm-25.5.5.0.3+1.1/bin/native-image.cmd
   # provisions the hermetic Node.js distribution the tests run npm with, before the tests are compiled.
   # sha256 values from https://nodejs.org/dist/v22.22.2/SHASUMS256.txt
   node:
