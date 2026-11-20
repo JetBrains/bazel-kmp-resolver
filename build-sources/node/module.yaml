@@ -16,3 +16,6 @@ dependencies:
   - ../shared
   - $libs.kotlinx.coroutines.core.jvm
   - $libs.ktor.client.java.jvm
+
+test-dependencies:
+  - $kotlin.test
