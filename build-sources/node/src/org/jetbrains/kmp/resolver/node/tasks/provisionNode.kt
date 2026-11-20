@@ -1,6 +1,8 @@
 package org.jetbrains.kmp.resolver.node.tasks
 
+import java.io.OutputStream
 import java.nio.file.Path
+import java.util.Properties
 import kotlin.io.path.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.amper.plugins.Output
@@ -59,13 +61,25 @@ fun provisionNode(
     }
 
     generatedResourcesDirectory.createDirectories()
-    generatedResourcesDirectory
-        .resolve("node-distribution.properties")
-        .writeText(
-            """
-            node=${node.absolutePathString()}
-            npmCliJs=${npmCliJs.absolutePathString()}
-        """
-                .trimIndent(),
+    generatedResourcesDirectory.resolve("node-distribution.properties").outputStream().use { output
+        ->
+        writeNodeDistributionProperties(
+            output = output,
+            node = node.absolutePathString(),
+            npmCliJs = npmCliJs.absolutePathString(),
         )
+    }
+}
+
+internal fun writeNodeDistributionProperties(
+    output: OutputStream,
+    node: String,
+    npmCliJs: String,
+) {
+    Properties()
+        .apply {
+            setProperty("node", node)
+            setProperty("npmCliJs", npmCliJs)
+        }
+        .store(output, null)
 }
