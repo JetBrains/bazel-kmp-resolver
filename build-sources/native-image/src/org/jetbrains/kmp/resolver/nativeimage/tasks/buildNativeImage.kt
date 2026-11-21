@@ -138,6 +138,8 @@ private fun writeNativeImageArgfile(
 ): Path {
     val nativeImageArgs =
         listOf(
+            /* Mitigate https://nvd.nist.gov/vuln/detail/CVE-2026-114938 in the builder JVM. */
+            "-J-XX:-UseBASE64Intrinsics",
             "--no-fallback",
             "-O3",
             "-cp",
