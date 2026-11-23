@@ -7,12 +7,6 @@ import kotlin.io.encoding.Base64
 import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.*
 import kotlinx.serialization.*
-import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.json.JsonDecoder
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import org.jetbrains.amper.dependency.resolution.*
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
 import org.jetbrains.amper.dependency.resolution.diagnostics.PlatformsAreNotSupported
@@ -49,79 +43,11 @@ internal data class MultiplatformLibraryId(
     }
 }
 
-internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibraryId> {
-    override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("MultiplatformLibraryId", PrimitiveKind.STRING)
-
-    override fun serialize(encoder: Encoder, value: MultiplatformLibraryId) =
-        encoder.encodeString(value.gav)
-
-    override fun deserialize(decoder: Decoder): MultiplatformLibraryId =
-        MultiplatformLibraryId.fromString(decoder.decodeString())
-}
-
 @Serializable
 internal data class MultiplatformLibrary(
     val id: MultiplatformLibraryId,
     val variants: List<MultiplatformVariant>,
 )
-
-/**
- * Serializes and deserializes a [MultiplatformVariant] with its [MultiplatformVariant.platform] as
- * the only discriminator: no class discriminator is written, and the variant the platform of a JSON
- * object identifies is decoded, `jvm` a [MultiplatformVariant.Jvm], `wasm_js` a
- * [MultiplatformVariant.WasmJs], a native platform (e.g. `ios_arm64`) a
- * [MultiplatformVariant.Native].
- */
-@OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
-internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVariant> {
-    override val descriptor: SerialDescriptor =
-        buildSerialDescriptor("MultiplatformVariant", PolymorphicKind.SEALED)
-
-    override fun serialize(encoder: Encoder, value: MultiplatformVariant): Unit =
-        when (value) {
-            is MultiplatformVariant.Jvm ->
-                MultiplatformVariant.Jvm.serializer().serialize(encoder, value)
-
-            is MultiplatformVariant.WasmJs ->
-                MultiplatformVariant.WasmJs.serializer().serialize(encoder, value)
-
-            is MultiplatformVariant.Native ->
-                MultiplatformVariant.Native.serializer().serialize(encoder, value)
-        }
-
-    override fun deserialize(decoder: Decoder): MultiplatformVariant {
-        if (decoder !is JsonDecoder)
-            throw SerializationException(
-                "This serializer can be used only with JsonDecoder, got $decoder",
-            )
-
-        /*
-        Select the correct deserializer based on the 'platform' property.
-         */
-        val element = decoder.decodeJsonElement()
-
-        val rawPlatformString =
-            element.jsonObject["platform"]
-                ?: throw SerializationException(
-                    "Variant is not discriminated by any 'platform': $element",
-                )
-
-        val platform =
-            resolutionPlatformOf(rawPlatformString.jsonPrimitive.content)
-                ?: throw SerializationException("Unknown platform '$rawPlatformString'")
-
-        val deserializer =
-            when {
-                platform == ResolutionPlatform.JVM -> MultiplatformVariant.Jvm.serializer()
-                platform == ResolutionPlatform.WASM_JS -> MultiplatformVariant.WasmJs.serializer()
-                platform.type == PlatformType.NATIVE -> MultiplatformVariant.Native.serializer()
-                else -> throw SerializationException("Unsupported platform '$platform'")
-            }
-
-        return decoder.json.decodeFromJsonElement(deserializer, element)
-    }
-}
 
 @Serializable(with = MultiplatformVariantSerializer::class)
 internal sealed class MultiplatformVariant {
@@ -314,21 +240,6 @@ private fun Char.hexDigitToInt(): Int =
         in 'A'..'F' -> this - 'A' + 10
         else -> throw IllegalArgumentException("Invalid hexadecimal digit: $this")
     }
-
-internal class MultiplatformLibraryArtifactIntegritySerializer :
-    KSerializer<MultiplatformLibraryArtifactIntegrity> {
-    override val descriptor: SerialDescriptor
-        get() =
-            PrimitiveSerialDescriptor("MultiplatformLibraryArtifactIntegrity", PrimitiveKind.STRING)
-
-    override fun serialize(encoder: Encoder, value: MultiplatformLibraryArtifactIntegrity): Unit =
-        encoder.encodeString(value.asBazelIntegrityString())
-
-    override fun deserialize(decoder: Decoder): MultiplatformLibraryArtifactIntegrity {
-        val bazelIntegrity = decoder.decodeString()
-        return MultiplatformLibraryArtifactIntegrity.fromBazelIntegrityString(bazelIntegrity)
-    }
-}
 
 internal class MultiplatformResolver(
     cachePath: Path,
