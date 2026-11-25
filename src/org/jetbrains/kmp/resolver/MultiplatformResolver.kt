@@ -173,9 +173,11 @@ internal class MultiplatformResolver(
                 .flatMap { node ->
                     withContext(Dispatchers.IO) {
                         node.mainKlibPaths().mapNotNull { klib ->
+                            val manifest = readEmbeddedNpmManifest(klib) ?: return@mapNotNull null
+                            if (manifest.dependencies.isEmpty()) return@mapNotNull null
                             NpmResolutionRequest(
                                 variantId = node.variantId,
-                                readEmbeddedNpmManifest(klib) ?: return@mapNotNull null,
+                                manifest = manifest,
                             )
                         }
                     }
