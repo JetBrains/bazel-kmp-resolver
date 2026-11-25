@@ -5,9 +5,22 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.JsonEncoder
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.encodeToJsonElement
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.put
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 
 internal val bazelManifestJson by lazy {
@@ -50,6 +63,101 @@ internal object ResolutionPlatformSerializer : KSerializer<ResolutionPlatform> {
     }
 }
 
+internal object MultiplatformLibraryArtifactSerializer : KSerializer<MultiplatformLibraryArtifact> {
+    override val descriptor = buildClassSerialDescriptor("MultiplatformLibraryArtifact")
+
+    override fun deserialize(decoder: Decoder): MultiplatformLibraryArtifact {
+        decoder as? JsonDecoder
+            ?: throw SerializationException("Expected JsonDecoder, got ${decoder::class}")
+        val element = decoder.decodeJsonElement().jsonObject
+        val type = element["type"]?.jsonPrimitive ?: throw SerializationException("Missing 'type'")
+        if (!type.isString)
+            throw SerializationException("'type' must be a string, got: ${type.content}")
+        val resolvedType =
+            MultiplatformLibraryArtifact.Type.entries.find { it.name.equals(type.content, true) }
+        if (resolvedType == null) throw SerializationException("Unknown type: ${type.content}")
+
+        return when (resolvedType) {
+            MultiplatformLibraryArtifact.Type.ClasspathJar,
+            MultiplatformLibraryArtifact.Type.SourceJar,
+            MultiplatformLibraryArtifact.Type.Klib,
+            MultiplatformLibraryArtifact.Type.CInteropKlib,
+            MultiplatformLibraryArtifact.Type.Aar -> {
+                MavenMultiplatformLibraryArtifact(
+                    type = resolvedType,
+                    integrity =
+                        decoder.json.decodeFromJsonElement(
+                            element["integrity"]
+                                ?: throw SerializationException(
+                                    "Missing 'integrity'",
+                                ),
+                        ),
+                    groupId =
+                        element["groupId"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'groupId'"),
+                    artifactId =
+                        element["artifactId"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'artifactId'"),
+                    version =
+                        element["version"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'version'"),
+                    urls =
+                        element["urls"]?.jsonArray?.mapNotNull { it.jsonPrimitive.contentOrNull }
+                            ?: throw SerializationException("Missing 'urls'"),
+                )
+            }
+
+            MultiplatformLibraryArtifact.Type.Npm -> {
+                NpmMultiplatformLibraryArtifact(
+                    integrity =
+                        decoder.json.decodeFromJsonElement(
+                            element["integrity"]
+                                ?: throw SerializationException("Missing 'integrity'"),
+                        ),
+                    name =
+                        element["name"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'name'"),
+                    version =
+                        element["version"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'version'"),
+                    url =
+                        element["url"]?.jsonPrimitive?.contentOrNull
+                            ?: throw SerializationException("Missing 'url'"),
+                )
+            }
+        }
+    }
+
+    override fun serialize(
+        encoder: Encoder,
+        value: MultiplatformLibraryArtifact,
+    ) {
+        encoder as? JsonEncoder
+            ?: throw SerializationException("Expected JsonEncoder, got ${encoder::class}")
+        val jsonObj = buildJsonObject {
+            put("type", value.type.name)
+            when (value) {
+                is MavenMultiplatformLibraryArtifact -> {
+                    put("integrity", encoder.json.encodeToJsonElement(value.integrity))
+                    put("groupId", value.groupId)
+                    put("artifactId", value.artifactId)
+                    put("version", value.version)
+                    put("urls", JsonArray(value.urls.map(::JsonPrimitive)))
+                }
+
+                is NpmMultiplatformLibraryArtifact -> {
+                    put("name", value.name)
+                    put("version", value.version)
+                    put("integrity", encoder.json.encodeToJsonElement(value.integrity))
+                    put("url", value.url)
+                }
+            }
+        }
+
+        encoder.encodeJsonElement(jsonObj)
+    }
+}
+
 internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibraryId> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("MultiplatformLibraryId", PrimitiveKind.STRING)
@@ -60,69 +168,6 @@ internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibr
     override fun deserialize(decoder: Decoder): MultiplatformLibraryId =
         MultiplatformLibraryId.fromString(decoder.decodeString())
 }
-
-/*
-/**
- * Serializes and deserializes a [MultiplatformVariant] with its [MultiplatformVariant.platform] as
- * the only discriminator: no class discriminator is written, and the variant the platform of a JSON
- * object identifies is decoded, `jvm` a [MultiplatformVariant.Jvm], `wasm_js` a
- * [MultiplatformVariant.WasmJs], a native platform (e.g. `ios_arm64`) a
- * [MultiplatformVariant.Native], `android` a [MultiplatformVariant.Android].
- */
-@OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
-internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVariant> {
-    override val descriptor: SerialDescriptor =
-        buildSerialDescriptor("MultiplatformVariant", PolymorphicKind.SEALED)
-
-    override fun serialize(encoder: Encoder, value: MultiplatformVariant): Unit =
-        when (value) {
-            is MultiplatformVariant.Jvm ->
-                MultiplatformVariant.Jvm.serializer().serialize(encoder, value)
-
-            is MultiplatformVariant.WasmJs ->
-                MultiplatformVariant.WasmJs.serializer().serialize(encoder, value)
-
-            is MultiplatformVariant.Native ->
-                MultiplatformVariant.Native.serializer().serialize(encoder, value)
-
-            is MultiplatformVariant.Android ->
-                MultiplatformVariant.Android.serializer().serialize(encoder, value)
-        }
-
-    override fun deserialize(decoder: Decoder): MultiplatformVariant {
-        if (decoder !is JsonDecoder)
-            throw SerializationException(
-                "This serializer can be used only with JsonDecoder, got $decoder",
-            )
-
-        /*
-        Select the correct deserializer based on the 'platform' property.
-         */
-        val element = decoder.decodeJsonElement()
-
-        val rawPlatformString =
-            element.jsonObject["platform"]
-                ?: throw SerializationException(
-                    "Variant is not discriminated by any 'platform': $element",
-                )
-
-        val platform =
-            resolutionPlatformOf(rawPlatformString.jsonPrimitive.content)
-                ?: throw SerializationException("Unknown platform '$rawPlatformString'")
-
-        val deserializer =
-            when {
-                platform == ResolutionPlatform.JVM -> MultiplatformVariant.Jvm.serializer()
-                platform == ResolutionPlatform.WASM_JS -> MultiplatformVariant.WasmJs.serializer()
-                platform.type == PlatformType.NATIVE -> MultiplatformVariant.Native.serializer()
-                platform == ResolutionPlatform.ANDROID -> MultiplatformVariant.Android.serializer()
-                else -> throw SerializationException("Unsupported platform '$platform'")
-            }
-
-        return decoder.json.decodeFromJsonElement(deserializer, element)
-    }
-}
- */
 
 internal class MultiplatformLibraryArtifactIntegritySerializer :
     KSerializer<MultiplatformLibraryArtifactIntegrity> {
