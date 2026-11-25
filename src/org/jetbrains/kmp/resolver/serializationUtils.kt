@@ -74,7 +74,7 @@ internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibr
  * the only discriminator: no class discriminator is written, and the variant the platform of a JSON
  * object identifies is decoded, `jvm` a [MultiplatformVariant.Jvm], `wasm_js` a
  * [MultiplatformVariant.WasmJs], a native platform (e.g. `ios_arm64`) a
- * [MultiplatformVariant.Native].
+ * [MultiplatformVariant.Native], `android` a [MultiplatformVariant.Android].
  */
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVariant> {
@@ -91,6 +91,9 @@ internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVarian
 
             is MultiplatformVariant.Native ->
                 MultiplatformVariant.Native.serializer().serialize(encoder, value)
+
+            is MultiplatformVariant.Android ->
+                MultiplatformVariant.Android.serializer().serialize(encoder, value)
         }
 
     override fun deserialize(decoder: Decoder): MultiplatformVariant {
@@ -119,6 +122,7 @@ internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVarian
                 platform == ResolutionPlatform.JVM -> MultiplatformVariant.Jvm.serializer()
                 platform == ResolutionPlatform.WASM_JS -> MultiplatformVariant.WasmJs.serializer()
                 platform.type == PlatformType.NATIVE -> MultiplatformVariant.Native.serializer()
+                platform == ResolutionPlatform.ANDROID -> MultiplatformVariant.Android.serializer()
                 else -> throw SerializationException("Unsupported platform '$platform'")
             }
 

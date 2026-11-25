@@ -184,6 +184,45 @@ internal sealed class UnresolvedMultiplatformLibrary(
             return jars.single().toUnresolvedMultiplatformLibraryArtifact()
         }
     }
+
+    class Android(
+        resolvedNodes: List<MavenDependencyNode>,
+        repositories: List<MavenRepository>,
+        substitutions: Substitutions,
+        kmpParents: KmpParents,
+        possibleDependencies: Set<SubstitutionId>,
+    ) :
+        UnresolvedMultiplatformLibrary(
+            ResolutionPlatform.ANDROID,
+            resolvedNodes,
+            repositories,
+            substitutions,
+            kmpParents,
+            possibleDependencies,
+        ) {
+
+        suspend fun jarOrNull(): UnresolvedMultiplatformLibraryArtifact? {
+            val jars = files.filter { it.isClasspathJar() }
+
+            require(jars.size < 2) {
+                with(variantId) {
+                    "Multiple classpath .jar found for [${groupId}:$artifactId:$version]"
+                }
+            }
+
+            return jars.firstOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
+        }
+
+        suspend fun aarOrNull(): UnresolvedMultiplatformLibraryArtifact? {
+            val aars = files.filter { it.isAar() }
+
+            require(aars.size < 2) {
+                with(variantId) { "Multiple .aar found for [${groupId}:$artifactId:$version]" }
+            }
+
+            return aars.firstOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
+        }
+    }
 }
 
 internal data class UnresolvedMultiplatformLibraryArtifact(

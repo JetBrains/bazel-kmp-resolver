@@ -340,6 +340,15 @@ internal class MultiplatformResolver(
                             repositories = repositories,
                         )
 
+                    platform == ResolutionPlatform.ANDROID ->
+                        UnresolvedMultiplatformLibrary.Android(
+                            resolvedNodes = scopedNodes,
+                            substitutions = substitutions,
+                            kmpParents = kmpParents,
+                            possibleDependencies = possibleDependencies,
+                            repositories = repositories,
+                        )
+
                     else -> error("Platform ${platform.pretty} is not supported")
                 }
             }
@@ -444,6 +453,9 @@ internal class MultiplatformResolver(
                     else -> false
                 }
 
+            platform == ResolutionPlatform.ANDROID ->
+                files.any { it.isAar() || it.isClasspathJar() }
+
             else -> error("Platform ${platform.pretty} is not supported")
         }
     }
@@ -464,6 +476,11 @@ internal class MultiplatformResolver(
                         }
 
                     is UnresolvedMultiplatformLibrary.Jvm ->
+                        async {
+                            unresolvedNode.resolve(artifactResolver)
+                        }
+
+                    is UnresolvedMultiplatformLibrary.Android ->
                         async {
                             unresolvedNode.resolve(artifactResolver)
                         }
@@ -581,6 +598,24 @@ private suspend fun UnresolvedMultiplatformLibrary.Jvm.resolve(
         id = id,
         variantId = variantId,
         jar = resolvedJar.await(),
+        sourceJar = resolvedSourceJar?.await(),
+        dependencies = dependencies.sorted(),
+        exportedDependencies = exportedDependencies.sorted(),
+    )
+}
+
+private suspend fun UnresolvedMultiplatformLibrary.Android.resolve(
+    artifactUrlResolver: ArtifactUrlResolver,
+): MultiplatformVariant.Android = coroutineScope {
+    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(artifactUrlResolver) } }
+    val jar = async { jarOrNull()?.resolve(artifactUrlResolver) }
+    val aar = async { aarOrNull()?.resolve(artifactUrlResolver) }
+
+    MultiplatformVariant.Android(
+        id = id,
+        variantId = variantId,
+        aar = aar.await(),
+        jar = jar.await(),
         sourceJar = resolvedSourceJar?.await(),
         dependencies = dependencies.sorted(),
         exportedDependencies = exportedDependencies.sorted(),

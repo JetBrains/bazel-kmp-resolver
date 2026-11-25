@@ -1,4 +1,5 @@
 {
+  "ANDROID": "android",
   "ANDROID_ARM32": "android_arm32",
   "ANDROID_ARM64": "android_arm64",
   "ANDROID_X64": "android_x64",

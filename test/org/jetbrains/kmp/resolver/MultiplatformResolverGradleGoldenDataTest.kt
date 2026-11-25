@@ -236,6 +236,22 @@ private fun assertEqualsGradleDumps(
                         ),
                     )
 
+                is MultiplatformVariant.Android ->
+                    listOf(
+                        GradleDumpEntry(
+                            variant.platform,
+                            gav = variant.variantId.gav,
+                            hash =
+                                variant.aar?.integrity
+                                    ?: variant.jar?.integrity
+                                    ?: error("No aar or jar for ${variant.variantId}"),
+                        ),
+                    )
+
+                /* A redirect stands for its dependencies, whose variants produce the dump entries
+                of what the class path of a dependent holds. */
+                // is MultiplatformVariant.Redirect -> emptyList()
+
                 is MultiplatformVariant.WasmJs ->
                     listOf(
                         GradleDumpEntry(

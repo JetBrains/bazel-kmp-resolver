@@ -98,4 +98,42 @@ internal sealed class MultiplatformVariant {
         val jar: MavenMultiplatformLibraryArtifact,
         val sourceJar: MavenMultiplatformLibraryArtifact?,
     ) : MultiplatformVariant()
+
+    @Serializable
+    data class Android(
+        @Serializable(with = ResolutionPlatformSerializer::class)
+        @EncodeDefault
+        override val platform: ResolutionPlatform = ResolutionPlatform.ANDROID,
+        override val id: MultiplatformLibraryId,
+        override val variantId: MultiplatformLibraryId,
+        override val dependencies: List<SubstitutionId>,
+        override val exportedDependencies: List<SubstitutionId>,
+
+        /**
+         * .aar of this imported dependency, exposed to the compile and runtime class paths of
+         * dependents: the artifact a consumer of the library uses when one is published, as it
+         * carries what a .jar does not, like the library's manifest and resources.
+         */
+        val aar: MavenMultiplatformLibraryArtifact?,
+
+        /**
+         * .jar of this imported dependency, exposed to the compile and runtime class paths of
+         * dependents when no .aar is published: a JAR-packaged Android library, like
+         * `kotlinx-coroutines-android`, or the JVM artifact a KMP library without an Android
+         * variant publishes, like `androidx.annotation:annotation` resolved to `annotation-jvm`.
+         */
+        val jar: MavenMultiplatformLibraryArtifact?,
+        val sourceJar: MavenMultiplatformLibraryArtifact?,
+    ) : MultiplatformVariant() {
+        init {
+            require(aar != null || jar != null) { "At least one of aar or jar must be specified" }
+            require(aar == null || jar == null) { "Only one of aar or jar must be specified" }
+        }
+
+        val artifact: MultiplatformLibraryArtifact =
+            aar
+                ?: jar
+                /* Dead case: The requirements above would ensure that either one is not null */
+                ?: throw IllegalStateException()
+    }
 }
