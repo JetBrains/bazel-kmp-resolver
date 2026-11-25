@@ -1,0 +1,4 @@
+# The Starlark of the `kmp` module extension and of the generated repositories. The bzl files are
+# loaded from MODULE.bazel files and from generated BUILD files of other repositories: exported for
+# cross-package and cross-repo loads.
+exports_files(glob(["*.bzl"]))

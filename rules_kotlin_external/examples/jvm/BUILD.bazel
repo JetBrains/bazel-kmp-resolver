@@ -1,0 +1,12 @@
+load("@rules_java//java:defs.bzl", "java_library")
+
+# The staged, locally built resolver binary the kmp.resolver tag above points to.
+exports_files(["resolver-local"])
+
+# A JVM library consuming a resolved KMP dependency through the versionless alias of the generated
+# hub repository, which resolves to the `jvm_library` wrapper carrying the jar's `JavaInfo`.
+java_library(
+    name = "app",
+    srcs = ["src/App.java"],
+    deps = ["@kmp_deps_jvm//:org_jetbrains_kotlinx_kotlinx_coroutines_core"],
+)

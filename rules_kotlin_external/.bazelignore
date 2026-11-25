@@ -1,0 +1,2 @@
+# Example workspaces are separate Bazel roots (their own MODULE.bazel): the root workspace must not traverse them.
+examples

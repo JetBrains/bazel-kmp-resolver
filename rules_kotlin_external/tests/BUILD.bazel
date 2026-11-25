@@ -1,0 +1,14 @@
+# Starlark unit tests of the rules, run with `bazel test //tests/...` from the
+# rules_kotlin_external/ directory.
+
+load(":facts_test.bzl", "facts_test_suite")
+load(":manifest_test.bzl", "manifest_test_suite")
+load(":materialize_test.bzl", "materialize_test_suite")
+load(":naming_test.bzl", "naming_test_suite")
+load(":resolver_test.bzl", "resolver_test_suite")
+
+facts_test_suite(name = "facts_test")
+manifest_test_suite(name = "manifest_test")
+materialize_test_suite(name = "materialize_test")
+naming_test_suite(name = "naming_test")
+resolver_test_suite(name = "resolver_test")

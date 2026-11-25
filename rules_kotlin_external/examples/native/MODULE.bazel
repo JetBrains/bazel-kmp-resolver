@@ -1,0 +1,28 @@
+bazel_dep(name = "rules_kotlin_external", version = "0.5.0")
+
+local_path_override(
+    module_name = "rules_kotlin_external",
+    path = "../..",
+)
+
+kmp = use_extension("@rules_kotlin_external//rules:extensions.bzl", "kmp")
+kmp.install(
+    name = "kmp_deps",
+    artifacts = [
+        # SQLiter's klibs embed C-interop klibs: each becomes its own `klib_import` target,
+        # alongside coroutines resolving to a plain klib per konan target.
+        "co.touchlab:sqliter-driver:1.4.0",
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
+    ],
+    platforms = ["ios_arm64", "macos_arm64"],
+    repositories = ["https://repo1.maven.org/maven2"],
+)
+kmp.resolver(
+    # The examples run against the locally built resolver (see examples/jvm/MODULE.bazel).
+    local_linux_arm64 = "//:resolver-local",
+    local_linux_x64 = "//:resolver-local",
+    local_macos_arm64 = "//:resolver-local",
+    local_macos_x64 = "//:resolver-local",
+    local_windows_x64 = "//:resolver-local",
+)
+use_repo(kmp, "kmp_deps_ios_arm64", "kmp_deps_macos_arm64")

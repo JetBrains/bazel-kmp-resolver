@@ -1,0 +1,34 @@
+bazel_dep(name = "rules_kotlin_external", version = "0.5.0")
+
+local_path_override(
+    module_name = "rules_kotlin_external",
+    path = "../..",
+)
+
+kmp = use_extension("@rules_kotlin_external//rules:extensions.bzl", "kmp")
+kmp.install(
+    name = "kmp_deps",
+    artifacts = [
+        # An `.aar` publisher; the Android repository imports it with `aar_import`.
+        "androidx.annotation:annotation-experimental:1.4.1",
+        # Publishes no `.aar`, only a jar: the Android repository falls back to the JVM import pair.
+        "androidx.annotation:annotation:1.9.1",
+        # Publishes no artifact at all for Android, only dependencies: JetBrains Compose's runtime
+        # redirects to the AndroidX publications through a sourceless `android_library` target.
+        "org.jetbrains.compose.runtime:runtime:1.8.2",
+    ],
+    platforms = ["android"],
+    repositories = [
+        "https://dl.google.com/dl/android/maven2",
+        "https://repo1.maven.org/maven2",
+    ],
+)
+kmp.resolver(
+    # The examples run against the locally built resolver (see examples/jvm/MODULE.bazel).
+    local_linux_arm64 = "//:resolver-local",
+    local_linux_x64 = "//:resolver-local",
+    local_macos_arm64 = "//:resolver-local",
+    local_macos_x64 = "//:resolver-local",
+    local_windows_x64 = "//:resolver-local",
+)
+use_repo(kmp, "kmp_deps_android")

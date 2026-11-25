@@ -27,3 +27,10 @@ replay_pid*
 .kotlin/
 build/
 .idea/
+
+# Bazel (rules_kotlin_external/): convenience symlinks and per-example ephemera; the module's own
+# MODULE.bazel.lock is committed, example lockfiles are not (facts keyed by local binary sha256s).
+rules_kotlin_external/bazel-*
+rules_kotlin_external/examples/*/bazel-*
+rules_kotlin_external/examples/*/MODULE.bazel.lock
+rules_kotlin_external/examples/*/resolver-local

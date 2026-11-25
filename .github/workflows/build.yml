@@ -102,3 +102,57 @@ jobs:
           path: build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}
           if-no-files-found: error
           retention-days: 7
+
+  bazel-integration:
+    needs:
+      - test
+      - graalvm-native-image-cache
+    strategy:
+      fail-fast: false
+      matrix:
+        bazel_version:
+          - "9.0.0"    # facts requirement
+          - "9.3.3"
+    runs-on: ubuntu-24.04
+    env:
+      BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+      USE_BAZEL_VERSION: ${{ matrix.bazel_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore GraalVM archive cache
+        uses: actions/cache/restore@v6
+        with:
+          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
+          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Build native image
+        shell: bash
+        run: ./kotlin do buildNativeImage
+      - name: Starlark unit tests
+        shell: bash
+        working-directory: rules_kotlin_external
+        run: bazel test //tests/...
+      - name: Stage the local resolver into the examples
+        shell: bash
+        run: rules_kotlin_external/examples/stage-local-resolver.sh
+      - name: Build the examples
+        shell: bash
+        run: |
+          cd rules_kotlin_external/examples/jvm
+          bazel build //:app @kmp_deps_jvm//:org_jetbrains_kotlinx_kotlinx_coroutines_core
+          cd ../wasmjs
+          bazel build @kmp_deps_wasmjs//:org_jetbrains_kotlinx_kotlinx_datetime
+          cd ../native
+          bazel build \
+            @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver \
+            @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver_iosarm64_1_4_0_cinterop_0 \
+            @kmp_deps_macos_arm64//:org_jetbrains_kotlinx_kotlinx_coroutines_core
+          cd ../android
+          bazel build \
+            @kmp_deps_android//:androidx_annotation_annotation_experimental \
+            @kmp_deps_android//:androidx_annotation_annotation \
+            @kmp_deps_android//:org_jetbrains_compose_runtime_runtime
+      - name: Facts caching behavior
+        shell: bash
+        run: rules_kotlin_external/examples/facts-behavior.sh
