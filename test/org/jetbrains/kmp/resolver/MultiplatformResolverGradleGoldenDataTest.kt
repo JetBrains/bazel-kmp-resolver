@@ -110,6 +110,7 @@ class MultiplatformResolverGradleGoldenDataTest {
                 platforms =
                     setOf(
                         JVM,
+                        ANDROID,
                         WASM_JS,
                         IOS_SIMULATOR_ARM64,
                         IOS_ARM64,
