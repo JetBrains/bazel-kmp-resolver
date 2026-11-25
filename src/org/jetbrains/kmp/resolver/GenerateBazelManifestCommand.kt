@@ -44,7 +44,9 @@ class GenerateBazelManifestCommand : SuspendingCliktCommand("generate-bazel-mani
                 "--platform",
                 help =
                     "Platform to resolve the coordinates for, can be specified multiple times to resolve many platforms at once. " +
-                        "`wasmjs` produces the klib variants of KMP libraries, `jvm` their jar variants along with JVM-only libraries.",
+                        "`wasmjs` produces the klib variants of KMP libraries, `jvm` their jar variants along with JVM-only libraries, " +
+                        "`android` their Android variants, a `.aar` or their JVM artifact when they publish none, along with " +
+                        "Android and JVM-only libraries, and a native target, like `ios_arm64`, their klib variants.",
             )
             .choice(
                 *supportedPlatforms.map { platform -> platform.cliName to platform }.toTypedArray(),

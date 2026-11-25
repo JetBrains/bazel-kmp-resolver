@@ -1,0 +1,27 @@
+bazel_dep(name = "rules_java", version = "9.9.0")
+bazel_dep(name = "rules_kotlin_external", version = "0.5.0")
+
+# The examples consume the rules from this repository: the override points at rules_kotlin_external/.
+local_path_override(
+    module_name = "rules_kotlin_external",
+    path = "../..",
+)
+
+kmp = use_extension("@rules_kotlin_external//rules:extensions.bzl", "kmp")
+kmp.install(
+    name = "kmp_deps",
+    artifacts = ["org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"],
+    platforms = ["jvm"],
+    repositories = ["https://repo1.maven.org/maven2"],
+)
+kmp.resolver(
+    # The examples run against the locally built resolver: `./kotlin do buildNativeImage` from the
+    # repository root, then `examples/stage-local-resolver.sh`. Releases pin published binaries
+    # instead: kmp.resolver(version = "0.5.0", sha256 = {...}).
+    local_linux_arm64 = "//:resolver-local",
+    local_linux_x64 = "//:resolver-local",
+    local_macos_arm64 = "//:resolver-local",
+    local_macos_x64 = "//:resolver-local",
+    local_windows_x64 = "//:resolver-local",
+)
+use_repo(kmp, "kmp_deps_jvm")

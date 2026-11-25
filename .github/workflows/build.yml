@@ -102,3 +102,36 @@ jobs:
           path: build/native-image/bazel-kmp-resolver-${{ matrix.platform }}${{ matrix.executable_extension }}
           if-no-files-found: error
           retention-days: 7
+
+  bazel-integration:
+    needs:
+      - test
+      - graalvm-native-image-cache
+    strategy:
+      fail-fast: false
+      matrix:
+        bazel_version:
+          - "9.0.0"    # facts requirement
+          - "9.3.3"
+    runs-on: ubuntu-24.04
+    env:
+      BAZEL_KMP_RESOLVER_CACHE_DIR: ${{ runner.temp }}/graalvm-native-image-cache
+      USE_BAZEL_VERSION: ${{ matrix.bazel_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Restore GraalVM archive cache
+        uses: actions/cache/restore@v6
+        with:
+          path: ${{ runner.temp }}/graalvm-native-image-cache/downloads
+          key: graalvm-native-image-${{ hashFiles('module.yaml') }}
+          enableCrossOsArchive: true
+      - name: Build native image
+        shell: bash
+        run: ./kotlin do buildNativeImage
+      - name: Bazel build (module and examples)
+        shell: bash
+        run: ./kotlin do buildBazel
+      - name: Bazel tests (unit tests and facts caching)
+        shell: bash
+        run: ./kotlin do testBazel

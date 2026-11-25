@@ -1,0 +1,23 @@
+bazel_dep(name = "rules_kotlin_external", version = "0.5.0")
+
+local_path_override(
+    module_name = "rules_kotlin_external",
+    path = "../..",
+)
+
+kmp = use_extension("@rules_kotlin_external//rules:extensions.bzl", "kmp")
+kmp.install(
+    name = "kmp_deps",
+    artifacts = ["org.jetbrains.kotlinx:kotlinx-datetime:0.8.0"],
+    platforms = ["wasmjs"],
+    repositories = ["https://repo1.maven.org/maven2"],
+)
+kmp.resolver(
+    # The examples run against the locally built resolver (see examples/jvm/MODULE.bazel).
+    local_linux_arm64 = "//:resolver-local",
+    local_linux_x64 = "//:resolver-local",
+    local_macos_arm64 = "//:resolver-local",
+    local_macos_x64 = "//:resolver-local",
+    local_windows_x64 = "//:resolver-local",
+)
+use_repo(kmp, "kmp_deps_wasmjs")

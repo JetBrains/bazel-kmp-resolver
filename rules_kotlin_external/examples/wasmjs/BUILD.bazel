@@ -1,0 +1,7 @@
+# The staged, locally built resolver binary the kmp.resolver tag above points to.
+exports_files(["resolver-local"])
+
+# No WasmJS toolchain is wired here: building the generated target proves the analysis and the
+# downloads — the klib and its NPM packages:
+#
+#     bazel build @kmp_deps_wasmjs//:org_jetbrains_kotlinx_kotlinx_datetime

@@ -1,0 +1,34 @@
+module(
+    name = "rules_kotlin_external",
+    version = "0.5.0",
+)
+
+# Hermetic Node.js/npm for the resolver's `wasmjs` platform (the Node executable and `npm-cli.js`
+# handed to it); the default Node version is rules_nodejs's own, a root module's `node.toolchain`
+# tag overrides it.
+bazel_dep(name = "rules_nodejs", version = "6.7.4")
+
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+use_repo(
+    node,
+    "nodejs_darwin_amd64",
+    "nodejs_darwin_arm64",
+    "nodejs_linux_amd64",
+    "nodejs_linux_arm64",
+    "nodejs_windows_amd64",
+    "nodejs_windows_arm64",
+)
+
+# `java_library`, forwarded to by the default `jvm_library` import rule; consumers swapping in
+# their own import rules need not depend on it.
+bazel_dep(name = "rules_java", version = "9.9.0")
+
+# The Starlark unit tests (`tests/`) run on bazel_skylib's `unittest` framework. A non-dev
+# dependency: the toolchains registered below resolve during any analysis, also when a consumer
+# depends on rules_kotlin_external, where a dev dependency would not be visible.
+bazel_dep(name = "bazel_skylib", version = "1.8.2")
+
+register_toolchains(
+    "@bazel_skylib//toolchains/unittest:cmd_toolchain",
+    "@bazel_skylib//toolchains/unittest:bash_toolchain",
+)

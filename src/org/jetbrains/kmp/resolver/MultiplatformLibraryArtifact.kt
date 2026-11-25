@@ -3,14 +3,24 @@ package org.jetbrains.kmp.resolver
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
+@Serializable(with = MultiplatformLibraryArtifactSerializer::class)
 internal sealed class MultiplatformLibraryArtifact {
     abstract val integrity: MultiplatformLibraryArtifactIntegrity
+    abstract val type: Type
+
+    enum class Type {
+        ClasspathJar,
+        SourceJar,
+        Klib,
+        CInteropKlib,
+        Aar,
+        Npm,
+    }
 }
 
 @Serializable
-@SerialName("maven")
 internal data class MavenMultiplatformLibraryArtifact(
+    override val type: Type,
     override val integrity: MultiplatformLibraryArtifactIntegrity,
     val groupId: String,
     val artifactId: String,
@@ -25,4 +35,6 @@ internal data class NpmMultiplatformLibraryArtifact(
     val name: String,
     val version: String,
     val url: String,
-) : MultiplatformLibraryArtifact()
+) : MultiplatformLibraryArtifact() {
+    override val type = Type.Npm
+}

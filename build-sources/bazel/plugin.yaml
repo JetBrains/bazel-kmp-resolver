@@ -1,0 +1,13 @@
+tasks:
+  buildBazel:
+    action: !org.jetbrains.kmp.resolver.bazel.tasks.buildBazel
+      nativeBinaryDirectory: ${pluginSettings.nativeBinaryDirectory}
+      rulesDirectory: ${pluginSettings.rulesDirectory}
+  testBazel:
+    action: !org.jetbrains.kmp.resolver.bazel.tasks.testBazel
+      nativeBinaryDirectory: ${pluginSettings.nativeBinaryDirectory}
+      rulesDirectory: ${pluginSettings.rulesDirectory}
+
+commands:
+  - buildBazel
+  - testBazel

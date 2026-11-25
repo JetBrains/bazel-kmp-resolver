@@ -163,6 +163,35 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `jvm resolution - coroutines-core`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-jvm_resolution_coroutines_core.json",
+        )
+    }
+
+    @Test
     fun `wasmjs and jvm resolution`() = runBlocking {
         val repositories =
             listOf(
@@ -252,6 +281,108 @@ class MultiplatformResolverTest {
             manifestResourceFilepath = "manifest-iosSimulatorArm64_iosArm64.json",
         )
     }
+
+    @Test
+    fun `android resolution`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+                "https://dl.google.com/dl/android/maven2",
+            )
+        val coordinates =
+            listOf(
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2", // a jar
+                "androidx.annotation:annotation:1.9.1", // a KMP library without Android variant,
+                // falling back to its JVM variant
+                "androidx.annotation:annotation-experimental:1.4.1", // an aar
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.ANDROID),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-android_resolution.json",
+        )
+    }
+
+    @Test
+    fun `android and jvm resolution`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+                "https://dl.google.com/dl/android/maven2",
+            )
+        val coordinates =
+            listOf(
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2", // a jar
+                "androidx.annotation:annotation:1.9.1", // a KMP library without Android variant,
+                // falling back to its JVM variant
+                "androidx.annotation:annotation-experimental:1.4.1", // an aar
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.ANDROID, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-android_jvm_resolution.json",
+        )
+    }
+
+    @Test
+    fun `library whose Android variant only declares dependencies redirects to them`() =
+        runBlocking {
+            val repositories =
+                listOf(
+                    "https://repo1.maven.org/maven2",
+                    "https://dl.google.com/dl/android/maven2",
+                )
+            val coordinates =
+                listOf(
+                    // the Android variant of the JetBrains Compose runtime redirects to the
+                    // AndroidX
+                    // Compose ones, while its JVM variant is the jar of the module its desktop
+                    // variant
+                    // is published in
+                    "org.jetbrains.compose.runtime:runtime:1.8.2",
+                )
+            val actual =
+                testMultiplatformResolver(
+                    cachePath = createTempDirectory("resolution-cache"),
+                    repositories = repositories,
+                    substitutions = emptyMap(),
+                    platforms = setOf(ResolutionPlatform.ANDROID, ResolutionPlatform.JVM),
+                    credentials = noCredentials,
+                ) { resolver ->
+                    resolver.resolve(coordinates)
+                }
+
+            assertUsingManifest(
+                coordinates = coordinates,
+                repositories = repositories,
+                libraries = actual,
+                manifestResourceFilepath = "manifest-compose_redirects.json",
+            )
+        }
 
     @Test
     fun `directly requested native module without KMP parent`() = runBlocking {

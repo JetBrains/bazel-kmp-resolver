@@ -1,0 +1,9 @@
+# The staged, locally built resolver binary the kmp.resolver tag above points to.
+exports_files(["resolver-local"])
+
+# No Kotlin/Native toolchain is wired here: building the generated targets proves the analysis
+# and the downloads — SQLiter's klib and C-interop klib each as their own target, per konan target:
+#
+#     bazel build @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver
+#     bazel build @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver_iosarm64_1_4_0_cinterop_0
+#     bazel build @kmp_deps_macos_arm64//:org_jetbrains_kotlinx_kotlinx_coroutines_core

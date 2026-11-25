@@ -26,24 +26,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-7rJU3PTyeSx2m+YgfKzvBBKSFkDl9ZFtI+kzmwabt+NLRoz9/GWQk4E9+1aQ0WTHq4wcNNDq3DLJvs0HKNW3NA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-client-core-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.4.3/ktor-client-core-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-mx2e1zpGmFtM/TT4INnaC4NQI2mCU2erwhBMQZgLZAIwggHbXgEYKJtfDTu0qTOAk4uJEKN46TBe5e7am0L2lQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-client-core-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.4.3/ktor-client-core-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-7rJU3PTyeSx2m+YgfKzvBBKSFkDl9ZFtI+kzmwabt+NLRoz9/GWQk4E9+1aQ0WTHq4wcNNDq3DLJvs0HKNW3NA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-client-core-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.4.3/ktor-client-core-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-mx2e1zpGmFtM/TT4INnaC4NQI2mCU2erwhBMQZgLZAIwggHbXgEYKJtfDTu0qTOAk4uJEKN46TBe5e7am0L2lQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-client-core-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-jvm/3.4.3/ktor-client-core-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -56,28 +60,32 @@
             "io.ktor:ktor-http-cio",
             "io.ktor:ktor-sse",
             "io.ktor:ktor-websocket-serialization",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-kPlOuQO6UXubjW7KP7x6yZlSI8cp45vMqh8RKowsPv/F0Nyu1iAPfpBvlguF9lw+SdEE67hMV8QR7lxyL2ZngQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-client-core-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-iosarm64/3.4.3/ktor-client-core-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-psnQSbZox6I3VQB+S/ybiDMGwFl7tnEMhUg5BHZO04nUZwVUbFjIFwWudkSWvJOnkG9ps1BSWyAqqGCJmXjgfw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-client-core-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-iosarm64/3.4.3/ktor-client-core-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-kPlOuQO6UXubjW7KP7x6yZlSI8cp45vMqh8RKowsPv/F0Nyu1iAPfpBvlguF9lw+SdEE67hMV8QR7lxyL2ZngQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-client-core-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-iosarm64/3.4.3/ktor-client-core-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-psnQSbZox6I3VQB+S/ybiDMGwFl7tnEMhUg5BHZO04nUZwVUbFjIFwWudkSWvJOnkG9ps1BSWyAqqGCJmXjgfw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-client-core-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-client-core-iosarm64/3.4.3/ktor-client-core-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -95,24 +103,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-ZquBxShVOw1kiVG+AR9HC+inO6Z9yAZPfklDjPUsjRo1YUisioWSmufNqIc8UaKzLnSwkmiTmrVE9hWOEdysJg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-events-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.4.3/ktor-events-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-events-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.4.3/ktor-events-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-ZquBxShVOw1kiVG+AR9HC+inO6Z9yAZPfklDjPUsjRo1YUisioWSmufNqIc8UaKzLnSwkmiTmrVE9hWOEdysJg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-events-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.4.3/ktor-events-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-events-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-events-jvm/3.4.3/ktor-events-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -121,28 +133,32 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-SJypc5yMegCB2anyVMvGZS9YTglkidtnO3DqMAoIJ38roKMQ1AuKNF0FtgOxUWGIwH70Xh8tq+k+yMxoaRRvQA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-events-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-events-iosarm64/3.4.3/ktor-events-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-events-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-events-iosarm64/3.4.3/ktor-events-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-SJypc5yMegCB2anyVMvGZS9YTglkidtnO3DqMAoIJ38roKMQ1AuKNF0FtgOxUWGIwH70Xh8tq+k+yMxoaRRvQA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-events-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-events-iosarm64/3.4.3/ktor-events-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-faqEdkOsy+wND/drHjFcvBuo7Cec+S6Hez8YYbxAT7gKjRPnYOGrgUcUBHW2T7K+BxMYnzBvqShzrJJj/qkyJg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-events-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-events-iosarm64/3.4.3/ktor-events-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -162,24 +178,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-wiCwU1ghhyeS78Pr+tql70XsVmKXmdINRJ+XjuoZuprqMijdHGT1jyg3o44ocxYe/cnSm4jyZu3O+YFvCQMJ2A==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-cio-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.4.3/ktor-http-cio-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-H0ouAff1Hk9rQXwQzTgJgW917HfE4CbWfhRfv8f/k1q/Zh0QCkZ1ZI1MWkRqvI9DDZgp1VNLpVC6eOr5vNrTIQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-cio-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.4.3/ktor-http-cio-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-wiCwU1ghhyeS78Pr+tql70XsVmKXmdINRJ+XjuoZuprqMijdHGT1jyg3o44ocxYe/cnSm4jyZu3O+YFvCQMJ2A==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-cio-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.4.3/ktor-http-cio-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-H0ouAff1Hk9rQXwQzTgJgW917HfE4CbWfhRfv8f/k1q/Zh0QCkZ1ZI1MWkRqvI9DDZgp1VNLpVC6eOr5vNrTIQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-cio-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-jvm/3.4.3/ktor-http-cio-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -189,28 +209,32 @@
           "exportedDependencies": [
             "io.ktor:ktor-http",
             "io.ktor:ktor-io",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-FhXjawWGIDsd8HHMey7HCwDZ/DtDEaMjxBQts/Rmu3Obj7hkd4HyBMR/MjvMf/e4ZZQnuTYTsk66UkycYwl9RA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-cio-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-iosarm64/3.4.3/ktor-http-cio-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-uRfinrFF5fko7S+ON3jUa0+yWBCgMshx0XatA5PMKHymbBRR5CYi6wTIC/ka1MUkypyfGBa2ErUKnQL2pp0HbA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-cio-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-iosarm64/3.4.3/ktor-http-cio-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-FhXjawWGIDsd8HHMey7HCwDZ/DtDEaMjxBQts/Rmu3Obj7hkd4HyBMR/MjvMf/e4ZZQnuTYTsk66UkycYwl9RA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-cio-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-iosarm64/3.4.3/ktor-http-cio-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-uRfinrFF5fko7S+ON3jUa0+yWBCgMshx0XatA5PMKHymbBRR5CYi6wTIC/ka1MUkypyfGBa2ErUKnQL2pp0HbA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-cio-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-cio-iosarm64/3.4.3/ktor-http-cio-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -229,24 +253,28 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-MfcmmxObyVUvjoxb41HbKmrZkg5D7JH2USg598YrTOP5LMFXIWSex3tpPj+jz82ifcshbzbOPBdPTEBAc/8QlQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.4.3/ktor-http-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-6WkG0aprF0z4/HFag8KYw9PjH5ywo/sRIenfD7e+GnDRUwJ5gxvnKFkzZe5Y50eSe7In/mExn8CZjupNm+FEXw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.4.3/ktor-http-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-MfcmmxObyVUvjoxb41HbKmrZkg5D7JH2USg598YrTOP5LMFXIWSex3tpPj+jz82ifcshbzbOPBdPTEBAc/8QlQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.4.3/ktor-http-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-6WkG0aprF0z4/HFag8KYw9PjH5ywo/sRIenfD7e+GnDRUwJ5gxvnKFkzZe5Y50eSe7In/mExn8CZjupNm+FEXw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-jvm/3.4.3/ktor-http-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -255,29 +283,33 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
-          "klib": {
-            "integrity": "sha512-egsKpFS1sk0vA6a2xY2GJ714jOfCEUAj0/zZXYydEblyK/FAtWSHCrIQrQZExFbgZMQ8ok84hHNoObeSeu87Fg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-iosarm64/3.4.3/ktor-http-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-QbujxJ4M2XDIgkDBFgxCZjUXVLXD1eMTjN7Hk1wrG5gnD68i623WP66YgHl0KgPZlBl6fYcox9vzjBVMqPANMw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-http-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-http-iosarm64/3.4.3/ktor-http-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-egsKpFS1sk0vA6a2xY2GJ714jOfCEUAj0/zZXYydEblyK/FAtWSHCrIQrQZExFbgZMQ8ok84hHNoObeSeu87Fg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-iosarm64/3.4.3/ktor-http-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-QbujxJ4M2XDIgkDBFgxCZjUXVLXD1eMTjN7Hk1wrG5gnD68i623WP66YgHl0KgPZlBl6fYcox9vzjBVMqPANMw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-http-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-http-iosarm64/3.4.3/ktor-http-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -295,24 +327,28 @@
             "org.jetbrains.kotlinx:kotlinx-io-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-BHdOt7Ins8v15IlFqHqAFNaHBJQcbsCR/80OefmT6gqK2ECFAF/tjwUgTpSrr5l37f3dNN4b8jywL/IIq5h5Rg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-io-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.4.3/ktor-io-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-Q3JKHSW0DyeQs9U9rIbPWWD46w55ZAJwC5KlHDpRtPWPKgNWlGjqmK3V9467Gj8Ihc9rYMTlpjjd+teRpGlPfw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-io-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.4.3/ktor-io-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-BHdOt7Ins8v15IlFqHqAFNaHBJQcbsCR/80OefmT6gqK2ECFAF/tjwUgTpSrr5l37f3dNN4b8jywL/IIq5h5Rg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-io-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.4.3/ktor-io-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Q3JKHSW0DyeQs9U9rIbPWWD46w55ZAJwC5KlHDpRtPWPKgNWlGjqmK3V9467Gj8Ihc9rYMTlpjjd+teRpGlPfw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-io-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-io-jvm/3.4.3/ktor-io-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -320,21 +356,24 @@
           "variantId": "io.ktor:ktor-io-iosarm64:3.4.3",
           "dependencies": [],
           "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.jetbrains.kotlinx:kotlinx-io-core"
           ],
-          "klib": {
-            "integrity": "sha512-A6clkt+exmEFMQ2HcnZ2cCv6zktl/LmRIC673CDiCogQ5vQzGxiAjRWIn0qDfEh/Tg0HUwWc8burDNdyPnha0w==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-io-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-io-iosarm64/3.4.3/ktor-io-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [
+          "artifacts": [
             {
+              "type": "Klib",
+              "integrity": "sha512-A6clkt+exmEFMQ2HcnZ2cCv6zktl/LmRIC673CDiCogQ5vQzGxiAjRWIn0qDfEh/Tg0HUwWc8burDNdyPnha0w==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-io-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-io-iosarm64/3.4.3/ktor-io-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "CInteropKlib",
               "integrity": "sha512-PPQzy1PeWNSOb0ZbdKPswTaltaWDb/UyFmJY+cHnSQAjQQ45oe57Pd+K6tVXcPWb5RPiEDfvlYkc8EfzdzykMw==",
               "groupId": "io.ktor",
               "artifactId": "ktor-io-iosarm64",
@@ -342,17 +381,18 @@
               "urls": [
                 "https://repo1.maven.org/maven2/io/ktor/ktor-io-iosarm64/3.4.3/ktor-io-iosarm64-3.4.3-cinterop-mutex.klib"
               ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-XMVJb7n3DbUrtvCH+cGIfX+/JXVyLZKo98Sc9+e3SQoMCNgDzbaLZt1XlUEVaxGRZ66GVBiNw89Am6QG/hkuxw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-io-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-io-iosarm64/3.4.3/ktor-io-iosarm64-3.4.3-sources.jar"
+              ]
             }
-          ],
-          "sourceJar": {
-            "integrity": "sha512-XMVJb7n3DbUrtvCH+cGIfX+/JXVyLZKo98Sc9+e3SQoMCNgDzbaLZt1XlUEVaxGRZ66GVBiNw89Am6QG/hkuxw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-io-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-io-iosarm64/3.4.3/ktor-io-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          ]
         }
       ]
     },
@@ -370,24 +410,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-EYAMGjma9uCv9ZfoVnPMwTqrijjkKAmUdACgArLbjaprAtUeJRHswPgHEwRov1VTeFK//J6xCfota5kpAt1cbg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-network-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.4.3/ktor-network-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-Tr1ApPtG3uHgR8ZNlvn2Tulu7DbLiJOkL9VhQrJDryXlD3ukOVnz35sKXnvYdZE4xn/5Bz4Wv0P/zVJmCERryA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-network-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.4.3/ktor-network-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-EYAMGjma9uCv9ZfoVnPMwTqrijjkKAmUdACgArLbjaprAtUeJRHswPgHEwRov1VTeFK//J6xCfota5kpAt1cbg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-network-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.4.3/ktor-network-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Tr1ApPtG3uHgR8ZNlvn2Tulu7DbLiJOkL9VhQrJDryXlD3ukOVnz35sKXnvYdZE4xn/5Bz4Wv0P/zVJmCERryA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-network-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-network-jvm/3.4.3/ktor-network-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -405,24 +449,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-s4e1f1eGxkJTLI7hGHvbHP/yb4aSRHKdKcErN7sSrT+5r5cG2HV2v9oDiSukdRqsvE9rAo0hW5uO4RVZlBkeWw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-serialization-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.4.3/ktor-serialization-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-tPPuRER0hmHLSvittBGVcNSwartiLn85JhVmhOjXBhCn4kIrRt7IjubSfbty8pUNjWmREy1hIgQgV0d7pLegmA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-serialization-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.4.3/ktor-serialization-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-s4e1f1eGxkJTLI7hGHvbHP/yb4aSRHKdKcErN7sSrT+5r5cG2HV2v9oDiSukdRqsvE9rAo0hW5uO4RVZlBkeWw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-serialization-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.4.3/ktor-serialization-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-tPPuRER0hmHLSvittBGVcNSwartiLn85JhVmhOjXBhCn4kIrRt7IjubSfbty8pUNjWmREy1hIgQgV0d7pLegmA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-serialization-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-jvm/3.4.3/ktor-serialization-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -431,28 +479,32 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-websockets",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-90OSDC4c38v9SztnNC4EYIZdASsUW2DcmRcBNLrogImV0y1U1v2i+Sx8IBqrrTuurk2cdxusC3eCCpoGuTTIrQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-serialization-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-iosarm64/3.4.3/ktor-serialization-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-tPPuRER0hmHLSvittBGVcNSwartiLn85JhVmhOjXBhCn4kIrRt7IjubSfbty8pUNjWmREy1hIgQgV0d7pLegmA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-serialization-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-iosarm64/3.4.3/ktor-serialization-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-90OSDC4c38v9SztnNC4EYIZdASsUW2DcmRcBNLrogImV0y1U1v2i+Sx8IBqrrTuurk2cdxusC3eCCpoGuTTIrQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-serialization-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-iosarm64/3.4.3/ktor-serialization-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-tPPuRER0hmHLSvittBGVcNSwartiLn85JhVmhOjXBhCn4kIrRt7IjubSfbty8pUNjWmREy1hIgQgV0d7pLegmA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-serialization-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-serialization-iosarm64/3.4.3/ktor-serialization-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -470,24 +522,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-pvfpOEctpsU7NEFGNvxYejvtY5Dlj98ABbvzlRKIfVojp1j4K/dKFqmpJE5MAoBiqfECG33JoTi4P3C0gftDnQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-sse-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.4.3/ktor-sse-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-sse-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.4.3/ktor-sse-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-pvfpOEctpsU7NEFGNvxYejvtY5Dlj98ABbvzlRKIfVojp1j4K/dKFqmpJE5MAoBiqfECG33JoTi4P3C0gftDnQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-sse-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.4.3/ktor-sse-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-sse-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-sse-jvm/3.4.3/ktor-sse-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -496,28 +552,32 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-Amr7OE0qfEF2mfO/3pq0yb9ZXrgRB8Cz9A4eDmrAER30a2l0eia2sPAdxqjre1lerilou2HNtxO4x5RqDL/fZg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-sse-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-iosarm64/3.4.3/ktor-sse-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-sse-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-sse-iosarm64/3.4.3/ktor-sse-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-Amr7OE0qfEF2mfO/3pq0yb9ZXrgRB8Cz9A4eDmrAER30a2l0eia2sPAdxqjre1lerilou2HNtxO4x5RqDL/fZg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-sse-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-sse-iosarm64/3.4.3/ktor-sse-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ZuvC7NoD4dlr9/htsRn3EMeY2RL8AQZqYlFcxKuDmWKbBkHAiuDmDVwvF2jwkx6IyHZ1j4nPP1lV0JHEqi8qPA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-sse-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-sse-iosarm64/3.4.3/ktor-sse-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -536,24 +596,28 @@
             "org.jetbrains.kotlinx:kotlinx-serialization-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-GKa9ahazLUXGlLCPHCeTqpFBGEHpcR67j97X7IGQGFm9/u0qIOkP1qFmAUs2c/1Ep+tkP80TckVFGouU3IdwqQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-utils-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.4.3/ktor-utils-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-sNlZkDQ292J6NAK7HpAwF/gayGy6Eu+bDUDNtcX2kPP0XjAFR3EQsHe1F3LCxnuYep8+nRa0kFez8amyVn5mdA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-utils-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.4.3/ktor-utils-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-GKa9ahazLUXGlLCPHCeTqpFBGEHpcR67j97X7IGQGFm9/u0qIOkP1qFmAUs2c/1Ep+tkP80TckVFGouU3IdwqQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-utils-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.4.3/ktor-utils-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-sNlZkDQ292J6NAK7HpAwF/gayGy6Eu+bDUDNtcX2kPP0XjAFR3EQsHe1F3LCxnuYep8+nRa0kFez8amyVn5mdA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-utils-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-utils-jvm/3.4.3/ktor-utils-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -562,21 +626,24 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-io",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
-          "klib": {
-            "integrity": "sha512-LtZJSWE9oN5pss5MZu7M5XwZ86XIcjXMXNWrEBqwTnZGjf2Gfz+hDI8u49iM3CfbqwPYS6gvdDT5WhHpq2Bbcw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-utils-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-iosarm64/3.4.3/ktor-utils-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [
+          "artifacts": [
             {
+              "type": "Klib",
+              "integrity": "sha512-LtZJSWE9oN5pss5MZu7M5XwZ86XIcjXMXNWrEBqwTnZGjf2Gfz+hDI8u49iM3CfbqwPYS6gvdDT5WhHpq2Bbcw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-utils-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-utils-iosarm64/3.4.3/ktor-utils-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "CInteropKlib",
               "integrity": "sha512-YLsl65SheefMwkLXNSLCWCfun9WAoBl7eTSUkAgpp3CSBzR5QsusfVOrax1DqHE3Os14n6BgEp6Kh0uhRrqUWQ==",
               "groupId": "io.ktor",
               "artifactId": "ktor-utils-iosarm64",
@@ -584,17 +651,18 @@
               "urls": [
                 "https://repo1.maven.org/maven2/io/ktor/ktor-utils-iosarm64/3.4.3/ktor-utils-iosarm64-3.4.3-cinterop-threadUtils.klib"
               ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-8xeoNaBP7n/wcuxyS8bAmJeHdCR0ztaooRpVMCwpPWk6HlU7slaTwJNbmm1hUbcjvnUXuB8a4wDgthudG9SsCg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-utils-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-utils-iosarm64/3.4.3/ktor-utils-iosarm64-3.4.3-sources.jar"
+              ]
             }
-          ],
-          "sourceJar": {
-            "integrity": "sha512-8xeoNaBP7n/wcuxyS8bAmJeHdCR0ztaooRpVMCwpPWk6HlU7slaTwJNbmm1hUbcjvnUXuB8a4wDgthudG9SsCg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-utils-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-utils-iosarm64/3.4.3/ktor-utils-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          ]
         }
       ]
     },
@@ -612,24 +680,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-fJhnzmRCCqCwRd9X6f5xiFDGXvLOpISsFZHZz78fTWmynvFHjREle+RmdAKs60qd5DBiCP/vRxBklwIjpd/uaA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websocket-serialization-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.4.3/ktor-websocket-serialization-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websocket-serialization-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.4.3/ktor-websocket-serialization-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-fJhnzmRCCqCwRd9X6f5xiFDGXvLOpISsFZHZz78fTWmynvFHjREle+RmdAKs60qd5DBiCP/vRxBklwIjpd/uaA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websocket-serialization-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.4.3/ktor-websocket-serialization-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websocket-serialization-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-jvm/3.4.3/ktor-websocket-serialization-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -638,28 +710,32 @@
           "dependencies": [],
           "exportedDependencies": [
             "io.ktor:ktor-serialization",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-2t5ihR1m7bO56iEeiWDP6ZD9aVt5ob4A2v8j+NVqH7zA932/CX9uT1+yDbMXfMrDali8tSwtvv3CIXVZdhibxw==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websocket-serialization-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-iosarm64/3.4.3/ktor-websocket-serialization-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websocket-serialization-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-iosarm64/3.4.3/ktor-websocket-serialization-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-2t5ihR1m7bO56iEeiWDP6ZD9aVt5ob4A2v8j+NVqH7zA932/CX9uT1+yDbMXfMrDali8tSwtvv3CIXVZdhibxw==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websocket-serialization-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-iosarm64/3.4.3/ktor-websocket-serialization-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-5/6MXQ8bq3R1VQf8/IIUvsYJNXNsDcGtVPEHYRXKWPY9QHAvOFA7Oyo7nY0CulW5HWL11OMmuby1xFSFkljj+A==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websocket-serialization-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websocket-serialization-iosarm64/3.4.3/ktor-websocket-serialization-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -678,24 +754,28 @@
             "org.jetbrains.kotlinx:kotlinx-coroutines-core",
             "org.slf4j:slf4j-api"
           ],
-          "jar": {
-            "integrity": "sha512-k/fSVjQijk+J1d+khh9XP8YZuho+K/NiJIHtmZvB7I6hw8l7/8bdjA09laH7EKol4oMVG6PS2FHy++iGndMeZA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websockets-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.4.3/ktor-websockets-jvm-3.4.3.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-7d8nnD9yVwPQR82WoapLwoB+YBgyWrBpLQ7koKlQtobAvkRhD1U7lsKLvYlWb78Rw5aPibJrQz6c7Q9Pe96tWQ==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websockets-jvm",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.4.3/ktor-websockets-jvm-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-k/fSVjQijk+J1d+khh9XP8YZuho+K/NiJIHtmZvB7I6hw8l7/8bdjA09laH7EKol4oMVG6PS2FHy++iGndMeZA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websockets-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.4.3/ktor-websockets-jvm-3.4.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-7d8nnD9yVwPQR82WoapLwoB+YBgyWrBpLQ7koKlQtobAvkRhD1U7lsKLvYlWb78Rw5aPibJrQz6c7Q9Pe96tWQ==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websockets-jvm",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-jvm/3.4.3/ktor-websockets-jvm-3.4.3-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -705,28 +785,32 @@
           "exportedDependencies": [
             "io.ktor:ktor-http",
             "io.ktor:ktor-utils",
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core"
           ],
-          "klib": {
-            "integrity": "sha512-dbtUZ2K+mfIVRbs8o1r1jlHQ56E44UwqI84e6gO0u0BJyLXyBA/ryIOQFewZ9y6dN5DJzyVdb5El6nLFdimJXA==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websockets-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-iosarm64/3.4.3/ktor-websockets-iosarm64-3.4.3.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-zza5xUg7kkpangAZKe2M13743JZVS7JX/74lU3CDiHdfvGZDFWS/urr1OnXxFMxx+XKKtXBEnNc02ueL6oy6Bg==",
-            "groupId": "io.ktor",
-            "artifactId": "ktor-websockets-iosarm64",
-            "version": "3.4.3",
-            "urls": [
-              "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-iosarm64/3.4.3/ktor-websockets-iosarm64-3.4.3-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-dbtUZ2K+mfIVRbs8o1r1jlHQ56E44UwqI84e6gO0u0BJyLXyBA/ryIOQFewZ9y6dN5DJzyVdb5El6nLFdimJXA==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websockets-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-iosarm64/3.4.3/ktor-websockets-iosarm64-3.4.3.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-zza5xUg7kkpangAZKe2M13743JZVS7JX/74lU3CDiHdfvGZDFWS/urr1OnXxFMxx+XKKtXBEnNc02ueL6oy6Bg==",
+              "groupId": "io.ktor",
+              "artifactId": "ktor-websockets-iosarm64",
+              "version": "3.4.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/io/ktor/ktor-websockets-iosarm64/3.4.3/ktor-websockets-iosarm64-3.4.3-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -741,24 +825,36 @@
           "exportedDependencies": [
             "org.jetbrains:annotations"
           ],
-          "jar": {
-            "integrity": "sha512-LRmCnknOebhYf/wWIPlcR3PshXgPRcYJAX+kEQZMDtvXb8fBMzd1gUaTJYzZyTLYK8lNGNLFRfyQGY/dMIfWqA==",
-            "groupId": "org.jetbrains.kotlin",
-            "artifactId": "kotlin-stdlib",
-            "version": "2.3.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-71/bXwB78Ppjst/UJWcpjxMlxYjYi2TSBmULANbj0j2MBCI+XrmWexN0ycU5e5jZ6ciurpA9YxPv46xUCMFxRQ==",
-            "groupId": "org.jetbrains.kotlin",
-            "artifactId": "kotlin-stdlib",
-            "version": "2.3.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-LRmCnknOebhYf/wWIPlcR3PshXgPRcYJAX+kEQZMDtvXb8fBMzd1gUaTJYzZyTLYK8lNGNLFRfyQGY/dMIfWqA==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "2.3.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-71/bXwB78Ppjst/UJWcpjxMlxYjYi2TSBmULANbj0j2MBCI+XrmWexN0ycU5e5jZ6ciurpA9YxPv46xUCMFxRQ==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "2.3.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.3.0/kotlin-stdlib-2.3.0-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "ios_arm64",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:2.3.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": []
         }
       ]
     },
@@ -770,18 +866,22 @@
           "id": "org.jetbrains.kotlinx:atomicfu:0.32.1",
           "variantId": "org.jetbrains.kotlinx:atomicfu-iosarm64:0.32.1",
           "dependencies": [],
-          "exportedDependencies": [],
-          "klib": {
-            "integrity": "sha512-sKP8OBiOHreVT3dEni3V18usHNLUD1Kg3XFQ3/OOJ8MSNXlXzLUnJ96u31xJ4lrzMie6URPJuYEGnQVDUNi+/A==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "atomicfu-iosarm64",
-            "version": "0.32.1",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-iosarm64/0.32.1/atomicfu-iosarm64-0.32.1.klib"
-            ]
-          },
-          "cinteropKlibs": [
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
             {
+              "type": "Klib",
+              "integrity": "sha512-sKP8OBiOHreVT3dEni3V18usHNLUD1Kg3XFQ3/OOJ8MSNXlXzLUnJ96u31xJ4lrzMie6URPJuYEGnQVDUNi+/A==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "atomicfu-iosarm64",
+              "version": "0.32.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-iosarm64/0.32.1/atomicfu-iosarm64-0.32.1.klib"
+              ]
+            },
+            {
+              "type": "CInteropKlib",
               "integrity": "sha512-ZMZrmwjhKdycHn4PiIM4mRYrp+bJBkv0e3oQp++GhNAeTyYsj5Hmu4wsvBehq64IC+Qc1zRLd9cQGrKS47JY1g==",
               "groupId": "org.jetbrains.kotlinx",
               "artifactId": "atomicfu-iosarm64",
@@ -789,17 +889,18 @@
               "urls": [
                 "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-iosarm64/0.32.1/atomicfu-iosarm64-0.32.1-cinterop-interop.klib"
               ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-YUwdaYyIOX6xpXTnRLNCwW3d4RjyGrRM+TI0aIiMBrVk3RGhjJJ3LhH1kSvSxo2uqGM8YLfb4z0ABQbI3HgH7Q==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "atomicfu-iosarm64",
+              "version": "0.32.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-iosarm64/0.32.1/atomicfu-iosarm64-0.32.1-sources.jar"
+              ]
             }
-          ],
-          "sourceJar": {
-            "integrity": "sha512-YUwdaYyIOX6xpXTnRLNCwW3d4RjyGrRM+TI0aIiMBrVk3RGhjJJ3LhH1kSvSxo2uqGM8YLfb4z0ABQbI3HgH7Q==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "atomicfu-iosarm64",
-            "version": "0.32.1",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/atomicfu-iosarm64/0.32.1/atomicfu-iosarm64-0.32.1-sources.jar"
-            ]
-          }
+          ]
         }
       ]
     },
@@ -815,24 +916,28 @@
             "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains:annotations"
           ],
-          "jar": {
-            "integrity": "sha512-I4/UUfgOIiSAyIDdi8/XbpIDtoM6AwalVIOz+esLJWUSQqPnvq91ENXjmSLx09mH/KeUaNlF6zWw8HFWp4h7oA==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-jvm",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-ZNo9M9348wxSfmUiwJAnaBWOeEAzuFuwM+WW38KXYfWMzCQKjI1/4qOovkwVNcmUAWKfrm+cMrQrrBKq/4TXzg==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-jvm",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-I4/UUfgOIiSAyIDdi8/XbpIDtoM6AwalVIOz+esLJWUSQqPnvq91ENXjmSLx09mH/KeUaNlF6zWw8HFWp4h7oA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ZNo9M9348wxSfmUiwJAnaBWOeEAzuFuwM+WW38KXYfWMzCQKjI1/4qOovkwVNcmUAWKfrm+cMrQrrBKq/4TXzg==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.10.2/kotlinx-coroutines-core-jvm-1.10.2-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -840,27 +945,31 @@
           "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-iosarm64:1.10.2",
           "dependencies": [],
           "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:atomicfu"
           ],
-          "klib": {
-            "integrity": "sha512-ujOAPZwU/UB7M1vMcmbUdqEPHpeMS3CKIGqc/9f9NvBzqPss+tBJ4XeBdiAnHJqfxnjBHFzOOjU8PT1OpJjlzg==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-iosarm64",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-iosarm64/1.10.2/kotlinx-coroutines-core-iosarm64-1.10.2.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-4JN9fgX3aYH4LKXNL4g+cb6Cd0BSX6J004w3NswrEOnsjzp/Y+8RuWPN8J/B311UC2q1bhgCVYBgDHcZb1eb9w==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-core-iosarm64",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-iosarm64/1.10.2/kotlinx-coroutines-core-iosarm64-1.10.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-ujOAPZwU/UB7M1vMcmbUdqEPHpeMS3CKIGqc/9f9NvBzqPss+tBJ4XeBdiAnHJqfxnjBHFzOOjU8PT1OpJjlzg==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-iosarm64",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-iosarm64/1.10.2/kotlinx-coroutines-core-iosarm64-1.10.2.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-4JN9fgX3aYH4LKXNL4g+cb6Cd0BSX6J004w3NswrEOnsjzp/Y+8RuWPN8J/B311UC2q1bhgCVYBgDHcZb1eb9w==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-iosarm64",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-iosarm64/1.10.2/kotlinx-coroutines-core-iosarm64-1.10.2-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -877,24 +986,28 @@
             "org.slf4j:slf4j-api"
           ],
           "exportedDependencies": [],
-          "jar": {
-            "integrity": "sha512-4GiNiw1Yd0ZW0UfJBDjKO+zp8gUsXKjGllgX/CnHkOIpdR+Bh0o9BrIpH+rOoASnwbjXdp0s3QPNPcndr1+hgw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-slf4j",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.10.2/kotlinx-coroutines-slf4j-1.10.2.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-wUIrHX1VIfj9Gv9UI/6YTH0CqGxL/JfX7g7dkghSwFfNI/hQlXOOqmce4kpaCVOHmQ4rEbSbm0VJrwMPGPAxvw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-coroutines-slf4j",
-            "version": "1.10.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.10.2/kotlinx-coroutines-slf4j-1.10.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-4GiNiw1Yd0ZW0UfJBDjKO+zp8gUsXKjGllgX/CnHkOIpdR+Bh0o9BrIpH+rOoASnwbjXdp0s3QPNPcndr1+hgw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-slf4j",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.10.2/kotlinx-coroutines-slf4j-1.10.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-wUIrHX1VIfj9Gv9UI/6YTH0CqGxL/JfX7g7dkghSwFfNI/hQlXOOqmce4kpaCVOHmQ4rEbSbm0VJrwMPGPAxvw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-slf4j",
+              "version": "1.10.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-slf4j/1.10.2/kotlinx-coroutines-slf4j-1.10.2-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -909,50 +1022,59 @@
           "exportedDependencies": [
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
-          "jar": {
-            "integrity": "sha512-QA9d6uCaKFvqaLsA/MJHub5MdnRlhFFraqXmEnGXg7bueZebSXBT8o2IeN19dRTpGqNhGqoc5842mGL1PzqcSw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-bytestring-jvm",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.8.2/kotlinx-io-bytestring-jvm-0.8.2.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-vv5uHOFGMd6by3qUCiLnkm97pYwowhdNIx7AprMeYmeVz9BoQg9bsE10/iHbzzouqVsaBT0SKEz9PawHbbgZCA==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-bytestring-jvm",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.8.2/kotlinx-io-bytestring-jvm-0.8.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-QA9d6uCaKFvqaLsA/MJHub5MdnRlhFFraqXmEnGXg7bueZebSXBT8o2IeN19dRTpGqNhGqoc5842mGL1PzqcSw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-bytestring-jvm",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.8.2/kotlinx-io-bytestring-jvm-0.8.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-vv5uHOFGMd6by3qUCiLnkm97pYwowhdNIx7AprMeYmeVz9BoQg9bsE10/iHbzzouqVsaBT0SKEz9PawHbbgZCA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-bytestring-jvm",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-jvm/0.8.2/kotlinx-io-bytestring-jvm-0.8.2-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
           "id": "org.jetbrains.kotlinx:kotlinx-io-bytestring:0.8.2",
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-bytestring-iosarm64:0.8.2",
           "dependencies": [],
-          "exportedDependencies": [],
-          "klib": {
-            "integrity": "sha512-95Gv8F3VDklr67vAGudvXiZoML5BbGRfhNZoiNRxMRau906+DhlLbtUEUUizMpL+WwwNs6flFY06ijDtF19YVQ==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-bytestring-iosarm64",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-iosarm64/0.8.2/kotlinx-io-bytestring-iosarm64-0.8.2.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-XiZuakg5/FuolBUo9jTqOVSOX7HlWCzYyThGS4dWrQ/t08NiU36K+Z0FRhsbmU0CYjdgSAecW4uuTMrtfwc6YA==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-bytestring-iosarm64",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-iosarm64/0.8.2/kotlinx-io-bytestring-iosarm64-0.8.2-sources.jar"
-            ]
-          }
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-95Gv8F3VDklr67vAGudvXiZoML5BbGRfhNZoiNRxMRau906+DhlLbtUEUUizMpL+WwwNs6flFY06ijDtF19YVQ==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-bytestring-iosarm64",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-iosarm64/0.8.2/kotlinx-io-bytestring-iosarm64-0.8.2.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-XiZuakg5/FuolBUo9jTqOVSOX7HlWCzYyThGS4dWrQ/t08NiU36K+Z0FRhsbmU0CYjdgSAecW4uuTMrtfwc6YA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-bytestring-iosarm64",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-bytestring-iosarm64/0.8.2/kotlinx-io-bytestring-iosarm64-0.8.2-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -968,24 +1090,28 @@
             "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
-          "jar": {
-            "integrity": "sha512-zNxhjN6tc7RwLhv/zfUDvafD4Orj1NtlQwRC7/HHsv2utYOHgZlPyC5GMQ3oGoBnB7nDwucuNrrMFU2oqCIUvQ==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-core-jvm",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.8.2/kotlinx-io-core-jvm-0.8.2.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-szXYZSSisgrl9Ig41kp5c7CcNOb/320qi9iWLAtqwNmuGvxAdKyty7G/8fZChCcqdnAucJ4jm6QIYIFJ1+MJ1w==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-core-jvm",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.8.2/kotlinx-io-core-jvm-0.8.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-zNxhjN6tc7RwLhv/zfUDvafD4Orj1NtlQwRC7/HHsv2utYOHgZlPyC5GMQ3oGoBnB7nDwucuNrrMFU2oqCIUvQ==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-core-jvm",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.8.2/kotlinx-io-core-jvm-0.8.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-szXYZSSisgrl9Ig41kp5c7CcNOb/320qi9iWLAtqwNmuGvxAdKyty7G/8fZChCcqdnAucJ4jm6QIYIFJ1+MJ1w==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-core-jvm",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-jvm/0.8.2/kotlinx-io-core-jvm-0.8.2-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
@@ -993,27 +1119,31 @@
           "variantId": "org.jetbrains.kotlinx:kotlinx-io-core-iosarm64:0.8.2",
           "dependencies": [],
           "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:kotlinx-io-bytestring"
           ],
-          "klib": {
-            "integrity": "sha512-nMc3XXMf9ZdiV3x7OE2jssvezpdnYC56CS3QMGywIkQT5fOpgEfob16t6MBcRSgTCdKRWhOS1eMHET7Mc08toQ==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-core-iosarm64",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-iosarm64/0.8.2/kotlinx-io-core-iosarm64-0.8.2.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-6yHvuypAB8uHf+KxVcLaO/hgBmspeXhMvoXLq+QegFyiq2QnJHu63BC8DvGy4TEW4edgkmH4vEj+FHwQWDDnrw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-io-core-iosarm64",
-            "version": "0.8.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-iosarm64/0.8.2/kotlinx-io-core-iosarm64-0.8.2-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-nMc3XXMf9ZdiV3x7OE2jssvezpdnYC56CS3QMGywIkQT5fOpgEfob16t6MBcRSgTCdKRWhOS1eMHET7Mc08toQ==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-core-iosarm64",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-iosarm64/0.8.2/kotlinx-io-core-iosarm64-0.8.2.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-6yHvuypAB8uHf+KxVcLaO/hgBmspeXhMvoXLq+QegFyiq2QnJHu63BC8DvGy4TEW4edgkmH4vEj+FHwQWDDnrw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-io-core-iosarm64",
+              "version": "0.8.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-io-core-iosarm64/0.8.2/kotlinx-io-core-iosarm64-0.8.2-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1028,50 +1158,59 @@
           "exportedDependencies": [
             "org.jetbrains.kotlin:kotlin-stdlib"
           ],
-          "jar": {
-            "integrity": "sha512-OdT+YZq1LtsgsS6mrqbARqFPiHE8njZzGNUCDIb3ErvhegpPpVJWNpPsohq0eM6+TzlM2NnK28HZ13iFyE/ynw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-jvm",
-            "version": "1.9.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.9.0/kotlinx-serialization-core-jvm-1.9.0.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-arL6KfniXzaMYh8nzpyERVxXbvIM0NuGRwSa/wb5YUeBlIMzTqZ1gIM3EWnQayoDiRYy7M1borjirteTgqtw6Q==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-jvm",
-            "version": "1.9.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.9.0/kotlinx-serialization-core-jvm-1.9.0-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-OdT+YZq1LtsgsS6mrqbARqFPiHE8njZzGNUCDIb3ErvhegpPpVJWNpPsohq0eM6+TzlM2NnK28HZ13iFyE/ynw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-jvm",
+              "version": "1.9.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.9.0/kotlinx-serialization-core-jvm-1.9.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-arL6KfniXzaMYh8nzpyERVxXbvIM0NuGRwSa/wb5YUeBlIMzTqZ1gIM3EWnQayoDiRYy7M1borjirteTgqtw6Q==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-jvm",
+              "version": "1.9.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.9.0/kotlinx-serialization-core-jvm-1.9.0-sources.jar"
+              ]
+            }
+          ]
         },
         {
           "platform": "ios_arm64",
           "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.9.0",
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-iosarm64:1.9.0",
           "dependencies": [],
-          "exportedDependencies": [],
-          "klib": {
-            "integrity": "sha512-icby48Qv6amaCt6BTCacExFrThk8lSkl0h4YieOANqeXjOxiAxo/2mQ8tg97M+837BS8UoyE6k5nX38cW/I89A==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-iosarm64",
-            "version": "1.9.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-iosarm64/1.9.0/kotlinx-serialization-core-iosarm64-1.9.0.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-rl01gMPlXQHyUHk70sJa7vILonr3zwE6UbiypiEKAGYInX4K7j3iTbcr4bUxPfv7lVgyK0RY/H4vzv/e47hqOA==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-iosarm64",
-            "version": "1.9.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-iosarm64/1.9.0/kotlinx-serialization-core-iosarm64-1.9.0-sources.jar"
-            ]
-          }
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-icby48Qv6amaCt6BTCacExFrThk8lSkl0h4YieOANqeXjOxiAxo/2mQ8tg97M+837BS8UoyE6k5nX38cW/I89A==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-iosarm64",
+              "version": "1.9.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-iosarm64/1.9.0/kotlinx-serialization-core-iosarm64-1.9.0.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-rl01gMPlXQHyUHk70sJa7vILonr3zwE6UbiypiEKAGYInX4K7j3iTbcr4bUxPfv7lVgyK0RY/H4vzv/e47hqOA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-iosarm64",
+              "version": "1.9.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-iosarm64/1.9.0/kotlinx-serialization-core-iosarm64-1.9.0-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1084,24 +1223,28 @@
           "variantId": "org.jetbrains:annotations:23.0.0",
           "dependencies": [],
           "exportedDependencies": [],
-          "jar": {
-            "integrity": "sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=",
-            "groupId": "org.jetbrains",
-            "artifactId": "annotations",
-            "version": "23.0.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha1-ylCI1hWsyqvSqpVrELI2pOdc/Ms=",
-            "groupId": "org.jetbrains",
-            "artifactId": "annotations",
-            "version": "23.0.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "23.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ylCI1hWsyqvSqpVrELI2pOdc/Ms=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "23.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1114,24 +1257,28 @@
           "variantId": "org.slf4j:slf4j-api:2.0.17",
           "dependencies": [],
           "exportedDependencies": [],
-          "jar": {
-            "integrity": "sha1-2eWKycd3m6O/gUKv9sgwYXp/5g8=",
-            "groupId": "org.slf4j",
-            "artifactId": "slf4j-api",
-            "version": "2.0.17",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha1-19pef+yzVEseMvhtwO9dXs+fOBs=",
-            "groupId": "org.slf4j",
-            "artifactId": "slf4j-api",
-            "version": "2.0.17",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-2eWKycd3m6O/gUKv9sgwYXp/5g8=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "2.0.17",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-19pef+yzVEseMvhtwO9dXs+fOBs=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "2.0.17",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     }

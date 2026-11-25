@@ -110,6 +110,7 @@ class MultiplatformResolverGradleGoldenDataTest {
                 platforms =
                     setOf(
                         JVM,
+                        ANDROID,
                         WASM_JS,
                         IOS_SIMULATOR_ARM64,
                         IOS_ARM64,
@@ -226,46 +227,25 @@ private fun assertEqualsGradleDumps(
     fun Iterable<MultiplatformVariant>.toGradleDumpEntries():
         Map<ResolutionPlatform, List<GradleDumpEntry>> {
         return flatMap { variant ->
-            when (variant) {
-                is MultiplatformVariant.Jvm ->
-                    listOf(
-                        GradleDumpEntry(
-                            variant.platform,
-                            gav = variant.variantId.gav,
-                            hash = variant.jar.integrity,
-                        ),
-                    )
+            variant.artifacts
+                .filter { artifact ->
+                    when (artifact.type) {
+                        MultiplatformLibraryArtifact.Type.ClasspathJar,
+                        MultiplatformLibraryArtifact.Type.Klib,
+                        MultiplatformLibraryArtifact.Type.CInteropKlib,
+                        MultiplatformLibraryArtifact.Type.Aar -> true
 
-                is MultiplatformVariant.WasmJs ->
-                    listOf(
-                        GradleDumpEntry(
-                            variant.platform,
-                            gav = variant.variantId.gav,
-                            hash = variant.klib.integrity,
-                        ),
-                    )
-
-                is MultiplatformVariant.Native ->
-                    buildList {
-                        add(
-                            GradleDumpEntry(
-                                variant.platform,
-                                gav = variant.variantId.gav,
-                                hash = variant.klib.integrity,
-                            ),
-                        )
-
-                        variant.cinteropKlibs.forEach { cinterop ->
-                            add(
-                                GradleDumpEntry(
-                                    variant.platform,
-                                    gav = variant.variantId.gav,
-                                    hash = cinterop.integrity,
-                                ),
-                            )
-                        }
+                        MultiplatformLibraryArtifact.Type.SourceJar,
+                        MultiplatformLibraryArtifact.Type.Npm -> false
                     }
-            }
+                }
+                .map { artifact ->
+                    GradleDumpEntry(
+                        variant.platform,
+                        gav = variant.variantId.gav,
+                        hash = artifact.integrity,
+                    )
+                }
         }
             .groupBy { it.resolutionPlatform }
     }

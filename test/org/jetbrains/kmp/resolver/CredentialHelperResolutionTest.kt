@@ -144,11 +144,15 @@ class CredentialHelperResolutionTest {
                 withHelperCredentials { credentials ->
                     val variants = resolve(server, credentials)
 
-                    val variant = assertIs<MultiplatformVariant.Jvm>(variants.single())
+                    val variant = assertIs<MultiplatformVariant>(variants.single())
+                    assertEquals(ResolutionPlatform.JVM, variant.platform)
                     assertEquals(MultiplatformLibraryId("com.example", "hello", "1.0"), variant.id)
                     assertEquals(
                         listOf(server.urlOf("/com/example/hello/1.0/hello-1.0.jar")),
-                        variant.jar.urls,
+                        variant
+                            .getMavenArtifacts(MultiplatformLibraryArtifact.Type.ClasspathJar)
+                            .single()
+                            .urls,
                     )
                 }
             }

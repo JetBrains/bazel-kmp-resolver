@@ -1,0 +1,3 @@
+# Settings of the rules_kotlin_external module workspace, whose root runs the Starlark unit tests
+# (`bazel test //tests/...` after `cd rules_kotlin_external`). Consumers of the module are unaffected:
+# a .bazelrc only applies to the workspace it lives in.

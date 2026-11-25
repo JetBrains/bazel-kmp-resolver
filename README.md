@@ -3,6 +3,28 @@
 A resolver of Kotlin Multiplatform dependencies that produces a manifest of that resolution, to be used notably in Bazel
 repository rules
 
+## Bazel usage: rules_kotlin_external
+
+The `rules_kotlin_external/` directory is the Bazel module declaring and resolving these
+dependencies, consolidating intellij-community's `fleet/build/rules/kmp.bzl`:
+
+```starlark
+kmp = use_extension("@rules_kotlin_external//rules:extensions.bzl", "kmp")
+kmp.install(
+    name = "kmp_deps",
+    artifacts = ["org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"],
+    platforms = ["jvm", "wasmjs"],
+    repositories = ["https://repo1.maven.org/maven2"],
+)
+kmp.resolver(version = "0.5.0", sha256 = {"macos-arm64": "...", ...})
+use_repo(kmp, "kmp_deps_jvm", "kmp_deps_wasmjs")
+```
+
+See `rules_kotlin_external/docs/rules_kotlin_external.md` (usage, tags, pluggable import rules)
+and `rules_kotlin_external/docs/facts.md` (resolution caching). Through the Kotlin Toolchain,
+`./kotlin do buildBazel` and `./kotlin do testBazel` build and test it against the freshly built
+resolver, a task-graph dependency of both commands.
+
 ## Usage
 
 The resolver is not meant to be use standalone, it will be used in a Bazel repository rule.
@@ -10,7 +32,7 @@ The resolver is not meant to be use standalone, it will be used in a Bazel repos
 But you could try it out by running:
 
 ```shell
-./kotlin run --module bazel-kmp-resolver --main-class org.jetbrains.kmp.resolver.MainKt -- --output-manifest-file=./build/kmp-local-cache/manifest.json --cache-dir=./build/kmp-local-cache --repository=https://repo1.maven.org/maven2 --repository=https://dl.google.com/dl/android/maven2 --repository-credentials-file=./testResources/credentials.json --coordinate=io.ktor:ktor-client-cio:3.5.0 --platform=wasmjs --platform=jvm
+./kotlin run --module bazel-kmp-resolver --main-class org.jetbrains.kmp.resolver.MainKt -- --output-manifest-file=./build/kmp-local-cache/manifest.json --cache-dir=./build/kmp-local-cache --repository=https://repo1.maven.org/maven2 --repository=https://dl.google.com/dl/android/maven2 --repository-credentials-file=./testResources/credentials.json --coordinate=io.ktor:ktor-client-cio:3.5.0 --platform=wasmjs --platform=jvm --platform=android
 ```
 
 ### Authentication

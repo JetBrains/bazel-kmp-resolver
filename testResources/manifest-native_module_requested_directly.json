@@ -6,6 +6,34 @@
     "https://repo1.maven.org/maven2"
   ],
   "libraries": {
+    "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
+      "variants": [
+        {
+          "platform": "linux_x64",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": []
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:2.1.20": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
+      "variants": [
+        {
+          "platform": "linux_x64",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": []
+        }
+      ]
+    },
     "org.jetbrains.kotlinx:kotlinx-datetime-linuxx64:0.7.1": {
       "id": "org.jetbrains.kotlinx:kotlinx-datetime-linuxx64:0.7.1",
       "variants": [
@@ -15,27 +43,31 @@
           "variantId": "org.jetbrains.kotlinx:kotlinx-datetime-linuxx64:0.7.1",
           "dependencies": [],
           "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
             "org.jetbrains.kotlinx:kotlinx-serialization-core"
           ],
-          "klib": {
-            "integrity": "sha512-YDrTuYl/a2c8gkc4kfK+oTXpgQOJC4dDmCtvEb0EHLF+OO0loK7nU1osevKg8NHwZiYIUUVhCM96plCmLt1rlQ==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-datetime-linuxx64",
-            "version": "0.7.1",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-linuxx64/0.7.1/kotlinx-datetime-linuxx64-0.7.1.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-IRKU7LOvPtN0ZIVBOrap8UjZnEudhBj6Zkn187XnqVAzKx6ac+d5I+R+RVe9nzweuHKvPJZSpq51wEygBuvyzA==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-datetime-linuxx64",
-            "version": "0.7.1",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-linuxx64/0.7.1/kotlinx-datetime-linuxx64-0.7.1-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-YDrTuYl/a2c8gkc4kfK+oTXpgQOJC4dDmCtvEb0EHLF+OO0loK7nU1osevKg8NHwZiYIUUVhCM96plCmLt1rlQ==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-datetime-linuxx64",
+              "version": "0.7.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-linuxx64/0.7.1/kotlinx-datetime-linuxx64-0.7.1.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-IRKU7LOvPtN0ZIVBOrap8UjZnEudhBj6Zkn187XnqVAzKx6ac+d5I+R+RVe9nzweuHKvPJZSpq51wEygBuvyzA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-datetime-linuxx64",
+              "version": "0.7.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-datetime-linuxx64/0.7.1/kotlinx-datetime-linuxx64-0.7.1-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -47,26 +79,32 @@
           "id": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2",
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-linuxx64:1.6.2",
           "dependencies": [],
-          "exportedDependencies": [],
-          "klib": {
-            "integrity": "sha512-lB9ADDEJ5NvFpDlGOgM6aGOyN5wnc+CF7GzqfxbctJe48JdQDZfSTC3dS7yLfvc+h1x6zj+Xim4R4PJSU69TXg==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-linuxx64",
-            "version": "1.6.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-linuxx64/1.6.2/kotlinx-serialization-core-linuxx64-1.6.2.klib"
-            ]
-          },
-          "cinteropKlibs": [],
-          "sourceJar": {
-            "integrity": "sha512-FjYQzFjla+IuVrZ/sODFNbzdPd5PDNZHN0nkTjKJ534Yq2KSvynVFAkqK5xE9RBbA/wNxMMt/Bu14x8wokHwXw==",
-            "groupId": "org.jetbrains.kotlinx",
-            "artifactId": "kotlinx-serialization-core-linuxx64",
-            "version": "1.6.2",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-linuxx64/1.6.2/kotlinx-serialization-core-linuxx64-1.6.2-sources.jar"
-            ]
-          }
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-common"
+          ],
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-lB9ADDEJ5NvFpDlGOgM6aGOyN5wnc+CF7GzqfxbctJe48JdQDZfSTC3dS7yLfvc+h1x6zj+Xim4R4PJSU69TXg==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-linuxx64",
+              "version": "1.6.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-linuxx64/1.6.2/kotlinx-serialization-core-linuxx64-1.6.2.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-FjYQzFjla+IuVrZ/sODFNbzdPd5PDNZHN0nkTjKJ534Yq2KSvynVFAkqK5xE9RBbA/wNxMMt/Bu14x8wokHwXw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-serialization-core-linuxx64",
+              "version": "1.6.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-linuxx64/1.6.2/kotlinx-serialization-core-linuxx64-1.6.2-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     }

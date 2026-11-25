@@ -1,0 +1,22 @@
+# Build file injected into npm package http_archive repositories (tarballs from registry.npmjs.org,
+# extracted with strip_prefix = "package"). Ported from intellij-community's
+# fleet/build/rules/npm.BUILD.bazel.
+
+filegroup(
+    name = "package",
+    srcs = glob(
+        ["**"],
+        exclude = [
+            "BUILD.bazel",
+            "MODULE.bazel",
+            "WORKSPACE",
+        ],
+    ),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "package_json",
+    srcs = ["package.json"],
+    visibility = ["//visibility:public"],
+)

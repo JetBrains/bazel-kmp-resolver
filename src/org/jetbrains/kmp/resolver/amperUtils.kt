@@ -23,3 +23,5 @@ internal fun DependencyFileImpl.isSourceJar(): Boolean =
 internal fun DependencyFileImpl.isClasspathJar(): Boolean = !isDocumentation && extension == "jar"
 
 internal fun DependencyFile.isKlib(): Boolean = extension == "klib"
+
+internal fun DependencyFile.isAar(): Boolean = !isDocumentation && extension == "aar"

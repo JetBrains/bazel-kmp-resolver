@@ -1,0 +1,10 @@
+# The staged, locally built resolver binary the kmp.resolver tag above points to.
+exports_files(["resolver-local"])
+
+# No Android SDK is wired here: building the generated targets proves the analysis and the
+# downloads — the `.aar` of annotation-experimental, the jar fallback of annotation, and the
+# Compose runtime redirecting to its AndroidX dependencies:
+#
+#     bazel build @kmp_deps_android//:androidx_annotation_annotation_experimental
+#     bazel build @kmp_deps_android//:androidx_annotation_annotation
+#     bazel build @kmp_deps_android//:org_jetbrains_compose_runtime_runtime

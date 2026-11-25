@@ -1,6 +1,6 @@
-
 plugins {
     kotlin("multiplatform")
+    id("com.android.kotlin.multiplatform.library")
     `resolve-test-data`
 }
 
@@ -12,6 +12,11 @@ kotlin {
     macosArm64()
     linuxArm64()
     linuxX64()
+
+    android {
+        namespace = "kmp-popular"
+        compileSdk = 37
+    }
 
     sourceSets.commonMain.dependencies {
         implementation("io.ktor:ktor-client-core:3.6.1")

@@ -1,0 +1,4 @@
+# Default import rules of the generated platform hub repositories; consumers swap them through the
+# `*_import_bzl` labels of their `kmp.install(...)` tag. Loaded from generated BUILD files of other
+# repositories: exported for cross-repo loads.
+exports_files(glob(["*.bzl"]))
