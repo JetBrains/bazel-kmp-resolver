@@ -64,6 +64,39 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `plain JVM library does not leak into a native platform variant`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                // a plain JVM library, published with a POM only: no variant of it is expected for
+                // native platforms, while its sources jar used to be collected into a `linux_x64`
+                // variant
+                // this library uses 'bundle' as packaging in its POM
+                "com.google.guava:failureaccess:1.0.1",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.LINUX_X64, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-jvm_library_native_platform.json",
+        )
+    }
+
+    @Test
     fun `do not resolve JVM nodes`() = runBlocking {
         val repositories =
             listOf(

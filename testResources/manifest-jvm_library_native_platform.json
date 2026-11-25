@@ -1,0 +1,44 @@
+{
+  "askedCoordinates": [
+    "com.google.guava:failureaccess:1.0.1"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "com.google.guava:failureaccess:1.0.1": {
+      "id": "com.google.guava:failureaccess:1.0.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.guava:failureaccess:1.0.1",
+          "variantId": "com.google.guava:failureaccess:1.0.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Hc8d44Kgv5Wj2LCElUbIi6wSksk=",
+              "groupId": "com.google.guava",
+              "artifactId": "failureaccess",
+              "version": "1.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-HQZOYarWxRzHf5tZ3CzMx455L1o=",
+              "groupId": "com.google.guava",
+              "artifactId": "failureaccess",
+              "version": "1.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

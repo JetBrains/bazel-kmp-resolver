@@ -464,10 +464,26 @@ internal class MultiplatformResolver(
         /*
         dependency.packaging is only populated for pom based dependencies (no module files).
         This already indicates that the dependency is not a KMP library.
+        https://maven.apache.org/pom.html#Packaging
+         */
+
+        /*
+        Plain old 'jar' packaged POM only dependency, which requires Android or JVM
          */
         if (
-            (dependency.packaging == "jar" || dependency.packaging == "pom") &&
-                (platform != ResolutionPlatform.JVM && platform != ResolutionPlatform.ANDROID)
+            dependency.packaging == "jar" &&
+                platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)
+        ) {
+            return false
+        }
+
+        /*
+        Different JVM packaged POM only dependency, which requires JVM
+         */
+        if (
+            dependency.packaging in
+                listOf("war", "pom", "ear", "bundle", "rar", "maven.plugin", "ejb", "rar") &&
+                platform != ResolutionPlatform.JVM
         ) {
             return false
         }
