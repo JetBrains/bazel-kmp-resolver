@@ -163,6 +163,35 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `jvm resolution - coroutines-core`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-jvm_resolution_coroutines_core.json",
+        )
+    }
+
+    @Test
     fun `wasmjs and jvm resolution`() = runBlocking {
         val repositories =
             listOf(

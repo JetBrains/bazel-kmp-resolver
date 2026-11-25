@@ -1,21 +1,13 @@
 package org.jetbrains.kmp.resolver
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.descriptors.PolymorphicKind
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonDecoder
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import org.jetbrains.amper.dependency.resolution.PlatformType
 import org.jetbrains.amper.dependency.resolution.ResolutionPlatform
 
 internal val bazelManifestJson by lazy {
@@ -69,6 +61,7 @@ internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibr
         MultiplatformLibraryId.fromString(decoder.decodeString())
 }
 
+/*
 /**
  * Serializes and deserializes a [MultiplatformVariant] with its [MultiplatformVariant.platform] as
  * the only discriminator: no class discriminator is written, and the variant the platform of a JSON
@@ -129,6 +122,7 @@ internal object MultiplatformVariantSerializer : KSerializer<MultiplatformVarian
         return decoder.json.decodeFromJsonElement(deserializer, element)
     }
 }
+ */
 
 internal class MultiplatformLibraryArtifactIntegritySerializer :
     KSerializer<MultiplatformLibraryArtifactIntegrity> {

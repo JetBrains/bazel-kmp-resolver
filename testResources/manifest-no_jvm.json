@@ -15,24 +15,28 @@
           "variantId": "org.jetbrains.kotlin:kotlin-stdlib-wasm-js:2.4.0",
           "dependencies": [],
           "exportedDependencies": [],
-          "klib": {
-            "integrity": "sha512-J9Vz6SLs71t58T0sdbSerBvL4YYCmmk7Y4vJdQZ47c3jqBCx3mYcBC5EEa7njqZ8SbruzaGz6QYbAnOCoahJRg==",
-            "groupId": "org.jetbrains.kotlin",
-            "artifactId": "kotlin-stdlib-wasm-js",
-            "version": "2.4.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.4.0/kotlin-stdlib-wasm-js-2.4.0.klib"
-            ]
-          },
-          "sourceJar": {
-            "integrity": "sha512-Y359hJFYRzzWaabyRzDNfZxzl3dUn9eGxvdyMM9uDUaz3NfDdlW9xNnxSPmRY8GkDlxQH7l2OXy3rLmewmna6g==",
-            "groupId": "org.jetbrains.kotlin",
-            "artifactId": "kotlin-stdlib-wasm-js",
-            "version": "2.4.0",
-            "urls": [
-              "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.4.0/kotlin-stdlib-wasm-js-2.4.0-sources.jar"
-            ]
-          }
+          "artifacts": [
+            {
+              "type": "Klib",
+              "integrity": "sha512-J9Vz6SLs71t58T0sdbSerBvL4YYCmmk7Y4vJdQZ47c3jqBCx3mYcBC5EEa7njqZ8SbruzaGz6QYbAnOCoahJRg==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-wasm-js",
+              "version": "2.4.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.4.0/kotlin-stdlib-wasm-js-2.4.0.klib"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Y359hJFYRzzWaabyRzDNfZxzl3dUn9eGxvdyMM9uDUaz3NfDdlW9xNnxSPmRY8GkDlxQH7l2OXy3rLmewmna6g==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-wasm-js",
+              "version": "2.4.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-wasm-js/2.4.0/kotlin-stdlib-wasm-js-2.4.0-sources.jar"
+              ]
+            }
+          ]
         }
       ]
     }
