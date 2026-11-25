@@ -1,0 +1,19 @@
+product: jvm/amper-plugin
+
+repositories:
+  - https://packages.jetbrains.team/maven/p/amper/amper
+
+settings:
+  kotlin:
+    version: 2.4.21
+  jvm:
+    release: 21
+
+pluginInfo:
+  settingsClass: org.jetbrains.kmp.resolver.bazel.models.BazelSettings
+
+dependencies:
+  - ../shared
+  - ../native-image
+  - $libs.async.processes
+  - $libs.kotlinx.coroutines.core.jvm

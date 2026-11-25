@@ -21,7 +21,9 @@ use_repo(kmp, "kmp_deps_jvm", "kmp_deps_wasmjs")
 ```
 
 See `rules_kotlin_external/docs/rules_kotlin_external.md` (usage, tags, pluggable import rules)
-and `rules_kotlin_external/docs/facts.md` (resolution caching).
+and `rules_kotlin_external/docs/facts.md` (resolution caching). Through the Kotlin Toolchain,
+`./kotlin do buildBazel` and `./kotlin do testBazel` build and test it against the freshly built
+resolver, a task-graph dependency of both commands.
 
 ## Usage
 

@@ -88,6 +88,14 @@ plugins:
         url: https://gds.oracle.com/download/graal/25i5/archive/graalvm-jdk-25i5-25.0.5.0.3_windows-x64_bin.zip
         sha256: dc28ad6ea38a24768c10571b47fbee84318f0f0c64883237efbba26cfc5cede0
         nativeImagePath: graalvm-25.5.5.0.3+1.1/bin/native-image.cmd
+  # `./kotlin do buildBazel` / `./kotlin do testBazel` build and test the rules_kotlin_external
+  # module against the freshly built resolver: their native-binary input is the `buildNativeImage`
+  # output directory, which the task graph wires as a dependency, so the binary is built first,
+  # incrementally. Keep it in sync with native-image.outputDirectory.
+  bazel:
+    enabled: true
+    rulesDirectory: rules_kotlin_external
+    nativeBinaryDirectory: build/native-image
   # provisions the hermetic Node.js distribution the tests run npm with, before the tests are compiled.
   # sha256 values from https://nodejs.org/dist/v22.22.2/SHASUMS256.txt
   node:

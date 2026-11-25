@@ -124,8 +124,16 @@ kmp.install(..., klib_import_bzl = "//tools:kmp_imports.bzl")
 
 ## Tests
 
-- `cd rules_kotlin_external && bazel test //tests/...` — Starlark unit tests.
-- `rules_kotlin_external/examples/` — integration workspaces, run against the locally built
-  resolver: `./kotlin do buildNativeImage`, `examples/stage-local-resolver.sh`, then `bazel build`
-  the targets named in each example's `BUILD.bazel`. `examples/facts-behavior.sh` asserts the facts
-  caching cycle.
+Through the Kotlin Toolchain commands, self-sufficient: the binary directory is declared as a task
+input, so the task graph builds the resolver with the toolchain's own incremental
+`buildNativeImage` task first — a full GraalVM build when the resolver sources changed, a no-op when
+it is up to date — before the Bazel side runs against it.
+
+- `./kotlin do testBazel` — the Starlark unit tests of the rules plus the facts caching behavior of
+  the `kmp` extension, against the freshly built resolver.
+- `./kotlin do buildBazel` — the module workspace and every example workspace built, each platform's
+  resolution, downloads, and import-rule wiring exercised.
+
+The pieces run directly: `./kotlin do buildNativeImage`, `examples/stage-local-resolver.sh` to stage
+the local binary into the examples, `bazel test //tests/...` and `bazel build` of the targets named in
+each example's `BUILD.bazel`, and `examples/facts-behavior.sh`.

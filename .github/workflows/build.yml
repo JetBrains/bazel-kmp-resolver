@@ -129,30 +129,9 @@ jobs:
       - name: Build native image
         shell: bash
         run: ./kotlin do buildNativeImage
-      - name: Starlark unit tests
+      - name: Bazel build (module and examples)
         shell: bash
-        working-directory: rules_kotlin_external
-        run: bazel test //tests/...
-      - name: Stage the local resolver into the examples
+        run: ./kotlin do buildBazel
+      - name: Bazel tests (unit tests and facts caching)
         shell: bash
-        run: rules_kotlin_external/examples/stage-local-resolver.sh
-      - name: Build the examples
-        shell: bash
-        run: |
-          cd rules_kotlin_external/examples/jvm
-          bazel build //:app @kmp_deps_jvm//:org_jetbrains_kotlinx_kotlinx_coroutines_core
-          cd ../wasmjs
-          bazel build @kmp_deps_wasmjs//:org_jetbrains_kotlinx_kotlinx_datetime
-          cd ../native
-          bazel build \
-            @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver \
-            @kmp_deps_ios_arm64//:co_touchlab_sqliter_driver_iosarm64_1_4_0_cinterop_0 \
-            @kmp_deps_macos_arm64//:org_jetbrains_kotlinx_kotlinx_coroutines_core
-          cd ../android
-          bazel build \
-            @kmp_deps_android//:androidx_annotation_annotation_experimental \
-            @kmp_deps_android//:androidx_annotation_annotation \
-            @kmp_deps_android//:org_jetbrains_compose_runtime_runtime
-      - name: Facts caching behavior
-        shell: bash
-        run: rules_kotlin_external/examples/facts-behavior.sh
+        run: ./kotlin do testBazel
