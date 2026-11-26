@@ -20,16 +20,12 @@ internal sealed class MultiplatformLibraryArtifact {
                     Npm -> "Npm"
                 }
 
-        sealed interface Maven : Type<MavenMultiplatformLibraryArtifact> {
-            data object ClasspathJar : Maven
-
-            data object SourceJar : Maven
-
-            data object Klib : Maven
-
-            data object CInteropKlib : Maven
-
-            data object Aar : Maven
+        enum class Maven : Type<MavenMultiplatformLibraryArtifact> {
+            Aar,
+            CInteropKlib,
+            ClasspathJar,
+            Klib,
+            SourceJar,
         }
 
         data object Npm : Type<NpmMultiplatformLibraryArtifact>
