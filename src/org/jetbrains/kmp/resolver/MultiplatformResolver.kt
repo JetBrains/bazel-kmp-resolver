@@ -11,7 +11,6 @@ import org.jetbrains.amper.dependency.resolution.attributes.KotlinPlatformType
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
 import org.jetbrains.amper.dependency.resolution.diagnostics.PlatformsAreNotSupported
 import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
-import org.jetbrains.gradle.module.metadata.format.Variant
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -523,13 +522,9 @@ internal class MultiplatformResolver(
         or by providing a public API.
          */
         if (platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)) {
-            val variants =
-                dependency.javaClass
-                    .getMethod($$"getVariants$org_jetbrains_amper_dependency_resolution")
-                    .invoke(dependency) as List<*>
+            val variants = (dependency as MavenDependencyImpl).resolvedVariants()
             if (
                 variants.none { variant ->
-                    variant as Variant
                     variant.attributes[KotlinPlatformType.name] != null
                 }
             ) {
