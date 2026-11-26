@@ -32,13 +32,15 @@ internal data class MultiplatformVariant(
     val artifacts: List<MultiplatformLibraryArtifact>,
 ) {
 
-    fun getMavenArtifacts(
-        ofType: MultiplatformLibraryArtifact.Type,
-    ): List<MavenMultiplatformLibraryArtifact> =
-        artifacts.filterIsInstance<MavenMultiplatformLibraryArtifact>().filter {
-            it.type == ofType
-        }
-
-    fun getNpmArtifacts(): List<NpmMultiplatformLibraryArtifact> =
-        artifacts.filterIsInstance<NpmMultiplatformLibraryArtifact>()
+    fun <T : MultiplatformLibraryArtifact> getArtifacts(
+        ofType: MultiplatformLibraryArtifact.Type<T>,
+    ): List<T> {
+        return artifacts
+            .filter { it.type == ofType }
+            .map {
+                /* Enforced by the MultiplatformLibraryArtifact contract */
+                @Suppress("UNCHECKED_CAST")
+                it as T
+            }
+    }
 }

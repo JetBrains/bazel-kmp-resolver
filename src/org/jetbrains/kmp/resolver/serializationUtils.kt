@@ -73,16 +73,10 @@ internal object MultiplatformLibraryArtifactSerializer : KSerializer<Multiplatfo
         val type = element["type"]?.jsonPrimitive ?: throw SerializationException("Missing 'type'")
         if (!type.isString)
             throw SerializationException("'type' must be a string, got: ${type.content}")
-        val resolvedType =
-            MultiplatformLibraryArtifact.Type.entries.find { it.name.equals(type.content, true) }
-        if (resolvedType == null) throw SerializationException("Unknown type: ${type.content}")
+        val resolvedType = artifactTypeOf(type.content)
 
         return when (resolvedType) {
-            MultiplatformLibraryArtifact.Type.ClasspathJar,
-            MultiplatformLibraryArtifact.Type.SourceJar,
-            MultiplatformLibraryArtifact.Type.Klib,
-            MultiplatformLibraryArtifact.Type.CInteropKlib,
-            MultiplatformLibraryArtifact.Type.Aar -> {
+            is MultiplatformLibraryArtifact.Type.Maven -> {
                 MavenMultiplatformLibraryArtifact(
                     type = resolvedType,
                     integrity =
@@ -157,6 +151,11 @@ internal object MultiplatformLibraryArtifactSerializer : KSerializer<Multiplatfo
         encoder.encodeJsonElement(jsonObj)
     }
 }
+
+private fun artifactTypeOf(raw: String): MultiplatformLibraryArtifact.Type<*> =
+    MultiplatformLibraryArtifact.Type.values.firstOrNull { type ->
+        type.name.equals(raw, ignoreCase = true)
+    } ?: throw SerializationException("Unknown artifact type: $raw")
 
 internal object MultiplatformLibraryIdSerializer : KSerializer<MultiplatformLibraryId> {
     override val descriptor: SerialDescriptor =

@@ -150,7 +150,7 @@ class CredentialHelperResolutionTest {
                     assertEquals(
                         listOf(server.urlOf("/com/example/hello/1.0/hello-1.0.jar")),
                         variant
-                            .getMavenArtifacts(MultiplatformLibraryArtifact.Type.ClasspathJar)
+                            .getArtifacts(MultiplatformLibraryArtifact.Type.Maven.ClasspathJar)
                             .single()
                             .urls,
                     )

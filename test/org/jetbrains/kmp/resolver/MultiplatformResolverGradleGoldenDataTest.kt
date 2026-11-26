@@ -230,12 +230,12 @@ private fun assertEqualsGradleDumps(
             variant.artifacts
                 .filter { artifact ->
                     when (artifact.type) {
-                        MultiplatformLibraryArtifact.Type.ClasspathJar,
-                        MultiplatformLibraryArtifact.Type.Klib,
-                        MultiplatformLibraryArtifact.Type.CInteropKlib,
-                        MultiplatformLibraryArtifact.Type.Aar -> true
+                        MultiplatformLibraryArtifact.Type.Maven.ClasspathJar,
+                        MultiplatformLibraryArtifact.Type.Maven.Klib,
+                        MultiplatformLibraryArtifact.Type.Maven.CInteropKlib,
+                        MultiplatformLibraryArtifact.Type.Maven.Aar -> true
 
-                        MultiplatformLibraryArtifact.Type.SourceJar,
+                        MultiplatformLibraryArtifact.Type.Maven.SourceJar,
                         MultiplatformLibraryArtifact.Type.Npm -> false
                     }
                 }

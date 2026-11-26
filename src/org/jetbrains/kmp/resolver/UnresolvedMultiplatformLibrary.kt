@@ -61,7 +61,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
             .filter { file -> file.isSourceJar() }
             .map {
                 it.toUnresolvedMultiplatformLibraryArtifact(
-                    MultiplatformLibraryArtifact.Type.SourceJar,
+                    MultiplatformLibraryArtifact.Type.Maven.SourceJar,
                 )
             }
     }
@@ -92,7 +92,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
             .toSet()
 
     protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(
-        type: MultiplatformLibraryArtifact.Type,
+        type: MultiplatformLibraryArtifact.Type.Maven,
     ): UnresolvedMultiplatformLibraryArtifact {
         val file = this
         return UnresolvedMultiplatformLibraryArtifact(
@@ -154,8 +154,9 @@ internal sealed class UnresolvedMultiplatformLibrary(
                 dependencyFiles.map { file ->
                     file.toUnresolvedMultiplatformLibraryArtifact(
                         when (role) {
-                            KlibRole.MAIN -> MultiplatformLibraryArtifact.Type.Klib
-                            KlibRole.CINTEROP -> MultiplatformLibraryArtifact.Type.CInteropKlib
+                            KlibRole.MAIN -> MultiplatformLibraryArtifact.Type.Maven.Klib
+                            KlibRole.CINTEROP ->
+                                MultiplatformLibraryArtifact.Type.Maven.CInteropKlib
                         },
                     )
                 }
@@ -193,7 +194,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
                 .filter { file -> file.isClasspathJar() }
                 .map { file ->
                     file.toUnresolvedMultiplatformLibraryArtifact(
-                        MultiplatformLibraryArtifact.Type.ClasspathJar,
+                        MultiplatformLibraryArtifact.Type.Maven.ClasspathJar,
                     )
                 }
         }
@@ -221,7 +222,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
                     .filter { it.isAar() }
                     .map {
                         it.toUnresolvedMultiplatformLibraryArtifact(
-                            MultiplatformLibraryArtifact.Type.Aar,
+                            MultiplatformLibraryArtifact.Type.Maven.Aar,
                         )
                     }
 
@@ -230,7 +231,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
                     .filter { it.isClasspathJar() }
                     .map {
                         it.toUnresolvedMultiplatformLibraryArtifact(
-                            MultiplatformLibraryArtifact.Type.ClasspathJar,
+                            MultiplatformLibraryArtifact.Type.Maven.ClasspathJar,
                         )
                     }
 
@@ -246,7 +247,7 @@ internal data class UnresolvedMultiplatformLibraryArtifact(
     val artifactId: String,
     val version: String,
     val possibleLocations: List<String>,
-    val type: MultiplatformLibraryArtifact.Type,
+    val type: MultiplatformLibraryArtifact.Type.Maven,
 )
 
 /**
