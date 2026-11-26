@@ -1,0 +1,405 @@
+{
+  "askedCoordinates": [
+    "androidx.compose.runtime:runtime:1.8.2"
+  ],
+  "askedRepositories": [
+    "https://dl.google.com/dl/android/maven2",
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "androidx.annotation:annotation-experimental:1.4.1": {
+      "id": "androidx.annotation:annotation-experimental:1.4.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.annotation:annotation-experimental:1.4.1",
+          "variantId": "androidx.annotation:annotation-experimental:1.4.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-RNaacD/eIwY2ttYQZINtMOCa1lF1D9Hyy2gwjy/KUiKU+MXRMdAQn42E+oC/+hgEixnUrUvddfGza9PHGRRvxQ==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-experimental",
+              "version": "1.4.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-FC0cr3Va3QQGyVKZcdBtWatFCvdSdGSbmWnLMMO/5uA5CtwF35YRe5DBb9od5HacQX9EZSFwWBxz6m/+S3M/3w==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-experimental",
+              "version": "1.4.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.annotation:annotation:1.9.1": {
+      "id": "androidx.annotation:annotation:1.9.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.annotation:annotation:1.9.1",
+          "variantId": "androidx.annotation:annotation-jvm:1.9.1",
+          "dependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-7ozO6wnQIx9t5AFfB46MsIBd5vrzg6llPV83Y8Q7sTflNGwrF3lysfcNL2SPbzIEcFHA8xg721DcAd5Bkx8mWg==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-jvm",
+              "version": "1.9.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-V1n07Jo3HlnoOXEHAQGqj5fxrHTssTGYGAMjxCvfpVaAn+Y6yt3OOMuFbw/x5CLWHSMNIrUuqjxsC2PfqaSOKw==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-jvm",
+              "version": "1.9.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.collection:collection:1.5.0": {
+      "id": "androidx.collection:collection:1.5.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.collection:collection:1.5.0",
+          "variantId": "androidx.collection:collection-jvm:1.5.0",
+          "dependencies": [
+            "androidx.annotation:annotation",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-+IDgH4THidzwCwGkhfT3A1oUZiZCOXVBSm05OWsI0YHbIMARPvsidJvq/PVJgf68sFMpYqy51XSB1Prltm4Uzg==",
+              "groupId": "androidx.collection",
+              "artifactId": "collection-jvm",
+              "version": "1.5.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-S7gtT8kRQh4sNLz4JKktH2ggdZL0TTCTPegcx521V5nHQQD4P+CdUwkgLvdugY8oNozcqqmZ2wa3WryGFf6TYw==",
+              "groupId": "androidx.collection",
+              "artifactId": "collection-jvm",
+              "version": "1.5.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.compose.runtime:runtime:1.8.2": {
+      "id": "androidx.compose.runtime:runtime:1.8.2",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.compose.runtime:runtime:1.8.2",
+          "variantId": "androidx.compose.runtime:runtime-android:1.8.2",
+          "dependencies": [
+            "androidx.collection:collection",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-common"
+          ],
+          "exportedDependencies": [
+            "androidx.annotation:annotation-experimental",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-J+Udb3bdblLihxa80kbQoqHe1IHWQTOQVD+L77Fa9+nvg0BcNFkmnyXd0BwuV36dtu+fRQQxWnn4IBjVPqHK1g==",
+              "groupId": "androidx.compose.runtime",
+              "artifactId": "runtime-android",
+              "version": "1.8.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-bfFi4IVAEmptkxmT685WQXbv15QECAXuWck1Aa8G0xD5voqJcE0XX2GwxWaBiRzUAwhD5KDQAiXNxK6WFs2Jjw==",
+              "groupId": "androidx.compose.runtime",
+              "artifactId": "runtime-android",
+              "version": "1.8.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2-sources.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Ko+/9/HmOnSGhSb+JJOV/neacssbq+JlzqEf3fu+urkSzfNX6u3nHsJMqrtnotbpuvL2onWHcculqTL/JtB1JA==",
+              "groupId": "androidx.compose.runtime",
+              "artifactId": "runtime-android",
+              "version": "1.8.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2-samples-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.24": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.24",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.24",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.24",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": []
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-OqUfryCq6LMeGkvFT4NwZz17ffQ=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk7",
+              "version": "1.8.20",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-NkHXy3ZQ25/pOlNhsbiMvO/bAeA=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk7",
+              "version": "1.8.20",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.20/kotlin-stdlib-jdk7-1.8.20-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-c1dt3zeMW08fa0Sf5rEZuBg/wHg=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk8",
+              "version": "1.8.20",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-IHOeeq4qK/tmxAgbIz/+p7lHz3c=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk8",
+              "version": "1.8.20",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.20/kotlin-stdlib-jdk8-1.8.20-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:1.9.24": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:1.9.24",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:1.9.24",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:1.9.24",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains:annotations"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-i8XWxE1Imc4Y3mnB2ULKWwwh+MYp2Kd7tWlY5d+AEsk96dCQ7dc5bdxKo7GMe2W5Nw6exVM+z7n6yeyKHgyfpQ==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "1.9.24",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/1.9.24/kotlin-stdlib-1.9.24.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-JSXMwIdlDf8SKrmjbfjGYlW7BKeYydrTTcq/2tSnmNofIvGp2M/iyFJAT0ZFlsKEALfSNw/HisHKFiiMa8iqqw==",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "1.9.24",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/1.9.24/kotlin-stdlib-1.9.24-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-4s57z2exCi064U37je+qSPAcMUXPokZ/UpE6PqhxiQjTU+h2T7dgvskT3UOj8ZGaJFm+aFj5FUPwQ80Mz98IaA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-android",
+              "version": "1.7.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.7.3/kotlinx-coroutines-android-1.7.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-c1CxBcGmCzSrvm/j0ibSQBDvMhiGD1Krm9WPaeVS9Vgzt3AF9X1kaQv5DCm874ruEsw4tmXcoCGsZUPi6fUQng==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-android",
+              "version": "1.7.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.7.3/kotlinx-coroutines-android-1.7.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib-common",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+            "org.jetbrains:annotations"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Z92jI+Y2MpvT22b6DmA5exU64VeUZcfzlne2Y8wc0u5qGoSynehri8SRlYcZ0Y2irbHG62Zi+3LmZhm1jVcF/Q==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.7.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.7.3/kotlinx-coroutines-core-jvm-1.7.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-o7yqtFDgDI76ssLh16GzzooOLymDb2ls3CJArEV/baAZlkf/x2G7R1JUam5pbSja9P7CksIakh9O+VnG1BsdHw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.7.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.7.3/kotlinx-coroutines-core-jvm-1.7.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains:annotations:23.0.0": {
+      "id": "org.jetbrains:annotations:23.0.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains:annotations:23.0.0",
+          "variantId": "org.jetbrains:annotations:23.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-jMIMB1BuwY4INJR7hKhkv8CUSE4=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "23.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ylCI1hWsyqvSqpVrELI2pOdc/Ms=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "23.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

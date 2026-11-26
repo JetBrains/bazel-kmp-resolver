@@ -126,6 +126,245 @@ class MultiplatformResolverTest {
     }
 
     @Test
+    fun `checker-qual resolves for JVM but not for KLIB platforms`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                // JVM only library
+                "org.checkerframework:checker-qual:3.43.0",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms =
+                    setOf(
+                        ResolutionPlatform.WASM_JS,
+                        ResolutionPlatform.LINUX_X64,
+                        ResolutionPlatform.JVM,
+                    ),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-no_jvm_checker_qual.json",
+        )
+    }
+
+    @Test
+    fun `gradle module metadata JVM library does not leak into a native platform`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+                "https://dl.google.com/dl/android/maven2",
+            )
+        val coordinates =
+            listOf(
+                // a pure-Java library published with Gradle `.module` metadata, without any
+                // `org.jetbrains.kotlin.platform.type` attribute: it must not be collected for
+                // KLIB platforms, where it used to get a variant with a `SourceJar` only, its
+                // transitive pure-Java dependencies leaking along with it
+                "com.google.guava:guava:33.3.1-jre",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.LINUX_X64, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-no_jvm_guava.json",
+        )
+    }
+
+    @Test
+    fun `transitive dependencies of an Android AAR library do not leak into other platforms`() =
+        runBlocking {
+            val repositories =
+                listOf(
+                    "https://repo1.maven.org/maven2",
+                    "https://dl.google.com/dl/android/maven2",
+                )
+            val coordinates =
+                listOf(
+                    // an `.aar` library
+                    // ideally we would not want to leak its dependency nodes into other platforms
+                    "androidx.core:core-ktx:1.15.0",
+                )
+            val actual =
+                testMultiplatformResolver(
+                    cachePath = createTempDirectory("resolution-cache"),
+                    repositories = repositories,
+                    substitutions = emptyMap(),
+                    platforms =
+                        setOf(
+                            ResolutionPlatform.ANDROID,
+                            ResolutionPlatform.JVM,
+                            ResolutionPlatform.LINUX_X64,
+                        ),
+                    credentials = noCredentials,
+                ) { resolver ->
+                    resolver.resolve(coordinates)
+                }
+
+            assertUsingManifest(
+                coordinates = coordinates,
+                repositories = repositories,
+                libraries = actual,
+                manifestResourceFilepath = "manifest-core_ktx_no_cross_platform_leak.json",
+            )
+        }
+
+    @Test
+    fun `maven-plugin packaged POM library does not leak into a native platform`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                // a POM based library with `<packaging>maven-plugin</packaging>`: like every
+                // JVM-only
+                // packaging, it must not be collected for a KLIB platform, where it used to get a
+                // variant with a `SourceJar` only
+                "org.apache.maven.plugins:maven-compiler-plugin:3.13.0",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.LINUX_X64, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-no_jvm_maven_plugin.json",
+        )
+    }
+
+    @Test
+    fun `OSGi bundle packaged POM library resolves for android`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+                "https://dl.google.com/dl/android/maven2",
+            )
+        val coordinates =
+            listOf(
+                // its transitive `com.google.guava:failureaccess` is a plain JAR published with
+                // `<packaging>bundle</packaging>`: a valid Android and JVM classpath library, which
+                // used to be silently dropped from the `android` graph along with the exported
+                // dependency pointing at it
+                "com.google.guava:guava:33.3.1-android",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.ANDROID, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-guava_android_bundle.json",
+        )
+    }
+
+    @Test
+    fun `pom packaged POM aggregator resolves for android`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+            )
+        val coordinates =
+            listOf(
+                // a POM only aggregator with `<packaging>pom</packaging>`: its modules are valid
+                // Android classpath libraries, and the aggregator itself used to be silently
+                // dropped
+                // from the `android` graph while resolving for `jvm`
+                "org.codehaus.groovy:groovy-all:3.0.22",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.ANDROID, ResolutionPlatform.JVM),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-groovy_all_android.json",
+        )
+    }
+
+    @Test
+    fun `sources jar is ordered before the samples sources jar`() = runBlocking {
+        val repositories =
+            listOf(
+                "https://repo1.maven.org/maven2",
+                "https://dl.google.com/dl/android/maven2",
+            )
+        val coordinates =
+            listOf(
+                // its Android variant resolves two source jars: the regular one, and the samples
+                // one; the regular sources jar used to be ordered after the samples one
+                "androidx.compose.runtime:runtime:1.8.2",
+            )
+        val actual =
+            testMultiplatformResolver(
+                cachePath = createTempDirectory("resolution-cache"),
+                repositories = repositories,
+                substitutions = emptyMap(),
+                platforms = setOf(ResolutionPlatform.ANDROID),
+                credentials = noCredentials,
+            ) { resolver ->
+                resolver.resolve(coordinates)
+            }
+
+        assertUsingManifest(
+            coordinates = coordinates,
+            repositories = repositories,
+            libraries = actual,
+            manifestResourceFilepath = "manifest-compose_sources_order.json",
+        )
+    }
+
+    @Test
     fun `substituted resolution`() = runBlocking {
         val repositories =
             listOf(

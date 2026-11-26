@@ -6,21 +6,6 @@
     "https://repo1.maven.org/maven2"
   ],
   "libraries": {
-    "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20": {
-      "id": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
-      "variants": [
-        {
-          "platform": "linux_x64",
-          "id": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
-          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-common:2.1.20",
-          "dependencies": [],
-          "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib"
-          ],
-          "artifacts": []
-        }
-      ]
-    },
     "org.jetbrains.kotlin:kotlin-stdlib:2.1.20": {
       "id": "org.jetbrains.kotlin:kotlin-stdlib:2.1.20",
       "variants": [
@@ -80,8 +65,7 @@
           "variantId": "org.jetbrains.kotlinx:kotlinx-serialization-core-linuxx64:1.6.2",
           "dependencies": [],
           "exportedDependencies": [
-            "org.jetbrains.kotlin:kotlin-stdlib",
-            "org.jetbrains.kotlin:kotlin-stdlib-common"
+            "org.jetbrains.kotlin:kotlin-stdlib"
           ],
           "artifacts": [
             {

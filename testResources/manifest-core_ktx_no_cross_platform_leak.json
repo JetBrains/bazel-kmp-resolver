@@ -1,0 +1,854 @@
+{
+  "askedCoordinates": [
+    "androidx.core:core-ktx:1.15.0"
+  ],
+  "askedRepositories": [
+    "https://dl.google.com/dl/android/maven2",
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "androidx.annotation:annotation-experimental:1.4.1": {
+      "id": "androidx.annotation:annotation-experimental:1.4.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.annotation:annotation-experimental:1.4.1",
+          "variantId": "androidx.annotation:annotation-experimental:1.4.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-RNaacD/eIwY2ttYQZINtMOCa1lF1D9Hyy2gwjy/KUiKU+MXRMdAQn42E+oC/+hgEixnUrUvddfGza9PHGRRvxQ==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-experimental",
+              "version": "1.4.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-FC0cr3Va3QQGyVKZcdBtWatFCvdSdGSbmWnLMMO/5uA5CtwF35YRe5DBb9od5HacQX9EZSFwWBxz6m/+S3M/3w==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-experimental",
+              "version": "1.4.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.annotation:annotation:1.8.1": {
+      "id": "androidx.annotation:annotation:1.8.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.annotation:annotation:1.8.1",
+          "variantId": "androidx.annotation:annotation-jvm:1.8.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-8GRIS9lB4UfsDpHBC+O0L5/Y7cs5QdQlo8CBTCPZOe5vLrQTdW3M4hyNPweAQ02wvycSAGRK4oqKW5c+Hdvtqg==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-jvm",
+              "version": "1.8.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-hbhX76JpAIqQ2i+KBlnDS2FGX2ce3AafAqMfAbUyVa32eSOwlWz17bCqIZs1nya4zitJpkaMt6JUgKLv3MUopA==",
+              "groupId": "androidx.annotation",
+              "artifactId": "annotation-jvm",
+              "version": "1.8.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.arch.core:core-common:2.2.0": {
+      "id": "androidx.arch.core:core-common:2.2.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.arch.core:core-common:2.2.0",
+          "variantId": "androidx.arch.core:core-common:2.2.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "androidx.annotation:annotation"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-ErMMMomtG/uyywGRLaiNs7zIcfmUzm218eFLnnV+/wkEonIgeXKic8ZTVzbHpc4SNzLQla7gTUfHDZJ6DEfsUg==",
+              "groupId": "androidx.arch.core",
+              "artifactId": "core-common",
+              "version": "2.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-og0oq9UwIEKNduFN6cyUqjksEw+FcADtULcvnM0//AGvA1kSBRcrlSUM/iltuZuGccPXClph+kWJLVM3UzGD/Q==",
+              "groupId": "androidx.arch.core",
+              "artifactId": "core-common",
+              "version": "2.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.arch.core:core-runtime:2.2.0": {
+      "id": "androidx.arch.core:core-runtime:2.2.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.arch.core:core-runtime:2.2.0",
+          "variantId": "androidx.arch.core:core-runtime:2.2.0",
+          "dependencies": [
+            "androidx.annotation:annotation",
+            "androidx.arch.core:core-common"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-kJoM0wUUA2V166060JyBrwv6UhBQyFgyBJ1Exr1FudVVqsQIsJDXhJp6R2+toyPsQfzSAPlL69yabeQT7oD0Qw==",
+              "groupId": "androidx.arch.core",
+              "artifactId": "core-runtime",
+              "version": "2.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-o2Sj247+/JCkWgTxy4VCiu1FypfFNs8rj7tnjkX0oJurwbBNOq5bPppU+7DRxMrx7Ckg3tRaMI+sMrnXyEpD7Q==",
+              "groupId": "androidx.arch.core",
+              "artifactId": "core-runtime",
+              "version": "2.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.collection:collection:1.4.2": {
+      "id": "androidx.collection:collection:1.4.2",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.collection:collection:1.4.2",
+          "variantId": "androidx.collection:collection-jvm:1.4.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-7bv3OdTkgAw9Ew2Jt0krI/ygoxpC4HP/A8Us3Wa30p8Z+kws9AWANd4DpQBmMjX+h187azGfuCx669PtZFR2XQ==",
+              "groupId": "androidx.collection",
+              "artifactId": "collection-jvm",
+              "version": "1.4.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.4.2/collection-jvm-1.4.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-mAf4vpb0esFlqno+4dA/mEf3+d0QJbvb+u/sLitth2vC/CZAYYh6tb1epSSRx/LOIboonzKtC9mQ2Y8kx0XAHA==",
+              "groupId": "androidx.collection",
+              "artifactId": "collection-jvm",
+              "version": "1.4.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.4.2/collection-jvm-1.4.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.concurrent:concurrent-futures:1.1.0": {
+      "id": "androidx.concurrent:concurrent-futures:1.1.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.concurrent:concurrent-futures:1.1.0",
+          "variantId": "androidx.concurrent:concurrent-futures:1.1.0",
+          "dependencies": [
+            "androidx.annotation:annotation",
+            "com.google.guava:listenablefuture"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-OGTsF2mCgGThAC1DGe1dJ13imlTGFQ9H3steKv/1tCFvql6s5J9ulRIb/1gNB6PkEhyf28hBE2lMht9L1lUhTQ==",
+              "groupId": "androidx.concurrent",
+              "artifactId": "concurrent-futures",
+              "version": "1.1.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-1l0h0Axgrum0qQOc+/5bbCYtg6htbBCLY0gwZI+vCPz5Wpd/E8WoLl7RhSXs3Uf2Wemrzbdsl0h6XhGHTbgUCw==",
+              "groupId": "androidx.concurrent",
+              "artifactId": "concurrent-futures",
+              "version": "1.1.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.core:core-ktx:1.15.0": {
+      "id": "androidx.core:core-ktx:1.15.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.core:core-ktx:1.15.0",
+          "variantId": "androidx.core:core-ktx:1.15.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "androidx.core:core",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-l4kwth+6SBK6ZdOJrw2NqVQiIG2WW8RP+a6YkWE83MvtGcSVmUJTYwrP1JK4vtt0RR9PzVsahLTP9Usk8+GxMg==",
+              "groupId": "androidx.core",
+              "artifactId": "core-ktx",
+              "version": "1.15.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/core/core-ktx/1.15.0/core-ktx-1.15.0.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-xrVGHtkvHaq7SJ7wZr4JuXXPbzSRiELTGBy1j3DboVk0pLrRNrN7Jh+XzxKClM0tO7Q/V7/RzJhCkXLorlP2hQ==",
+              "groupId": "androidx.core",
+              "artifactId": "core-ktx",
+              "version": "1.15.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/core/core-ktx/1.15.0/core-ktx-1.15.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.core:core:1.15.0": {
+      "id": "androidx.core:core:1.15.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.core:core:1.15.0",
+          "variantId": "androidx.core:core:1.15.0",
+          "dependencies": [
+            "androidx.collection:collection",
+            "androidx.concurrent:concurrent-futures",
+            "androidx.interpolator:interpolator",
+            "androidx.tracing:tracing"
+          ],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "androidx.annotation:annotation-experimental",
+            "androidx.lifecycle:lifecycle-runtime",
+            "androidx.versionedparcelable:versionedparcelable",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-u/4+U7BgmI31WX2SUfaiFw3cr5tOl3wTw9pwjYRSrHTv19MBmFLM5Kty2mOTMSMS6iy/nHr0dvHT26A83RhiFA==",
+              "groupId": "androidx.core",
+              "artifactId": "core",
+              "version": "1.15.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/core/core/1.15.0/core-1.15.0.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Ou1b5h7Go19hbFkbaEuh8gb7KNwLiiO9WzM9XWuLyGswPhVRyB6Ti2/Vy+oJYBfnlbtaTNKeHgCQkk0ubPFZ8g==",
+              "groupId": "androidx.core",
+              "artifactId": "core",
+              "version": "1.15.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/core/core/1.15.0/core-1.15.0-sources.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-kkrlprg4jwl7gLAKK7fglPXEvLsI32nNwVdw6XtXXm7IvHfdSsUNkn+60r0iv51zYimEtKdh2U74aDnD4o8qcA==",
+              "groupId": "androidx.core",
+              "artifactId": "core",
+              "version": "1.15.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/core/core/1.15.0/core-1.15.0-samples-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.interpolator:interpolator:1.0.0": {
+      "id": "androidx.interpolator:interpolator:1.0.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.interpolator:interpolator:1.0.0",
+          "variantId": "androidx.interpolator:interpolator:1.0.0",
+          "dependencies": [
+            "androidx.annotation:annotation"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha1-igH6JUojuTiFcetjNLA3B8fRItc=",
+              "groupId": "androidx.interpolator",
+              "artifactId": "interpolator",
+              "version": "1.0.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.lifecycle:lifecycle-common:2.6.2": {
+      "id": "androidx.lifecycle:lifecycle-common:2.6.2",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.lifecycle:lifecycle-common:2.6.2",
+          "variantId": "androidx.lifecycle:lifecycle-common:2.6.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-ChTAVZHi8Tzode21Ph0GxJIYPu3812L1Eu1uFvOGv95TQAknbqs14mDQsuRzifjB+0Hp04n2RytLb+KycMhynA==",
+              "groupId": "androidx.lifecycle",
+              "artifactId": "lifecycle-common",
+              "version": "2.6.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common/2.6.2/lifecycle-common-2.6.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-dydoG0pBe7jSOk4WQN6VeYZFSnJ1bdh5yJHbxKGS2AGOS/vXXy3m+q5GQNx3tapnV3MJCIuWFnk8/1f4GJBVHA==",
+              "groupId": "androidx.lifecycle",
+              "artifactId": "lifecycle-common",
+              "version": "2.6.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common/2.6.2/lifecycle-common-2.6.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.lifecycle:lifecycle-runtime:2.6.2": {
+      "id": "androidx.lifecycle:lifecycle-runtime:2.6.2",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.lifecycle:lifecycle-runtime:2.6.2",
+          "variantId": "androidx.lifecycle:lifecycle-runtime:2.6.2",
+          "dependencies": [
+            "androidx.arch.core:core-runtime",
+            "androidx.profileinstaller:profileinstaller"
+          ],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "androidx.arch.core:core-common",
+            "androidx.lifecycle:lifecycle-common",
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-g5iNtM8eEH4K/gIf0Jt03YkYNk1O5hw6UmoAGqufubeV4jC4NuPatEcGE19QcvlNpz8foaREGm8mEwD7AzujmA==",
+              "groupId": "androidx.lifecycle",
+              "artifactId": "lifecycle-runtime",
+              "version": "2.6.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime/2.6.2/lifecycle-runtime-2.6.2.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-YGO4ghB7z3bmKAeXzmXoYCdKl/sy3ozYwqTjVvKjUxNDbb4bHLJUBwocCCAInDHnrZO9QvgLSdahYNHXYAyxfw==",
+              "groupId": "androidx.lifecycle",
+              "artifactId": "lifecycle-runtime",
+              "version": "2.6.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime/2.6.2/lifecycle-runtime-2.6.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.profileinstaller:profileinstaller:1.3.0": {
+      "id": "androidx.profileinstaller:profileinstaller:1.3.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.profileinstaller:profileinstaller:1.3.0",
+          "variantId": "androidx.profileinstaller:profileinstaller:1.3.0",
+          "dependencies": [
+            "androidx.annotation:annotation",
+            "androidx.concurrent:concurrent-futures",
+            "androidx.startup:startup-runtime",
+            "com.google.guava:listenablefuture"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-jx9SmABuY4rP4kCdcGhQezop0rK+gUTXdT9sVNrAsKkBFXV+y/+5KT73nFZlx4bKzehT/VsdRC5ef7du1EDZlQ==",
+              "groupId": "androidx.profileinstaller",
+              "artifactId": "profileinstaller",
+              "version": "1.3.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/profileinstaller/profileinstaller/1.3.0/profileinstaller-1.3.0.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-GdrwCM4uAeVOZeXB7WG+OHO1w7FQ1mjacqlsNufGc27kvkIxmYbHinLexn7DIZTPUTHl6BI7femsELgaeGUk5g==",
+              "groupId": "androidx.profileinstaller",
+              "artifactId": "profileinstaller",
+              "version": "1.3.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/profileinstaller/profileinstaller/1.3.0/profileinstaller-1.3.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.startup:startup-runtime:1.1.1": {
+      "id": "androidx.startup:startup-runtime:1.1.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.startup:startup-runtime:1.1.1",
+          "variantId": "androidx.startup:startup-runtime:1.1.1",
+          "dependencies": [
+            "androidx.annotation:annotation",
+            "androidx.tracing:tracing"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-X631XzsEYZ+Qcc/1RAzDgRO2t4XIrsW4RcPaVc92VqBkVClu/5JTU23M6AaScRDUy9rmZd2D4qRzIR6oIVAyRA==",
+              "groupId": "androidx.startup",
+              "artifactId": "startup-runtime",
+              "version": "1.1.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-UqZD97PCLAZeTquCvGVtT8lmysYqWyVSaVFOYasW0h2zRlnBi9XUcp6nfNiY4mlLQp+lGePOLK7eLxo4KfUVlg==",
+              "groupId": "androidx.startup",
+              "artifactId": "startup-runtime",
+              "version": "1.1.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.tracing:tracing:1.2.0": {
+      "id": "androidx.tracing:tracing:1.2.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.tracing:tracing:1.2.0",
+          "variantId": "androidx.tracing:tracing:1.2.0",
+          "dependencies": [
+            "androidx.annotation:annotation"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha512-qCJHeSyiWF+sv/azvcZv5tGVPkU1NoFsdaGAIGvtf+UV2jJE6YwQQhoW0rwUBCffKKJGRJfcLj/GX/F6vhHHJA==",
+              "groupId": "androidx.tracing",
+              "artifactId": "tracing",
+              "version": "1.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/tracing/tracing/1.2.0/tracing-1.2.0.aar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Nja0scQdSMRGEZaV7IeQBE502HmN8mcFgQpGkoeg4pG0/ZVD4oEdXCRLdUNh68qnDwU31ma91nhSItX2hz3aRw==",
+              "groupId": "androidx.tracing",
+              "artifactId": "tracing",
+              "version": "1.2.0",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/tracing/tracing/1.2.0/tracing-1.2.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "androidx.versionedparcelable:versionedparcelable:1.1.1": {
+      "id": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+          "variantId": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "androidx.annotation:annotation",
+            "androidx.collection:collection"
+          ],
+          "artifacts": [
+            {
+              "type": "Aar",
+              "integrity": "sha1-GOGAcedxVnngWTxXAhft61yki54=",
+              "groupId": "androidx.versionedparcelable",
+              "artifactId": "versionedparcelable",
+              "version": "1.1.1",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.aar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.guava:listenablefuture:1.0": {
+      "id": "com.google.guava:listenablefuture:1.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "com.google.guava:listenablefuture:1.0",
+          "variantId": "com.google.guava:listenablefuture:1.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-yUmoQKasvFJo0IjkewQXe/kLPK0=",
+              "groupId": "com.google.guava",
+              "artifactId": "listenablefuture",
+              "version": "1.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-C+EjSYisc9YeUuNakSFpsGAgyqc=",
+              "groupId": "com.google.guava",
+              "artifactId": "listenablefuture",
+              "version": "1.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Go42AXA64Uu1h1fqay2Ojlk1pYY=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-common",
+              "version": "1.8.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/1.8.22/kotlin-stdlib-common-1.8.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-CuMTuXm45iCmSXzTI/nFhh966+8=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-common",
+              "version": "1.8.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/1.8.22/kotlin-stdlib-common-1.8.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-VowbeKjhek81sx8KdOKRYJXtdMI=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk7",
+              "version": "1.6.21",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.6.21/kotlin-stdlib-jdk7-1.6.21.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-eLf8U0pBGVLXV5ph0Ctw/dNKpWw=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk7",
+              "version": "1.6.21",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.6.21/kotlin-stdlib-jdk7-1.6.21-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-7rTWDXXp6pwRIA1Sl05SJ5OxT7o=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk8",
+              "version": "1.6.21",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.6.21/kotlin-stdlib-jdk8-1.6.21.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-LLdiwaFKOpWP0Y0p9ZSR+jAOQtQ=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib-jdk8",
+              "version": "1.6.21",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.6.21/kotlin-stdlib-jdk8-1.6.21-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:1.8.22": {
+      "id": "org.jetbrains.kotlin:kotlin-stdlib:1.8.22",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlin:kotlin-stdlib:1.8.22",
+          "variantId": "org.jetbrains.kotlin:kotlin-stdlib:1.8.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib-common",
+            "org.jetbrains:annotations"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Y2v4syDnYnSCdxu6ye1yRnc8Ar0=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "1.8.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/1.8.22/kotlin-stdlib-1.8.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ao1N/ruI+VG82fWGNvCFvyT/Pos=",
+              "groupId": "org.jetbrains.kotlin",
+              "artifactId": "kotlin-stdlib",
+              "version": "1.8.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/1.8.22/kotlin-stdlib-1.8.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-yL5dNyDVo4+1ipiBMik3jIgwx172d0YKj6WUE7wleVW3UkPnCU6eVZR1UDhvKBvzRtnkYBkr4UOrIJrvJpixGw==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-android",
+              "version": "1.6.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.6.4/kotlinx-coroutines-android-1.6.4.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-2qJveHZtjdKEZgKeQRyXSF27lXhKtZCmq0qZwuRlJqFhIFEq9NOaH4EON/DH+LzAyJAYQZOH49itvtXQSM1XkA==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-android",
+              "version": "1.6.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.6.4/kotlinx-coroutines-android-1.6.4-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4": {
+      "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
+          "variantId": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.jetbrains.kotlin:kotlin-stdlib-common",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-pPtji3QntOKofXUJWObKZsde77ZMTzWcv6LQjIaEVaoP+QkcLy5h8eSnxRo3ccaHlels8wY2iUWUDxct0yR0LQ==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.6.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.6.4/kotlinx-coroutines-core-jvm-1.6.4.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-+fxSxstr1p3uPify09YVgZhY17Huul9h7O2oHGzec4AfOwL8puG6AzeAQvqOLCfz78Mqim9EzBPppPIUaPMpww==",
+              "groupId": "org.jetbrains.kotlinx",
+              "artifactId": "kotlinx-coroutines-core-jvm",
+              "version": "1.6.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.6.4/kotlinx-coroutines-core-jvm-1.6.4-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.jetbrains:annotations:13.0": {
+      "id": "org.jetbrains:annotations:13.0",
+      "variants": [
+        {
+          "platform": "android",
+          "id": "org.jetbrains:annotations:13.0",
+          "variantId": "org.jetbrains:annotations:13.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-kZ8N/hkvtOBj59rK3uf4u5omcqk=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "13.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-WZHKh+8ftVRJQ9mrxamjdYP6vgM=",
+              "groupId": "org.jetbrains",
+              "artifactId": "annotations",
+              "version": "13.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

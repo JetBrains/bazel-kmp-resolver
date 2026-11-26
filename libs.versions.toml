@@ -11,6 +11,7 @@ ktor-client-java-jvm = { group = "io.ktor", name = "ktor-client-java-jvm", versi
 ktor-client-core-jvm = { group = "io.ktor", name = "ktor-client-core-jvm", version.ref = "ktor" }
 ktor-client-logging-jvm = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
 dependency-resolution = "org.jetbrains.amper:dependency-resolution:0.14.0"
+gradle-module-metadata = "org.jetbrains.amper:gradle-module-metadata:0.14.0"
 kotlinx-coroutines-core-jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.10.2"
 kotlin-tooling-core = { group = "org.jetbrains.kotlin", name = "kotlin-tooling-core", version.ref = "kotlin" }
 logback-core = "ch.qos.logback:logback-core:1.5.34"

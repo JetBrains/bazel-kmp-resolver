@@ -59,6 +59,7 @@ internal sealed class UnresolvedMultiplatformLibrary(
     suspend fun sourceJars(): List<UnresolvedMultiplatformLibraryArtifact> {
         return files
             .filter { file -> file.isSourceJar() }
+            .sortedBy { file -> file.nameWithoutExtension.length }
             .map {
                 it.toUnresolvedMultiplatformLibraryArtifact(
                     MultiplatformLibraryArtifact.Type.Maven.SourceJar,

@@ -7,9 +7,11 @@ import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.*
 import kotlinx.serialization.*
 import org.jetbrains.amper.dependency.resolution.*
+import org.jetbrains.amper.dependency.resolution.attributes.KotlinPlatformType
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
 import org.jetbrains.amper.dependency.resolution.diagnostics.PlatformsAreNotSupported
 import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
+import org.jetbrains.gradle.module.metadata.format.Variant
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -249,7 +251,16 @@ internal class MultiplatformResolver(
         root: RootDependencyNode,
         platform: ResolutionPlatform,
     ): List<UnresolvedMultiplatformLibrary> {
-        val nodes = root.distinctBfsSequence().filterIsInstance<MavenDependencyNode>().toList()
+        val nodes =
+            root
+                .distinctBfsSequence { child, _ ->
+                    when (child) {
+                        is MavenDependencyNode -> child.isCollectedFor(platform)
+                        else -> false
+                    }
+                }
+                .filterIsInstance<MavenDependencyNode>()
+                .toList()
         // Amper tells the KMP library a node is a platform-specific variant of per graph node, that
         // is per requester: a
         // variant also requested directly, as POM-only JVM libraries do with `*-jvm` artifacts, has
@@ -293,10 +304,10 @@ internal class MultiplatformResolver(
             }
         }
 
+        val kmpParentsSet = kmpParents.values.toSet()
         val (substitutedNodes, filteredNodes) =
             nodes
-                .filter { node -> node.gav !in kmpParents.values.toSet() }
-                .filter { node -> node.isCollectedFor(platform) }
+                .filter { node -> node.gav !in kmpParentsSet }
                 .partition { node -> node.isSubstituted(kmpParents) }
         substitutedNodes.forEach { node ->
             logger.debug(
@@ -468,10 +479,10 @@ internal class MultiplatformResolver(
          */
 
         /*
-        Plain old 'jar' packaged POM only dependency, which requires Android or JVM
+        Classpath JARs and POM aggregators are supported on Android and JVM.
          */
         if (
-            dependency.packaging == "jar" &&
+            dependency.packaging in listOf("jar", "bundle", "pom") &&
                 platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)
         ) {
             return false
@@ -481,8 +492,7 @@ internal class MultiplatformResolver(
         Different JVM packaged POM only dependency, which requires JVM
          */
         if (
-            dependency.packaging in
-                listOf("war", "pom", "ear", "bundle", "rar", "maven.plugin", "ejb", "rar") &&
+            dependency.packaging in listOf("war", "ear", "rar", "maven-plugin", "ejb") &&
                 platform != ResolutionPlatform.JVM
         ) {
             return false
@@ -501,6 +511,30 @@ internal class MultiplatformResolver(
         val files = dependency.files(withSources = false)
         if (files.any { it.isAar() } && platform != ResolutionPlatform.ANDROID) {
             return false
+        }
+
+        /*
+        Guard KMP libraries: We expect KMP only platforms to
+        - be Gradle .module metadata based
+        - have at least one resolved variant with a Kotlin platform type
+
+        Note: This is using an internal KTC API that we agreed upon for 0.14.0
+        This is planned to be handled either by KTC directly, by not resolving such variants
+        or by providing a public API.
+         */
+        if (platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)) {
+            val variants =
+                dependency.javaClass
+                    .getMethod($$"getVariants$org_jetbrains_amper_dependency_resolution")
+                    .invoke(dependency) as List<*>
+            if (
+                variants.none { variant ->
+                    variant as Variant
+                    variant.attributes[KotlinPlatformType.name] != null
+                }
+            ) {
+                return false
+            }
         }
 
         return true

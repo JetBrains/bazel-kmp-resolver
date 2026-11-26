@@ -1,0 +1,44 @@
+{
+  "askedCoordinates": [
+    "org.checkerframework:checker-qual:3.43.0"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "org.checkerframework:checker-qual:3.43.0": {
+      "id": "org.checkerframework:checker-qual:3.43.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.checkerframework:checker-qual:3.43.0",
+          "variantId": "org.checkerframework:checker-qual:3.43.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-gj6ijjyCL/SOTphaQh+gtTyjQZ4sBjXD1NCpgiOZtkkXgOJqkWHUczhXyXmHv/LXJf9EU7LCLtQS7vRuon9dhA==",
+              "groupId": "org.checkerframework",
+              "artifactId": "checker-qual",
+              "version": "3.43.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-pVjoQErUmPo2I+qxztJstcO/hZKtA++sBuDYuCPiiS3XuRqae8XQCC9TXyBUPxnsh4Tb+MSoQAvdCjBplGBgpw==",
+              "groupId": "org.checkerframework",
+              "artifactId": "checker-qual",
+              "version": "3.43.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

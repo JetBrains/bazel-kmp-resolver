@@ -6,6 +6,7 @@ dependencies:
   - $libs.logback.classic
   - $libs.slf4j.api
   - $libs.dependency.resolution
+  - $libs.gradle.module.metadata
   - $libs.async.processes
   - $libs.kotlinx.coroutines.core.jvm
   - $kotlin.serialization.json

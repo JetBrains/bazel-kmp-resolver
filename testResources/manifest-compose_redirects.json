@@ -209,22 +209,22 @@
             },
             {
               "type": "SourceJar",
-              "integrity": "sha512-Ko+/9/HmOnSGhSb+JJOV/neacssbq+JlzqEf3fu+urkSzfNX6u3nHsJMqrtnotbpuvL2onWHcculqTL/JtB1JA==",
-              "groupId": "androidx.compose.runtime",
-              "artifactId": "runtime-android",
-              "version": "1.8.2",
-              "urls": [
-                "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2-samples-sources.jar"
-              ]
-            },
-            {
-              "type": "SourceJar",
               "integrity": "sha512-bfFi4IVAEmptkxmT685WQXbv15QECAXuWck1Aa8G0xD5voqJcE0XX2GwxWaBiRzUAwhD5KDQAiXNxK6WFs2Jjw==",
               "groupId": "androidx.compose.runtime",
               "artifactId": "runtime-android",
               "version": "1.8.2",
               "urls": [
                 "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2-sources.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Ko+/9/HmOnSGhSb+JJOV/neacssbq+JlzqEf3fu+urkSzfNX6u3nHsJMqrtnotbpuvL2onWHcculqTL/JtB1JA==",
+              "groupId": "androidx.compose.runtime",
+              "artifactId": "runtime-android",
+              "version": "1.8.2",
+              "urls": [
+                "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.8.2/runtime-android-1.8.2-samples-sources.jar"
               ]
             }
           ]
