@@ -620,11 +620,12 @@ private suspend fun UnresolvedMultiplatformLibrary.Klib.resolve(
     artifactUrlResolver: ArtifactUrlResolver,
     npmPackages: List<NpmMultiplatformLibraryArtifact>,
 ): MultiplatformVariant = coroutineScope {
-    val resolvedKlibs = async {
+    val resolvedKlibs =
         klibs().map { file ->
-            file.resolve(artifactUrlResolver)
+            async {
+                file.resolve(artifactUrlResolver)
+            }
         }
-    }
     val resolvedSourceJars = sourceJars().map { async { it.resolve(artifactUrlResolver) } }
 
     return@coroutineScope MultiplatformVariant(
@@ -635,7 +636,7 @@ private suspend fun UnresolvedMultiplatformLibrary.Klib.resolve(
         exportedDependencies = exportedDependencies.sorted(),
         artifacts =
             buildList {
-                addAll(resolvedKlibs.await())
+                addAll(resolvedKlibs.awaitAll())
                 addAll(resolvedSourceJars.awaitAll())
                 addAll(npmPackages)
             },
