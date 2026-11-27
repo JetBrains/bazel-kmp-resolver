@@ -13,6 +13,7 @@ internal val nativeResolutionPlatforms =
 internal val supportedPlatforms: List<ResolutionPlatform> = buildList {
     add(ResolutionPlatform.WASM_JS)
     add(ResolutionPlatform.JVM)
+    add(ResolutionPlatform.ANDROID)
     addAll(nativeResolutionPlatforms)
 }
 

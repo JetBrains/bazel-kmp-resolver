@@ -1,0 +1,2358 @@
+{
+  "askedCoordinates": [
+    "org.apache.maven.plugins:maven-compiler-plugin:3.13.0"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "backport-util-concurrent:backport-util-concurrent:3.1": {
+      "id": "backport-util-concurrent:backport-util-concurrent:3.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "backport-util-concurrent:backport-util-concurrent:3.1",
+          "variantId": "backport-util-concurrent:backport-util-concurrent:3.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-aC96wX/teekvjofYRVGStjN2NHs=",
+              "groupId": "backport-util-concurrent",
+              "artifactId": "backport-util-concurrent",
+              "version": "3.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-7/g2aSTPGmZt0gqmMv6/HCwFuMs=",
+              "groupId": "backport-util-concurrent",
+              "artifactId": "backport-util-concurrent",
+              "version": "3.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "classworlds:classworlds:1.1": {
+      "id": "classworlds:classworlds:1.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "classworlds:classworlds:1.1",
+          "variantId": "classworlds:classworlds:1.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-YMcI9V3ut8Xfzop4hu8Jy8E4jso=",
+              "groupId": "classworlds",
+              "artifactId": "classworlds",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-RGc+tALTWpG+6Ooc59MYwBbj5j4=",
+              "groupId": "classworlds",
+              "artifactId": "classworlds",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/classworlds/classworlds/1.1/classworlds-1.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.jcraft:jsch:0.1.38": {
+      "id": "com.jcraft:jsch:0.1.38",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.jcraft:jsch:0.1.38",
+          "variantId": "com.jcraft:jsch:0.1.38",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Bnf3A43VyNXWh8VY0JwST4IKj9U=",
+              "groupId": "com.jcraft",
+              "artifactId": "jsch",
+              "version": "0.1.38",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/jcraft/jsch/0.1.38/jsch-0.1.38.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.thoughtworks.qdox:qdox:2.0.3": {
+      "id": "com.thoughtworks.qdox:qdox:2.0.3",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.thoughtworks.qdox:qdox:2.0.3",
+          "variantId": "com.thoughtworks.qdox:qdox:2.0.3",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-1wFD0qWOexao7HOklVCNQ6CF2Ds=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "2.0.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-zOCECjdl3Xf+o36bWwt8Cd0tthM=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "2.0.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/2.0.3/qdox-2.0.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "commons-cli:commons-cli:1.2": {
+      "id": "commons-cli:commons-cli:1.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "commons-cli:commons-cli:1.2",
+          "variantId": "commons-cli:commons-cli:1.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-K/lreqi2EcF30ylFKvHckz4UUBw=",
+              "groupId": "commons-cli",
+              "artifactId": "commons-cli",
+              "version": "1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-cli/commons-cli/1.2/commons-cli-1.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-bFRZgWUwoZYqwYzTFcx3Wxs4Qyk=",
+              "groupId": "commons-cli",
+              "artifactId": "commons-cli",
+              "version": "1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-cli/commons-cli/1.2/commons-cli-1.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "commons-codec:commons-codec:1.2": {
+      "id": "commons-codec:commons-codec:1.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "commons-codec:commons-codec:1.2",
+          "variantId": "commons-codec:commons-codec:1.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-OX9HMan5tusZB+IkkRx36jqieos=",
+              "groupId": "commons-codec",
+              "artifactId": "commons-codec",
+              "version": "1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "commons-httpclient:commons-httpclient:3.1": {
+      "id": "commons-httpclient:commons-httpclient:3.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "commons-httpclient:commons-httpclient:3.1",
+          "variantId": "commons-httpclient:commons-httpclient:3.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "commons-codec:commons-codec",
+            "commons-logging:commons-logging"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-lkzXQXH0J3IEgO/exAp8f25YQmo=",
+              "groupId": "commons-httpclient",
+              "artifactId": "commons-httpclient",
+              "version": "3.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-xtbqg9DPFtPtnBt+YA+g9gudMVk=",
+              "groupId": "commons-httpclient",
+              "artifactId": "commons-httpclient",
+              "version": "3.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "commons-io:commons-io:2.11.0": {
+      "id": "commons-io:commons-io:2.11.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "commons-io:commons-io:2.11.0",
+          "variantId": "commons-io:commons-io:2.11.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-olA/MCsR695+vD30Ha6+Dk7qNok=",
+              "groupId": "commons-io",
+              "artifactId": "commons-io",
+              "version": "2.11.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-LvAYcSS7/HrtMDjU/90iQeiZKTc=",
+              "groupId": "commons-io",
+              "artifactId": "commons-io",
+              "version": "2.11.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "commons-logging:commons-logging:1.0.4": {
+      "id": "commons-logging:commons-logging:1.0.4",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "commons-logging:commons-logging:1.0.4",
+          "variantId": "commons-logging:commons-logging:1.0.4",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-8Cmirv4rPhUXVzxYD5SMqsMbEFY=",
+              "groupId": "commons-logging",
+              "artifactId": "commons-logging",
+              "version": "1.0.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-CNNCSjGOgY+IVo37O1XFhYM2S6k=",
+              "groupId": "commons-logging",
+              "artifactId": "commons-logging",
+              "version": "1.0.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "javax.inject:javax.inject:1": {
+      "id": "javax.inject:javax.inject:1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "javax.inject:javax.inject:1",
+          "variantId": "javax.inject:javax.inject:1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-aXXaOacEAle9UdIaIxt2yRWHLTg=",
+              "groupId": "javax.inject",
+              "artifactId": "javax.inject",
+              "version": "1",
+              "urls": [
+                "https://repo1.maven.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-oAEj8mF2KnxeDskWosfIKY0pxAA=",
+              "groupId": "javax.inject",
+              "artifactId": "javax.inject",
+              "version": "1",
+              "urls": [
+                "https://repo1.maven.org/maven2/javax/inject/javax.inject/1/javax.inject-1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "junit:junit:3.8.1": {
+      "id": "junit:junit:3.8.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "junit:junit:3.8.1",
+          "variantId": "junit:junit:3.8.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-mRKfFkQoRPakoRriL7vuQLFNd08=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "3.8.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-BSV1N2PlP2922gUrMW0PLjv6TXM=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "3.8.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "nekohtml:nekohtml:1.9.6.2": {
+      "id": "nekohtml:nekohtml:1.9.6.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "nekohtml:nekohtml:1.9.6.2",
+          "variantId": "nekohtml:nekohtml:1.9.6.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "xerces:xercesImpl"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-LZYL57Yq5mItu75Jq0/9xgn4XIA=",
+              "groupId": "nekohtml",
+              "artifactId": "nekohtml",
+              "version": "1.9.6.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-wAfkrdeYQta3bwsFbdsU6EhCS4Y=",
+              "groupId": "nekohtml",
+              "artifactId": "nekohtml",
+              "version": "1.9.6.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "nekohtml:xercesMinimal:1.9.6.2": {
+      "id": "nekohtml:xercesMinimal:1.9.6.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "nekohtml:xercesMinimal:1.9.6.2",
+          "variantId": "nekohtml:xercesMinimal:1.9.6.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-DRxeBjaDoOb3fNXwUanUr0g0b6Y=",
+              "groupId": "nekohtml",
+              "artifactId": "xercesMinimal",
+              "version": "1.9.6.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0": {
+      "id": "org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0",
+          "variantId": "org.apache.jackrabbit:jackrabbit-jcr-commons:1.5.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-gWyigNxjGyd+e5Y3I/LpmwODg/I=",
+              "groupId": "org.apache.jackrabbit",
+              "artifactId": "jackrabbit-jcr-commons",
+              "version": "1.5.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/jackrabbit/jackrabbit-jcr-commons/1.5.0/jackrabbit-jcr-commons-1.5.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-RuO5GDgSYj/RIyU/+WWiJZHFjak=",
+              "groupId": "org.apache.jackrabbit",
+              "artifactId": "jackrabbit-jcr-commons",
+              "version": "1.5.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/jackrabbit/jackrabbit-jcr-commons/1.5.0/jackrabbit-jcr-commons-1.5.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.jackrabbit:jackrabbit-webdav:1.5.0": {
+      "id": "org.apache.jackrabbit:jackrabbit-webdav:1.5.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.jackrabbit:jackrabbit-webdav:1.5.0",
+          "variantId": "org.apache.jackrabbit:jackrabbit-webdav:1.5.0",
+          "dependencies": [
+            "commons-httpclient:commons-httpclient",
+            "org.apache.jackrabbit:jackrabbit-jcr-commons",
+            "org.slf4j:slf4j-api"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-sUx/u9NIYtTVHF5yujppzeiSwmA=",
+              "groupId": "org.apache.jackrabbit",
+              "artifactId": "jackrabbit-webdav",
+              "version": "1.5.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/jackrabbit/jackrabbit-webdav/1.5.0/jackrabbit-webdav-1.5.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-7iyLCBdW14GgCp2RHXeqRGsHF2c=",
+              "groupId": "org.apache.jackrabbit",
+              "artifactId": "jackrabbit-webdav",
+              "version": "1.5.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/jackrabbit/jackrabbit-webdav/1.5.0/jackrabbit-webdav-1.5.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.doxia:doxia-logging-api:1.1": {
+      "id": "org.apache.maven.doxia:doxia-logging-api:1.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.doxia:doxia-logging-api:1.1",
+          "variantId": "org.apache.maven.doxia:doxia-logging-api:1.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-container-default"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-yP4nQ5bkBFLKPmEh9t0AIgshDUg=",
+              "groupId": "org.apache.maven.doxia",
+              "artifactId": "doxia-logging-api",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-logging-api/1.1/doxia-logging-api-1.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-pENmdfR+iX6Qp87CsnEab8N5hcs=",
+              "groupId": "org.apache.maven.doxia",
+              "artifactId": "doxia-logging-api",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-logging-api/1.1/doxia-logging-api-1.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.doxia:doxia-sink-api:1.1": {
+      "id": "org.apache.maven.doxia:doxia-sink-api:1.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.doxia:doxia-sink-api:1.1",
+          "variantId": "org.apache.maven.doxia:doxia-sink-api:1.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.doxia:doxia-logging-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-n8FcaeCaFP0HrLpzAACe/25pKkQ=",
+              "groupId": "org.apache.maven.doxia",
+              "artifactId": "doxia-sink-api",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.1/doxia-sink-api-1.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-lgkpzwip7WCyRO00ZwfeRfoMxrM=",
+              "groupId": "org.apache.maven.doxia",
+              "artifactId": "doxia-sink-api",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.1/doxia-sink-api-1.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.plugins:maven-compiler-plugin:3.13.0": {
+      "id": "org.apache.maven.plugins:maven-compiler-plugin:3.13.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.plugins:maven-compiler-plugin:3.13.0",
+          "variantId": "org.apache.maven.plugins:maven-compiler-plugin:3.13.0",
+          "dependencies": [
+            "org.codehaus.plexus:plexus-compiler-javac"
+          ],
+          "exportedDependencies": [
+            "org.apache.maven.shared:maven-shared-incremental",
+            "org.apache.maven.shared:maven-shared-utils",
+            "org.codehaus.plexus:plexus-compiler-api",
+            "org.codehaus.plexus:plexus-compiler-manager",
+            "org.codehaus.plexus:plexus-java",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-+eU/M+LU15k2FUvDPPWbiRPD8ho=",
+              "groupId": "org.apache.maven.plugins",
+              "artifactId": "maven-compiler-plugin",
+              "version": "3.13.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.13.0/maven-compiler-plugin-3.13.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-E8MpYtAggsecvOpl2L266i9BsQo=",
+              "groupId": "org.apache.maven.plugins",
+              "artifactId": "maven-compiler-plugin",
+              "version": "3.13.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/3.13.0/maven-compiler-plugin-3.13.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.reporting:maven-reporting-api:2.2.1": {
+      "id": "org.apache.maven.reporting:maven-reporting-api:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.reporting:maven-reporting-api:2.2.1",
+          "variantId": "org.apache.maven.reporting:maven-reporting-api:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.doxia:doxia-logging-api",
+            "org.apache.maven.doxia:doxia-sink-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-YZQuSQwRL4SzoaYVctVw82lBSTk=",
+              "groupId": "org.apache.maven.reporting",
+              "artifactId": "maven-reporting-api",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.2.1/maven-reporting-api-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-EEQ+GSlXMk4ozczUpBbRKXfZLl0=",
+              "groupId": "org.apache.maven.reporting",
+              "artifactId": "maven-reporting-api",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.2.1/maven-reporting-api-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.shared:maven-shared-incremental:1.1": {
+      "id": "org.apache.maven.shared:maven-shared-incremental:1.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.shared:maven-shared-incremental:1.1",
+          "variantId": "org.apache.maven.shared:maven-shared-incremental:1.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.shared:maven-shared-utils",
+            "org.apache.maven:maven-core",
+            "org.apache.maven:maven-plugin-api",
+            "org.codehaus.plexus:plexus-component-annotations"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-nQF6dYQIZ1VEXAomDdmh6erhYaU=",
+              "groupId": "org.apache.maven.shared",
+              "artifactId": "maven-shared-incremental",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-hjGrN0TtrMpBqMmutzA3dzzTMhY=",
+              "groupId": "org.apache.maven.shared",
+              "artifactId": "maven-shared-incremental",
+              "version": "1.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-incremental/1.1/maven-shared-incremental-1.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.shared:maven-shared-utils:3.4.2": {
+      "id": "org.apache.maven.shared:maven-shared-utils:3.4.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.shared:maven-shared-utils:3.4.2",
+          "variantId": "org.apache.maven.shared:maven-shared-utils:3.4.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "commons-io:commons-io",
+            "org.slf4j:slf4j-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-v6KClicqWRWwjenxHzSpSwqBj9A=",
+              "groupId": "org.apache.maven.shared",
+              "artifactId": "maven-shared-utils",
+              "version": "3.4.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/3.4.2/maven-shared-utils-3.4.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-wRX9x9BQo+oYWJCe7sBQzDwXNs8=",
+              "groupId": "org.apache.maven.shared",
+              "artifactId": "maven-shared-utils",
+              "version": "3.4.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/shared/maven-shared-utils/3.4.2/maven-shared-utils-3.4.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-file:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-file:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-file:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-file:1.0-beta-6",
+          "dependencies": [
+            "org.apache.maven.wagon:wagon-provider-api"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-bFNjNQVGDK9J0mYN4eJHRNkVr7k=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-file",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-CWFaip449jA+hjYkwTkYaNYi7Lg=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-file",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.wagon:wagon-http-shared",
+            "org.apache.maven.wagon:wagon-provider-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-s4FQeFcMOx8GZ+Ej1ZcXxrcmxsI=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http-lightweight",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-p8Ck0dnyJvTP9mERfiJI/pOrwiI=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http-lightweight",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-http-shared:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-http-shared:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-http-shared:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-http-shared:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "commons-httpclient:commons-httpclient",
+            "nekohtml:nekohtml",
+            "nekohtml:xercesMinimal",
+            "org.apache.maven.wagon:wagon-provider-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-zNcNfg2MCF5kioPwctoGyppTvpQ=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http-shared",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-GL14eL+M4y81NWMZCy6I8dRdpHA=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http-shared",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-http:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-http:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-http:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-http:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.wagon:wagon-http-shared",
+            "org.apache.maven.wagon:wagon-provider-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-jGZcuwq2fDVfvSyUKtJuOXU7by4=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http/1.0-beta-6/wagon-http-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-LPDnVienlGZzTu9vOjM6tu/bbRY=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-http",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-http/1.0-beta-6/wagon-http-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-provider-api:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-provider-api:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-provider-api:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-provider-api:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-P5UuAoKud65ZhR2WuxgBXlILYgg=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-provider-api",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-LtNt7kvV7ZGpqxKkN4GJ2X3d2TI=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-provider-api",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-ssh-common:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-ssh-common:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-ssh-common:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-ssh-common:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.codehaus.plexus:plexus-interactivity-api",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-DGVMx+EOGL7coEpuQvmA1saENfw=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh-common",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh-common/1.0-beta-6/wagon-ssh-common-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-58rMXozWnOloTRu3r1AqWzhiXGc=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh-common",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh-common/1.0-beta-6/wagon-ssh-common-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-ssh-external:1.0-beta-6",
+          "dependencies": [
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.apache.maven.wagon:wagon-ssh-common",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-dpGFBcX6bjCc05OsqKzRsjZVkog=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh-external",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh-external/1.0-beta-6/wagon-ssh-external-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-J/Ly/DJo1D8TlFa/QrrJEX96Om4=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh-external",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh-external/1.0-beta-6/wagon-ssh-external-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-ssh:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-ssh:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-ssh:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-ssh:1.0-beta-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "com.jcraft:jsch",
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.apache.maven.wagon:wagon-ssh-common",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-N6xTH4FZ3d/6OYp2EtXL4xMihDc=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh/1.0-beta-6/wagon-ssh-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ZqTHYqKKIsOiMKYSW6CUCb7RpMI=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-ssh",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-ssh/1.0-beta-6/wagon-ssh-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6": {
+      "id": "org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6",
+          "variantId": "org.apache.maven.wagon:wagon-webdav-jackrabbit:1.0-beta-6",
+          "dependencies": [
+            "org.apache.jackrabbit:jackrabbit-webdav",
+            "org.apache.maven.wagon:wagon-http-shared",
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.slf4j:slf4j-nop"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-tpSyI9DxmryzLjBOvVBUBh7g97U=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-webdav-jackrabbit",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-webdav-jackrabbit/1.0-beta-6/wagon-webdav-jackrabbit-1.0-beta-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Tuijt9FPm6X5Z184xiIKDUj1CWQ=",
+              "groupId": "org.apache.maven.wagon",
+              "artifactId": "wagon-webdav-jackrabbit",
+              "version": "1.0-beta-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/wagon/wagon-webdav-jackrabbit/1.0-beta-6/wagon-webdav-jackrabbit-1.0-beta-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-artifact-manager:2.2.1": {
+      "id": "org.apache.maven:maven-artifact-manager:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-artifact-manager:2.2.1",
+          "variantId": "org.apache.maven:maven-artifact-manager:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "backport-util-concurrent:backport-util-concurrent",
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.apache.maven:maven-artifact",
+            "org.apache.maven:maven-repository-metadata",
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-7DVbkTw003CAgQ+Y4/UavsvhVys=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-artifact-manager",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-TL0rgv0TeTiYJy4+/elFU+CjR2Y=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-artifact-manager",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-artifact:2.2.1": {
+      "id": "org.apache.maven:maven-artifact:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-artifact:2.2.1",
+          "variantId": "org.apache.maven:maven-artifact:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-I2APeQ1Nqyy5ZUGeqpguPoTEKPg=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-artifact",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-IlSnxN837lZbtVfkYyX4SDlCo2g=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-artifact",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-core:2.2.1": {
+      "id": "org.apache.maven:maven-core:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-core:2.2.1",
+          "variantId": "org.apache.maven:maven-core:2.2.1",
+          "dependencies": [
+            "org.apache.maven.wagon:wagon-file",
+            "org.apache.maven.wagon:wagon-ssh-external",
+            "org.apache.maven.wagon:wagon-webdav-jackrabbit",
+            "org.slf4j:jcl-over-slf4j",
+            "org.slf4j:slf4j-jdk14"
+          ],
+          "exportedDependencies": [
+            "classworlds:classworlds",
+            "commons-cli:commons-cli",
+            "org.apache.maven.reporting:maven-reporting-api",
+            "org.apache.maven.wagon:wagon-http",
+            "org.apache.maven.wagon:wagon-http-lightweight",
+            "org.apache.maven.wagon:wagon-provider-api",
+            "org.apache.maven.wagon:wagon-ssh",
+            "org.apache.maven:maven-artifact",
+            "org.apache.maven:maven-artifact-manager",
+            "org.apache.maven:maven-error-diagnostics",
+            "org.apache.maven:maven-model",
+            "org.apache.maven:maven-monitor",
+            "org.apache.maven:maven-plugin-api",
+            "org.apache.maven:maven-plugin-descriptor",
+            "org.apache.maven:maven-plugin-parameter-documenter",
+            "org.apache.maven:maven-profile",
+            "org.apache.maven:maven-project",
+            "org.apache.maven:maven-repository-metadata",
+            "org.apache.maven:maven-settings",
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-interactivity-api",
+            "org.codehaus.plexus:plexus-utils",
+            "org.sonatype.plexus:plexus-sec-dispatcher"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-b0iORhGISWxi4WHzIWCzRlzlkB4=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-core",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-core/2.2.1/maven-core-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-9mr+OQngvLuGEXVwVpQ9EYWZp8M=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-core",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-core/2.2.1/maven-core-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-error-diagnostics:2.2.1": {
+      "id": "org.apache.maven:maven-error-diagnostics:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-error-diagnostics:2.2.1",
+          "variantId": "org.apache.maven:maven-error-diagnostics:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-container-default"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-6BuzQtfRcvI9EI3I+peaH6zc3o4=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-error-diagnostics",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ijmSjthifwG5w24OKuqJFdWu+Eg=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-error-diagnostics",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-model:2.2.1": {
+      "id": "org.apache.maven:maven-model:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-model:2.2.1",
+          "variantId": "org.apache.maven:maven-model:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-wKHBdDbsP/WlYgfAMdgid7QlCik=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-model",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-PXwDXYRVhi6k5NffDxn5ZCbajNY=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-model",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-monitor:2.2.1": {
+      "id": "org.apache.maven:maven-monitor:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-monitor:2.2.1",
+          "variantId": "org.apache.maven:maven-monitor:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-r8V8OhNozTTKzLY44AUjcB85jCA=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-monitor",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.2.1/maven-monitor-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-P7ayP5YPoauCf2hhLlOGe4ILAfk=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-monitor",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-monitor/2.2.1/maven-monitor-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-plugin-api:2.2.1": {
+      "id": "org.apache.maven:maven-plugin-api:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-plugin-api:2.2.1",
+          "variantId": "org.apache.maven:maven-plugin-api:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-1gw2tg92Dgtbh90MYxH5OnLcRYU=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-api",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-WT+b6IAQ3pP8yKV8Yu3qkmoEGPw=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-api",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-plugin-descriptor:2.2.1": {
+      "id": "org.apache.maven:maven-plugin-descriptor:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-plugin-descriptor:2.2.1",
+          "variantId": "org.apache.maven:maven-plugin-descriptor:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven:maven-artifact",
+            "org.apache.maven:maven-plugin-api",
+            "org.codehaus.plexus:plexus-container-default"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-aNIK48QMRmTcUr6QM4r3ltt/+zI=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-descriptor",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-h3DfXse/733e/f76trpzTDY8H7k=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-descriptor",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-descriptor/2.2.1/maven-plugin-descriptor-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-plugin-parameter-documenter:2.2.1": {
+      "id": "org.apache.maven:maven-plugin-parameter-documenter:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-plugin-parameter-documenter:2.2.1",
+          "variantId": "org.apache.maven:maven-plugin-parameter-documenter:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-GhF7qsSUN/xab82fGPd55rrUIH4=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-parameter-documenter",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.2.1/maven-plugin-parameter-documenter-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Gmmocss0eAqW/NR7qHhJ/YenkJI=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-parameter-documenter",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.2.1/maven-plugin-parameter-documenter-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-plugin-registry:2.2.1": {
+      "id": "org.apache.maven:maven-plugin-registry:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-plugin-registry:2.2.1",
+          "variantId": "org.apache.maven:maven-plugin-registry:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-cqJLd3VkmvePOYa1qn6zVLlnTP0=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-registry",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-S7KJnPfyGBgmYDXvq2eozVBo69A=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-plugin-registry",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-profile:2.2.1": {
+      "id": "org.apache.maven:maven-profile:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-profile:2.2.1",
+          "variantId": "org.apache.maven:maven-profile:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven:maven-model",
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-interpolation",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-OVAHFYcCflCG6cOVV0pgZQxDJzg=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-profile",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-wg12eyZ6Z5r0lO5iwxPi/4ukMRY=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-profile",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-project:2.2.1": {
+      "id": "org.apache.maven:maven-project:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-project:2.2.1",
+          "variantId": "org.apache.maven:maven-project:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven:maven-artifact",
+            "org.apache.maven:maven-artifact-manager",
+            "org.apache.maven:maven-model",
+            "org.apache.maven:maven-plugin-registry",
+            "org.apache.maven:maven-profile",
+            "org.apache.maven:maven-settings",
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-interpolation",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-gjnpjBb2QdVaStDgurCu46/4kz8=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-project",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-SNAAlPNTTVSskQPMHhrA0ZNz+W0=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-project",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-repository-metadata:2.2.1": {
+      "id": "org.apache.maven:maven-repository-metadata:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-repository-metadata:2.2.1",
+          "variantId": "org.apache.maven:maven-repository-metadata:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-mPDAf88e6yE7742TFqmTUYQISwY=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-repository-metadata",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-OzJ4aWLgQ4kfwIJlYYyLHTfBILk=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-repository-metadata",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.maven:maven-settings:2.2.1": {
+      "id": "org.apache.maven:maven-settings:2.2.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.maven:maven-settings:2.2.1",
+          "variantId": "org.apache.maven:maven-settings:2.2.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.maven:maven-model",
+            "org.codehaus.plexus:plexus-container-default",
+            "org.codehaus.plexus:plexus-interpolation",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Ijb/5x+l94zkKw9fwixU7UXxQpQ=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-settings",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-CbWtxqio3nu6Fm8YlVFjDtbIecA=",
+              "groupId": "org.apache.maven",
+              "artifactId": "maven-settings",
+              "version": "2.2.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-classworlds:1.2-alpha-9": {
+      "id": "org.codehaus.plexus:plexus-classworlds:1.2-alpha-9",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-classworlds:1.2-alpha-9",
+          "variantId": "org.codehaus.plexus:plexus-classworlds:1.2-alpha-9",
+          "dependencies": [],
+          "exportedDependencies": [
+            "junit:junit"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-qSf5ISCTy4/efeClqkDqT1Z4IV8=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-classworlds",
+              "version": "1.2-alpha-9",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/1.2-alpha-9/plexus-classworlds-1.2-alpha-9.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-B4XXBEhJk5j1qJE7GX9xlzae8Io=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-classworlds",
+              "version": "1.2-alpha-9",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/1.2-alpha-9/plexus-classworlds-1.2-alpha-9-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-compiler-api:2.15.0": {
+      "id": "org.codehaus.plexus:plexus-compiler-api:2.15.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-compiler-api:2.15.0",
+          "variantId": "org.codehaus.plexus:plexus-compiler-api:2.15.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils",
+            "org.slf4j:slf4j-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-G9WTldNYymlf3ce53FlEg/QUBgE=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-api",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.15.0/plexus-compiler-api-2.15.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-dttjVvbj9N81Nul6Nk3XGpZWU8w=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-api",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-api/2.15.0/plexus-compiler-api-2.15.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-compiler-javac:2.15.0": {
+      "id": "org.codehaus.plexus:plexus-compiler-javac:2.15.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-compiler-javac:2.15.0",
+          "variantId": "org.codehaus.plexus:plexus-compiler-javac:2.15.0",
+          "dependencies": [
+            "javax.inject:javax.inject",
+            "org.codehaus.plexus:plexus-compiler-api",
+            "org.codehaus.plexus:plexus-utils",
+            "org.slf4j:slf4j-api"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-SAaf48USsJ6Koy13kpwZCm+rp5A=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-javac",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.15.0/plexus-compiler-javac-2.15.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-WKUUxHgz0WmH/Te7LvfJj7vDlyI=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-javac",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-javac/2.15.0/plexus-compiler-javac-2.15.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-compiler-manager:2.15.0": {
+      "id": "org.codehaus.plexus:plexus-compiler-manager:2.15.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-compiler-manager:2.15.0",
+          "variantId": "org.codehaus.plexus:plexus-compiler-manager:2.15.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "javax.inject:javax.inject",
+            "org.codehaus.plexus:plexus-compiler-api",
+            "org.codehaus.plexus:plexus-xml",
+            "org.slf4j:slf4j-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-TG0vxWBj4sYrlTotqa1gwZCXR00=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-manager",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.15.0/plexus-compiler-manager-2.15.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-4nLJld8smjrfGgJcA2Sm26Zz6Dg=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-compiler-manager",
+              "version": "2.15.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.15.0/plexus-compiler-manager-2.15.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-component-annotations:1.5.5": {
+      "id": "org.codehaus.plexus:plexus-component-annotations:1.5.5",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-component-annotations:1.5.5",
+          "variantId": "org.codehaus.plexus:plexus-component-annotations:1.5.5",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-xy8mYNDL7SQkbdtV1/3E9zdNIHg=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-component-annotations",
+              "version": "1.5.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-sQRi788awZFXl5WNR5xyTRvVAI0=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-component-annotations",
+              "version": "1.5.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-component-api:1.0-alpha-16": {
+      "id": "org.codehaus.plexus:plexus-component-api:1.0-alpha-16",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-component-api:1.0-alpha-16",
+          "variantId": "org.codehaus.plexus:plexus-component-api:1.0-alpha-16",
+          "dependencies": [],
+          "exportedDependencies": [
+            "junit:junit",
+            "org.codehaus.plexus:plexus-classworlds"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-WiEAocajeASxq/xwAAsOozuDt/k=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-component-api",
+              "version": "1.0-alpha-16",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-api/1.0-alpha-16/plexus-component-api-1.0-alpha-16.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-lxZV3Bf7jkGj2k9JLi8DRH8Mdpg=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-component-api",
+              "version": "1.0-alpha-16",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-component-api/1.0-alpha-16/plexus-component-api-1.0-alpha-16-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-container-default:1.0-alpha-30": {
+      "id": "org.codehaus.plexus:plexus-container-default:1.0-alpha-30",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-container-default:1.0-alpha-30",
+          "variantId": "org.codehaus.plexus:plexus-container-default:1.0-alpha-30",
+          "dependencies": [],
+          "exportedDependencies": [
+            "junit:junit",
+            "org.codehaus.plexus:plexus-classworlds",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Zp1LqOiY43mH614wsSHtHWLFt7g=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-container-default",
+              "version": "1.0-alpha-30",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-30/plexus-container-default-1.0-alpha-30.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-T1B0j4CEk5cAXTcqG5fkRPRvNgE=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-container-default",
+              "version": "1.0-alpha-30",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-30/plexus-container-default-1.0-alpha-30-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-interactivity-api:1.0-alpha-6": {
+      "id": "org.codehaus.plexus:plexus-interactivity-api:1.0-alpha-6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-interactivity-api:1.0-alpha-6",
+          "variantId": "org.codehaus.plexus:plexus-interactivity-api:1.0-alpha-6",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-component-api",
+            "org.codehaus.plexus:plexus-utils"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-wG8OuBhjMDPwmofRTEz7bzmvmjc=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-interactivity-api",
+              "version": "1.0-alpha-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-6/plexus-interactivity-api-1.0-alpha-6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-yjhEPzP8Buq5Ylm2B/fi6wpxLxc=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-interactivity-api",
+              "version": "1.0-alpha-6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-6/plexus-interactivity-api-1.0-alpha-6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-interpolation:1.11": {
+      "id": "org.codehaus.plexus:plexus-interpolation:1.11",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-interpolation:1.11",
+          "variantId": "org.codehaus.plexus:plexus-interpolation:1.11",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-rZ3d/2BDGUkErR0sAP8dADw5Ffc=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-interpolation",
+              "version": "1.11",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-gNR8axg71bo0PDbPhNc9ryijHGQ=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-interpolation",
+              "version": "1.11",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-java:1.2.0": {
+      "id": "org.codehaus.plexus:plexus-java:1.2.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-java:1.2.0",
+          "variantId": "org.codehaus.plexus:plexus-java:1.2.0",
+          "dependencies": [],
+          "exportedDependencies": [
+            "com.thoughtworks.qdox:qdox",
+            "org.ow2.asm:asm"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-PxYXZKrHhtZMTKwmURIVNpJQ1P0=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-java",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-java/1.2.0/plexus-java-1.2.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-7mYa8u+VpyWQnm9opep1Ez0DQSA=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-java",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-java/1.2.0/plexus-java-1.2.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-utils:4.0.0": {
+      "id": "org.codehaus.plexus:plexus-utils:4.0.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-utils:4.0.0",
+          "variantId": "org.codehaus.plexus:plexus-utils:4.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-/wCgS6lxZV7RDp+5O84O0wFOlHc=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-utils",
+              "version": "4.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/4.0.0/plexus-utils-4.0.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-nxdFJhaQYucMyvVIcpistJOWhVQ=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-utils",
+              "version": "4.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-utils/4.0.0/plexus-utils-4.0.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.plexus:plexus-xml:3.0.0": {
+      "id": "org.codehaus.plexus:plexus-xml:3.0.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.plexus:plexus-xml:3.0.0",
+          "variantId": "org.codehaus.plexus:plexus-xml:3.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-0WuRZ4vDc0J2iGEykj1pGck1yfc=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-xml",
+              "version": "3.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-xml/3.0.0/plexus-xml-3.0.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-pB4uvsz4JEQl4za/Qnullgcxp40=",
+              "groupId": "org.codehaus.plexus",
+              "artifactId": "plexus-xml",
+              "version": "3.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/plexus/plexus-xml/3.0.0/plexus-xml-3.0.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.ow2.asm:asm:9.6": {
+      "id": "org.ow2.asm:asm:9.6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.ow2.asm:asm:9.6",
+          "variantId": "org.ow2.asm:asm:9.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-AaXqb1tDvwlMUqUOGDJaYK97sC500k+bwscn1D5RRXj9losw/yL50nIMrsBxRY+f+C0Roh+7HrxC2CA+c3xLUg==",
+              "groupId": "org.ow2.asm",
+              "artifactId": "asm",
+              "version": "9.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/ow2/asm/asm/9.6/asm-9.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-WIC0bIcrB6ObHfzkW5cC2gcSGWQMNqyDgdCIuJaKPsNIFd475e/vbPYAUQijwZGp9sYt6/CNDaHygygmLRoW8Q==",
+              "groupId": "org.ow2.asm",
+              "artifactId": "asm",
+              "version": "9.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/ow2/asm/asm/9.6/asm-9.6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.slf4j:jcl-over-slf4j:1.5.6": {
+      "id": "org.slf4j:jcl-over-slf4j:1.5.6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.slf4j:jcl-over-slf4j:1.5.6",
+          "variantId": "org.slf4j:jcl-over-slf4j:1.5.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-YpaAlAt9ywLDkE3rhZkrRixC4nI=",
+              "groupId": "org.slf4j",
+              "artifactId": "jcl-over-slf4j",
+              "version": "1.5.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.5.6/jcl-over-slf4j-1.5.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Y4feemuCm/Z+NeIJJRE4W819sIk=",
+              "groupId": "org.slf4j",
+              "artifactId": "jcl-over-slf4j",
+              "version": "1.5.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.5.6/jcl-over-slf4j-1.5.6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.slf4j:slf4j-api:1.7.36": {
+      "id": "org.slf4j:slf4j-api:1.7.36",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.slf4j:slf4j-api:1.7.36",
+          "variantId": "org.slf4j:slf4j-api:1.7.36",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-bGJoGi9lW0mWOlmDuLCVCmEgrhQ=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.36",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-rpwargAzr5Fc+nXYUOudiA8hpwE=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.36",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.slf4j:slf4j-jdk14:1.5.6": {
+      "id": "org.slf4j:slf4j-jdk14:1.5.6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.slf4j:slf4j-jdk14:1.5.6",
+          "variantId": "org.slf4j:slf4j-jdk14:1.5.6",
+          "dependencies": [
+            "org.slf4j:slf4j-api"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-zDg/vQfdGCa7y6G5B7vcC1vmJ/E=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-jdk14",
+              "version": "1.5.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-TZfRDi5zBTdXo0buZ3eck2NOekw=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-jdk14",
+              "version": "1.5.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.slf4j:slf4j-nop:1.5.3": {
+      "id": "org.slf4j:slf4j-nop:1.5.3",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.slf4j:slf4j-nop:1.5.3",
+          "variantId": "org.slf4j:slf4j-nop:1.5.3",
+          "dependencies": [
+            "org.slf4j:slf4j-api"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-NqPIhiNc3dBeVal5zvVJGWdAIxo=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-nop",
+              "version": "1.5.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-nop/1.5.3/slf4j-nop-1.5.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-9Ef8n9AersGU8CcYTSKvRkbs2LI=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-nop",
+              "version": "1.5.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-nop/1.5.3/slf4j-nop-1.5.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.sonatype.plexus:plexus-cipher:1.4": {
+      "id": "org.sonatype.plexus:plexus-cipher:1.4",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.sonatype.plexus:plexus-cipher:1.4",
+          "variantId": "org.sonatype.plexus:plexus-cipher:1.4",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-UK3kbyO7OM2YS07FYMRiI0MqrDg=",
+              "groupId": "org.sonatype.plexus",
+              "artifactId": "plexus-cipher",
+              "version": "1.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-/ZGe3yEZVOQeDmC8iwQr0uHlzB8=",
+              "groupId": "org.sonatype.plexus",
+              "artifactId": "plexus-cipher",
+              "version": "1.4",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.sonatype.plexus:plexus-sec-dispatcher:1.3": {
+      "id": "org.sonatype.plexus:plexus-sec-dispatcher:1.3",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.sonatype.plexus:plexus-sec-dispatcher:1.3",
+          "variantId": "org.sonatype.plexus:plexus-sec-dispatcher:1.3",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.plexus:plexus-utils",
+            "org.sonatype.plexus:plexus-cipher"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-3twCA0+4/NdhXWZZMijLcXCRNLQ=",
+              "groupId": "org.sonatype.plexus",
+              "artifactId": "plexus-sec-dispatcher",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Txs81x7Hu8XehAb+Vg07NAmdaoU=",
+              "groupId": "org.sonatype.plexus",
+              "artifactId": "plexus-sec-dispatcher",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "xerces:xercesImpl:2.8.1": {
+      "id": "xerces:xercesImpl:2.8.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "xerces:xercesImpl:2.8.1",
+          "variantId": "xerces:xercesImpl:2.8.1",
+          "dependencies": [],
+          "exportedDependencies": [
+            "xml-apis:xml-apis"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-JRAeN+wMkH228GEsvxBu5RnBrvE=",
+              "groupId": "xerces",
+              "artifactId": "xercesImpl",
+              "version": "2.8.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-6dT1/RhiKITE42m7pXB5AQD3DzI=",
+              "groupId": "xerces",
+              "artifactId": "xercesImpl",
+              "version": "2.8.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "xml-apis:xml-apis:1.3.03": {
+      "id": "xml-apis:xml-apis:1.3.03",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "xml-apis:xml-apis:1.3.03",
+          "variantId": "xml-apis:xml-apis:1.3.03",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-OEXVqr1i3BlU8sDoSnmQaMkXrSs=",
+              "groupId": "xml-apis",
+              "artifactId": "xml-apis",
+              "version": "1.3.03",
+              "urls": [
+                "https://repo1.maven.org/maven2/xml-apis/xml-apis/1.3.03/xml-apis-1.3.03.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

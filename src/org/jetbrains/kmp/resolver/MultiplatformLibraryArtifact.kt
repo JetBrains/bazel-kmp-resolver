@@ -1,16 +1,52 @@
 package org.jetbrains.kmp.resolver
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
+@Serializable(with = MultiplatformLibraryArtifactSerializer::class)
 internal sealed class MultiplatformLibraryArtifact {
     abstract val integrity: MultiplatformLibraryArtifactIntegrity
+    abstract val type: Type<*>
+
+    sealed interface Type<T : MultiplatformLibraryArtifact> {
+
+        val name
+            get() =
+                when (this) {
+                    Maven.Aar -> "Aar"
+                    Maven.CInteropKlib -> "CInteropKlib"
+                    Maven.ClasspathJar -> "ClasspathJar"
+                    Maven.Klib -> "Klib"
+                    Maven.SourceJar -> "SourceJar"
+                    Npm -> "Npm"
+                }
+
+        enum class Maven : Type<MavenMultiplatformLibraryArtifact> {
+            Aar,
+            CInteropKlib,
+            ClasspathJar,
+            Klib,
+            SourceJar,
+        }
+
+        data object Npm : Type<NpmMultiplatformLibraryArtifact>
+
+        companion object {
+            val values by lazy {
+                listOf(
+                    Maven.Aar,
+                    Maven.CInteropKlib,
+                    Maven.ClasspathJar,
+                    Maven.Klib,
+                    Maven.SourceJar,
+                    Npm,
+                )
+            }
+        }
+    }
 }
 
-@Serializable
-@SerialName("maven")
 internal data class MavenMultiplatformLibraryArtifact(
+    override val type: Type.Maven,
     override val integrity: MultiplatformLibraryArtifactIntegrity,
     val groupId: String,
     val artifactId: String,
@@ -18,11 +54,11 @@ internal data class MavenMultiplatformLibraryArtifact(
     val urls: List<String>,
 ) : MultiplatformLibraryArtifact()
 
-@Serializable
-@SerialName("npm")
 internal data class NpmMultiplatformLibraryArtifact(
     override val integrity: MultiplatformLibraryArtifactIntegrity,
     val name: String,
     val version: String,
     val url: String,
-) : MultiplatformLibraryArtifact()
+) : MultiplatformLibraryArtifact() {
+    override val type = Type.Npm
+}

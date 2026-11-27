@@ -4,16 +4,20 @@ This directory contains test 'Gradle Projects' that can be used to compare the r
 Gradle resolution.
 
 Update the projects with `./kotlin do updateGradleGoldenData` from the repository root (runs the projects'
-Gradle wrapper, which requires a local Java installation).
+Gradle wrapper, which requires a local Java installation and — since the 'kmp-popular' project has an
+Android target with `compileSdk = 37` — an Android SDK providing API level 37).
 
 ## Golden Data
 
-The golden data is located in 'golden-data/{project name}/{targetName}.txt'
+The golden data is located in 'golden-data/{project name}/{targetName}.{scope}.txt' (e.g.
+'android.runtime.txt'), one file per target and resolution scope ('compile' or 'runtime').
 
 ```
 { for each artifact in the project }
   {{GAV}}
   {{SHA 512 hash of the artifact}}
+  {{SHA 256 hash of the artifact}}
+  {{SHA 1 hash of the artifact}}
 ```
 
 ## Projects

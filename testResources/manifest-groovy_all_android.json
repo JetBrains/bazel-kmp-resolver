@@ -1,0 +1,3073 @@
+{
+  "askedCoordinates": [
+    "org.codehaus.groovy:groovy-all:3.0.22"
+  ],
+  "askedRepositories": [
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "com.beust:jcommander:1.78": {
+      "id": "com.beust:jcommander:1.78",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.beust:jcommander:1.78",
+          "variantId": "com.beust:jcommander:1.78",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-o5J96b1vNRQpvPdjcSyYkGKdj1E=",
+              "groupId": "com.beust",
+              "artifactId": "jcommander",
+              "version": "1.78",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/beust/jcommander/1.78/jcommander-1.78.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Oz3Dcw9NYjkEr8YqRjrhhxCoidM=",
+              "groupId": "com.beust",
+              "artifactId": "jcommander",
+              "version": "1.78",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/beust/jcommander/1.78/jcommander-1.78-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "com.beust:jcommander:1.78",
+          "variantId": "com.beust:jcommander:1.78",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-o5J96b1vNRQpvPdjcSyYkGKdj1E=",
+              "groupId": "com.beust",
+              "artifactId": "jcommander",
+              "version": "1.78",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/beust/jcommander/1.78/jcommander-1.78.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Oz3Dcw9NYjkEr8YqRjrhhxCoidM=",
+              "groupId": "com.beust",
+              "artifactId": "jcommander",
+              "version": "1.78",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/beust/jcommander/1.78/jcommander-1.78-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.github.javaparser:javaparser-core:3.25.6": {
+      "id": "com.github.javaparser:javaparser-core:3.25.6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.github.javaparser:javaparser-core:3.25.6",
+          "variantId": "com.github.javaparser:javaparser-core:3.25.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-XgWL6jP5Ll3W9B+GBmAJzVYlBFI=",
+              "groupId": "com.github.javaparser",
+              "artifactId": "javaparser-core",
+              "version": "3.25.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/github/javaparser/javaparser-core/3.25.6/javaparser-core-3.25.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-370LFcBrux6BrTpMsMiZwBOxK/g=",
+              "groupId": "com.github.javaparser",
+              "artifactId": "javaparser-core",
+              "version": "3.25.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/github/javaparser/javaparser-core/3.25.6/javaparser-core-3.25.6-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "com.github.javaparser:javaparser-core:3.25.6",
+          "variantId": "com.github.javaparser:javaparser-core:3.25.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-XgWL6jP5Ll3W9B+GBmAJzVYlBFI=",
+              "groupId": "com.github.javaparser",
+              "artifactId": "javaparser-core",
+              "version": "3.25.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/github/javaparser/javaparser-core/3.25.6/javaparser-core-3.25.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-370LFcBrux6BrTpMsMiZwBOxK/g=",
+              "groupId": "com.github.javaparser",
+              "artifactId": "javaparser-core",
+              "version": "3.25.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/github/javaparser/javaparser-core/3.25.6/javaparser-core-3.25.6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.code.findbugs:jsr305:3.0.1": {
+      "id": "com.google.code.findbugs:jsr305:3.0.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.code.findbugs:jsr305:3.0.1",
+          "variantId": "com.google.code.findbugs:jsr305:3.0.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-974I7CPCFIW5taHPFlTC7IxYFo0=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-opJsBXyjtmK52xlMhpvb59O7iu8=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "com.google.code.findbugs:jsr305:3.0.1",
+          "variantId": "com.google.code.findbugs:jsr305:3.0.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-974I7CPCFIW5taHPFlTC7IxYFo0=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-opJsBXyjtmK52xlMhpvb59O7iu8=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.thoughtworks.qdox:qdox:1.12.1": {
+      "id": "com.thoughtworks.qdox:qdox:1.12.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.thoughtworks.qdox:qdox:1.12.1",
+          "variantId": "com.thoughtworks.qdox:qdox:1.12.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-9xIvarH2S9+fWXCw6Jv7NV4DaJc=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "1.12.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/1.12.1/qdox-1.12.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ooQUihGOELuEWY37g/GdH/Eor60=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "1.12.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/1.12.1/qdox-1.12.1-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "com.thoughtworks.qdox:qdox:1.12.1",
+          "variantId": "com.thoughtworks.qdox:qdox:1.12.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-9xIvarH2S9+fWXCw6Jv7NV4DaJc=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "1.12.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/1.12.1/qdox-1.12.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-ooQUihGOELuEWY37g/GdH/Eor60=",
+              "groupId": "com.thoughtworks.qdox",
+              "artifactId": "qdox",
+              "version": "1.12.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/thoughtworks/qdox/qdox/1.12.1/qdox-1.12.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "info.picocli:picocli:4.6.3": {
+      "id": "info.picocli:picocli:4.6.3",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "info.picocli:picocli:4.6.3",
+          "variantId": "info.picocli:picocli:4.6.3",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-1hlMlFPV5+0f6nSRc9sPRqb1zECwTKVyIFjSuL42en87in2+VtRm15QKvKep2NvhUy6SpPHdlhT3sYGWgg2EFw==",
+              "groupId": "info.picocli",
+              "artifactId": "picocli",
+              "version": "4.6.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/info/picocli/picocli/4.6.3/picocli-4.6.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-bceXlvqdEKyT3FiVFDy0YdGBp+ydvzSRAjUupdvPkaHub09ncZrspKacoBGFDNIsEdM591GnEfRyHoekl4cVVA==",
+              "groupId": "info.picocli",
+              "artifactId": "picocli",
+              "version": "4.6.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/info/picocli/picocli/4.6.3/picocli-4.6.3-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "info.picocli:picocli:4.6.3",
+          "variantId": "info.picocli:picocli:4.6.3",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-1hlMlFPV5+0f6nSRc9sPRqb1zECwTKVyIFjSuL42en87in2+VtRm15QKvKep2NvhUy6SpPHdlhT3sYGWgg2EFw==",
+              "groupId": "info.picocli",
+              "artifactId": "picocli",
+              "version": "4.6.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/info/picocli/picocli/4.6.3/picocli-4.6.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-bceXlvqdEKyT3FiVFDy0YdGBp+ydvzSRAjUupdvPkaHub09ncZrspKacoBGFDNIsEdM591GnEfRyHoekl4cVVA==",
+              "groupId": "info.picocli",
+              "artifactId": "picocli",
+              "version": "4.6.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/info/picocli/picocli/4.6.3/picocli-4.6.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "jline:jline:2.14.6": {
+      "id": "jline:jline:2.14.6",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "jline:jline:2.14.6",
+          "variantId": "jline:jline:2.14.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-w66sWcAivcSXyMSO2G+lBFDkiWo=",
+              "groupId": "jline",
+              "artifactId": "jline",
+              "version": "2.14.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-6T3FXPW28gHoUO0zn6UuUNURBdU=",
+              "groupId": "jline",
+              "artifactId": "jline",
+              "version": "2.14.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "jline:jline:2.14.6",
+          "variantId": "jline:jline:2.14.6",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-w66sWcAivcSXyMSO2G+lBFDkiWo=",
+              "groupId": "jline",
+              "artifactId": "jline",
+              "version": "2.14.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-6T3FXPW28gHoUO0zn6UuUNURBdU=",
+              "groupId": "jline",
+              "artifactId": "jline",
+              "version": "2.14.6",
+              "urls": [
+                "https://repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "junit:junit:4.13.2": {
+      "id": "junit:junit:4.13.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "junit:junit:4.13.2",
+          "variantId": "junit:junit:4.13.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.hamcrest:hamcrest-core"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-isnhbZM7b7Q7x/V2M2uPTX61uhI=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "4.13.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-M5h4cqgR/k1AAe1JSweFSCIlf0I=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "4.13.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "junit:junit:4.13.2",
+          "variantId": "junit:junit:4.13.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.hamcrest:hamcrest-core"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-isnhbZM7b7Q7x/V2M2uPTX61uhI=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "4.13.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-M5h4cqgR/k1AAe1JSweFSCIlf0I=",
+              "groupId": "junit",
+              "artifactId": "junit",
+              "version": "4.13.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.ant:ant-antlr:1.10.14": {
+      "id": "org.apache.ant:ant-antlr:1.10.14",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.ant:ant-antlr:1.10.14",
+          "variantId": "org.apache.ant:ant-antlr:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-HxlgL2IvqfoE+aqIB/k1tXHKBco=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-antlr",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-antlr/1.10.14/ant-antlr-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-g2HQrt/j+pBGTgbIOZfkVvH9Ryw=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-antlr",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-antlr/1.10.14/ant-antlr-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.apache.ant:ant-antlr:1.10.14",
+          "variantId": "org.apache.ant:ant-antlr:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-HxlgL2IvqfoE+aqIB/k1tXHKBco=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-antlr",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-antlr/1.10.14/ant-antlr-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-g2HQrt/j+pBGTgbIOZfkVvH9Ryw=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-antlr",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-antlr/1.10.14/ant-antlr-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.ant:ant-junit:1.10.14": {
+      "id": "org.apache.ant:ant-junit:1.10.14",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.ant:ant-junit:1.10.14",
+          "variantId": "org.apache.ant:ant-junit:1.10.14",
+          "dependencies": [
+            "junit:junit",
+            "org.apache.ant:ant"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-5fe1o2fLA6c4eQGDMccGWipHmVQ=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-junit",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-junit/1.10.14/ant-junit-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-dupF3bBVLtCamTIclwNEMV9sj5g=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-junit",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-junit/1.10.14/ant-junit-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.apache.ant:ant-junit:1.10.14",
+          "variantId": "org.apache.ant:ant-junit:1.10.14",
+          "dependencies": [
+            "junit:junit",
+            "org.apache.ant:ant"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-5fe1o2fLA6c4eQGDMccGWipHmVQ=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-junit",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-junit/1.10.14/ant-junit-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-dupF3bBVLtCamTIclwNEMV9sj5g=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-junit",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-junit/1.10.14/ant-junit-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.ant:ant-launcher:1.10.14": {
+      "id": "org.apache.ant:ant-launcher:1.10.14",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.ant:ant-launcher:1.10.14",
+          "variantId": "org.apache.ant:ant-launcher:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-jSJoKISWsFQaJkDy7gf+PeGgIwE=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-launcher",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.10.14/ant-launcher-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-PUV+13r0Qya4x1nuVY6lTZP+Bvs=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-launcher",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.10.14/ant-launcher-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.apache.ant:ant-launcher:1.10.14",
+          "variantId": "org.apache.ant:ant-launcher:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-jSJoKISWsFQaJkDy7gf+PeGgIwE=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-launcher",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.10.14/ant-launcher-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-PUV+13r0Qya4x1nuVY6lTZP+Bvs=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant-launcher",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.10.14/ant-launcher-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apache.ant:ant:1.10.14": {
+      "id": "org.apache.ant:ant:1.10.14",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apache.ant:ant:1.10.14",
+          "variantId": "org.apache.ant:ant:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.ant:ant-launcher"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Htzpu/pg39UfAQh5x49EIdr656c=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-vT8fEZNau2SeMor4a/dc78ehjKQ=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant/1.10.14/ant-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.apache.ant:ant:1.10.14",
+          "variantId": "org.apache.ant:ant:1.10.14",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apache.ant:ant-launcher"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-Htzpu/pg39UfAQh5x49EIdr656c=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant/1.10.14/ant-1.10.14.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-vT8fEZNau2SeMor4a/dc78ehjKQ=",
+              "groupId": "org.apache.ant",
+              "artifactId": "ant",
+              "version": "1.10.14",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apache/ant/ant/1.10.14/ant-1.10.14-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.apiguardian:apiguardian-api:1.1.2": {
+      "id": "org.apiguardian:apiguardian-api:1.1.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.apiguardian:apiguardian-api:1.1.2",
+          "variantId": "org.apiguardian:apiguardian-api:1.1.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-18zQ5wGfGpl9451m3ArU7+FQQo/df0x0PJOITxYCo+kBNa00uuqW1bbZJa1sDISHyOeDBPCgiaEjg9SmLiyaYQ==",
+              "groupId": "org.apiguardian",
+              "artifactId": "apiguardian-api",
+              "version": "1.1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ADW7ZA+X2MZLn8CFCEqUscj/otwxRb1Z0f9cuyxj/3dlaaP+J70umWZEIjyHSNAi4IY/84OR47cugiQvEj9JpQ==",
+              "groupId": "org.apiguardian",
+              "artifactId": "apiguardian-api",
+              "version": "1.1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.apiguardian:apiguardian-api:1.1.2",
+          "variantId": "org.apiguardian:apiguardian-api:1.1.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-18zQ5wGfGpl9451m3ArU7+FQQo/df0x0PJOITxYCo+kBNa00uuqW1bbZJa1sDISHyOeDBPCgiaEjg9SmLiyaYQ==",
+              "groupId": "org.apiguardian",
+              "artifactId": "apiguardian-api",
+              "version": "1.1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ADW7ZA+X2MZLn8CFCEqUscj/otwxRb1Z0f9cuyxj/3dlaaP+J70umWZEIjyHSNAi4IY/84OR47cugiQvEj9JpQ==",
+              "groupId": "org.apiguardian",
+              "artifactId": "apiguardian-api",
+              "version": "1.1.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-all:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-all:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-all:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-all:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-ant",
+            "org.codehaus.groovy:groovy-astbuilder",
+            "org.codehaus.groovy:groovy-cli-picocli",
+            "org.codehaus.groovy:groovy-console",
+            "org.codehaus.groovy:groovy-datetime",
+            "org.codehaus.groovy:groovy-docgenerator",
+            "org.codehaus.groovy:groovy-groovydoc",
+            "org.codehaus.groovy:groovy-groovysh",
+            "org.codehaus.groovy:groovy-jmx",
+            "org.codehaus.groovy:groovy-json",
+            "org.codehaus.groovy:groovy-jsr223",
+            "org.codehaus.groovy:groovy-macro",
+            "org.codehaus.groovy:groovy-nio",
+            "org.codehaus.groovy:groovy-servlet",
+            "org.codehaus.groovy:groovy-sql",
+            "org.codehaus.groovy:groovy-swing",
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-test",
+            "org.codehaus.groovy:groovy-test-junit5",
+            "org.codehaus.groovy:groovy-testng",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "artifacts": [
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-gWEqrHiJW8iw8piP5iXMolSMVW59YhHkEYt4CC8GNO4q+NrY9dohVy/rA8N6mT6nVX5PAEs4kw5hnHqwX+wcvQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-all",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/3.0.22/groovy-all-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-all:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-all:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-ant",
+            "org.codehaus.groovy:groovy-astbuilder",
+            "org.codehaus.groovy:groovy-cli-picocli",
+            "org.codehaus.groovy:groovy-console",
+            "org.codehaus.groovy:groovy-datetime",
+            "org.codehaus.groovy:groovy-docgenerator",
+            "org.codehaus.groovy:groovy-groovydoc",
+            "org.codehaus.groovy:groovy-groovysh",
+            "org.codehaus.groovy:groovy-jmx",
+            "org.codehaus.groovy:groovy-json",
+            "org.codehaus.groovy:groovy-jsr223",
+            "org.codehaus.groovy:groovy-macro",
+            "org.codehaus.groovy:groovy-nio",
+            "org.codehaus.groovy:groovy-servlet",
+            "org.codehaus.groovy:groovy-sql",
+            "org.codehaus.groovy:groovy-swing",
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-test",
+            "org.codehaus.groovy:groovy-test-junit5",
+            "org.codehaus.groovy:groovy-testng",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "artifacts": [
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-gWEqrHiJW8iw8piP5iXMolSMVW59YhHkEYt4CC8GNO4q+NrY9dohVy/rA8N6mT6nVX5PAEs4kw5hnHqwX+wcvQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-all",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/3.0.22/groovy-all-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-ant:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-ant:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-ant:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-ant:3.0.22",
+          "dependencies": [
+            "org.apache.ant:ant-antlr",
+            "org.apache.ant:ant-junit",
+            "org.apache.ant:ant-launcher",
+            "org.codehaus.groovy:groovy-groovydoc"
+          ],
+          "exportedDependencies": [
+            "org.apache.ant:ant",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-A9EEIgpfKKayNaIVrhX5q/jlKssYbrhhxfcBK8G+5gn46RmlcRpnXQGeSM2YnyqOcPxy7XGVeTw/x4tgpUb9pQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-ant",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-ant/3.0.22/groovy-ant-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-C38350YVXe/I5/cd1GskJjuRtV8nVYANziaRMtwfZUXSIVVGRfltyfRNcxbfWiNabWnVIH3TLstMoFSQWhW5Yw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-ant",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-ant/3.0.22/groovy-ant-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-ant:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-ant:3.0.22",
+          "dependencies": [
+            "org.apache.ant:ant-antlr",
+            "org.apache.ant:ant-junit",
+            "org.apache.ant:ant-launcher",
+            "org.codehaus.groovy:groovy-groovydoc"
+          ],
+          "exportedDependencies": [
+            "org.apache.ant:ant",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-A9EEIgpfKKayNaIVrhX5q/jlKssYbrhhxfcBK8G+5gn46RmlcRpnXQGeSM2YnyqOcPxy7XGVeTw/x4tgpUb9pQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-ant",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-ant/3.0.22/groovy-ant-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-C38350YVXe/I5/cd1GskJjuRtV8nVYANziaRMtwfZUXSIVVGRfltyfRNcxbfWiNabWnVIH3TLstMoFSQWhW5Yw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-ant",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-ant/3.0.22/groovy-ant-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-astbuilder:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-astbuilder:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-astbuilder:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-astbuilder:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-KEsUSvdlHHWNwY5YvCe+pqUYSMkb4kHLVkZvs2zEbUQ4OQr87HZ18mc9SuikT0gcc0OfXy0oM0n5Pap28ZpSEQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-astbuilder",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-astbuilder/3.0.22/groovy-astbuilder-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-bJJkjaIiXumsMzUK8f2HYsCWJ3/2yRPEZCUEBJ8x7+htHAen0s1oPjnU1JWuw7vwJbFa5W+5pZdx6kzSfWQUMw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-astbuilder",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-astbuilder/3.0.22/groovy-astbuilder-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-astbuilder:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-astbuilder:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-KEsUSvdlHHWNwY5YvCe+pqUYSMkb4kHLVkZvs2zEbUQ4OQr87HZ18mc9SuikT0gcc0OfXy0oM0n5Pap28ZpSEQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-astbuilder",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-astbuilder/3.0.22/groovy-astbuilder-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-bJJkjaIiXumsMzUK8f2HYsCWJ3/2yRPEZCUEBJ8x7+htHAen0s1oPjnU1JWuw7vwJbFa5W+5pZdx6kzSfWQUMw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-astbuilder",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-astbuilder/3.0.22/groovy-astbuilder-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-cli-picocli:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-cli-picocli:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-cli-picocli:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-cli-picocli:3.0.22",
+          "dependencies": [
+            "info.picocli:picocli"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-S/xqSg+m0TIOUcumCSGMvk9MK9VPXTMDne2ysL9QsCRFFD+1pb7omiCmNisxJh/xQaoElL7kLQTl3Ayt2i15zA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-cli-picocli",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-cli-picocli/3.0.22/groovy-cli-picocli-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-cdvEJBvv0fb7L0KJ3IMQnwWzA/d8aWp8fwl16xf6wmUh+4zs0eITRkuOmD91HqOfkEacx+uhgQXOYlWbH17YCQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-cli-picocli",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-cli-picocli/3.0.22/groovy-cli-picocli-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-cli-picocli:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-cli-picocli:3.0.22",
+          "dependencies": [
+            "info.picocli:picocli"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-S/xqSg+m0TIOUcumCSGMvk9MK9VPXTMDne2ysL9QsCRFFD+1pb7omiCmNisxJh/xQaoElL7kLQTl3Ayt2i15zA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-cli-picocli",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-cli-picocli/3.0.22/groovy-cli-picocli-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-cdvEJBvv0fb7L0KJ3IMQnwWzA/d8aWp8fwl16xf6wmUh+4zs0eITRkuOmD91HqOfkEacx+uhgQXOYlWbH17YCQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-cli-picocli",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-cli-picocli/3.0.22/groovy-cli-picocli-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-console:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-console:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-console:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-console:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-swing",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-/0QGrd58dcTHCm1lIM94eKf0Lcjd0xeZE86Kc2dhE7v1LE8er19Z3BuB5tkw0+dXrmHrs5wAVjwSPvuqm/RBeQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-console",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-console/3.0.22/groovy-console-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ksePfqMFGEmAK42G6mM53SU/tQie9MXNGYbVHRWi7PbY5nqWCtVshzrj/Kj8UGC3tQpB6Erf5/CxMRSqGwIUTA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-console",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-console/3.0.22/groovy-console-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-console:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-console:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-swing",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-/0QGrd58dcTHCm1lIM94eKf0Lcjd0xeZE86Kc2dhE7v1LE8er19Z3BuB5tkw0+dXrmHrs5wAVjwSPvuqm/RBeQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-console",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-console/3.0.22/groovy-console-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-ksePfqMFGEmAK42G6mM53SU/tQie9MXNGYbVHRWi7PbY5nqWCtVshzrj/Kj8UGC3tQpB6Erf5/CxMRSqGwIUTA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-console",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-console/3.0.22/groovy-console-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-datetime:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-datetime:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-datetime:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-datetime:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-McPt1Uj/9bLuxi61gNi4Hue9HHEJliAq7pWkrUppDWzGsD8IE0sAIz8RKEzZRfIBQQFa7A2gT7QhZOpupCDkCw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-datetime",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-datetime/3.0.22/groovy-datetime-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-1VNvLVyk1XgW32qoOWknh5gvDhjiHTg/OVXGMjHSPrsa5aOQCphmaoUZKQlKWx/50OuamdhPJ2IXw3CoBFfQRg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-datetime",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-datetime/3.0.22/groovy-datetime-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-datetime:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-datetime:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-McPt1Uj/9bLuxi61gNi4Hue9HHEJliAq7pWkrUppDWzGsD8IE0sAIz8RKEzZRfIBQQFa7A2gT7QhZOpupCDkCw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-datetime",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-datetime/3.0.22/groovy-datetime-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-1VNvLVyk1XgW32qoOWknh5gvDhjiHTg/OVXGMjHSPrsa5aOQCphmaoUZKQlKWx/50OuamdhPJ2IXw3CoBFfQRg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-datetime",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-datetime/3.0.22/groovy-datetime-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-docgenerator:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-docgenerator:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-docgenerator:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-docgenerator:3.0.22",
+          "dependencies": [
+            "com.thoughtworks.qdox:qdox",
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-miPphF10QpJau0kjjB+JffnUAprsEgvM8h6BJ6dPoquHWYgXdsAf4LgzK6wbkHVgr+9x4+wyMXROUS4g6EFnvQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-docgenerator",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-docgenerator/3.0.22/groovy-docgenerator-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-2vbMlrC+TAk0hSDtiR6zrI9W7C2b5N6lj4olqk1Vo/7cEa/kX0KWMMSj/DH3ikdKDAM/k7erEXAAj+qYIqjOHw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-docgenerator",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-docgenerator/3.0.22/groovy-docgenerator-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-docgenerator:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-docgenerator:3.0.22",
+          "dependencies": [
+            "com.thoughtworks.qdox:qdox",
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-miPphF10QpJau0kjjB+JffnUAprsEgvM8h6BJ6dPoquHWYgXdsAf4LgzK6wbkHVgr+9x4+wyMXROUS4g6EFnvQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-docgenerator",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-docgenerator/3.0.22/groovy-docgenerator-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-2vbMlrC+TAk0hSDtiR6zrI9W7C2b5N6lj4olqk1Vo/7cEa/kX0KWMMSj/DH3ikdKDAM/k7erEXAAj+qYIqjOHw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-docgenerator",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-docgenerator/3.0.22/groovy-docgenerator-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-groovydoc:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-groovydoc:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-groovydoc:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-groovydoc:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-docgenerator",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [
+            "com.github.javaparser:javaparser-core",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-OOGQXCWhi36TJS6FL20zAc5ZI11Z27jeVgvPXJDmmzUlnuYluRPVm6b/KvDXvL/aBOOVJgUFiYrzTV1e4p0SZg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovydoc",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovydoc/3.0.22/groovy-groovydoc-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-itfBL6JOOg2kZfpqkbzNWHYirWEQUTt/ep9ql8pYuw6F7UXvTf2qrzG/toZkvFhRFDWCGUDnVt+MOz4lqEjXyw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovydoc",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovydoc/3.0.22/groovy-groovydoc-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-groovydoc:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-groovydoc:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-docgenerator",
+            "org.codehaus.groovy:groovy-templates"
+          ],
+          "exportedDependencies": [
+            "com.github.javaparser:javaparser-core",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-OOGQXCWhi36TJS6FL20zAc5ZI11Z27jeVgvPXJDmmzUlnuYluRPVm6b/KvDXvL/aBOOVJgUFiYrzTV1e4p0SZg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovydoc",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovydoc/3.0.22/groovy-groovydoc-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-itfBL6JOOg2kZfpqkbzNWHYirWEQUTt/ep9ql8pYuw6F7UXvTf2qrzG/toZkvFhRFDWCGUDnVt+MOz4lqEjXyw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovydoc",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovydoc/3.0.22/groovy-groovydoc-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-groovysh:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-groovysh:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-groovysh:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-groovysh:3.0.22",
+          "dependencies": [
+            "jline:jline",
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-console",
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-59WXxsIcweKpxsvXS4yqmZRRnU5uLMGoFfxtGnPI3iqwaAL/E+vifw6qhT8juj0dll59cODL/y2pvwu15rFHxQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovysh",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovysh/3.0.22/groovy-groovysh-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-NQCBPnCen7fTsAKpCf2bMJTL2Ob1HI6VlyHV3HxbmJtqx7zRHEV5ouLtUJ7w49rUl/AoriKaa3kX8+A0tkzvuw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovysh",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovysh/3.0.22/groovy-groovysh-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-groovysh:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-groovysh:3.0.22",
+          "dependencies": [
+            "jline:jline",
+            "org.codehaus.groovy:groovy",
+            "org.codehaus.groovy:groovy-console",
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-59WXxsIcweKpxsvXS4yqmZRRnU5uLMGoFfxtGnPI3iqwaAL/E+vifw6qhT8juj0dll59cODL/y2pvwu15rFHxQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovysh",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovysh/3.0.22/groovy-groovysh-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-NQCBPnCen7fTsAKpCf2bMJTL2Ob1HI6VlyHV3HxbmJtqx7zRHEV5ouLtUJ7w49rUl/AoriKaa3kX8+A0tkzvuw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-groovysh",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-groovysh/3.0.22/groovy-groovysh-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-jmx:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-jmx:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-jmx:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-jmx:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-FITGsD0n/TymotPM30ZWoT66o0farDYQgexJOvdJwEjNOBNLpC1Ar3i5Y4YgR5LRva1uJtkS5hkvc1ktQBQJhA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jmx",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jmx/3.0.22/groovy-jmx-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-2pv76Vh/l0UYl9Zx7+vZBaRIi0kX1jffwpSCilvNYO7n3TlIy0vw2VB/vrBV5ISnrb+wShmQtiQHUJpAjsYp2w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jmx",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jmx/3.0.22/groovy-jmx-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-jmx:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-jmx:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-FITGsD0n/TymotPM30ZWoT66o0farDYQgexJOvdJwEjNOBNLpC1Ar3i5Y4YgR5LRva1uJtkS5hkvc1ktQBQJhA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jmx",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jmx/3.0.22/groovy-jmx-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-2pv76Vh/l0UYl9Zx7+vZBaRIi0kX1jffwpSCilvNYO7n3TlIy0vw2VB/vrBV5ISnrb+wShmQtiQHUJpAjsYp2w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jmx",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jmx/3.0.22/groovy-jmx-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-json:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-json:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-json:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-json:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-i+AgNzu00Sxbk7bfaBFm51IFQ8pj80kljNJTas9EmSlc2KNojgagtPLB0Opaf3yhG76wHX/kPMi1Qm6uD12kcw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-json",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-json/3.0.22/groovy-json-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-+TUld3E7Joi70E619mqRgPGQVmykSbh63WJUzQs+jie79Ye2M5XaaBffJgAndAQJ+FAe/fRnfnyZW7U3s1h7Bw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-json",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-json/3.0.22/groovy-json-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-json:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-json:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-i+AgNzu00Sxbk7bfaBFm51IFQ8pj80kljNJTas9EmSlc2KNojgagtPLB0Opaf3yhG76wHX/kPMi1Qm6uD12kcw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-json",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-json/3.0.22/groovy-json-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-+TUld3E7Joi70E619mqRgPGQVmykSbh63WJUzQs+jie79Ye2M5XaaBffJgAndAQJ+FAe/fRnfnyZW7U3s1h7Bw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-json",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-json/3.0.22/groovy-json-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-jsr223:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-jsr223:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-jsr223:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-jsr223:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-7P1iSML58yaWrEJ97045d3kdoQSTwwVNZ7kPqMDP1KCCOE5eEjKkeJUkDkR0K14kd4vICeaimXKNpxwy9X4azg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jsr223",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jsr223/3.0.22/groovy-jsr223-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-gp2IbhWpFQRUYtyMKDoAqIGgHHYkH7CDfFuGg0yFjaaUl5VaKepvvux3a73+hoAKyixd3mrX6L+GFYY95OzTxg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jsr223",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jsr223/3.0.22/groovy-jsr223-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-jsr223:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-jsr223:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-7P1iSML58yaWrEJ97045d3kdoQSTwwVNZ7kPqMDP1KCCOE5eEjKkeJUkDkR0K14kd4vICeaimXKNpxwy9X4azg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jsr223",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jsr223/3.0.22/groovy-jsr223-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-gp2IbhWpFQRUYtyMKDoAqIGgHHYkH7CDfFuGg0yFjaaUl5VaKepvvux3a73+hoAKyixd3mrX6L+GFYY95OzTxg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-jsr223",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-jsr223/3.0.22/groovy-jsr223-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-macro:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-macro:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-macro:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-macro:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-yf6ayfwwADG63pvs1TbQ65cn7bso78qgMpZuz9LwNZLcVX9sE9iB8mbaRWDcZQzQt3bOWW8cl23Tveurr2yR7w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-macro",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-macro/3.0.22/groovy-macro-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-DXjuUu2jroKXe5yNfjX057HSMu3m5EB0+4ntP3dqAwCcyS+vyjKHofnlthJfkIfbMJnVkPp4Xl9bbfs+g1Agpg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-macro",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-macro/3.0.22/groovy-macro-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-macro:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-macro:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-yf6ayfwwADG63pvs1TbQ65cn7bso78qgMpZuz9LwNZLcVX9sE9iB8mbaRWDcZQzQt3bOWW8cl23Tveurr2yR7w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-macro",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-macro/3.0.22/groovy-macro-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-DXjuUu2jroKXe5yNfjX057HSMu3m5EB0+4ntP3dqAwCcyS+vyjKHofnlthJfkIfbMJnVkPp4Xl9bbfs+g1Agpg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-macro",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-macro/3.0.22/groovy-macro-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-nio:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-nio:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-nio:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-nio:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-9T+T4bpslQIXt4R8ZFOy+98qIR9B8qQaLIzKplGF0jBhlGr/IsoI1QlfcZbc+0VSZ204wKUk/m9dU5dQ1UywSA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-nio",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-nio/3.0.22/groovy-nio-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-TM+7RfJ+qHnu/7xdT4hApflGLua98+JptAd4b4UjkNMt6vtGpXian1H9+uaRhEgr89MClcDdCEbAJMoa7mul4g==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-nio",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-nio/3.0.22/groovy-nio-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-nio:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-nio:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-9T+T4bpslQIXt4R8ZFOy+98qIR9B8qQaLIzKplGF0jBhlGr/IsoI1QlfcZbc+0VSZ204wKUk/m9dU5dQ1UywSA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-nio",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-nio/3.0.22/groovy-nio-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-TM+7RfJ+qHnu/7xdT4hApflGLua98+JptAd4b4UjkNMt6vtGpXian1H9+uaRhEgr89MClcDdCEbAJMoa7mul4g==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-nio",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-nio/3.0.22/groovy-nio-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-servlet:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-servlet:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-servlet:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-servlet:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-tMzng95aLN4SisptAyXtzNrlACxM9CgD+2rxncKXlLELiUQUz5qK5qGF4ztpzDuKET5mMFBPmGw8Z4rmg6BqBQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-servlet",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-servlet/3.0.22/groovy-servlet-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Eo4dO1ufk5Jx5ZLoKR7kGMhEBOuz6I7Vsahc08dQYEXTZWpMtZEts9oPQKykF+4OTHbEg7ObOWrv/C+rrJuvrw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-servlet",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-servlet/3.0.22/groovy-servlet-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-servlet:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-servlet:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-templates",
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-tMzng95aLN4SisptAyXtzNrlACxM9CgD+2rxncKXlLELiUQUz5qK5qGF4ztpzDuKET5mMFBPmGw8Z4rmg6BqBQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-servlet",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-servlet/3.0.22/groovy-servlet-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-Eo4dO1ufk5Jx5ZLoKR7kGMhEBOuz6I7Vsahc08dQYEXTZWpMtZEts9oPQKykF+4OTHbEg7ObOWrv/C+rrJuvrw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-servlet",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-servlet/3.0.22/groovy-servlet-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-sql:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-sql:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-sql:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-sql:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-xuWlDPXdE2U8ZfBKRH06U8Qap+bUyteoktz8+2TW88uBi4U+2BZBYXFGbHZpNTEnWlPLctOOqcGWkNme4eOtOA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-sql",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-sql/3.0.22/groovy-sql-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-egl+3ZMkhcjMmZid69k8szoRG4mqc7iBh00bJ7CPKgwTStVSqZ7jDjSr69Tx0IVrjzlNAJNjKBH++F/jJ19n5g==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-sql",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-sql/3.0.22/groovy-sql-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-sql:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-sql:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-xuWlDPXdE2U8ZfBKRH06U8Qap+bUyteoktz8+2TW88uBi4U+2BZBYXFGbHZpNTEnWlPLctOOqcGWkNme4eOtOA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-sql",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-sql/3.0.22/groovy-sql-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-egl+3ZMkhcjMmZid69k8szoRG4mqc7iBh00bJ7CPKgwTStVSqZ7jDjSr69Tx0IVrjzlNAJNjKBH++F/jJ19n5g==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-sql",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-sql/3.0.22/groovy-sql-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-swing:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-swing:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-swing:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-swing:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-PRwA+gwFg6fXgY09IurhIibrqpFeg/F/+JaNT6pnh7qpGqGBMQ/UkEsrMFwu+DOxCTJbgEfzO5XfRX9Ixifkfw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-swing",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-swing/3.0.22/groovy-swing-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-GFrvPW6ml8nRQnDSuGGlP35Cf63FMPKCgOWbatxYykIcYJRuPxu6a0ucNjwWhSgi8BYw5HVx8qsMgdjLDcb8ZQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-swing",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-swing/3.0.22/groovy-swing-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-swing:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-swing:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-PRwA+gwFg6fXgY09IurhIibrqpFeg/F/+JaNT6pnh7qpGqGBMQ/UkEsrMFwu+DOxCTJbgEfzO5XfRX9Ixifkfw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-swing",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-swing/3.0.22/groovy-swing-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-GFrvPW6ml8nRQnDSuGGlP35Cf63FMPKCgOWbatxYykIcYJRuPxu6a0ucNjwWhSgi8BYw5HVx8qsMgdjLDcb8ZQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-swing",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-swing/3.0.22/groovy-swing-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-templates:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-templates:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-templates:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-templates:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Xfkt4zBSyyX1mpnMOJLGBLhMotqadNcUuK4N3hIiCMr0JrTevkr4CrEflyCfp6RnwS2WyUAcd7CBRSv+CmL1rg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-templates",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-templates/3.0.22/groovy-templates-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-leJdn+ixqU4sLbdrO+qkNSwzG+62itMn03SZkeHy98ugHfrIO8Ku9TkYHPaTKhwB4tJ+7nUek6Lybc8uL2ATbA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-templates",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-templates/3.0.22/groovy-templates-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-templates:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-templates:3.0.22",
+          "dependencies": [
+            "org.codehaus.groovy:groovy-xml"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Xfkt4zBSyyX1mpnMOJLGBLhMotqadNcUuK4N3hIiCMr0JrTevkr4CrEflyCfp6RnwS2WyUAcd7CBRSv+CmL1rg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-templates",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-templates/3.0.22/groovy-templates-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-leJdn+ixqU4sLbdrO+qkNSwzG+62itMn03SZkeHy98ugHfrIO8Ku9TkYHPaTKhwB4tJ+7nUek6Lybc8uL2ATbA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-templates",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-templates/3.0.22/groovy-templates-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-test-junit5:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-test-junit5:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-test-junit5:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-test-junit5:3.0.22",
+          "dependencies": [
+            "org.junit.jupiter:junit-jupiter-engine",
+            "org.junit.platform:junit-platform-launcher"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy",
+            "org.junit.jupiter:junit-jupiter-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-L1vuAF03Nl4lxofwv1qSY8N5HzvrazyjX4ymooQ3yH5R+1XeZWTh/VQiPJ1wZS4J8JjX3Rkn9teXcAZ8h2QGXw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test-junit5",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test-junit5/3.0.22/groovy-test-junit5-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-wKSuI9YBy2wFF8bvjXPJBD5TgYhkQZzBzcVRCTgO2P2MvE1uJ1oc4+2b12HaAoaZ6cKC7YK4yxY5bc++TDSo/w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test-junit5",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test-junit5/3.0.22/groovy-test-junit5-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-test-junit5:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-test-junit5:3.0.22",
+          "dependencies": [
+            "org.junit.jupiter:junit-jupiter-engine",
+            "org.junit.platform:junit-platform-launcher"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy",
+            "org.junit.jupiter:junit-jupiter-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-L1vuAF03Nl4lxofwv1qSY8N5HzvrazyjX4ymooQ3yH5R+1XeZWTh/VQiPJ1wZS4J8JjX3Rkn9teXcAZ8h2QGXw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test-junit5",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test-junit5/3.0.22/groovy-test-junit5-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-wKSuI9YBy2wFF8bvjXPJBD5TgYhkQZzBzcVRCTgO2P2MvE1uJ1oc4+2b12HaAoaZ6cKC7YK4yxY5bc++TDSo/w==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test-junit5",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test-junit5/3.0.22/groovy-test-junit5-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-test:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-test:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-test:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-test:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "junit:junit",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-St4/M77y5sc6w5ut+a5d43iWtT/2QMDkxVd7eEgrq7fDjPGMOy9FpK9rkKlP/KSgB+lg2AvCioMqekwclqR5Zg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test/3.0.22/groovy-test-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-omER9tkTEKSe9azjVKif3l9OSuj9qHATkO8ZjyoLao/hCS+y8SU48NKqIzDZFiQjIh7TSfmfNlQVPPkGI/N/eQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test/3.0.22/groovy-test-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-test:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-test:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "junit:junit",
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-St4/M77y5sc6w5ut+a5d43iWtT/2QMDkxVd7eEgrq7fDjPGMOy9FpK9rkKlP/KSgB+lg2AvCioMqekwclqR5Zg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test/3.0.22/groovy-test-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-omER9tkTEKSe9azjVKif3l9OSuj9qHATkO8ZjyoLao/hCS+y8SU48NKqIzDZFiQjIh7TSfmfNlQVPPkGI/N/eQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-test",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-test/3.0.22/groovy-test-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-testng:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-testng:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-testng:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-testng:3.0.22",
+          "dependencies": [
+            "org.testng:testng"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-FQMGtCcIY0v1VDftG5GBeWMTlo55br68rsb3YEnHLvLEPGSqt4FRA24Bjxwt29cf1v/HTzJ7Am3CKB1RwPRadg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-testng",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-testng/3.0.22/groovy-testng-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-My8FWdk80n1vvPBUjoDYf4s5boio7FvagHH/q2eorzdIfyDAdvt8z4qx/+/h99CIhPNTYwq7QVEut/fONLyGMw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-testng",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-testng/3.0.22/groovy-testng-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-testng:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-testng:3.0.22",
+          "dependencies": [
+            "org.testng:testng"
+          ],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-FQMGtCcIY0v1VDftG5GBeWMTlo55br68rsb3YEnHLvLEPGSqt4FRA24Bjxwt29cf1v/HTzJ7Am3CKB1RwPRadg==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-testng",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-testng/3.0.22/groovy-testng-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-My8FWdk80n1vvPBUjoDYf4s5boio7FvagHH/q2eorzdIfyDAdvt8z4qx/+/h99CIhPNTYwq7QVEut/fONLyGMw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-testng",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-testng/3.0.22/groovy-testng-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy-xml:3.0.22": {
+      "id": "org.codehaus.groovy:groovy-xml:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy-xml:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-xml:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Xn+SYNjI+lijmorBYjN9IBLBz2eu4yNlFHSi0LVp2V/XsKCRBY6ZkdTazpBfcgiD09z17QCYMevL5zKsSYZyBw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-xml",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-xml/3.0.22/groovy-xml-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-SBFURHtvtY6PobQu/qYzEwloXVb8aqmPGuWUZSnFmMMzxyWNqNf2iTnN1hhQ7CSgApbW1EW4/qeXJR6bZAaVXQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-xml",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-xml/3.0.22/groovy-xml-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy-xml:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy-xml:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.codehaus.groovy:groovy"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Xn+SYNjI+lijmorBYjN9IBLBz2eu4yNlFHSi0LVp2V/XsKCRBY6ZkdTazpBfcgiD09z17QCYMevL5zKsSYZyBw==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-xml",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-xml/3.0.22/groovy-xml-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-SBFURHtvtY6PobQu/qYzEwloXVb8aqmPGuWUZSnFmMMzxyWNqNf2iTnN1hhQ7CSgApbW1EW4/qeXJR6bZAaVXQ==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy-xml",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy-xml/3.0.22/groovy-xml-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.codehaus.groovy:groovy:3.0.22": {
+      "id": "org.codehaus.groovy:groovy:3.0.22",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.codehaus.groovy:groovy:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-aWS98qBfnF4xsNRVw8dXMzDQb875I1irDvZXGnHwXX8ynm5IDyFku7fBHUTr/dFkdPSq22QYnS9RSdb58rfLWA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy/3.0.22/groovy-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-GE7E4Xj0u7JrPbRfTqhC46ZSjmgNw6C2SvP7QsiDHLJpbBBJR+UUVM3VZBgAAXDcOl/IwM56fxI2QsudeLHxNA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy/3.0.22/groovy-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.codehaus.groovy:groovy:3.0.22",
+          "variantId": "org.codehaus.groovy:groovy:3.0.22",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-aWS98qBfnF4xsNRVw8dXMzDQb875I1irDvZXGnHwXX8ynm5IDyFku7fBHUTr/dFkdPSq22QYnS9RSdb58rfLWA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy/3.0.22/groovy-3.0.22.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-GE7E4Xj0u7JrPbRfTqhC46ZSjmgNw6C2SvP7QsiDHLJpbBBJR+UUVM3VZBgAAXDcOl/IwM56fxI2QsudeLHxNA==",
+              "groupId": "org.codehaus.groovy",
+              "artifactId": "groovy",
+              "version": "3.0.22",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/codehaus/groovy/groovy/3.0.22/groovy-3.0.22-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.hamcrest:hamcrest-core:1.3": {
+      "id": "org.hamcrest:hamcrest-core:1.3",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.hamcrest:hamcrest-core:1.3",
+          "variantId": "org.hamcrest:hamcrest-core:1.3",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-QqJdwyGUKfDl0GAGH3GstJvwEKA=",
+              "groupId": "org.hamcrest",
+              "artifactId": "hamcrest-core",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-HcNyUPvHjiOmWmf7uvcdLpy8PAs=",
+              "groupId": "org.hamcrest",
+              "artifactId": "hamcrest-core",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.hamcrest:hamcrest-core:1.3",
+          "variantId": "org.hamcrest:hamcrest-core:1.3",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-QqJdwyGUKfDl0GAGH3GstJvwEKA=",
+              "groupId": "org.hamcrest",
+              "artifactId": "hamcrest-core",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-HcNyUPvHjiOmWmf7uvcdLpy8PAs=",
+              "groupId": "org.hamcrest",
+              "artifactId": "hamcrest-core",
+              "version": "1.3",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.junit.jupiter:junit-jupiter-api:5.9.2": {
+      "id": "org.junit.jupiter:junit-jupiter-api:5.9.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.junit.jupiter:junit-jupiter-api:5.9.2",
+          "variantId": "org.junit.jupiter:junit-jupiter-api:5.9.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apiguardian:apiguardian-api",
+            "org.junit.platform:junit-platform-commons",
+            "org.opentest4j:opentest4j"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Nu+4gAxAs1kTPP6CNyPD1vNLDTnfkRh/uPf5Azmn2ZhKNLTQkclFR1r8hi8+WtVBJRbBV3ZWsa7pY/4PbaDVng==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-api",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-NljGbjSt/k699rS7Cl/26MBbfIlhBJwlp6Tx2JDveECCmg3l06rAeSrKRD8hwuGPvQHcks+EBHimiNmmvBQA2A==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-api",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.junit.jupiter:junit-jupiter-api:5.9.2",
+          "variantId": "org.junit.jupiter:junit-jupiter-api:5.9.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apiguardian:apiguardian-api",
+            "org.junit.platform:junit-platform-commons",
+            "org.opentest4j:opentest4j"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-Nu+4gAxAs1kTPP6CNyPD1vNLDTnfkRh/uPf5Azmn2ZhKNLTQkclFR1r8hi8+WtVBJRbBV3ZWsa7pY/4PbaDVng==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-api",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-NljGbjSt/k699rS7Cl/26MBbfIlhBJwlp6Tx2JDveECCmg3l06rAeSrKRD8hwuGPvQHcks+EBHimiNmmvBQA2A==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-api",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.junit.jupiter:junit-jupiter-engine:5.9.2": {
+      "id": "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+          "variantId": "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+          "dependencies": [
+            "org.junit.jupiter:junit-jupiter-api",
+            "org.junit.platform:junit-platform-engine"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-kB8pEO1LBZhM+9kA6akhItNj/UVWQYtYzQgHr36RqJwmU8c+53fpfU0j6f02RUmx0EMPXrcPwlm1It9eDtgVeA==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-engine",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-LG2Uqc0HURD1V62xzMfFnxnVzWzu8QiDfuAusg3HuVk0ShH/+VKSq97+P9OWe4MFCSuYnOcLg1DrmPzL59uODw==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-engine",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+          "variantId": "org.junit.jupiter:junit-jupiter-engine:5.9.2",
+          "dependencies": [
+            "org.junit.jupiter:junit-jupiter-api",
+            "org.junit.platform:junit-platform-engine"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-kB8pEO1LBZhM+9kA6akhItNj/UVWQYtYzQgHr36RqJwmU8c+53fpfU0j6f02RUmx0EMPXrcPwlm1It9eDtgVeA==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-engine",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-LG2Uqc0HURD1V62xzMfFnxnVzWzu8QiDfuAusg3HuVk0ShH/+VKSq97+P9OWe4MFCSuYnOcLg1DrmPzL59uODw==",
+              "groupId": "org.junit.jupiter",
+              "artifactId": "junit-jupiter-engine",
+              "version": "5.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.junit.platform:junit-platform-commons:1.9.2": {
+      "id": "org.junit.platform:junit-platform-commons:1.9.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.junit.platform:junit-platform-commons:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-commons:1.9.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apiguardian:apiguardian-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-3SWani83WIVSMiybTdN6rU2qLirgwQt55+PhKGmAILAoAg18ffoFiUS5+vpJPxz4qvbTKREpKn1PAZEBBrtVKw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-commons",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-90/sTLdFo1Tw730BTz1koNxcz0o184dM5a7E5S0ReGusZUW++z9HhiB7ucutKMJJJMpC8jJql20wvkm1VxtdvA==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-commons",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.junit.platform:junit-platform-commons:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-commons:1.9.2",
+          "dependencies": [],
+          "exportedDependencies": [
+            "org.apiguardian:apiguardian-api"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-3SWani83WIVSMiybTdN6rU2qLirgwQt55+PhKGmAILAoAg18ffoFiUS5+vpJPxz4qvbTKREpKn1PAZEBBrtVKw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-commons",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-90/sTLdFo1Tw730BTz1koNxcz0o184dM5a7E5S0ReGusZUW++z9HhiB7ucutKMJJJMpC8jJql20wvkm1VxtdvA==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-commons",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.junit.platform:junit-platform-engine:1.9.2": {
+      "id": "org.junit.platform:junit-platform-engine:1.9.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.junit.platform:junit-platform-engine:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-engine:1.9.2",
+          "dependencies": [
+            "org.junit.platform:junit-platform-commons",
+            "org.opentest4j:opentest4j"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-mXZqJnCZcIM3SYxLDP4LhnMzAcxZu4srUqEVHXgSapIm9AE9EdK++ZApfF4ysWjltBsDb5p8ucxbeMoKrNxaNg==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-engine",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-zt1NVYOduWs5s/j7qtf5jsQCh5ukTHpuFSPrDTGW5yWTo63+3H1rJcQmyi5ysg0uTK2Y03e4smdmC5T0EBJ4Xw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-engine",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.junit.platform:junit-platform-engine:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-engine:1.9.2",
+          "dependencies": [
+            "org.junit.platform:junit-platform-commons",
+            "org.opentest4j:opentest4j"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-mXZqJnCZcIM3SYxLDP4LhnMzAcxZu4srUqEVHXgSapIm9AE9EdK++ZApfF4ysWjltBsDb5p8ucxbeMoKrNxaNg==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-engine",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-zt1NVYOduWs5s/j7qtf5jsQCh5ukTHpuFSPrDTGW5yWTo63+3H1rJcQmyi5ysg0uTK2Y03e4smdmC5T0EBJ4Xw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-engine",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.junit.platform:junit-platform-launcher:1.9.2": {
+      "id": "org.junit.platform:junit-platform-launcher:1.9.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.junit.platform:junit-platform-launcher:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-launcher:1.9.2",
+          "dependencies": [
+            "org.junit.platform:junit-platform-engine"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-my4UlopFZ+Qnkq3+BKsyptd6O+c3JXNJ1kEMloplJfG+Nt/LGnzlYtXpF5OR0shXrYz4LMVSZNUNgiEdtjanoQ==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-launcher",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-QgOk2dvqutuuhVMWMg9wpmi3F5MWYMbeHNsxiKq61E8CUrdDvG+dwmIb3kUson1UZHeTr9MZHwu2c0Mdw+E5hw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-launcher",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.junit.platform:junit-platform-launcher:1.9.2",
+          "variantId": "org.junit.platform:junit-platform-launcher:1.9.2",
+          "dependencies": [
+            "org.junit.platform:junit-platform-engine"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-my4UlopFZ+Qnkq3+BKsyptd6O+c3JXNJ1kEMloplJfG+Nt/LGnzlYtXpF5OR0shXrYz4LMVSZNUNgiEdtjanoQ==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-launcher",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-QgOk2dvqutuuhVMWMg9wpmi3F5MWYMbeHNsxiKq61E8CUrdDvG+dwmIb3kUson1UZHeTr9MZHwu2c0Mdw+E5hw==",
+              "groupId": "org.junit.platform",
+              "artifactId": "junit-platform-launcher",
+              "version": "1.9.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.opentest4j:opentest4j:1.2.0": {
+      "id": "org.opentest4j:opentest4j:1.2.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.opentest4j:opentest4j:1.2.0",
+          "variantId": "org.opentest4j:opentest4j:1.2.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-KMEeuR+bbY4gBjHUbiCn9AfyoEY=",
+              "groupId": "org.opentest4j",
+              "artifactId": "opentest4j",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-QdVbPCJU3pg3tOyJI8vTcbin6rU=",
+              "groupId": "org.opentest4j",
+              "artifactId": "opentest4j",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.opentest4j:opentest4j:1.2.0",
+          "variantId": "org.opentest4j:opentest4j:1.2.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-KMEeuR+bbY4gBjHUbiCn9AfyoEY=",
+              "groupId": "org.opentest4j",
+              "artifactId": "opentest4j",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-QdVbPCJU3pg3tOyJI8vTcbin6rU=",
+              "groupId": "org.opentest4j",
+              "artifactId": "opentest4j",
+              "version": "1.2.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.slf4j:slf4j-api:1.7.32": {
+      "id": "org.slf4j:slf4j-api:1.7.32",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.slf4j:slf4j-api:1.7.32",
+          "variantId": "org.slf4j:slf4j-api:1.7.32",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-zc/zOUDZ8t52O8QeoFoL5ZQRdsM=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.32",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Q4GxUvc4WArvTkNrJpKj2zBgmyY=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.32",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.slf4j:slf4j-api:1.7.32",
+          "variantId": "org.slf4j:slf4j-api:1.7.32",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-zc/zOUDZ8t52O8QeoFoL5ZQRdsM=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.32",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Q4GxUvc4WArvTkNrJpKj2zBgmyY=",
+              "groupId": "org.slf4j",
+              "artifactId": "slf4j-api",
+              "version": "1.7.32",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.testng:testng:7.5": {
+      "id": "org.testng:testng:7.5",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.testng:testng:7.5",
+          "variantId": "org.testng:testng:7.5",
+          "dependencies": [
+            "com.beust:jcommander",
+            "com.google.code.findbugs:jsr305",
+            "org.slf4j:slf4j-api",
+            "org.webjars:jquery"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-kNPD7wl50OTr3XiFXBbAgsZDJGG2S4uBb1kbMI5BVKLFur7DCYnM28lVJnBQ6ztG3YjL3/9q7J7w7331XYLMFg==",
+              "groupId": "org.testng",
+              "artifactId": "testng",
+              "version": "7.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/testng/testng/7.5/testng-7.5.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-v8VuUdvb3/9IOYRP9QAuY9tt1i0O3t4/xXOfr6xjc/FZaAPHYl8Jg2WvAFju87dnpXhvKqwqI1ELQjQbENiVZw==",
+              "groupId": "org.testng",
+              "artifactId": "testng",
+              "version": "7.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/testng/testng/7.5/testng-7.5-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.testng:testng:7.5",
+          "variantId": "org.testng:testng:7.5",
+          "dependencies": [
+            "com.beust:jcommander",
+            "com.google.code.findbugs:jsr305",
+            "org.slf4j:slf4j-api",
+            "org.webjars:jquery"
+          ],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-kNPD7wl50OTr3XiFXBbAgsZDJGG2S4uBb1kbMI5BVKLFur7DCYnM28lVJnBQ6ztG3YjL3/9q7J7w7331XYLMFg==",
+              "groupId": "org.testng",
+              "artifactId": "testng",
+              "version": "7.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/testng/testng/7.5/testng-7.5.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-v8VuUdvb3/9IOYRP9QAuY9tt1i0O3t4/xXOfr6xjc/FZaAPHYl8Jg2WvAFju87dnpXhvKqwqI1ELQjQbENiVZw==",
+              "groupId": "org.testng",
+              "artifactId": "testng",
+              "version": "7.5",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/testng/testng/7.5/testng-7.5-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.webjars:jquery:3.5.1": {
+      "id": "org.webjars:jquery:3.5.1",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.webjars:jquery:3.5.1",
+          "variantId": "org.webjars:jquery:3.5.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-I5KTjjdPVhwnxThyvcm2s1G2ujQ=",
+              "groupId": "org.webjars",
+              "artifactId": "jquery",
+              "version": "3.5.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/webjars/jquery/3.5.1/jquery-3.5.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Z+Z04sXBbpLmaXHCvuJznwuDNyM=",
+              "groupId": "org.webjars",
+              "artifactId": "jquery",
+              "version": "3.5.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/webjars/jquery/3.5.1/jquery-3.5.1-sources.jar"
+              ]
+            }
+          ]
+        },
+        {
+          "platform": "android",
+          "id": "org.webjars:jquery:3.5.1",
+          "variantId": "org.webjars:jquery:3.5.1",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-I5KTjjdPVhwnxThyvcm2s1G2ujQ=",
+              "groupId": "org.webjars",
+              "artifactId": "jquery",
+              "version": "3.5.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/webjars/jquery/3.5.1/jquery-3.5.1.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-Z+Z04sXBbpLmaXHCvuJznwuDNyM=",
+              "groupId": "org.webjars",
+              "artifactId": "jquery",
+              "version": "3.5.1",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/webjars/jquery/3.5.1/jquery-3.5.1-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -56,12 +56,15 @@ internal sealed class UnresolvedMultiplatformLibrary(
         node.dependency.files(withSources = true).filterIsInstance<DependencyFileImpl>()
     }
 
-    suspend fun sourceJar(): UnresolvedMultiplatformLibraryArtifact? {
-        val sourceJars = files.filter { file -> file.isSourceJar() }
-        require(sourceJars.size <= 1) {
-            "Expected at most one source jar, found ${sourceJars.size}: $sourceJars"
-        }
-        return sourceJars.singleOrNull()?.toUnresolvedMultiplatformLibraryArtifact()
+    suspend fun sourceJars(): List<UnresolvedMultiplatformLibraryArtifact> {
+        return files
+            .filter { file -> file.isSourceJar() }
+            .sortedBy { file -> file.nameWithoutExtension.length }
+            .map {
+                it.toUnresolvedMultiplatformLibraryArtifact(
+                    MultiplatformLibraryArtifact.Type.Maven.SourceJar,
+                )
+            }
     }
 
     val exportedDependencies: Set<SubstitutionId> =
@@ -89,10 +92,12 @@ internal sealed class UnresolvedMultiplatformLibrary(
             .filter { it in possibleDependencies }
             .toSet()
 
-    protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact():
-        UnresolvedMultiplatformLibraryArtifact {
+    protected suspend fun DependencyFileImpl.toUnresolvedMultiplatformLibraryArtifact(
+        type: MultiplatformLibraryArtifact.Type.Maven,
+    ): UnresolvedMultiplatformLibraryArtifact {
         val file = this
         return UnresolvedMultiplatformLibraryArtifact(
+            type = type,
             fileName = "${file.nameWithoutExtension}.${file.extension}",
             groupId = variantId.groupId,
             artifactId = variantId.artifactId,
@@ -113,6 +118,10 @@ internal sealed class UnresolvedMultiplatformLibrary(
                     }
                 } ?: error("could not find hash for artifact $file"),
         )
+    }
+
+    override fun toString(): String {
+        return "UnresolvedMultiplatformLibrary(${variantId.gav} [$platform])"
     }
 
     class Klib(
@@ -141,9 +150,17 @@ internal sealed class UnresolvedMultiplatformLibrary(
                 .toSortedMap()
         }
 
-        suspend fun klibs(): Map<KlibRole, List<UnresolvedMultiplatformLibraryArtifact>> {
-            return klibs.mapValues { (_, dependencyFiles) ->
-                dependencyFiles.map { file -> file.toUnresolvedMultiplatformLibraryArtifact() }
+        suspend fun klibs(): List<UnresolvedMultiplatformLibraryArtifact> {
+            return klibs.flatMap { (role, dependencyFiles) ->
+                dependencyFiles.map { file ->
+                    file.toUnresolvedMultiplatformLibraryArtifact(
+                        when (role) {
+                            KlibRole.MAIN -> MultiplatformLibraryArtifact.Type.Maven.Klib
+                            KlibRole.CINTEROP ->
+                                MultiplatformLibraryArtifact.Type.Maven.CInteropKlib
+                        },
+                    )
+                }
             }
         }
 
@@ -151,13 +168,10 @@ internal sealed class UnresolvedMultiplatformLibrary(
          * Local path of the klib downloaded by the Amper resolution, allowing the inspection of its
          * contents.
          */
-        fun mainKlibPath(): Path {
-            val klibs = klibs[KlibRole.MAIN].orEmpty()
-            if (klibs.size != 1) {
-                error("Expected one main klib. Found ${klibs.size}")
+        fun mainKlibPaths(): List<Path> {
+            return klibs[KlibRole.MAIN].orEmpty().map {
+                it.path ?: error("[$variantId] klib was not downloaded to the local cache")
             }
-            return klibs.single().path
-                ?: error("[$variantId] klib was not downloaded to the local cache")
         }
     }
 
@@ -176,12 +190,53 @@ internal sealed class UnresolvedMultiplatformLibrary(
             kmpParents,
             possibleDependencies,
         ) {
-        suspend fun jar(): UnresolvedMultiplatformLibraryArtifact {
-            val jars = files.filter { file -> file.isClasspathJar() }
-            require(jars.size == 1) {
-                "[$variantId] node must have exactly one jar, found ${jars.size}: ${jars.map { "${it.nameWithoutExtension}.${it.extension}" }}"
-            }
-            return jars.single().toUnresolvedMultiplatformLibraryArtifact()
+        suspend fun jars(): List<UnresolvedMultiplatformLibraryArtifact> {
+            return files
+                .filter { file -> file.isClasspathJar() }
+                .map { file ->
+                    file.toUnresolvedMultiplatformLibraryArtifact(
+                        MultiplatformLibraryArtifact.Type.Maven.ClasspathJar,
+                    )
+                }
+        }
+    }
+
+    class Android(
+        resolvedNodes: List<MavenDependencyNode>,
+        repositories: List<MavenRepository>,
+        substitutions: Substitutions,
+        kmpParents: KmpParents,
+        possibleDependencies: Set<SubstitutionId>,
+    ) :
+        UnresolvedMultiplatformLibrary(
+            ResolutionPlatform.ANDROID,
+            resolvedNodes,
+            repositories,
+            substitutions,
+            kmpParents,
+            possibleDependencies,
+        ) {
+
+        suspend fun jarOrAarArtifacts(): List<UnresolvedMultiplatformLibraryArtifact> {
+            val aars =
+                files
+                    .filter { it.isAar() }
+                    .map {
+                        it.toUnresolvedMultiplatformLibraryArtifact(
+                            MultiplatformLibraryArtifact.Type.Maven.Aar,
+                        )
+                    }
+
+            val jars =
+                files
+                    .filter { it.isClasspathJar() }
+                    .map {
+                        it.toUnresolvedMultiplatformLibraryArtifact(
+                            MultiplatformLibraryArtifact.Type.Maven.ClasspathJar,
+                        )
+                    }
+
+            return aars + jars
         }
     }
 }
@@ -193,6 +248,7 @@ internal data class UnresolvedMultiplatformLibraryArtifact(
     val artifactId: String,
     val version: String,
     val possibleLocations: List<String>,
+    val type: MultiplatformLibraryArtifact.Type.Maven,
 )
 
 /**

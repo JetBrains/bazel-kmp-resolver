@@ -1,0 +1,246 @@
+{
+  "askedCoordinates": [
+    "com.google.guava:guava:33.3.1-jre"
+  ],
+  "askedRepositories": [
+    "https://dl.google.com/dl/android/maven2",
+    "https://repo1.maven.org/maven2"
+  ],
+  "libraries": {
+    "com.google.code.findbugs:jsr305:3.0.2": {
+      "id": "com.google.code.findbugs:jsr305:3.0.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.code.findbugs:jsr305:3.0.2",
+          "variantId": "com.google.code.findbugs:jsr305:3.0.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-JeouiwwziodzE71GctP+BW6njw0=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-sZtZJ8LCW2xw8JN2cEHmQa4LGzU=",
+              "groupId": "com.google.code.findbugs",
+              "artifactId": "jsr305",
+              "version": "3.0.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.errorprone:error_prone_annotations:2.28.0": {
+      "id": "com.google.errorprone:error_prone_annotations:2.28.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.errorprone:error_prone_annotations:2.28.0",
+          "variantId": "com.google.errorprone:error_prone_annotations:2.28.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-WfwACHzjct5C45TSx4kpXf8tGfA=",
+              "groupId": "com.google.errorprone",
+              "artifactId": "error_prone_annotations",
+              "version": "2.28.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.28.0/error_prone_annotations-2.28.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-6PV7FakdJ0/2EZXlPpdi8yMsaQ8=",
+              "groupId": "com.google.errorprone",
+              "artifactId": "error_prone_annotations",
+              "version": "2.28.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.28.0/error_prone_annotations-2.28.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.guava:failureaccess:1.0.2": {
+      "id": "com.google.guava:failureaccess:1.0.2",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.guava:failureaccess:1.0.2",
+          "variantId": "com.google.guava:failureaccess:1.0.2",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-xKBqZOZQVi8wt7+arsG/7UOsoSs=",
+              "groupId": "com.google.guava",
+              "artifactId": "failureaccess",
+              "version": "1.0.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-as2vzy38O1SOWd06S0VFUq62/2U=",
+              "groupId": "com.google.guava",
+              "artifactId": "failureaccess",
+              "version": "1.0.2",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.guava:guava:33.3.1-jre": {
+      "id": "com.google.guava:guava:33.3.1-jre",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.guava:guava:33.3.1-jre",
+          "variantId": "com.google.guava:guava:33.3.1-jre",
+          "dependencies": [],
+          "exportedDependencies": [
+            "com.google.code.findbugs:jsr305",
+            "com.google.errorprone:error_prone_annotations",
+            "com.google.guava:failureaccess",
+            "com.google.guava:listenablefuture",
+            "com.google.j2objc:j2objc-annotations",
+            "org.checkerframework:checker-qual"
+          ],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-hS+LNj2gER6BlGACHKaTysyj6Ns=",
+              "groupId": "com.google.guava",
+              "artifactId": "guava",
+              "version": "33.3.1-jre",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-54jJvEHvK8u4l5T3k9qbV2td3jg=",
+              "groupId": "com.google.guava",
+              "artifactId": "guava",
+              "version": "33.3.1-jre",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava": {
+      "id": "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava",
+          "variantId": "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-tCFSbF8pcpWt7xyIblJGw51Kxik=",
+              "groupId": "com.google.guava",
+              "artifactId": "listenablefuture",
+              "version": "9999.0-empty-to-avoid-conflict-with-guava",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "com.google.j2objc:j2objc-annotations:3.0.0": {
+      "id": "com.google.j2objc:j2objc-annotations:3.0.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "com.google.j2objc:j2objc-annotations:3.0.0",
+          "variantId": "com.google.j2objc:j2objc-annotations:3.0.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha1-c5nmXdfp/zQE9FNbLwFwk72xNMc=",
+              "groupId": "com.google.j2objc",
+              "artifactId": "j2objc-annotations",
+              "version": "3.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha1-5uhwxvr3CGenI4SLA2YHzX04liE=",
+              "groupId": "com.google.j2objc",
+              "artifactId": "j2objc-annotations",
+              "version": "3.0.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "org.checkerframework:checker-qual:3.43.0": {
+      "id": "org.checkerframework:checker-qual:3.43.0",
+      "variants": [
+        {
+          "platform": "jvm",
+          "id": "org.checkerframework:checker-qual:3.43.0",
+          "variantId": "org.checkerframework:checker-qual:3.43.0",
+          "dependencies": [],
+          "exportedDependencies": [],
+          "artifacts": [
+            {
+              "type": "ClasspathJar",
+              "integrity": "sha512-gj6ijjyCL/SOTphaQh+gtTyjQZ4sBjXD1NCpgiOZtkkXgOJqkWHUczhXyXmHv/LXJf9EU7LCLtQS7vRuon9dhA==",
+              "groupId": "org.checkerframework",
+              "artifactId": "checker-qual",
+              "version": "3.43.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0.jar"
+              ]
+            },
+            {
+              "type": "SourceJar",
+              "integrity": "sha512-pVjoQErUmPo2I+qxztJstcO/hZKtA++sBuDYuCPiiS3XuRqae8XQCC9TXyBUPxnsh4Tb+MSoQAvdCjBplGBgpw==",
+              "groupId": "org.checkerframework",
+              "artifactId": "checker-qual",
+              "version": "3.43.0",
+              "urls": [
+                "https://repo1.maven.org/maven2/org/checkerframework/checker-qual/3.43.0/checker-qual-3.43.0-sources.jar"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

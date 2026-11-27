@@ -7,6 +7,7 @@ import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.*
 import kotlinx.serialization.*
 import org.jetbrains.amper.dependency.resolution.*
+import org.jetbrains.amper.dependency.resolution.attributes.KotlinPlatformType
 import org.jetbrains.amper.dependency.resolution.diagnostics.Message
 import org.jetbrains.amper.dependency.resolution.diagnostics.PlatformsAreNotSupported
 import org.jetbrains.amper.dependency.resolution.diagnostics.Severity
@@ -170,16 +171,16 @@ internal class MultiplatformResolver(
                 /* Support resolving npm packages for wasm js */
                 .filterIsInstance<UnresolvedMultiplatformLibrary.Klib>()
                 .filter { node -> node.platform == ResolutionPlatform.WASM_JS }
-                .mapNotNull { node ->
-                    val manifest =
-                        withContext(Dispatchers.IO) {
-                            readEmbeddedNpmManifest(node.mainKlibPath())
+                .flatMap { node ->
+                    withContext(Dispatchers.IO) {
+                        node.mainKlibPaths().mapNotNull { klib ->
+                            val manifest = readEmbeddedNpmManifest(klib) ?: return@mapNotNull null
+                            if (manifest.dependencies.isEmpty()) return@mapNotNull null
+                            NpmResolutionRequest(
+                                variantId = node.variantId,
+                                manifest = manifest,
+                            )
                         }
-
-                    when {
-                        manifest == null || manifest.dependencies.isEmpty() -> null
-                        else ->
-                            NpmResolutionRequest(variantId = node.variantId, manifest = manifest)
                     }
                 }
 
@@ -249,7 +250,16 @@ internal class MultiplatformResolver(
         root: RootDependencyNode,
         platform: ResolutionPlatform,
     ): List<UnresolvedMultiplatformLibrary> {
-        val nodes = root.distinctBfsSequence().filterIsInstance<MavenDependencyNode>().toList()
+        val nodes =
+            root
+                .distinctBfsSequence { child, _ ->
+                    when (child) {
+                        is MavenDependencyNode -> child.isCollectedFor(platform)
+                        else -> false
+                    }
+                }
+                .filterIsInstance<MavenDependencyNode>()
+                .toList()
         // Amper tells the KMP library a node is a platform-specific variant of per graph node, that
         // is per requester: a
         // variant also requested directly, as POM-only JVM libraries do with `*-jvm` artifacts, has
@@ -293,9 +303,10 @@ internal class MultiplatformResolver(
             }
         }
 
+        val kmpParentsSet = kmpParents.values.toSet()
         val (substitutedNodes, filteredNodes) =
             nodes
-                .filter { node -> node.isCollectedFor(platform) }
+                .filter { node -> node.gav !in kmpParentsSet }
                 .partition { node -> node.isSubstituted(kmpParents) }
         substitutedNodes.forEach { node ->
             logger.debug(
@@ -333,6 +344,15 @@ internal class MultiplatformResolver(
 
                     platform == ResolutionPlatform.JVM ->
                         UnresolvedMultiplatformLibrary.Jvm(
+                            resolvedNodes = scopedNodes,
+                            substitutions = substitutions,
+                            kmpParents = kmpParents,
+                            possibleDependencies = possibleDependencies,
+                            repositories = repositories,
+                        )
+
+                    platform == ResolutionPlatform.ANDROID ->
+                        UnresolvedMultiplatformLibrary.Android(
                             resolvedNodes = scopedNodes,
                             substitutions = substitutions,
                             kmpParents = kmpParents,
@@ -414,38 +434,105 @@ internal class MultiplatformResolver(
     }
 
     /**
-     * Whether this node of the dependency graph resolved for [platform] is a library to expose in
-     * the manifest.
+     * Filters out dependencies that are not relevant for the given platform. This fixes a current
+     * design issue of the dependency resolver:
      *
-     * In a single-platform resolution, KMP umbrella libraries, BOMs and pom-only libraries have no
-     * files, the platform-specific variant of a KMP library (`*-wasm-js`, `*-jvm`) has them, and so
-     * has a JVM-only library.
+     * A request to resolve dependencies provides a flat list of dependencies, and a flat list of
+     * platforms. This leads to dependencies, being published for non-kmp being requested for kmp
+     * platforms.
+     *
+     * E.g. a regular pom based java dependency may end up being requested for klib based platforms.
+     * E.g. a regular android aar based dependency may end up being requested for non-android
+     * platforms.
+     *
+     * The publication metadata of such publications does not carry KMP information. The resolution
+     * rules for compatibility will resolve the artifacts. E.g. a regular android aar based
+     * dependency may still use `org.gradle.usage=java-api` which could be marked compatible with
+     * JVM and is therefore resolved. Usually such a library is not present/expected in JVM based
+     * dependency graphs. Any JVM based dependency graph containing such a library can be considered
+     * rogue and the dependency resolution therefore erratic.
+     *
+     * As long as we use such a 'flat' resolution context for all dependencies, we need to filter
+     * those nodes explicitly. (An alternative approach would be to resolve platform specific
+     * dependencies **only** in their given resolution context.)
      */
     private fun MavenDependencyNode.isCollectedFor(
         platform: ResolutionPlatform,
     ): Boolean {
-        val files = (dependency as MavenDependencyImpl).files(withSources = true)
-
-        return when {
-            platform == ResolutionPlatform.WASM_JS || platform.type == PlatformType.NATIVE ->
-                files.any { it.isKlib() }
-
-            platform == ResolutionPlatform.JVM ->
-                when {
-                    files.any { it.isClasspathJar() } -> true
-                    files.any { !it.isDocumentation } -> {
-                        // e.g. a library only published as an Android `.aar`
-                        logger.warn(
-                            "[$gav] skipping jvm platform, no jar among its artifacts: ${files.map { "${it.nameWithoutExtension}.${it.extension}" }}",
-                        )
-                        false
-                    }
-
-                    else -> false
-                }
-
-            else -> error("Platform ${platform.pretty} is not supported")
+        if (isBom) {
+            return false
         }
+
+        /*
+        Kotlin Toolchain was able to infer from the given publication attributes that the platform is just not supported.
+        Shall later be replaced by a dedicated API which does not rely on such typed messages.
+         */
+        if (dependency.messages.any { it is PlatformsAreNotSupported }) {
+            return false
+        }
+
+        /*
+        dependency.packaging is only populated for pom based dependencies (no module files).
+        This already indicates that the dependency is not a KMP library.
+        https://maven.apache.org/pom.html#Packaging
+         */
+
+        /*
+        Classpath JARs and POM aggregators are supported on Android and JVM.
+         */
+        if (
+            dependency.packaging in listOf("jar", "bundle", "pom") &&
+                platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)
+        ) {
+            return false
+        }
+
+        /*
+        Different JVM packaged POM only dependency, which requires JVM
+         */
+        if (
+            dependency.packaging in listOf("war", "ear", "rar", "maven-plugin", "ejb") &&
+                platform != ResolutionPlatform.JVM
+        ) {
+            return false
+        }
+
+        /*
+        Plain old, pom based, android dependency requested in a non-android context
+         */
+        if (dependency.packaging == "aar" && platform != ResolutionPlatform.ANDROID) {
+            return false
+        }
+
+        /*
+        Gradle Module metadata based android dependencies resolved in a non-android context
+         */
+        val files = dependency.files(withSources = false)
+        if (files.any { it.isAar() } && platform != ResolutionPlatform.ANDROID) {
+            return false
+        }
+
+        /*
+        Guard KMP libraries: We expect KMP only platforms to
+        - be Gradle .module metadata based
+        - have at least one resolved variant with a Kotlin platform type
+
+        Note: This is using an internal KTC API that we agreed upon for 0.14.0
+        This is planned to be handled either by KTC directly, by not resolving such variants
+        or by providing a public API.
+         */
+        if (platform !in listOf(ResolutionPlatform.JVM, ResolutionPlatform.ANDROID)) {
+            val variants = (dependency as MavenDependencyImpl).resolvedVariants()
+            if (
+                variants.none { variant ->
+                    variant.attributes[KotlinPlatformType.name] != null
+                }
+            ) {
+                return false
+            }
+        }
+
+        return true
     }
 
     private suspend fun resolveArtifacts(
@@ -464,6 +551,11 @@ internal class MultiplatformResolver(
                         }
 
                     is UnresolvedMultiplatformLibrary.Jvm ->
+                        async {
+                            unresolvedNode.resolve(artifactResolver)
+                        }
+
+                    is UnresolvedMultiplatformLibrary.Android ->
                         async {
                             unresolvedNode.resolve(artifactResolver)
                         }
@@ -520,6 +612,7 @@ private suspend fun UnresolvedMultiplatformLibraryArtifact.resolve(
         artifactId = artifactId,
         version = version,
         urls = urls,
+        type = type,
     )
 }
 
@@ -527,63 +620,61 @@ private suspend fun UnresolvedMultiplatformLibrary.Klib.resolve(
     artifactUrlResolver: ArtifactUrlResolver,
     npmPackages: List<NpmMultiplatformLibraryArtifact>,
 ): MultiplatformVariant = coroutineScope {
-    val resolvedKlibs = async {
-        klibs().mapValues { (_, dependencies) ->
-            dependencies.map { dependency ->
-                dependency.resolve(artifactUrlResolver)
+    val resolvedKlibs =
+        klibs().map { file ->
+            async {
+                file.resolve(artifactUrlResolver)
             }
         }
-    }
+    val resolvedSourceJars = sourceJars().map { async { it.resolve(artifactUrlResolver) } }
 
-    val mainKlib = async {
-        val resolvedKlibs = resolvedKlibs.await()[KlibRole.MAIN].orEmpty()
-        if (resolvedKlibs.size != 1)
-            error("Expected a single main 'klib'. Found: ${resolvedKlibs.map { it }}")
-        resolvedKlibs.single()
-    }
-
-    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(artifactUrlResolver) } }
-
-    return@coroutineScope when {
-        platform == ResolutionPlatform.WASM_JS ->
-            MultiplatformVariant.WasmJs(
-                id = id,
-                variantId = variantId,
-                klib = mainKlib.await(),
-                sourceJar = resolvedSourceJar?.await(),
-                dependencies = dependencies.sorted(),
-                exportedDependencies = exportedDependencies.sorted(),
-                npmPackages = npmPackages,
-            )
-
-        platform.type == PlatformType.NATIVE ->
-            MultiplatformVariant.Native(
-                platform = platform,
-                id = id,
-                variantId = variantId,
-                klib = mainKlib.await(),
-                cinteropKlibs = resolvedKlibs.await()[KlibRole.CINTEROP].orEmpty(),
-                sourceJar = resolvedSourceJar?.await(),
-                dependencies = dependencies.sorted(),
-                exportedDependencies = exportedDependencies.sorted(),
-            )
-
-        else -> error("Unsupported platform: '$platform'")
-    }
+    return@coroutineScope MultiplatformVariant(
+        platform = platform,
+        id = id,
+        variantId = variantId,
+        dependencies = dependencies.sorted(),
+        exportedDependencies = exportedDependencies.sorted(),
+        artifacts =
+            buildList {
+                addAll(resolvedKlibs.awaitAll())
+                addAll(resolvedSourceJars.awaitAll())
+                addAll(npmPackages)
+            },
+    )
 }
 
 private suspend fun UnresolvedMultiplatformLibrary.Jvm.resolve(
     artifactUrlResolver: ArtifactUrlResolver,
-): MultiplatformVariant.Jvm = coroutineScope {
-    val resolvedJar = async { jar().resolve(artifactUrlResolver) }
-    val resolvedSourceJar = sourceJar()?.let { async { it.resolve(artifactUrlResolver) } }
-    MultiplatformVariant.Jvm(
+): MultiplatformVariant = coroutineScope {
+    val resolvedJars = jars().map { async { it.resolve(artifactUrlResolver) } }
+    val resolvedSourceJar = sourceJars().map { async { it.resolve(artifactUrlResolver) } }
+    MultiplatformVariant(
+        platform = platform,
         id = id,
         variantId = variantId,
-        jar = resolvedJar.await(),
-        sourceJar = resolvedSourceJar?.await(),
         dependencies = dependencies.sorted(),
         exportedDependencies = exportedDependencies.sorted(),
+        artifacts = resolvedJars.awaitAll() + resolvedSourceJar.awaitAll(),
+    )
+}
+
+private suspend fun UnresolvedMultiplatformLibrary.Android.resolve(
+    artifactUrlResolver: ArtifactUrlResolver,
+): MultiplatformVariant = coroutineScope {
+    val resolvedLibrary = jarOrAarArtifacts().map { async { it.resolve(artifactUrlResolver) } }
+    val resolvedSourceJars = sourceJars().map { async { it.resolve(artifactUrlResolver) } }
+
+    MultiplatformVariant(
+        platform = platform,
+        id = id,
+        variantId = variantId,
+        dependencies = dependencies.sorted(),
+        exportedDependencies = exportedDependencies.sorted(),
+        artifacts =
+            buildList {
+                addAll(resolvedLibrary.awaitAll())
+                addAll(resolvedSourceJars.awaitAll())
+            },
     )
 }
 
